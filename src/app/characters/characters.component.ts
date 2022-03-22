@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CharacterInfo } from '../model/character-info';
 import { CHARACTERS } from '../mock/mock-characters';
+import { CharacterService } from '../services/character-service';
 
 @Component({
   selector: 'app-characters',
@@ -10,16 +11,23 @@ import { CHARACTERS } from '../mock/mock-characters';
 })
 export class CharactersComponent implements OnInit {
 
-  characters = CHARACTERS;
+  characters: CharacterInfo[] = [];
   selectedCharacter?: CharacterInfo;
 
-  constructor() { }
+  constructor(private characterService: CharacterService) {
+  }
 
   ngOnInit(): void {
+    this.getCharacters();
   }
 
   onSelect(characterInfo: CharacterInfo): void {
     this.selectedCharacter = characterInfo;
+  }
+
+  getCharacters(): void {
+    this.characterService.getCharacters()
+      .subscribe(c => this.characters = c);
   }
 
 }
