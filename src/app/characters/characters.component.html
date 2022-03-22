@@ -1,0 +1,26 @@
+<h2>Characters</h2>
+<ul class="characters">
+  <li *ngFor="let characterInfo of characters">
+    <button [class.selected]="characterInfo === selectedCharacter" type="button" (click)="onSelect(characterInfo)">
+      <span class="badge">{{characterInfo.id}}</span>
+      <span class="name">{{characterInfo.name}}</span>
+    </button>
+  </li>
+</ul>
+
+<div *ngIf="selectedCharacter">
+
+  <h2>{{selectedCharacter.name | uppercase}} Details</h2>
+  <div>id: {{selectedCharacter.id}}</div>
+  <div>
+    <label for="character-name">Name: </label>
+    <!--input id="character-name" [(ngModel)]="selectedCharacter.name" placeholder="name"-->
+    <input id="character-name" placeholder="name">
+    <pre>
+    {{selectedCharacter.name}}
+    {{selectedCharacter.professionId}}
+    {{selectedCharacter.raceId}}
+  </pre>
+  </div>
+
+</div>
