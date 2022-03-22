@@ -1,15 +1,14 @@
 <h2>Sessions</h2>
+
 <ul class="sessions">
   <li *ngFor="let session of sessions">
-    <button [class.selected]="session === selectedSession" type="button" (click)="onSelect(session)">
-      <span class="name">{{session.name}}</span>
-    </button>
+    <a routerLink="/sessions/detail/{{session.id}}">
+      <span class="badge">{{session.id}}</span> {{session.name}}
+    </a>
+    <button type="button" class="delete" title="delete session" (click)="deleteSession(session)">x</button>
   </li>
 </ul>
 
 <button type="button" (click)="createSession()">
     <span class="name">New</span>
 </button>
-
-
-

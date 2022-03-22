@@ -34,4 +34,9 @@ export class SessionsComponent implements OnInit {
       });
   }
 
+  deleteSession(session: Session): void {
+    this.sessions = this.sessions.filter(h => h !== session);
+    this.sessionService.deleteSession(session.id).subscribe();
+  }
+
 }

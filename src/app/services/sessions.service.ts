@@ -26,6 +26,14 @@ export class SessionsService {
       );
   }
 
+  getSession(id: String): Observable<Session> {
+    const url = `${this.sessionsUrl}/${id}`;
+    return this.http.get<Session>(url).pipe(
+        tap(_ => this.log('fetched session')),
+        catchError(this.handleError<Session>('getSession', {id:'',name:''}))
+      );
+  }
+
   createSession(hero: Session): Observable<Session> {
     return this.http.post<Session>(this.sessionsUrl + "?name=test", hero, this.httpOptions).pipe(
       tap((newHero: Session) => this.log(`added hero w/ id=${newHero.id}`)),
@@ -33,18 +41,13 @@ export class SessionsService {
     );
   }
 
-  /*
-  createSession(session: Session): Observable<Session> {
-    var url = this.sessionsUrl + '?name=' + session.name;
-    console.log("SessionService: Creating session " + session + ": " + url);
-
-    return this.http.post(url, session, this.httpOptions)
-      .pipe(
-        tap((newHero: Session) => this.log(`added hero w/ id=${newHero.id}`)),
-        catchError(this.handleError<Session>('addHero'))
-      );
+  deleteSession(id: String): Observable<Session> {
+    const url = `${this.sessionsUrl}/${id}`;
+    return this.http.delete<Session>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted session id=${id}`)),
+      catchError(this.handleError<Session>('deleteSession'))
+    );
   }
-  */
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

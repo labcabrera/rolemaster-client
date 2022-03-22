@@ -8,6 +8,8 @@ import { RealmsComponent } from './realms/realms.component';
 import { CharactersComponent } from './characters/characters.component';
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
 import { SessionsComponent } from './sessions/sessions.component';
+import { SessionDetailComponent } from './session-detail/session-detail.component';
+import { CharacterCreationComponent } from './character-creation/character-creation.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { SessionsComponent } from './sessions/sessions.component';
     RealmsComponent,
     CharactersComponent,
     CharacterDetailComponent,
-    SessionsComponent
+    SessionsComponent,
+    SessionDetailComponent,
+    CharacterCreationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,22 @@
+<pre>Session detail</pre>
+
+<div *ngIf="session">
+
+    <h2>{{session.name | uppercase}} Details</h2>
+    <div>
+    </div>
+
+</div>
+
+<div *ngIf="session">
+  <h2>{{session.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{session.id}}</div>
+  <div><span>name: </span>{{session.name}}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <!--
+    <input id="hero-name" [(ngModel)]="session.name" placeholder="Session name"/>
+    -->
+  </div>
+  <button type="button" (click)="goBack()">go back</button>
+</div>
