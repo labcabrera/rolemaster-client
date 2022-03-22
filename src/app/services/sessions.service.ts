@@ -30,12 +30,13 @@ export class SessionsService {
     const url = `${this.sessionsUrl}/${id}`;
     return this.http.get<Session>(url).pipe(
         tap(_ => this.log('fetched session')),
-        catchError(this.handleError<Session>('getSession', {id:'',name:''}))
+        catchError(this.handleError<Session>('getSession', {id:'',name:'',metadata:{created:''}}))
       );
   }
 
-  createSession(hero: Session): Observable<Session> {
-    return this.http.post<Session>(this.sessionsUrl + "?name=test", hero, this.httpOptions).pipe(
+  createSession(name: String): Observable<Session> {
+    const url = `${this.sessionsUrl}?name=${name}`;
+    return this.http.post<Session>(url, {}, this.httpOptions).pipe(
       tap((newHero: Session) => this.log(`added hero w/ id=${newHero.id}`)),
       catchError(this.handleError<Session>('addHero'))
     );

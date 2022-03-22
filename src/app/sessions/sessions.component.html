@@ -1,9 +1,9 @@
 <h2>Sessions</h2>
 
-<ul class="sessions">
+<ul class="sessions" style="display: inline;">
   <li *ngFor="let session of sessions">
     <a routerLink="/sessions/detail/{{session.id}}">
-      <span class="badge">{{session.id}}</span> {{session.name}}
+      <div>{{session.name}}</div>
     </a>
     <button type="button" class="delete" title="delete session" (click)="deleteSession(session)">x</button>
   </li>
