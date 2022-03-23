@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CharacterCreationRequest } from '../model/character-info';
 import { CharacterService } from '../services/character-service';
 
@@ -11,24 +11,30 @@ import { CharacterService } from '../services/character-service';
 export class CharacterCreationComponent implements OnInit {
 
   characterCreationRequest: CharacterCreationRequest;
+  characterCreationFormGroup: FormGroup;
 
-  firstFormGroup: FormGroup;
+  characterBasicData: FormGroup;
   secondFormGroup: FormGroup;
 
   constructor(
     private characterService: CharacterService,
-    private _formBuilder: FormBuilder) {
+    private fb: FormBuilder) {
       
       this.characterCreationRequest = this.newCharacterTemplate();
-      this.firstFormGroup = this._formBuilder.group({
+      this.characterBasicData = this.fb.group({
         firstCtrl: ['', Validators.required],
       });
-      this.secondFormGroup = this._formBuilder.group({
+      this.secondFormGroup = this.fb.group({
         secondCtrl: ['', Validators.required],
       });
+      this.characterCreationFormGroup = this.fb.group(this.characterCreationRequest);
     }
     
     ngOnInit() {
+    }
+
+    get characterCreationFormGroupValue() {
+      return this.characterCreationFormGroup.value as CharacterCreationRequest;
     }
     
     newCharacterTemplate(): CharacterCreationRequest {
@@ -37,6 +43,7 @@ export class CharacterCreationComponent implements OnInit {
         attributesRoll: 660,
         professionId: '',
         raceId: '',
+        realmId: '',
         baseAttributes: {
           ag: 50,
           co: 50,

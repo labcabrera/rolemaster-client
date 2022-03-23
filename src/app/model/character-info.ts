@@ -9,6 +9,7 @@ export interface CharacterCreationRequest {
     name: string;
     raceId: string;
     professionId: string;
+    realmId: string;
     attributesRoll: number;
     baseAttributes: CharacterCreationAttributes;
 }

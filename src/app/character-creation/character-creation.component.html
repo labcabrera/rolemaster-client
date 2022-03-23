@@ -1,51 +1,17 @@
 <mat-stepper linear #stepper>
-    <mat-step [stepControl]="firstFormGroup" [editable]=false>
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup" [editable]=false>
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Fill out your address</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
-    </mat-step>
-  </mat-stepper>
 
-<mat-grid-list cols="4" rowHeight="1:2">
+    <mat-step [stepControl]="characterBasicData" [editable]=false>
 
-    <mat-grid-tile [colspan]="1">
-        <form class="example-form">
+        <form [formGroup]="characterCreationFormGroup">
+            <ng-template matStepLabel>Character basic data</ng-template>
+
             <mat-form-field class="example-form-field" appearance="fill">
                 <mat-label>Name</mat-label>
-                <input name="name" matInput type="text" [(ngModel)]="characterCreationRequest.name">
+                <input name="name" matInput type="text" formControlName="name">
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Race</mat-label>
-                <mat-select name="raceId" [(ngModel)]="characterCreationRequest.raceId">
+                <mat-select name="raceId" formControlName="professionId">
                     <mat-option value="common-men">Common men</mat-option>
                     <mat-option value="high-men" disabled>High men</mat-option>
                     <mat-option value="ork" disabled>Ork</mat-option>
@@ -53,86 +19,127 @@
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Profession</mat-label>
-                <mat-select name="professionId" [(ngModel)]="characterCreationRequest.professionId">
+                <mat-select name="professionId" formControlName="professionId">
                     <mat-option value="fighter">Fighter</mat-option>
                     <mat-option value="thief">Thief</mat-option>
                     <mat-option value="option3" disabled>Mage</mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" formControlName="realmId">
                 <mat-label>Realm</mat-label>
-                <mat-select [disabled]="false">
-                    <mat-option value="option1">Channeling</mat-option>
-                    <mat-option value="option2">Essence</mat-option>
-                    <mat-option value="option3">Mentalism</mat-option>
+                <mat-select>
+                    <mat-option value="channeling">Channeling</mat-option>
+                    <mat-option value="essence">Essence</mat-option>
+                    <mat-option value="mentalism">Mentalism</mat-option>
                 </mat-select>
             </mat-form-field>
+
+
+            <!--
+                <mat-grid-tile [colspan]="1">
+
+                    <mat-list>
+                        <mat-list-item>
+                            <div class="attribute-name">Agility</div>
+                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.ag" [max]="100" [min]="1"
+                                thumbLabel=true></mat-slider>
+                            <div>{{characterCreationRequest.baseAttributes.ag}}</div>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <div class="attribute-name">Constitution</div>
+                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.co" [max]="100" [min]="1"
+                                thumbLabel=true></mat-slider>
+                            <div>{{characterCreationRequest.baseAttributes.co}}</div>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <div class="attribute-name">Memory</div>
+                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.me" [max]="100" [min]="1"
+                                thumbLabel=true></mat-slider>
+                            <div>{{characterCreationRequest.baseAttributes.me}}</div>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <div class="attribute-name">Reasoning</div>
+                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.re" [max]="100" [min]="1"
+                                thumbLabel=true></mat-slider>
+                            <div>{{characterCreationRequest.baseAttributes.re}}</div>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <div class="attribute-name">Self discipline</div>
+                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.sd" [max]="100" [min]="1"
+                                thumbLabel=true></mat-slider>
+                            <div>{{characterCreationRequest.baseAttributes.sd}}</div>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <div class="attribute-name">Empathy</div>
+                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.em" [max]="100" [min]="1"
+                                thumbLabel=true></mat-slider>
+                            <div>{{characterCreationRequest.baseAttributes.em}}</div>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <div class="attribute-name">Intuition</div>
+                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.in" [max]="100" [min]="1"
+                                thumbLabel=true></mat-slider>
+                            <div>{{characterCreationRequest.baseAttributes.in}}</div>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <div class="attribute-name">Presence</div>
+                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.pr" [max]="100" [min]="1"
+                                thumbLabel=true></mat-slider>
+                            <div>{{characterCreationRequest.baseAttributes.pr}}</div>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <div class="attribute-name">Quickness</div>
+                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.qu" [max]="100" [min]="1"
+                                thumbLabel=true></mat-slider>
+                            <div>{{characterCreationRequest.baseAttributes.qu}}</div>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <div class="attribute-name">Strength</div>
+                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.st" [max]="100" [min]="1"
+                                thumbLabel=true></mat-slider>
+                            <div>{{characterCreationRequest.baseAttributes.st}}</div>
+                        </mat-list-item>
+                    </mat-list>
+
+                </mat-grid-tile>
+
+            </mat-grid-list>
+        -->
+
+
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
         </form>
-    </mat-grid-tile>
-    
-    <mat-grid-tile [colspan]="1">
+    </mat-step>
 
-        <mat-list>
-            <mat-list-item>
-                <div class="attribute-name">Agility</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.ag" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.baseAttributes.ag}}</div>
-            </mat-list-item>
-            <mat-list-item>
-                <div class="attribute-name">Constitution</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.co" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.baseAttributes.co}}</div>
-            </mat-list-item>
-            <mat-list-item>
-                <div class="attribute-name">Memory</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.me" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.baseAttributes.me}}</div>
-            </mat-list-item>
-            <mat-list-item>
-                <div class="attribute-name">Reasoning</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.re" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.baseAttributes.re}}</div>
-            </mat-list-item>
-            <mat-list-item>
-                <div class="attribute-name">Self discipline</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.sd" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.baseAttributes.sd}}</div>
-            </mat-list-item>
-            <mat-list-item>
-                <div class="attribute-name">Empathy</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.em" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.baseAttributes.em}}</div>
-            </mat-list-item>
-            <mat-list-item>
-                <div class="attribute-name">Intuition</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.in" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.baseAttributes.in}}</div>
-            </mat-list-item>
-            <mat-list-item>
-                <div class="attribute-name">Presence</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.pr" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.baseAttributes.pr}}</div>
-            </mat-list-item>
-            <mat-list-item>
-                <div class="attribute-name">Quickness</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.qu" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.baseAttributes.qu}}</div>
-            </mat-list-item>
-            <mat-list-item>
-                <div class="attribute-name">Strength</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.st" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.baseAttributes.st}}</div>
-            </mat-list-item>
-        </mat-list>
+    <mat-step [stepControl]="secondFormGroup" [editable]=false>
+        <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Character development</ng-template>
+            <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+    </mat-step>
+</mat-stepper>
 
-    </mat-grid-tile>
-        <button mat-stroked-button color="primary" (click)="createCharacter()">
-            <mat-icon>add</mat-icon>
-        </button>
-    <mat-grid-tile>
+<button mat-stroked-button color="primary" (click)="createCharacter()">
+    <mat-icon>add</mat-icon>
+</button>
 
-    </mat-grid-tile>
-    
-</mat-grid-list>
+<pre>{{this.characterCreationFormGroupValue | json}}</pre>
 
 <pre>{{characterCreationRequest | json}}</pre>
