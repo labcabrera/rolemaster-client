@@ -1,8 +1,5 @@
-<mat-toolbar>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>My App</span>
+<mat-toolbar color="primary">
+  <span>{{title}}</span>
   <span class="example-spacer"></span>
   <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon>favorite</mat-icon>
@@ -10,17 +7,38 @@
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
   </button>
+  <button mat-icon-button class="hamburger" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
 </mat-toolbar>
 
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [(opened)]="showSideBar" [fixedInViewport]="true" mode="side" position="start">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/sessions"><mat-icon>language</mat-icon> Sessions</a>
+      <a mat-list-item routerLink="/characters/creation"><mat-icon>person</mat-icon> Character creation</a>
+      <a mat-list-item routerLink="/characters"><mat-icon>person</mat-icon> Characters</a>
+      <a mat-list-item><mat-icon>library_books</mat-icon> Movement</a>
+      <a mat-list-item><mat-icon>library_books</mat-icon> Combat</a>
+      <a mat-list-item><mat-icon>library_books</mat-icon> Static maneuvers</a>
+      <a mat-list-item><mat-icon>library_books</mat-icon> Dynamic maneuvers</a>
+      <a mat-list-item><mat-icon>shopping_cart</mat-icon> Shop</a>
+    </mat-nav-list>
+  </mat-sidenav>
 
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/sessions">Sessions</a>
-  <a routerLink="/characters/creation">Character creation</a>
-  <a routerLink="/characters">Characters</a>
-  <a routerLink="/characters">Movement</a>
-  <a routerLink="/characters">Combat</a>
-  <a routerLink="/characters">Actions - Static</a>
-  <a routerLink="/characters">Actions - Dynamic</a>
-</nav>
-<router-outlet></router-outlet>
+  <mat-sidenav-content>
+
+    <!-- Applying the mat-tyography class adds styles for native elements. -->
+    <!--
+    <section class="mat-typography title-group">
+      <h1>Heading Goes Here</h1>
+      <mat-divider></mat-divider>
+    </section>
+  -->
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+

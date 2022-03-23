@@ -1,77 +1,97 @@
-<div layout="column" flex="20">
+<mat-grid-list cols="4" rowHeight="1:2">
 
-    <p>
-        <mat-form-field class="example-form-field" appearance="fill">
-            <mat-label>Name</mat-label>
-            <input matInput type="text">
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field appearance="fill">
-            <mat-label>Race</mat-label>
-            <mat-select [disabled]="false">
-                <mat-option value="option1">Common men</mat-option>
-                <mat-option value="option2" disabled>High men</mat-option>
-                <mat-option value="option3" disabled>Elve</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field appearance="fill">
-            <mat-label>Profession</mat-label>
-            <mat-select [disabled]="false">
-                <mat-option value="option1">Fighter</mat-option>
-                <mat-option value="option2">Thieve</mat-option>
-                <mat-option value="option3" disabled>Mage</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field appearance="fill">
-            <mat-label>Realm</mat-label>
-            <mat-select [disabled]="false">
-                <mat-option value="option1">Channeling</mat-option>
-                <mat-option value="option2">Essence</mat-option>
-                <mat-option value="option3">Mentalism</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </p>
-</div>
+    <mat-grid-tile [colspan]="1">
+        <form class="example-form">
+            <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input name="name" matInput type="text" [(ngModel)]="characterCreationRequest.name">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Race</mat-label>
+                <mat-select name="raceId" [(ngModel)]="characterCreationRequest.raceId">
+                    <mat-option value="common-men">Common men</mat-option>
+                    <mat-option value="high-men" disabled>High men</mat-option>
+                    <mat-option value="ork" disabled>Ork</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Profession</mat-label>
+                <mat-select name="professionId" [(ngModel)]="characterCreationRequest.professionId">
+                    <mat-option value="fighter">Fighter</mat-option>
+                    <mat-option value="thieve">Thieve</mat-option>
+                    <mat-option value="option3" disabled>Mage</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Realm</mat-label>
+                <mat-select [disabled]="false">
+                    <mat-option value="option1">Channeling</mat-option>
+                    <mat-option value="option2">Essence</mat-option>
+                    <mat-option value="option3">Mentalism</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+    </mat-grid-tile>
+    
+    <mat-grid-tile [colspan]="1">
 
-<div layout="column" flex="80">
+        <mat-list>
+            <mat-list-item>
+                <div class="attribute-name">Agility</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.attributes.ag" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.attributes.ag}}</div>
+            </mat-list-item>
+            <mat-list-item>
+                <div class="attribute-name">Constitution</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.attributes.co" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.attributes.co}}</div>
+            </mat-list-item>
+            <mat-list-item>
+                <div class="attribute-name">Memory</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.attributes.me" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.attributes.me}}</div>
+            </mat-list-item>
+            <mat-list-item>
+                <div class="attribute-name">Reasoning</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.attributes.re" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.attributes.re}}</div>
+            </mat-list-item>
+            <mat-list-item>
+                <div class="attribute-name">Self discipline</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.attributes.sd" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.attributes.sd}}</div>
+            </mat-list-item>
+            <mat-list-item>
+                <div class="attribute-name">Empathy</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.attributes.em" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.attributes.em}}</div>
+            </mat-list-item>
+            <mat-list-item>
+                <div class="attribute-name">Intuition</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.attributes.in" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.attributes.in}}</div>
+            </mat-list-item>
+            <mat-list-item>
+                <div class="attribute-name">Presence</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.attributes.pr" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.attributes.pr}}</div>
+            </mat-list-item>
+            <mat-list-item>
+                <div class="attribute-name">Quickness</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.attributes.qu" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.attributes.qu}}</div>
+            </mat-list-item>
+            <mat-list-item>
+                <div class="attribute-name">Strength</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.attributes.st" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.attributes.st}}</div>
+            </mat-list-item>
+        </mat-list>
 
-    <div>Agility</div>
-    <mat-slider [(ngModel)]="characterCreationRequest.attributes.ag" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-    <div>{{characterCreationRequest.attributes.ag}}</div>
+    </mat-grid-tile>
 
-    <div>Constitution</div>
-    <mat-slider [(ngModel)]="characterCreationRequest.attributes.co" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-    <div>{{characterCreationRequest.attributes.co}}</div>
+    <mat-grid-tile>
+        {{characterCreationRequest | json}}
+    </mat-grid-tile>
 
-    <div>Memory</div>
-    <mat-slider [(ngModel)]="characterCreationRequest.attributes.me" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-    <div>{{characterCreationRequest.attributes.me}}</div>
-
-    <div>Reasoning</div>
-    <mat-slider [(ngModel)]="characterCreationRequest.attributes.re" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-    <div>{{characterCreationRequest.attributes.re}}</div>
-
-    <div>Self discipline {{characterCreationRequest.attributes.sd}}</div>
-    <mat-slider [(ngModel)]="characterCreationRequest.attributes.sd" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-
-    <div>Empathy {{characterCreationRequest.attributes.em}}</div>
-    <mat-slider [(ngModel)]="characterCreationRequest.attributes.em" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-
-    <div>Intuition {{characterCreationRequest.attributes.in}}</div>
-    <mat-slider [(ngModel)]="characterCreationRequest.attributes.in" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-
-    <div>Presence {{characterCreationRequest.attributes.pr}}</div>
-    <mat-slider [(ngModel)]="characterCreationRequest.attributes.pr" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-
-    <div>Quickness {{characterCreationRequest.attributes.qu}}</div>
-    <mat-slider [(ngModel)]="characterCreationRequest.attributes.qu" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-
-    <div>Strength {{characterCreationRequest.attributes.st}}</div>
-    <mat-slider [(ngModel)]="characterCreationRequest.attributes.st" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-
-</div>
+</mat-grid-list>
