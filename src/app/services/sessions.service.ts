@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { Session, SessionCreationRequest } from '../model/session';
 
 @Injectable({
@@ -35,9 +35,9 @@ export class SessionsService {
   }
 
   createSession(request: SessionCreationRequest): Observable<Session> {
-    return this.http.post<Session>(this.sessionsUrl, request, this.httpOptions).pipe(
-      tap((newHero: Session) => this.log(`added hero w/ id=${newHero.id}`)),
-      catchError(this.handleError<Session>('addHero'))
+    return this.http.post<Session>(this.sessionsUrl, request, this.httpOptions)
+      .pipe(
+        catchError(this.handleError2)
     );
   }
 
@@ -49,12 +49,26 @@ export class SessionsService {
     );
   }
 
+  
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
       this.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
+  }
+  
+  
+  private handleError2(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      console.error('An error occurred:', error.error);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(`Backend returned code ${error.status}, body was: `, error.error);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
   private log(message: string) {
