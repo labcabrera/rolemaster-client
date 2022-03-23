@@ -10,7 +10,6 @@ import { CharacterService } from '../services/character-service';
 })
 export class CharacterCreationComponent implements OnInit {
 
-  characterCreationRequest: CharacterCreationRequest;
   characterCreationFormGroup: FormGroup;
 
   characterBasicData: FormGroup;
@@ -19,51 +18,48 @@ export class CharacterCreationComponent implements OnInit {
   constructor(
     private characterService: CharacterService,
     private fb: FormBuilder) {
-      
-      this.characterCreationRequest = this.newCharacterTemplate();
-      this.characterBasicData = this.fb.group({
-        firstCtrl: ['', Validators.required],
-      });
-      this.secondFormGroup = this.fb.group({
-        secondCtrl: ['', Validators.required],
-      });
-      this.characterCreationFormGroup = this.fb.group(this.characterCreationRequest);
-    }
-    
-    ngOnInit() {
-    }
 
-    get characterCreationFormGroupValue() {
-      return this.characterCreationFormGroup.value as CharacterCreationRequest;
-    }
-    
-    newCharacterTemplate(): CharacterCreationRequest {
-      return {
-        name: '',
-        attributesRoll: 660,
-        professionId: '',
-        raceId: '',
-        realmId: '',
-        baseAttributes: {
-          ag: 50,
-          co: 50,
-          em: 50,
-          in: 50,
-          me: 50,
-          pr: 50,
-          qu: 50,
-          re: 50,
-          sd: 50,
-          st: 50
-        }
-      }
-    }
-    
-    createCharacter(): void {
-    this.characterService.createCharacter(this.characterCreationRequest)
+    this.characterCreationFormGroup = fb.group({
+      'name': ['', Validators.required],
+      'raceId': ['', Validators.required],
+      'professionId': ['', Validators.required],
+      'realmId': ['', Validators.required],
+      'attributesRoll': [660],
+      'attributesRemaining': [0],
+      'baseAttributes': fb.group({
+        'ag': [66],
+        'co': [66],
+        'em': [66],
+        'in': [66],
+        'me': [66],
+        'pr': [66],
+        'qu': [66],
+        're': [66],
+        'sd': [66],
+        'st': [66]
+      })
+    });
+
+    this.characterBasicData = this.fb.group({
+      firstCtrl: ['', Validators.required],
+    });
+    this.secondFormGroup = this.fb.group({
+      secondCtrl: ['', Validators.required],
+    });
+  }
+
+  ngOnInit() {
+  }
+
+  get characterCreationFormGroupValue() {
+    return this.characterCreationFormGroup.value as CharacterCreationRequest;
+  }
+
+  createCharacter(): void {
+    this.characterService.createCharacter(this.characterCreationFormGroupValue)
       .subscribe(character => {
         //this.sessions.push(session);
       });
-    }
-    
   }
+
+}

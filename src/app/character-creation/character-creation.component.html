@@ -11,7 +11,7 @@
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Race</mat-label>
-                <mat-select name="raceId" formControlName="professionId">
+                <mat-select name="raceId" formControlName="raceId">
                     <mat-option value="common-men">Common men</mat-option>
                     <mat-option value="high-men" disabled>High men</mat-option>
                     <mat-option value="ork" disabled>Ork</mat-option>
@@ -25,87 +25,80 @@
                     <mat-option value="option3" disabled>Mage</mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field appearance="fill" formControlName="realmId">
+            <mat-form-field appearance="fill">
                 <mat-label>Realm</mat-label>
-                <mat-select>
+                <mat-select formControlName="realmId">
                     <mat-option value="channeling">Channeling</mat-option>
                     <mat-option value="essence">Essence</mat-option>
                     <mat-option value="mentalism">Mentalism</mat-option>
                 </mat-select>
             </mat-form-field>
 
+            <div formGroupName="baseAttributes">
+                <mat-list>
+                    <mat-list-item>
+                        <div class="attribute-name">Agility</div>
+                        <mat-slider formControlName="ag" [max]="100" [min]="1" thumbLabel=true>
+                        </mat-slider>
+                        <div>{{this.characterCreationFormGroupValue.baseAttributes.ag}}</div>
+                    </mat-list-item>
+                <mat-list-item>
+                    <div class="attribute-name">Constitution</div>
+                    <mat-slider formControlName="co" [max]="100" [min]="1"thumbLabel=true></mat-slider>
+                    <div>{{this.characterCreationFormGroupValue.baseAttributes.co}}</div>
+                </mat-list-item>
+                <mat-list-item>
+                    <div class="attribute-name">Memory</div>
+                    <mat-slider formControlName="me" [max]="100" [min]="1"
+                        thumbLabel=true></mat-slider>
+                        <div>{{this.characterCreationFormGroupValue.baseAttributes.me}}</div>
+                </mat-list-item>
+                <mat-list-item>
+                    <div class="attribute-name">Reasoning</div>
+                    <mat-slider formControlName="re" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                    <div>{{this.characterCreationFormGroupValue.baseAttributes.re}}</div>
+                </mat-list-item>
+                <mat-list-item>
+                    <div class="attribute-name">Self discipline</div>
+                    <mat-slider formControlName="sd" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                    <div>{{this.characterCreationFormGroupValue.baseAttributes.sd}}</div>
+                </mat-list-item>
+                <mat-list-item>
+                    <div class="attribute-name">Empathy</div>
+                    <mat-slider formControlName="em" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                    <div>{{this.characterCreationFormGroupValue.baseAttributes.em}}</div>
+                </mat-list-item>
+                <mat-list-item>
+                    <div class="attribute-name">Intuition</div>
+                    <mat-slider formControlName="in" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                    <div>{{this.characterCreationFormGroupValue.baseAttributes.in}}</div>
+                </mat-list-item>
+                <mat-list-item>
+                    <div class="attribute-name">Presence</div>
+                    <mat-slider formControlName="pr" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                    <div>{{this.characterCreationFormGroupValue.baseAttributes.pr}}</div>
+                </mat-list-item>
+                <mat-list-item>
+                    <div class="attribute-name">Quickness</div>
+                    <mat-slider formControlName="qu" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                    <div>{{this.characterCreationFormGroupValue.baseAttributes.qu}}</div>
+                </mat-list-item>
+                <mat-list-item>
+                    <div class="attribute-name">Strength</div>
+                    <mat-slider formControlName="st" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                    <div>{{this.characterCreationFormGroupValue.baseAttributes.st}}</div>
+                </mat-list-item>
+                </mat-list>
+            </div>
 
-            <!--
-                <mat-grid-tile [colspan]="1">
-
-                    <mat-list>
-                        <mat-list-item>
-                            <div class="attribute-name">Agility</div>
-                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.ag" [max]="100" [min]="1"
-                                thumbLabel=true></mat-slider>
-                            <div>{{characterCreationRequest.baseAttributes.ag}}</div>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <div class="attribute-name">Constitution</div>
-                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.co" [max]="100" [min]="1"
-                                thumbLabel=true></mat-slider>
-                            <div>{{characterCreationRequest.baseAttributes.co}}</div>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <div class="attribute-name">Memory</div>
-                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.me" [max]="100" [min]="1"
-                                thumbLabel=true></mat-slider>
-                            <div>{{characterCreationRequest.baseAttributes.me}}</div>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <div class="attribute-name">Reasoning</div>
-                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.re" [max]="100" [min]="1"
-                                thumbLabel=true></mat-slider>
-                            <div>{{characterCreationRequest.baseAttributes.re}}</div>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <div class="attribute-name">Self discipline</div>
-                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.sd" [max]="100" [min]="1"
-                                thumbLabel=true></mat-slider>
-                            <div>{{characterCreationRequest.baseAttributes.sd}}</div>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <div class="attribute-name">Empathy</div>
-                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.em" [max]="100" [min]="1"
-                                thumbLabel=true></mat-slider>
-                            <div>{{characterCreationRequest.baseAttributes.em}}</div>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <div class="attribute-name">Intuition</div>
-                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.in" [max]="100" [min]="1"
-                                thumbLabel=true></mat-slider>
-                            <div>{{characterCreationRequest.baseAttributes.in}}</div>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <div class="attribute-name">Presence</div>
-                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.pr" [max]="100" [min]="1"
-                                thumbLabel=true></mat-slider>
-                            <div>{{characterCreationRequest.baseAttributes.pr}}</div>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <div class="attribute-name">Quickness</div>
-                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.qu" [max]="100" [min]="1"
-                                thumbLabel=true></mat-slider>
-                            <div>{{characterCreationRequest.baseAttributes.qu}}</div>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <div class="attribute-name">Strength</div>
-                            <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.st" [max]="100" [min]="1"
-                                thumbLabel=true></mat-slider>
-                            <div>{{characterCreationRequest.baseAttributes.st}}</div>
-                        </mat-list-item>
-                    </mat-list>
-
-                </mat-grid-tile>
-
-            </mat-grid-list>
-        -->
-
+            <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>Available attributes points</mat-label>
+                <input name="attributesRoll" matInput type="text" formControlName="attributesRoll">
+            </mat-form-field>
+            <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>Remaining attributes points</mat-label>
+                <input name="attributesRemaining" matInput type="text" formControlName="attributesRemaining" readonly="true">
+            </mat-form-field>
 
             <div>
                 <button mat-button matStepperNext>Next</button>
@@ -141,5 +134,3 @@
 </button>
 
 <pre>{{this.characterCreationFormGroupValue | json}}</pre>
-
-<pre>{{characterCreationRequest | json}}</pre>
