@@ -16,6 +16,7 @@ import { MatCardModule} from '@angular/material/card';
 import { MatSliderModule} from '@angular/material/slider';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatMenuModule} from '@angular/material/menu'; 
+import { MatStepperModule} from '@angular/material/stepper'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,6 +40,7 @@ import { CharacterCreationComponent } from './character-creation/character-creat
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     MatMenuModule,
@@ -54,6 +56,7 @@ import { CharacterCreationComponent } from './character-creation/character-creat
     MatCardModule,
     MatSliderModule,
     MatSidenavModule,
+    MatStepperModule,
     BrowserAnimationsModule
   ],
   providers: [],
