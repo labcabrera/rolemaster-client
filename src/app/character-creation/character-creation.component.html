@@ -18,7 +18,7 @@
                 <mat-label>Profession</mat-label>
                 <mat-select name="professionId" [(ngModel)]="characterCreationRequest.professionId">
                     <mat-option value="fighter">Fighter</mat-option>
-                    <mat-option value="thieve">Thieve</mat-option>
+                    <mat-option value="thief">Thief</mat-option>
                     <mat-option value="option3" disabled>Mage</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -38,60 +38,66 @@
         <mat-list>
             <mat-list-item>
                 <div class="attribute-name">Agility</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.attributes.ag" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.attributes.ag}}</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.ag" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.baseAttributes.ag}}</div>
             </mat-list-item>
             <mat-list-item>
                 <div class="attribute-name">Constitution</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.attributes.co" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.attributes.co}}</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.co" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.baseAttributes.co}}</div>
             </mat-list-item>
             <mat-list-item>
                 <div class="attribute-name">Memory</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.attributes.me" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.attributes.me}}</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.me" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.baseAttributes.me}}</div>
             </mat-list-item>
             <mat-list-item>
                 <div class="attribute-name">Reasoning</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.attributes.re" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.attributes.re}}</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.re" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.baseAttributes.re}}</div>
             </mat-list-item>
             <mat-list-item>
                 <div class="attribute-name">Self discipline</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.attributes.sd" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.attributes.sd}}</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.sd" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.baseAttributes.sd}}</div>
             </mat-list-item>
             <mat-list-item>
                 <div class="attribute-name">Empathy</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.attributes.em" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.attributes.em}}</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.em" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.baseAttributes.em}}</div>
             </mat-list-item>
             <mat-list-item>
                 <div class="attribute-name">Intuition</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.attributes.in" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.attributes.in}}</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.in" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.baseAttributes.in}}</div>
             </mat-list-item>
             <mat-list-item>
                 <div class="attribute-name">Presence</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.attributes.pr" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.attributes.pr}}</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.pr" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.baseAttributes.pr}}</div>
             </mat-list-item>
             <mat-list-item>
                 <div class="attribute-name">Quickness</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.attributes.qu" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.attributes.qu}}</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.qu" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.baseAttributes.qu}}</div>
             </mat-list-item>
             <mat-list-item>
                 <div class="attribute-name">Strength</div>
-                <mat-slider [(ngModel)]="characterCreationRequest.attributes.st" [max]="100" [min]="1" thumbLabel=true></mat-slider>
-                <div>{{characterCreationRequest.attributes.st}}</div>
+                <mat-slider [(ngModel)]="characterCreationRequest.baseAttributes.st" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+                <div>{{characterCreationRequest.baseAttributes.st}}</div>
             </mat-list-item>
         </mat-list>
 
     </mat-grid-tile>
+        <button mat-stroked-button color="primary" (click)="createCharacter()">
+            <mat-icon>add</mat-icon>
+        </button>
+    <mat-grid-tile>
+
+    </mat-grid-tile>
 
     <mat-grid-tile>
-        {{characterCreationRequest | json}}
+        <pre>{{characterCreationRequest | json}}</pre>
     </mat-grid-tile>
 
 </mat-grid-list>

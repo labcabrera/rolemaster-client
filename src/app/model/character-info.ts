@@ -10,7 +10,7 @@ export interface CharacterCreationRequest {
     raceId: string;
     professionId: string;
     attributesRoll: number;
-    attributes: CharacterCreationAttributes;
+    baseAttributes: CharacterCreationAttributes;
 }
 
 export interface CharacterCreationAttributes {

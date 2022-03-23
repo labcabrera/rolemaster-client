@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterCreationRequest } from '../model/character-info';
+import { CharacterService } from '../services/character-service';
 
 @Component({
   selector: 'app-character-creation',
@@ -10,13 +11,20 @@ export class CharacterCreationComponent implements OnInit {
 
   characterCreationRequest: CharacterCreationRequest;
 
-  constructor() {
-    this.characterCreationRequest = {
+  constructor(private characterService: CharacterService) {
+    this.characterCreationRequest = this.newCharacterTemplate();
+  }
+
+  ngOnInit(): void {
+  }
+
+  newCharacterTemplate(): CharacterCreationRequest {
+    return {
       name: '',
       attributesRoll: 660,
       professionId: '',
       raceId: '',
-      attributes: {
+      baseAttributes: {
         ag: 50,
         co: 50,
         em: 50,
@@ -31,7 +39,11 @@ export class CharacterCreationComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  createCharacter(): void {
+    this.characterService.createCharacter(this.characterCreationRequest)
+      .subscribe(character => {
+        //this.sessions.push(session);
+      });
   }
 
 }
