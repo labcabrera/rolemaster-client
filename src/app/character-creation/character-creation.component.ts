@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { CharacterCreationRequest } from '../model/character-info';
 import { CharacterService } from '../services/character-service';
-
+import { CharacterGenerationUtilsService } from '../services/character-generation-utils.service';
+import { RandomUtilsService } from '../services/random-utils.service';
 @Component({
   selector: 'app-character-creation',
   templateUrl: './character-creation.component.html',
@@ -17,13 +19,15 @@ export class CharacterCreationComponent implements OnInit {
 
   constructor(
     private characterService: CharacterService,
+    private randomUtilsService: RandomUtilsService,
+    private characterGenerationUtilsService: CharacterGenerationUtilsService,
     private fb: FormBuilder) {
 
     this.characterCreationFormGroup = fb.group({
       'name': ['', Validators.required],
-      'raceId': ['', Validators.required],
-      'professionId': ['', Validators.required],
-      'realmId': ['', Validators.required],
+      'raceId': ['common-men', Validators.required],
+      'professionId': ['thief', Validators.required],
+      'realmId': ['essence', Validators.required],
       'attributesRoll': [660],
       'attributesRemaining': [0],
       'baseAttributes': fb.group({
@@ -55,11 +59,26 @@ export class CharacterCreationComponent implements OnInit {
     return this.characterCreationFormGroup.value as CharacterCreationRequest;
   }
 
+  updateAttributeCost(): void {
+    console.log("Updating attributes cost");
+    var attributes = this.characterCreationFormGroupValue.baseAttributes;
+    this.characterGenerationUtilsService.calculateAttributeCost(attributes).subscribe(cost => {
+      var remaining = this.characterCreationFormGroupValue.attributesRoll - cost;
+      this.characterCreationFormGroup.get("attributesRemaining")?.setValue(remaining);
+    });
+  }
+
+  createRandomAttributesRoll(): void {
+    this.randomUtilsService.randomRollSum(10, 10).subscribe(roll => {
+      this.characterCreationFormGroup.get("attributesRoll")?.setValue(600 + roll);
+      this.updateAttributeCost();
+    })
+  }
+
   createCharacter(): void {
-    this.characterService.createCharacter(this.characterCreationFormGroupValue)
-      .subscribe(character => {
-        //this.sessions.push(session);
-      });
+    this.characterService.createCharacter(this.characterCreationFormGroupValue).subscribe(character => {
+      console.log("created character")
+    });
   }
 
 }
