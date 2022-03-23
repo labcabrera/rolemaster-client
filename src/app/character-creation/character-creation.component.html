@@ -1,27 +1,77 @@
-<div style="margin-top: 20px;">
-    <div class="form-style-2">
-        <h2>New character</h2>
-        <input id="name" #name />
-        <select id="new-character-race">
-            <option>Common men</option>
-            <option>High men</option>
-        </select>
-        <select id="new-character-profession">
-            <option>Fighter</option>
-            <option>Thieve</option>
-        </select>
-    </div>
-    <div>
-        <h3>Attributes</h3>
-        <div>
-            <div><span>Co</span>
-            <div><span><input id="co"/></span>
-        </div>
-        <div>
-            <div><span>St</span>
-            <div><span><input id="co"/></span>
-        </div>
-        </div>
-    </div>
-    <input type="button" value="Prepare" />
+<div layout="column" flex="20">
+
+    <p>
+        <mat-form-field class="example-form-field" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput type="text">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Race</mat-label>
+            <mat-select [disabled]="false">
+                <mat-option value="option1">Common men</mat-option>
+                <mat-option value="option2" disabled>High men</mat-option>
+                <mat-option value="option3" disabled>Elve</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Profession</mat-label>
+            <mat-select [disabled]="false">
+                <mat-option value="option1">Fighter</mat-option>
+                <mat-option value="option2">Thieve</mat-option>
+                <mat-option value="option3" disabled>Mage</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Realm</mat-label>
+            <mat-select [disabled]="false">
+                <mat-option value="option1">Channeling</mat-option>
+                <mat-option value="option2">Essence</mat-option>
+                <mat-option value="option3">Mentalism</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+</div>
+
+<div layout="column" flex="80">
+
+    <div>Agility</div>
+    <mat-slider [(ngModel)]="characterCreationRequest.attributes.ag" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+    <div>{{characterCreationRequest.attributes.ag}}</div>
+
+    <div>Constitution</div>
+    <mat-slider [(ngModel)]="characterCreationRequest.attributes.co" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+    <div>{{characterCreationRequest.attributes.co}}</div>
+
+    <div>Memory</div>
+    <mat-slider [(ngModel)]="characterCreationRequest.attributes.me" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+    <div>{{characterCreationRequest.attributes.me}}</div>
+
+    <div>Reasoning</div>
+    <mat-slider [(ngModel)]="characterCreationRequest.attributes.re" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+    <div>{{characterCreationRequest.attributes.re}}</div>
+
+    <div>Self discipline {{characterCreationRequest.attributes.sd}}</div>
+    <mat-slider [(ngModel)]="characterCreationRequest.attributes.sd" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+
+    <div>Empathy {{characterCreationRequest.attributes.em}}</div>
+    <mat-slider [(ngModel)]="characterCreationRequest.attributes.em" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+
+    <div>Intuition {{characterCreationRequest.attributes.in}}</div>
+    <mat-slider [(ngModel)]="characterCreationRequest.attributes.in" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+
+    <div>Presence {{characterCreationRequest.attributes.pr}}</div>
+    <mat-slider [(ngModel)]="characterCreationRequest.attributes.pr" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+
+    <div>Quickness {{characterCreationRequest.attributes.qu}}</div>
+    <mat-slider [(ngModel)]="characterCreationRequest.attributes.qu" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+
+    <div>Strength {{characterCreationRequest.attributes.st}}</div>
+    <mat-slider [(ngModel)]="characterCreationRequest.attributes.st" [max]="100" [min]="1" thumbLabel=true></mat-slider>
+
 </div>

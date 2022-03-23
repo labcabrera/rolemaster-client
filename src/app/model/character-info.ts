@@ -5,23 +5,23 @@ export interface CharacterInfo {
     professionId: string;
 }
 
-export interface CharacterCreation {
+export interface CharacterCreationRequest {
     name: string;
     raceId: string;
     professionId: string;
-    attributesRoll: bigint;
+    attributesRoll: number;
     attributes: CharacterCreationAttributes;
 }
 
 export interface CharacterCreationAttributes {
-    ag: bigint;
-    co: bigint;
-    me: bigint;
-    re: bigint;
-    sd: bigint;
-    em: bigint;
-    in: bigint;
-    pr: bigint;
-    st: bigint;
-    qu: bigint;
+    ag: number;
+    co: number;
+    me: number;
+    re: number;
+    sd: number;
+    em: number;
+    in: number;
+    pr: number;
+    st: number;
+    qu: number;
 }
