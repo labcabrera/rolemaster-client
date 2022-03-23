@@ -5,3 +5,7 @@ export interface Session {
     name: string;
     metadata: Metadata
 }
+
+export interface SessionCreationRequest {
+    name: string;
+}

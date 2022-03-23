@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { Session } from '../model/session';
+import { Session, SessionCreationRequest } from '../model/session';
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +34,8 @@ export class SessionsService {
       );
   }
 
-  createSession(name: String): Observable<Session> {
-    const url = `${this.sessionsUrl}?name=${name}`;
-    return this.http.post<Session>(url, {}, this.httpOptions).pipe(
+  createSession(request: SessionCreationRequest): Observable<Session> {
+    return this.http.post<Session>(this.sessionsUrl, request, this.httpOptions).pipe(
       tap((newHero: Session) => this.log(`added hero w/ id=${newHero.id}`)),
       catchError(this.handleError<Session>('addHero'))
     );

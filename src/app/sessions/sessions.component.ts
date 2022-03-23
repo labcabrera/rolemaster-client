@@ -28,7 +28,8 @@ export class SessionsComponent implements OnInit {
 
   createSession(): void {
     console.log("Creating session");
-    this.sessionService.createSession('Session de pruebas')
+    var request = {name:'Demo session'};
+    this.sessionService.createSession(request)
       .subscribe(session => {
         this.sessions.push(session);
       });
