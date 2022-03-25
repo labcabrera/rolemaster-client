@@ -3,13 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { CharacterCreationComponent } from './character-creation/character-creation.component';
 import { CharacterListComponent } from './character-list/characters.component';
 import { SessionDetailComponent } from './session-detail/session-detail.component';
-import { SessionsComponent } from './sessions/sessions.component';
+import { SessionListComponent } from './session-list/session-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/characters', pathMatch: 'full' },
   { path: 'characters', component: CharacterListComponent },
   { path: 'characters/creation', component: CharacterCreationComponent },
-  { path: 'sessions', component: SessionsComponent },
+  { path: 'sessions', component: SessionListComponent },
   { path: 'sessions/detail/:id', component: SessionDetailComponent },
   
 

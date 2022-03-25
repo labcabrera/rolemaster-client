@@ -4,10 +4,10 @@ import { SessionsService } from '../services/sessions.service';
 
 @Component({
   selector: 'app-sessions',
-  templateUrl: './sessions.component.html',
-  styleUrls: ['./sessions.component.css']
+  templateUrl: './session-list.component.html',
+  styleUrls: ['./session-list.component.css']
 })
-export class SessionsComponent implements OnInit {
+export class SessionListComponent implements OnInit {
 
   sessions: Session[] = [];
   selectedSession?: Session;

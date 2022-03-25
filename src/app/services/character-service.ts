@@ -34,6 +34,12 @@ export class CharacterService {
     );
   }
 
+  deleteCharacter(id: string): Observable<null> {
+    var url = this.charactersUrl + "/" + id;
+    return this.http.delete<null>(url, this.httpOptions).pipe(
+      catchError(this.handleError2)
+    );
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

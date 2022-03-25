@@ -23,10 +23,12 @@ import { AppComponent } from './app.component';
 import { RealmsComponent } from './realms/realms.component';
 import { CharacterListComponent } from './character-list/characters.component';
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
-import { SessionsComponent } from './sessions/sessions.component';
+import { SessionListComponent } from './session-list/session-list.component';
 import { SessionDetailComponent } from './session-detail/session-detail.component';
 import { CharacterCreationComponent } from './character-creation/character-creation.component';
 import { CharacterDevelopmentComponent } from './character-development/character-development.component';
+import { CharacterSkillCategoryListComponent } from './character-skill-category-list/character-skill-category-list.component';
+import { CharacterSkillListComponent } from './character-skill-list/character-skill-list.component';
 
 
 @NgModule({
@@ -35,10 +37,12 @@ import { CharacterDevelopmentComponent } from './character-development/character
     RealmsComponent,
     CharacterListComponent,
     CharacterDetailComponent,
-    SessionsComponent,
+    SessionListComponent,
     SessionDetailComponent,
     CharacterCreationComponent,
-    CharacterDevelopmentComponent
+    CharacterDevelopmentComponent,
+    CharacterSkillCategoryListComponent,
+    CharacterSkillListComponent
   ],
   imports: [
     FormsModule,

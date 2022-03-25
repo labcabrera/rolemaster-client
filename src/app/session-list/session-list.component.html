@@ -2,9 +2,9 @@
   <div mat-subheader>Sessions</div>
 
   <mat-list-option *ngFor="let session of sessions" [value]="session" (click)="onSelect(session)">
+    <mat-icon mat-list-icon (click)="deleteSession(session)">delete</mat-icon>
     <mat-icon mat-list-icon>person</mat-icon>
     <div>{{session.name}}</div>
-    <mat-icon mat-list-icon (click)="deleteSession(session)">delete</mat-icon>
   </mat-list-option>
 
   <mat-list>

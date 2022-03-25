@@ -7,7 +7,7 @@
 
             <mat-form-field class="example-form-field" appearance="fill">
                 <mat-label>Name</mat-label>
-                <input name="name" matInput type="text" formControlName="name">
+                <input name="name" matInput type="text" formControlName="name" [disabled]="basicDataDisabled">
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Race</mat-label>
@@ -121,8 +121,11 @@
                 </button>
            
             <div>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-button matStepperNext (click)="createCharacterNext()">Next</button>
             </div>
+
+            <pre>{{this.characterCreationFormGroupValue | json}}</pre>
+
         </form>
     </mat-step>
 
@@ -138,7 +141,9 @@
                 <button mat-button matStepperNext>Next</button>
             </div>
         </form>
+        <pre>{{this.characterInfo | json}}</pre>
     </mat-step>
+
     <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>
@@ -151,4 +156,3 @@
 
 
 
-<pre>{{this.characterCreationFormGroupValue | json}}</pre>

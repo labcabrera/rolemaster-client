@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 
-import { CharacterCreationRequest } from '../model/character-info';
+import { CharacterCreationRequest, CharacterInfo } from '../model/character-info';
 import { CharacterService } from '../services/character-service';
 import { CharacterGenerationUtilsService } from '../services/character-generation-utils.service';
 import { RandomUtilsService } from '../services/random-utils.service';
@@ -14,8 +15,12 @@ export class CharacterCreationComponent implements OnInit {
 
   characterCreationFormGroup: FormGroup;
 
+  characterInfo?: CharacterInfo;
+  
   characterBasicData: FormGroup;
   characterDevelopment: FormGroup;
+  
+  basicDataDisabled = false;
 
   constructor(
     private characterService: CharacterService,
@@ -46,7 +51,7 @@ export class CharacterCreationComponent implements OnInit {
     this.characterDevelopment = fb.group({
       'secondCtrl': ['', Validators.required]
     })
-
+    
     this.characterBasicData = this.fb.group({
       firstCtrl: ['Development', Validators.required],
     });
@@ -77,8 +82,14 @@ export class CharacterCreationComponent implements OnInit {
 
   createCharacter(): void {
     this.characterService.createCharacter(this.characterCreationFormGroupValue).subscribe(character => {
-      console.log("created character")
+      console.log("created character");
+      this.basicDataDisabled = true;
+      this.characterInfo = character;
     });
+  }
+
+  createCharacterNext(): void {
+    this.createCharacter();
   }
 
 }
