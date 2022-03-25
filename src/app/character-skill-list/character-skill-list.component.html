@@ -1,5 +1,15 @@
-<h2>Skills</h2>
-<table>
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div>Skills</div>
+        </mat-panel-title>
+        <mat-panel-description>
+          <span>({{this.characterInfo?.developmentPoints?.remainingPoints}}/{{this.characterInfo?.developmentPoints?.totalPoints}})</span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <table>
     <tr>
         <th>Skill</th>
         <th>Adolescence ranks</th>
@@ -9,7 +19,7 @@
         <th>Total</th>
     </tr>
     <tr *ngFor="let skill of characterInfo?.skills">
-        <td><div>{{skill.skillId}}</div></td>
+        <td style="text-align: left;"><div>{{skill.skillId}}</div></td>
         <td><div>{{skill.adolescenceRanks}}</div></td>
         <td><div>{{skill.upgradedRanks}}</div></td>
         <td><div>{{skill.attributeBonus}}</div></td>
@@ -17,4 +27,7 @@
         <td><div>{{skill.totalBonus}}</div></td>
     </tr>
 
-</table>
+    </table>
+
+    </mat-expansion-panel>
+</mat-accordion>

@@ -16,7 +16,9 @@ import { MatCardModule} from '@angular/material/card';
 import { MatSliderModule} from '@angular/material/slider';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatMenuModule} from '@angular/material/menu'; 
-import { MatStepperModule} from '@angular/material/stepper'; 
+import { MatStepperModule} from '@angular/material/stepper';
+import { MatCheckboxModule} from '@angular/material/checkbox'; 
+import { MatExpansionModule} from '@angular/material/expansion'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +38,8 @@ import { ProfessionListComponent } from './profession-list/profession-list.compo
 import { RaceListComponent } from './race-list/race-list.component';
 import { RaceDetailComponent } from './race-detail/race-detail.component';
 import { ProfessionDetailComponent } from './profession-detail/profession-detail.component';
+import { CharacterBasicInfoComponent } from './character-basic-info/character-basic-info.component';
+
 
 
 @NgModule({
@@ -56,7 +60,8 @@ import { ProfessionDetailComponent } from './profession-detail/profession-detail
     ProfessionListComponent,
     RaceListComponent,
     RaceDetailComponent,
-    ProfessionDetailComponent
+    ProfessionDetailComponent,
+    CharacterBasicInfoComponent
   ],
   imports: [
     FormsModule,
@@ -77,6 +82,8 @@ import { ProfessionDetailComponent } from './profession-detail/profession-detail
     MatSliderModule,
     MatSidenavModule,
     MatStepperModule,
+    MatCheckboxModule,
+    MatExpansionModule,
     BrowserAnimationsModule
   ],
   providers: [],

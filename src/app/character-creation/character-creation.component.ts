@@ -33,6 +33,7 @@ export class CharacterCreationComponent implements OnInit {
       'raceId': ['common-men', Validators.required],
       'professionId': ['thief', Validators.required],
       'realmId': ['essence', Validators.required],
+      'age': ['25', Validators.required],
       'attributesRoll': [660],
       'attributesRemaining': [0],
       'baseAttributes': fb.group({

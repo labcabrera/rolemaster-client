@@ -1,14 +1,48 @@
-<h2>Skill categories</h2>
-<table>
-    <tr>
-        <th>Category</th>
-        <th>Adolescence rank</th>
-        <th>Current rank</th>
-    </tr>
-    <tr *ngFor="let skillCategory of characterInfo?.skillCategories">
-        <td><div>{{skillCategory.categoryId}}</div></td>
-        <td><div>{{skillCategory.adolescenceRank}}</div></td>
-        <td><div>{{skillCategory.currentRank}}</div></td>
-    </tr>
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div>Skill categories</div>
+        </mat-panel-title>
+        <mat-panel-description>
+          <span>({{this.characterInfo?.developmentPoints?.remainingPoints}}/{{this.characterInfo?.developmentPoints?.totalPoints}})</span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
 
-</table>
+      <table>
+        <tr>
+            <th>Category</th>
+            <th>Development</th>
+            <th>Adolescence ranks</th>
+            <th>Upgraded ranks</th>
+            <th>Current ranks</th>
+            <th>Bonus - Attribute</th>
+            <th>Bonus - Rank</th>
+            <th>Bonus - Profession</th>
+            <th>Special bonus</th>
+            <th>Item bonus</th>
+            <th>Total bonus</th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let skillCategory of characterInfo?.skillCategories">
+            <td><div class="attribute-value">{{skillCategory.categoryId}}</div></td>
+            <td><div class="attribute-value">{{skillCategory.developmentCost}}</div></td>
+            <td><div class="attribute-value">{{skillCategory.adolescenceRanks}}</div></td>
+            <td><div class="attribute-value">{{skillCategory.upgradedRanks}}</div></td>
+            <td><div class="attribute-value">{{skillCategory.totalRanks}}</div></td>
+            <td><div class="attribute-value">{{skillCategory.attributeBonus}}</div></td>
+            <td><div class="attribute-value">{{skillCategory.rankBonus}}</div></td>
+            <td><div class="attribute-value">{{skillCategory.professionBonus}}</div></td>
+            <td><div class="attribute-value">{{skillCategory.specialBonus}}</div></td>
+            <td><div class="attribute-value">{{skillCategory.itemBonus}}</div></td>
+            <td><div class="attribute-value">{{skillCategory.totalBonus}}</div></td>
+            <td>
+                <button mat-icon-button color="primary" (click)="updateSkillCategoryDevelopment(1, skillCategory.categoryId)"><mat-icon>add</mat-icon></button>
+                <button mat-icon-button color="primary" (click)="updateSkillCategoryDevelopment(-1, skillCategory.categoryId)"><mat-icon>remove</mat-icon></button>
+                <span>{{this.skillUpgradeRequest.categoryRanks.has(skillCategory.categoryId) ? this.skillUpgradeRequest.categoryRanks.get(skillCategory.categoryId): 0}}</span>
+            </td>
+        </tr>
+    
+    </table>
+    </mat-expansion-panel>
+</mat-accordion>

@@ -5,9 +5,12 @@ export interface CharacterInfo {
     name: string;
     raceId: string;
     professionId: string;
+    level: number;
+    age: number;
     attributes: CharacterAttributes;
     skillCategories:  CharacterSkillCategory[];
     skills: CharacterSkill[];
+    developmentPoints: CharacterDevelopmentPoints;
 }
 
 export interface CharacterAttributes {
@@ -33,8 +36,17 @@ export interface CharacterAttribute {
 }
 export interface CharacterSkillCategory {
     categoryId: string;
-    currentRank: number;
-    adolescenceRank: number;
+    developmentCost: number[];
+    adolescenceRanks: number;
+    upgradedRanks: number;
+    totalRanks: number;
+    attributeBonus: number;
+    defaultSkillBonus: number;
+    rankBonus: number;
+    professionBonus: number;
+    specialBonus: number;
+    itemBonus: number;
+    totalBonus: number;
 }
 
 export interface CharacterSkill {
@@ -44,6 +56,11 @@ export interface CharacterSkill {
     attributeBonus: number;
     defaultSkillBonus: number;
     totalBonus: number;
+}
+
+export interface CharacterDevelopmentPoints {
+    totalPoints: number | 0;
+    remainingPoints: number | 0;
 }
 
 export interface CharacterCreationRequest {
@@ -66,4 +83,9 @@ export interface CharacterCreationAttributes {
     pr: number;
     st: number;
     qu: number;
+}
+
+export interface SkillUpgradeRequest {
+    categoryRanks: Map<String,number>;
+    skillRanks: Map<String,number>;
 }

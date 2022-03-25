@@ -7,3 +7,12 @@ $my-app-warn:    mat-palette($mat-deep-orange);
 $my-app-theme:   mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 @include angular-material-theme($my-app-theme);
+
+.attribute-value {
+    text-align: right;
+    color: #111;
+}
+
+.attribute-value-disabled {
+    color: #DDD;
+}

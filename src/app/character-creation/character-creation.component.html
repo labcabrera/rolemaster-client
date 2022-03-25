@@ -7,7 +7,7 @@
 
             <mat-form-field class="example-form-field" appearance="fill">
                 <mat-label>Name</mat-label>
-                <input name="name" matInput type="text" formControlName="name" [disabled]="basicDataDisabled">
+                <input name="name" matInput type="text" formControlName="name">
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Race</mat-label>
@@ -32,6 +32,10 @@
                     <mat-option value="essence">Essence</mat-option>
                     <mat-option value="mentalism">Mentalism</mat-option>
                 </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Age</mat-label>
+                <input name="age" matInput type="text" formControlName="age">
             </mat-form-field>
 
             <div formGroupName="baseAttributes">
