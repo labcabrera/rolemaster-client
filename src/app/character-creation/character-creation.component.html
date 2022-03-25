@@ -1,6 +1,6 @@
 <mat-stepper linear #stepper>
 
-    <mat-step [stepControl]="characterBasicData" [editable]=false>
+    <mat-step [stepControl]="characterBasicData">
 
         <form [formGroup]="characterCreationFormGroup">
             <ng-template matStepLabel>Character basic data</ng-template>
@@ -153,6 +153,14 @@
                 <button mat-button matStepperNext>Next</button>
             </div>
         </form>
+    </mat-step>
+
+    <mat-step [stepControl]="trainingPackages" [editable]=false>
+        <ng-template matStepLabel>Training packages</ng-template>
+            <app-character-development [characterInfo]="this.characterInfo"></app-character-development>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
     </mat-step>
 
     <mat-step>

@@ -20,6 +20,7 @@ export class CharacterCreationComponent implements OnInit {
 
   characterBasicData: FormGroup;
   characterDevelopment: FormGroup;
+  trainingPackages: FormGroup;
 
   basicDataDisabled = false;
 
@@ -66,6 +67,8 @@ export class CharacterCreationComponent implements OnInit {
     this.characterDevelopment = fb.group({
       'secondCtrl': ['', Validators.required]
     })
+    
+    this.trainingPackages = fb.group({});
 
     this.characterBasicData = this.fb.group({
       firstCtrl: ['Development', Validators.required],
