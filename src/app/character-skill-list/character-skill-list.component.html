@@ -1,1 +1,20 @@
-<p>character-skill-list works!</p>
+<h2>Skills</h2>
+<table>
+    <tr>
+        <th>Skill</th>
+        <th>Adolescence ranks</th>
+        <th>Upgraded ranks</th>
+        <th>Attribute bonus</th>
+        <th>Skill bonus</th>
+        <th>Total</th>
+    </tr>
+    <tr *ngFor="let skill of characterInfo?.skills">
+        <td><div>{{skill.skillId}}</div></td>
+        <td><div>{{skill.adolescenceRanks}}</div></td>
+        <td><div>{{skill.upgradedRanks}}</div></td>
+        <td><div>{{skill.attributeBonus}}</div></td>
+        <td><div>{{skill.defaultSkillBonus}}</div></td>
+        <td><div>{{skill.totalBonus}}</div></td>
+    </tr>
+
+</table>

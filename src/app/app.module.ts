@@ -29,6 +29,9 @@ import { CharacterCreationComponent } from './character-creation/character-creat
 import { CharacterDevelopmentComponent } from './character-development/character-development.component';
 import { CharacterSkillCategoryListComponent } from './character-skill-category-list/character-skill-category-list.component';
 import { CharacterSkillListComponent } from './character-skill-list/character-skill-list.component';
+import { CharacterAttributesComponent } from './character-attributes/character-attributes.component';
+import { SkillCategoryListComponent } from './skill-category-list/skill-category-list.component';
+import { SkillListComponent } from './skill-list/skill-list.component';
 
 
 @NgModule({
@@ -42,7 +45,10 @@ import { CharacterSkillListComponent } from './character-skill-list/character-sk
     CharacterCreationComponent,
     CharacterDevelopmentComponent,
     CharacterSkillCategoryListComponent,
-    CharacterSkillListComponent
+    CharacterSkillListComponent,
+    CharacterAttributesComponent,
+    SkillCategoryListComponent,
+    SkillListComponent
   ],
   imports: [
     FormsModule,
