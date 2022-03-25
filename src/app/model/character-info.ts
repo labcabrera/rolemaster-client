@@ -1,8 +1,17 @@
+import { CharacterSkillCategoryListComponent } from "../character-skill-category-list/character-skill-category-list.component";
+
 export interface CharacterInfo {
     id: string;
     name: string;
     raceId: string;
     professionId: string;
+    skillCategories:  CharacterSkillCategory[];
+}
+
+export interface CharacterSkillCategory {
+    categoryId: string;
+    currentRank: number;
+    adolescenceRank: number;
 }
 
 export interface CharacterCreationRequest {

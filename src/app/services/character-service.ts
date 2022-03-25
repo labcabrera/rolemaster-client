@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { CHARACTERS } from '../mock/mock-characters';
 import { CharacterCreationRequest, CharacterInfo } from '../model/character-info';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';

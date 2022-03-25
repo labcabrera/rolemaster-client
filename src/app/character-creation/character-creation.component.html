@@ -141,7 +141,7 @@
                 <button mat-button matStepperNext>Next</button>
             </div>
         </form>
-        <pre>{{this.characterInfo | json}}</pre>
+        <app-character-development [characterInfo]="this.characterInfo"></app-character-development>
     </mat-step>
 
     <mat-step>

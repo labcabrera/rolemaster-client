@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CharacterInfo } from '../model/character-info';
-import { CHARACTERS } from '../mock/mock-characters';
 import { CharacterService } from '../services/character-service';
 
 @Component({

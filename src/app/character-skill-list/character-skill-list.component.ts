@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CharacterInfo } from '../model/character-info';
 
 @Component({
   selector: 'app-character-skill-list',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./character-skill-list.component.scss']
 })
 export class CharacterSkillListComponent implements OnInit {
+
+  @Input() characterInfo?: CharacterInfo;
 
   constructor() { }
 

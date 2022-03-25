@@ -1,1 +1,14 @@
-<p>character-skill-category-list works!</p>
+<h2>Skill categories</h2>
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Adolescence rank</th>
+        <th>Current rank</th>
+    </tr>
+    <tr *ngFor="let skillCategory of characterInfo?.skillCategories">
+        <td><div>{{skillCategory.categoryId}}</div></td>
+        <td><div>{{skillCategory.adolescenceRank}}</div></td>
+        <td><div>{{skillCategory.currentRank}}</div></td>
+    </tr>
+
+</table>

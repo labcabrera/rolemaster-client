@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input,ViewChild } from '@angular/core';
+import { DataSource } from '@angular/cdk/collections';
+import { MatTable } from '@angular/material/table';
+
+import { CharacterInfo, CharacterSkillCategory } from '../model/character-info';
 
 @Component({
   selector: 'app-character-skill-category-list',
@@ -7,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CharacterSkillCategoryListComponent implements OnInit {
 
-  constructor() { }
+  @Input() characterInfo?: CharacterInfo;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
