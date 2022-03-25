@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
 
 import { CharacterInfo, CharacterSkillCategory } from '../model/character-info';
@@ -16,17 +16,35 @@ export class CharacterSkillCategoryListComponent implements OnInit {
 
   @Input() characterInfo?: CharacterInfo;
 
+  dataSource: MatTableDataSource<CharacterSkillCategory>;
+  displayedColumns: string[] = ['categoryId',
+    'developmentCost',
+    'adolescenceRanks',
+    'upgradedRanks',
+    'attributeBonus',
+    'defaultSkillBonus',
+    'rankBonus',
+    'professionBonus',
+    'specialBonus',
+    'totalBonus',
+    'options'
+  ];
+
   skillUpgradeRequest: SkillUpgradeRequest;
   allowModifications = true;
 
   constructor() {
+    this.characterInfo = {} as CharacterInfo;
+    this.dataSource = new MatTableDataSource(this.characterInfo.skillCategories);
+    
     this.skillUpgradeRequest = {
       categoryRanks: new Map<string, number>(),
       skillRanks: new Map<string, number>()
-    }
+    };
   }
 
   ngOnInit(): void {
+    this.dataSource = new MatTableDataSource(this.characterInfo?.skillCategories);
   }
 
   updateSkillCategoryDevelopment(value: number, categoryId: string): void {
@@ -70,6 +88,15 @@ export class CharacterSkillCategoryListComponent implements OnInit {
 
   getSkillCategory(skillCategoryId : String): CharacterSkillCategory {
     return this.characterInfo?.skillCategories.filter(e => e.categoryId == skillCategoryId)[0]!;
+  }
+
+  getUpgradeCountSkillCategory(categoryId: string) {
+    return this.skillUpgradeRequest.categoryRanks.has(categoryId) ? this.skillUpgradeRequest.categoryRanks.get(categoryId) : 0;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

@@ -8,9 +8,11 @@ import { CharacterInfo } from '../model/character-info';
 })
 export class CharacterDevelopmentComponent implements OnInit {
 
-  @Input() characterInfo? : CharacterInfo;
+  @Input() characterInfo : CharacterInfo;
 
-  constructor() { }
+  constructor() {
+    this.characterInfo = {} as CharacterInfo;
+  }
 
   ngOnInit(): void {
   }

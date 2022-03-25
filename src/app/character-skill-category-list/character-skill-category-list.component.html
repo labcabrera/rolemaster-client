@@ -1,47 +1,87 @@
 <mat-accordion>
-    <mat-expansion-panel hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <div>Skill categories <span>({{this.characterInfo?.developmentPoints?.remainingPoints}}/{{this.characterInfo?.developmentPoints?.totalPoints}})</span></div>
-        </mat-panel-title>
-        <mat-panel-description>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <div>Skill categories
+          <span>({{this.characterInfo?.developmentPoints?.remainingPoints}}/{{this.characterInfo?.developmentPoints?.totalPoints}})</span>
+        </div>
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-      <table>
-        <tr>
-            <th>Category</th>
-            <th>Development</th>
-            <th>Adolescence ranks</th>
-            <th>Upgraded ranks</th>
-            <th>Current ranks</th>
-            <th>Bonus - Attribute</th>
-            <th>Bonus - Rank</th>
-            <th>Bonus - Profession</th>
-            <th>Special bonus</th>
-            <th>Item bonus</th>
-            <th>Total bonus</th>
-            <th></th>
-        </tr>
-        <tr *ngFor="let skillCategory of characterInfo?.skillCategories">
-            <td style="text-align: left;"><span class="attribute-value">{{skillCategory.categoryId}}</span></td>
-            <td><div class="attribute-value">{{skillCategory.developmentCost}}</div></td>
-            <td><div class="attribute-value">{{skillCategory.adolescenceRanks}}</div></td>
-            <td><div class="attribute-value">{{skillCategory.upgradedRanks}}</div></td>
-            <td><div class="attribute-value">{{skillCategory.totalRanks}}</div></td>
-            <td><div class="attribute-value">{{skillCategory.attributeBonus}}</div></td>
-            <td><div class="attribute-value">{{skillCategory.rankBonus}}</div></td>
-            <td><div class="attribute-value">{{skillCategory.professionBonus}}</div></td>
-            <td><div class="attribute-value">{{skillCategory.specialBonus}}</div></td>
-            <td><div class="attribute-value">{{skillCategory.itemBonus}}</div></td>
-            <td><div class="attribute-value">{{skillCategory.totalBonus}}</div></td>
-            <td>
-                <button mat-icon-button color="primary" (click)="updateSkillCategoryDevelopment(1, skillCategory.categoryId)"><mat-icon>add</mat-icon></button>
-                <button mat-icon-button color="primary" (click)="updateSkillCategoryDevelopment(-1, skillCategory.categoryId)"><mat-icon>remove</mat-icon></button>
-                <span>{{this.skillUpgradeRequest.categoryRanks.has(skillCategory.categoryId) ? this.skillUpgradeRequest.categoryRanks.get(skillCategory.categoryId): 0}}</span>
-            </td>
-        </tr>
-    
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="categoryId">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.categoryId}} </td>
+      </ng-container>
+      <ng-container matColumnDef="developmentCost">
+        <th mat-header-cell *matHeaderCellDef>Development</th>
+        <td mat-cell *matCellDef="let element"> {{element.developmentCost}} </td>
+      </ng-container>
+      <ng-container matColumnDef="adolescenceRanks">
+        <th mat-header-cell *matHeaderCellDef>A. Ranks</th>
+        <td mat-cell *matCellDef="let element"> {{element.adolescenceRanks}} </td>
+      </ng-container>
+      <ng-container matColumnDef="upgradedRanks">
+        <th mat-header-cell *matHeaderCellDef>U. Ranks</th>
+        <td mat-cell *matCellDef="let element">{{getUpgradeCountSkillCategory(element.categoryId)}}</td>
+      </ng-container>
+      <ng-container matColumnDef="attributeBonus">
+        <th mat-header-cell *matHeaderCellDef>A. Bonus</th>
+        <td mat-cell *matCellDef="let element"> {{element.attributeBonus}} </td>
+      </ng-container>
+      <ng-container matColumnDef="defaultSkillBonus">
+        <th mat-header-cell *matHeaderCellDef>S. Ranks</th>
+        <td mat-cell *matCellDef="let element"> {{element.defaultSkillBonus}} </td>
+      </ng-container>
+      <ng-container matColumnDef="rankBonus">
+        <th mat-header-cell *matHeaderCellDef>R. Bonus</th>
+        <td mat-cell *matCellDef="let element"> {{element.rankBonus}} </td>
+      </ng-container>
+      <ng-container matColumnDef="professionBonus">
+        <th mat-header-cell *matHeaderCellDef>P. Bonus</th>
+        <td mat-cell *matCellDef="let element"> {{element.professionBonus}} </td>
+      </ng-container>
+      <ng-container matColumnDef="specialBonus">
+        <th mat-header-cell *matHeaderCellDef>S. Bonus</th>
+        <td mat-cell *matCellDef="let element"> {{element.specialBonus}} </td>
+      </ng-container>
+      <ng-container matColumnDef="totalBonus">
+        <th mat-header-cell *matHeaderCellDef>S. Bonus</th>
+        <td mat-cell *matCellDef="let element"> {{element.specialBonus}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="options" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="updateSkillCategoryDevelopment(1, element.categoryId)">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" (click)="updateSkillCategoryDevelopment(-1, element.categoryId)">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
     </table>
-    </mat-expansion-panel>
+
+  </mat-expansion-panel>
 </mat-accordion>

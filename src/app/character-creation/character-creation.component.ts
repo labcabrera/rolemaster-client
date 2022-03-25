@@ -16,7 +16,7 @@ export class CharacterCreationComponent implements OnInit {
 
   characterCreationFormGroup: FormGroup;
 
-  characterInfo?: CharacterInfo;
+  characterInfo: CharacterInfo;
 
   characterBasicData: FormGroup;
   characterDevelopment: FormGroup;
@@ -30,7 +30,7 @@ export class CharacterCreationComponent implements OnInit {
     private characterGenerationUtilsService: CharacterGenerationUtilsService,
     private fb: FormBuilder) {
 
-      
+    this.characterInfo = {} as CharacterInfo;
 
     this.characterCreationFormGroup = fb.group({
       'name': ['', Validators.required],
