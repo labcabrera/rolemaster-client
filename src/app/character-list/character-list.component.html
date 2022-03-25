@@ -1,0 +1,9 @@
+<mat-selection-list #shoes [multiple]="false">
+  <div mat-subheader>Characters</div>
+  <mat-list-option *ngFor="let character of characters" [value]="character" (click)="onSelect(character)">
+    <mat-icon mat-list-icon>person</mat-icon>
+    {{character.name}}
+  </mat-list-option>
+</mat-selection-list>
+
+<app-character-detail [characterInfo]="selectedCharacter"></app-character-detail>

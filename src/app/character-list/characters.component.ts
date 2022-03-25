@@ -6,10 +6,10 @@ import { CharacterService } from '../services/character-service';
 
 @Component({
   selector: 'app-characters',
-  templateUrl: './characters.component.html',
-  styleUrls: ['./characters.component.css']
+  templateUrl: './character-list.component.html',
+  styleUrls: ['./character-list.component.css']
 })
-export class CharactersComponent implements OnInit {
+export class CharacterListComponent implements OnInit {
 
   characters: CharacterInfo[] = [];
   selectedCharacter?: CharacterInfo;

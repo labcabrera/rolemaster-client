@@ -15,7 +15,7 @@ export class CharacterCreationComponent implements OnInit {
   characterCreationFormGroup: FormGroup;
 
   characterBasicData: FormGroup;
-  secondFormGroup: FormGroup;
+  characterDevelopment: FormGroup;
 
   constructor(
     private characterService: CharacterService,
@@ -43,12 +43,12 @@ export class CharacterCreationComponent implements OnInit {
         'st': [66]
       })
     });
+    this.characterDevelopment = fb.group({
+      'secondCtrl': ['', Validators.required]
+    })
 
     this.characterBasicData = this.fb.group({
-      firstCtrl: ['', Validators.required],
-    });
-    this.secondFormGroup = this.fb.group({
-      secondCtrl: ['', Validators.required],
+      firstCtrl: ['Development', Validators.required],
     });
   }
 

@@ -21,22 +21,24 @@ import { MatStepperModule} from '@angular/material/stepper';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RealmsComponent } from './realms/realms.component';
-import { CharactersComponent } from './characters/characters.component';
+import { CharacterListComponent } from './character-list/characters.component';
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
 import { SessionsComponent } from './sessions/sessions.component';
 import { SessionDetailComponent } from './session-detail/session-detail.component';
 import { CharacterCreationComponent } from './character-creation/character-creation.component';
+import { CharacterDevelopmentComponent } from './character-development/character-development.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RealmsComponent,
-    CharactersComponent,
+    CharacterListComponent,
     CharacterDetailComponent,
     SessionsComponent,
     SessionDetailComponent,
-    CharacterCreationComponent
+    CharacterCreationComponent,
+    CharacterDevelopmentComponent
   ],
   imports: [
     FormsModule,

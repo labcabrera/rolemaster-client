@@ -1,51 +1,16 @@
-<mat-grid-list cols="3" rowHeight="1:1">
+<mat-selection-list #shoes [multiple]="false">
+  <div mat-subheader>Sessions</div>
 
-  <mat-grid-tile colspan="1">
+  <mat-list-option *ngFor="let session of sessions" [value]="session" (click)="onSelect(session)">
+    <mat-icon mat-list-icon>person</mat-icon>
+    <div>{{session.name}}</div>
+    <mat-icon mat-list-icon (click)="deleteSession(session)">delete</mat-icon>
+  </mat-list-option>
 
-    <mat-selection-list #shoes [multiple]="false">
-      <div mat-subheader>Sessions</div>
+  <mat-list>
+    <button mat-stroked-button color="primary" (click)="createSession()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-list>
 
-      <mat-list-option *ngFor="let session of sessions" [value]="session" (click)="onSelect(session)">
-        <mat-icon mat-list-icon>person</mat-icon>
-        <div>{{session.name}}</div>
-        <mat-icon mat-list-icon (click)="deleteSession(session)">delete</mat-icon>
-        <!--
-        <div class="example-button-container">
-          <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-      -->
-      </mat-list-option>
-
-      <mat-list>
-        <button mat-stroked-button color="primary" (click)="createSession()">
-          <mat-icon>add</mat-icon>
-        </button>
-      </mat-list>
-
-    </mat-selection-list>
-
-  </mat-grid-tile>
-
-  <mat-grid-tile colspan="2">
-
-    Content
-
-  </mat-grid-tile>
-
-</mat-grid-list>
-
-<!--
-
-<ul class="sessions">
-  <li *ngFor="let session of sessions">
-    <a routerLink="/sessions/detail/{{session.id}}">
-      <div>{{session.name}}</div>
-    </a>
-    <button type="button" class="delete" title="delete session" (click)="deleteSession(session)">x</button>
-  </li>
-</ul>
-
-
--->
+</mat-selection-list>
