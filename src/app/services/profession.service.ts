@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
-
-import { Race } from '../model/race';
+import { Profession } from '../model/profession';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RaceService {
+export class ProfessionService {
 
-  private racesUrl = 'http://localhost:8080/races';
+  private professionsUrl = 'http://localhost:8080/professions';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,8 +17,8 @@ export class RaceService {
 
   constructor(private http: HttpClient) {}
 
-  getRaces(): Observable<Race[]> {
-    return this.http.get<Race[]>(this.racesUrl).pipe();
+  getProfessions(): Observable<Profession[]> {
+    return this.http.get<Profession[]>(this.professionsUrl).pipe();
   }
 
 }

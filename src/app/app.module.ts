@@ -32,6 +32,10 @@ import { CharacterSkillListComponent } from './character-skill-list/character-sk
 import { CharacterAttributesComponent } from './character-attributes/character-attributes.component';
 import { SkillCategoryListComponent } from './skill-category-list/skill-category-list.component';
 import { SkillListComponent } from './skill-list/skill-list.component';
+import { ProfessionListComponent } from './profession-list/profession-list.component';
+import { RaceListComponent } from './race-list/race-list.component';
+import { RaceDetailComponent } from './race-detail/race-detail.component';
+import { ProfessionDetailComponent } from './profession-detail/profession-detail.component';
 
 
 @NgModule({
@@ -48,7 +52,11 @@ import { SkillListComponent } from './skill-list/skill-list.component';
     CharacterSkillListComponent,
     CharacterAttributesComponent,
     SkillCategoryListComponent,
-    SkillListComponent
+    SkillListComponent,
+    ProfessionListComponent,
+    RaceListComponent,
+    RaceDetailComponent,
+    ProfessionDetailComponent
   ],
   imports: [
     FormsModule,
