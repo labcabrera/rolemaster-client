@@ -37,9 +37,17 @@
                 <mat-label>Age</mat-label>
                 <input name="age" matInput type="text" formControlName="age">
             </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Height</mat-label>
+                <input name="height" matInput type="text" formControlName="height">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Weight</mat-label>
+                <input name="weight" matInput type="text" formControlName="weight">
+            </mat-form-field>
 
             <div formGroupName="baseAttributes">
-                <mat-list>
+                <mat-list class="example-list">
                     <mat-list-item>
                         <div class="attribute-name">Agility</div>
                         <mat-slider formControlName="ag" [max]="100" [min]="1" thumbLabel=true
@@ -107,28 +115,31 @@
                 <mat-label>Available attributes points</mat-label>
                 <input name="attributesRoll" matInput type="text" formControlName="attributesRoll"
                     (change)="updateAttributeCost()">
+                    <mat-icon matSuffix color="primary" (click)="createRandomAttributesRoll()">cached</mat-icon>
             </mat-form-field>
+
             <mat-form-field class="example-form-field" appearance="fill">
                 <mat-label>Remaining attributes points</mat-label>
                 <input name="attributesRemaining" matInput type="text" formControlName="attributesRemaining"
                     readonly="true">
             </mat-form-field>
-            
-                <div>
-                    <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="createRandomAttributesRoll()">
-                        <mat-icon>cached</mat-icon>
-                    </button>
-                </div>
-
-                <button mat-mini-fab color="primary" (click)="createCharacter()">
-                    <mat-icon>save_alt</mat-icon>
-                </button>
            
+
+            <div>Weapon category priority</div>
+
+            <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box"
+                    *ngFor="let wCat of this.characterCreationFormGroupValue.weaponCategoryPriority" cdkDrag>{{wCat}}
+                </div>
+            </div>
+
             <div>
                 <button mat-button matStepperNext (click)="createCharacterNext()">Next</button>
             </div>
-
+            
+            <!--
             <pre>{{this.characterCreationFormGroupValue | json}}</pre>
+            -->
 
         </form>
     </mat-step>
@@ -136,16 +147,12 @@
     <mat-step [stepControl]="characterDevelopment" [editable]=false>
         <form [formGroup]="characterDevelopment">
             <ng-template matStepLabel>Character development</ng-template>
-            <mat-form-field appearance="fill">
-                <mat-label>Address</mat-label>
-                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-            </mat-form-field>
+            <app-character-development [characterInfo]="this.characterInfo"></app-character-development>
             <div>
-                <button mat-button matStepperPrevious>Back</button>
+                <!--button mat-button matStepperPrevious>Back</button-->
                 <button mat-button matStepperNext>Next</button>
             </div>
         </form>
-        <app-character-development [characterInfo]="this.characterInfo"></app-character-development>
     </mat-step>
 
     <mat-step>
@@ -157,6 +164,3 @@
         </div>
     </mat-step>
 </mat-stepper>
-
-
-

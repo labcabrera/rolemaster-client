@@ -2,10 +2,9 @@
     <mat-expansion-panel hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <div>Skill categories</div>
+          <div>Skill categories <span>({{this.characterInfo?.developmentPoints?.remainingPoints}}/{{this.characterInfo?.developmentPoints?.totalPoints}})</span></div>
         </mat-panel-title>
         <mat-panel-description>
-          <span>({{this.characterInfo?.developmentPoints?.remainingPoints}}/{{this.characterInfo?.developmentPoints?.totalPoints}})</span>
         </mat-panel-description>
       </mat-expansion-panel-header>
 
@@ -25,7 +24,7 @@
             <th></th>
         </tr>
         <tr *ngFor="let skillCategory of characterInfo?.skillCategories">
-            <td><div class="attribute-value">{{skillCategory.categoryId}}</div></td>
+            <td style="text-align: left;"><span class="attribute-value">{{skillCategory.categoryId}}</span></td>
             <td><div class="attribute-value">{{skillCategory.developmentCost}}</div></td>
             <td><div class="attribute-value">{{skillCategory.adolescenceRanks}}</div></td>
             <td><div class="attribute-value">{{skillCategory.upgradedRanks}}</div></td>

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { CharacterCreationRequest, CharacterInfo } from '../model/character-info';
 import { CharacterService } from '../services/character-service';
@@ -16,10 +17,10 @@ export class CharacterCreationComponent implements OnInit {
   characterCreationFormGroup: FormGroup;
 
   characterInfo?: CharacterInfo;
-  
+
   characterBasicData: FormGroup;
   characterDevelopment: FormGroup;
-  
+
   basicDataDisabled = false;
 
   constructor(
@@ -28,14 +29,27 @@ export class CharacterCreationComponent implements OnInit {
     private characterGenerationUtilsService: CharacterGenerationUtilsService,
     private fb: FormBuilder) {
 
+      
+
     this.characterCreationFormGroup = fb.group({
       'name': ['', Validators.required],
       'raceId': ['common-men', Validators.required],
       'professionId': ['thief', Validators.required],
       'realmId': ['essence', Validators.required],
       'age': ['25', Validators.required],
+      'height': ['174', Validators.required],
+      'weight': ['72', Validators.required],
       'attributesRoll': [660],
       'attributesRemaining': [0],
+      'weaponCategoryPriority': [ [
+        "weapon-1h-edged",
+        "weapon-missile",
+        "weapon-thrown",
+        "weapon-pole-arms",
+        "weapon-2h",
+        "weapon-1h-concussion",
+        "weapon-missile-artillery"
+      ] ],
       'baseAttributes': fb.group({
         'ag': [66],
         'co': [66],
@@ -52,7 +66,7 @@ export class CharacterCreationComponent implements OnInit {
     this.characterDevelopment = fb.group({
       'secondCtrl': ['', Validators.required]
     })
-    
+
     this.characterBasicData = this.fb.group({
       firstCtrl: ['Development', Validators.required],
     });
@@ -91,6 +105,10 @@ export class CharacterCreationComponent implements OnInit {
 
   createCharacterNext(): void {
     this.createCharacter();
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.characterCreationFormGroupValue.weaponCategoryPriority, event.previousIndex, event.currentIndex);
   }
 
 }

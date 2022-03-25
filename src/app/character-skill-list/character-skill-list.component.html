@@ -2,10 +2,9 @@
     <mat-expansion-panel hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <div>Skills</div>
+          <div>Skills <span>({{this.characterInfo?.developmentPoints?.remainingPoints}}/{{this.characterInfo?.developmentPoints?.totalPoints}})</span></div>
         </mat-panel-title>
         <mat-panel-description>
-          <span>({{this.characterInfo?.developmentPoints?.remainingPoints}}/{{this.characterInfo?.developmentPoints?.totalPoints}})</span>
         </mat-panel-description>
       </mat-expansion-panel-header>
 

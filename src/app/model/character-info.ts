@@ -7,6 +7,12 @@ export interface CharacterInfo {
     professionId: string;
     level: number;
     age: number;
+    height: number;
+    weight: number;
+    maxHp: number;
+    maxExhaustionPoints: number;
+    xp: number;
+    baseMovementRate: number;
     attributes: CharacterAttributes;
     skillCategories:  CharacterSkillCategory[];
     skills: CharacterSkill[];
@@ -70,6 +76,7 @@ export interface CharacterCreationRequest {
     realmId: string;
     attributesRoll: number;
     baseAttributes: CharacterCreationAttributes;
+    weaponCategoryPriority: string[];
 }
 
 export interface CharacterCreationAttributes {

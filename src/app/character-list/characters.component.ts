@@ -33,6 +33,7 @@ export class CharacterListComponent implements OnInit {
     this.characterService.deleteCharacter(character.id).subscribe(e => {
       this.characters = this.characters.filter(h => h !== character);
     });
+    this.selectedCharacter = <CharacterInfo>{};
   }
 
 }

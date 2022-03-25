@@ -19,6 +19,7 @@ import { MatMenuModule} from '@angular/material/menu';
 import { MatStepperModule} from '@angular/material/stepper';
 import { MatCheckboxModule} from '@angular/material/checkbox'; 
 import { MatExpansionModule} from '@angular/material/expansion'; 
+import { DragDropModule} from '@angular/cdk/drag-drop'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -84,6 +85,7 @@ import { CharacterBasicInfoComponent } from './character-basic-info/character-ba
     MatStepperModule,
     MatCheckboxModule,
     MatExpansionModule,
+    DragDropModule,
     BrowserAnimationsModule
   ],
   providers: [],
