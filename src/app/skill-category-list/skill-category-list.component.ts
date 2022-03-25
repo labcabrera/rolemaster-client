@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SkillCategory } from '../model/skill-category';
+import { SkillCategoryService } from '../services/skill-category.service';
 
 @Component({
   selector: 'app-skill-category-list',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SkillCategoryListComponent implements OnInit {
 
-  constructor() { }
+  skillCategories?: SkillCategory[];
+
+  constructor(private skillCategoryService: SkillCategoryService) { }
 
   ngOnInit(): void {
+    this.getSkills();
+  }
+
+  getSkills(): void {
+    this.skillCategoryService.getSkillCategories().subscribe(result => this.skillCategories = result);
   }
 
 }

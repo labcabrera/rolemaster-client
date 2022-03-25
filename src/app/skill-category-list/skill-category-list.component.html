@@ -1,1 +1,12 @@
-<p>skill-category-list works!</p>
+<h2>Skill categories</h2>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+    </tr>
+    <tr *ngFor="let skillCategory of skillCategories">
+        <td><div>{{skillCategory.id}}</div></td>
+        <td><div>{{skillCategory.name}}</div></td>
+    </tr>
+
+</table>
