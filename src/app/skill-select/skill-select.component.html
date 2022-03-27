@@ -1,0 +1,10 @@
+<mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Skill</mat-label>
+    <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="skillControl" [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.id">
+            {{option.id}}
+        </mat-option>
+    </mat-autocomplete>
+    <mat-icon matSuffix color="primary">add</mat-icon>
+</mat-form-field>

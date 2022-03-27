@@ -20,7 +20,8 @@ import { MatStepperModule} from '@angular/material/stepper';
 import { MatCheckboxModule} from '@angular/material/checkbox'; 
 import { MatExpansionModule} from '@angular/material/expansion'; 
 import { DragDropModule} from '@angular/cdk/drag-drop';
-import { MatTableModule} from '@angular/material/table'; 
+import { MatTableModule} from '@angular/material/table';
+import { MatAutocompleteModule} from '@angular/material/autocomplete'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,6 +43,7 @@ import { RaceDetailComponent } from './race-detail/race-detail.component';
 import { ProfessionDetailComponent } from './profession-detail/profession-detail.component';
 import { CharacterBasicInfoComponent } from './character-basic-info/character-basic-info.component';
 import { CharacterViewComponent } from './character-view/character-view.component';
+import { SkillSelectComponent } from './skill-select/skill-select.component';
 
 
 
@@ -65,7 +67,8 @@ import { CharacterViewComponent } from './character-view/character-view.componen
     RaceDetailComponent,
     ProfessionDetailComponent,
     CharacterBasicInfoComponent,
-    CharacterViewComponent
+    CharacterViewComponent,
+    SkillSelectComponent
   ],
   imports: [
     FormsModule,
@@ -89,6 +92,7 @@ import { CharacterViewComponent } from './character-view/character-view.componen
     MatCheckboxModule,
     MatExpansionModule,
     MatTableModule,
+    MatAutocompleteModule,
     DragDropModule,
     BrowserAnimationsModule
   ],
