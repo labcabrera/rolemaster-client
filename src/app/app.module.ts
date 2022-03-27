@@ -41,6 +41,7 @@ import { RaceListComponent } from './race-list/race-list.component';
 import { RaceDetailComponent } from './race-detail/race-detail.component';
 import { ProfessionDetailComponent } from './profession-detail/profession-detail.component';
 import { CharacterBasicInfoComponent } from './character-basic-info/character-basic-info.component';
+import { CharacterViewComponent } from './character-view/character-view.component';
 
 
 
@@ -63,7 +64,8 @@ import { CharacterBasicInfoComponent } from './character-basic-info/character-ba
     RaceListComponent,
     RaceDetailComponent,
     ProfessionDetailComponent,
-    CharacterBasicInfoComponent
+    CharacterBasicInfoComponent,
+    CharacterViewComponent
   ],
   imports: [
     FormsModule,

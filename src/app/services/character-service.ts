@@ -16,7 +16,11 @@ export class CharacterService {
   };
 
   constructor(
-    private http: HttpClient) {}
+    private http: HttpClient) { }
+
+  getCharacter(id: string): Observable<CharacterInfo> {
+    return this.http.get<CharacterInfo>(this.charactersUrl + "/" + id).pipe();
+  }
 
   getCharacters(): Observable<CharacterInfo[]> {
     return this.http.get<CharacterInfo[]>(this.charactersUrl)
@@ -30,7 +34,7 @@ export class CharacterService {
     return this.http.post<CharacterInfo>(this.charactersUrl, request, this.httpOptions)
       .pipe(
         catchError(this.handleError2)
-    );
+      );
   }
 
   deleteCharacter(id: string): Observable<null> {

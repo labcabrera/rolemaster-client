@@ -52,16 +52,16 @@ export class CharacterCreationComponent implements OnInit {
         "weapon-missile-artillery"
       ] ],
       'baseAttributes': fb.group({
-        'ag': [66],
-        'co': [66],
-        'em': [66],
-        'in': [66],
-        'me': [66],
-        'pr': [66],
-        'qu': [66],
-        're': [66],
-        'sd': [66],
-        'st': [66]
+        'ag': [100],
+        'co': [44],
+        'em': [79],
+        'in': [81],
+        'me': [20],
+        'pr': [15],
+        'qu': [72],
+        're': [30],
+        'sd': [78],
+        'st': [51]
       })
     });
     this.characterDevelopment = fb.group({

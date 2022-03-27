@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CharacterCreationComponent } from './character-creation/character-creation.component';
+import { CharacterDetailComponent } from './character-detail/character-detail.component';
 import { CharacterListComponent } from './character-list/characters.component';
+import { CharacterViewComponent } from './character-view/character-view.component';
 import { ProfessionListComponent } from './profession-list/profession-list.component';
 import { RaceListComponent } from './race-list/race-list.component';
 import { SessionDetailComponent } from './session-detail/session-detail.component';
@@ -12,6 +14,7 @@ import { SkillListComponent } from './skill-list/skill-list.component';
 const routes: Routes = [
   { path: '', redirectTo: '/characters', pathMatch: 'full' },
   { path: 'characters', component: CharacterListComponent },
+  { path: 'characters/detail/:id', component: CharacterViewComponent },
   { path: 'sessions', component: SessionListComponent },
   { path: 'sessions/detail/:id', component: SessionDetailComponent },
   { path: 'characters/creation', component: CharacterCreationComponent },

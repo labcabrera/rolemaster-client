@@ -1,9 +1,9 @@
 <mat-selection-list #shoes [multiple]="false">
   <div mat-subheader>Characters</div>
-  <mat-list-option *ngFor="let character of characters" [value]="character" (click)="onSelect(character)">
+  <mat-list-option *ngFor="let character of characters" [value]="character">
     <mat-icon mat-list-icon (click)="deleteCharacter(character)">delete</mat-icon>
     <mat-icon mat-list-icon>person</mat-icon>
-    <div>{{character.name}}</div>
+    <a mat-list-item routerLink="/characters/detail/{{character.id}}">{{character.name}}</a>
   </mat-list-option>
 </mat-selection-list>
 

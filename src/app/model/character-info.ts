@@ -42,31 +42,51 @@ export interface CharacterAttribute {
 }
 export interface CharacterSkillCategory {
     categoryId: string;
+    attributes: string[];
     developmentCost: number[];
-    adolescenceRanks: number;
-    upgradedRanks: number;
+    ranks: Map<RankType,number>;
+    bonus: Map<String,number>;
     totalRanks: number;
-    attributeBonus: number;
-    defaultSkillBonus: number;
-    rankBonus: number;
-    professionBonus: number;
-    specialBonus: number;
-    itemBonus: number;
     totalBonus: number;
+}
+
+export enum RankType {
+    adolescence,
+    lifestyle,
+    consolidated,
+    development
 }
 
 export interface CharacterSkill {
     skillId: number;
-    adolescenceRanks: number;
-    upgradedRanks: number;
-    attributeBonus: number;
-    defaultSkillBonus: number;
+    categoryId: string;
+    group: string;
+    bonus: CharacterSkillBonus;
+    attributes: string[];
+    developmentCost: number[];
+    ranks: CharacterSkillRanks;
     totalBonus: number;
+}
+
+export interface CharacterSkillBonus {
+    rank: number;
+    category: number;
+    attribute: number;
+    profession: number;
+    race: number;
+    skillSpecial: number;
+    special: number;
+}
+
+export interface CharacterSkillRanks {
+    adolescence: number;
+    consolidated: number;
+    development: number;
 }
 
 export interface CharacterDevelopmentPoints {
     totalPoints: number | 0;
-    remainingPoints: number | 0;
+    usedPoints: number | 0;
 }
 
 export interface CharacterCreationRequest {
