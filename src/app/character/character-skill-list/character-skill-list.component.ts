@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Skill } from 'src/app/model/skill';
 import { CharacterInfo, CharacterSkill } from '../../model/character-info';
 
 @Component({

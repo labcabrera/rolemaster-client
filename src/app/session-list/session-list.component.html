@@ -1,16 +1,19 @@
-<mat-selection-list #shoes [multiple]="false">
-  <div mat-subheader>Sessions</div>
+<mat-card>
+  <mat-card-title>Sessions</mat-card-title>
+  <mat-card-subtitle>List of sessions</mat-card-subtitle>
+  
+  <mat-card-content>
+    <mat-selection-list #shoes [multiple]="false">
+      <mat-list-option *ngFor="let session of sessions" [value]="session" (click)="onSelect(session)">
+        <mat-icon mat-list-icon (click)="deleteSession(session)">delete</mat-icon>
+        <mat-icon mat-list-icon>person</mat-icon>
+        <div>{{session.name}}</div>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-card-content>
+  
+  <mat-card-actions>
+    <button mat-raised-button (click)="createSession()">New session</button>
+  </mat-card-actions>
 
-  <mat-list-option *ngFor="let session of sessions" [value]="session" (click)="onSelect(session)">
-    <mat-icon mat-list-icon (click)="deleteSession(session)">delete</mat-icon>
-    <mat-icon mat-list-icon>person</mat-icon>
-    <div>{{session.name}}</div>
-  </mat-list-option>
-
-  <mat-list>
-    <button mat-stroked-button color="primary" (click)="createSession()">
-      <mat-icon>add</mat-icon>
-    </button>
-  </mat-list>
-
-</mat-selection-list>
+</mat-card>

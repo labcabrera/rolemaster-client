@@ -115,31 +115,50 @@
                 <mat-label>Available attributes points</mat-label>
                 <input name="attributesRoll" matInput type="text" formControlName="attributesRoll"
                     (change)="updateAttributeCost()">
-                    <mat-icon matSuffix color="primary" (click)="createRandomAttributesRoll()">cached</mat-icon>
+                <mat-icon matSuffix (click)="createRandomAttributesRoll()">cached</mat-icon>
             </mat-form-field>
 
             <mat-form-field class="example-form-field" appearance="fill">
                 <mat-label>Remaining attributes points</mat-label>
                 <input name="attributesRemaining" matInput type="text" formControlName="attributesRemaining"
-                    readonly="true">
+                readonly="true">
             </mat-form-field>
-           
+            
+            
+            <mat-card>
+                <mat-card-title>Weapon category priority</mat-card-title>
+                <mat-card-subtitle>Drag and drop </mat-card-subtitle>
+                <mat-card-content>
+                    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                        <mat-list role="list">
+                            <mat-list-item role="listitem" *ngFor="let wCat of this.characterCreationFormGroupValue.weaponCategoryPriority" cdkDrag>{{wCat}}>Item 1
+        
+                            </mat-list-item>
+                          </mat-list>
+                          
+                        <div class="example-box" *ngFor="let wCat of this.characterCreationFormGroupValue.weaponCategoryPriority" cdkDrag>{{wCat}}
+                        </div>
+                    </div>
+                </mat-card-content>
+              </mat-card>
+              <!--
+              <br>
+              <mat-card>
+                <mat-card-title>Actions Buttons</mat-card-title>
+                <mat-card-subtitle>End</mat-card-subtitle>
+                <mat-card-actions align="end">
+                  <button mat-button>Like</button>
+                  <button mat-button>SHARE</button>
+                </mat-card-actions>
+              </mat-card>
 
             <div>Weapon category priority</div>
+            -->
 
-            <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-                <div class="example-box"
-                    *ngFor="let wCat of this.characterCreationFormGroupValue.weaponCategoryPriority" cdkDrag>{{wCat}}
-                </div>
-            </div>
 
             <div>
                 <button mat-button matStepperNext (click)="createCharacterNext()">Next</button>
             </div>
-            
-            <!--
-            <pre>{{this.characterCreationFormGroupValue | json}}</pre>
-            -->
 
         </form>
     </mat-step>
@@ -157,10 +176,10 @@
 
     <mat-step [stepControl]="trainingPackages" [editable]=false>
         <ng-template matStepLabel>Training packages</ng-template>
-            <app-character-development [characterInfo]="this.characterInfo"></app-character-development>
-            <div>
-                <button mat-button matStepperNext>Next</button>
-            </div>
+        <app-character-development [characterInfo]="this.characterInfo"></app-character-development>
+        <div>
+            <button mat-button matStepperNext>Next</button>
+        </div>
     </mat-step>
 
     <mat-step>

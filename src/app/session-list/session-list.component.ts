@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
 import { Session } from '../model/session';
 import { SessionsService } from '../services/sessions.service';
 
@@ -12,7 +14,8 @@ export class SessionListComponent implements OnInit {
   sessions: Session[] = [];
   selectedSession?: Session;
 
-  constructor(private sessionService: SessionsService) {}
+  constructor(
+    private sessionService: SessionsService) {}
 
   ngOnInit(): void {
     this.getSessions();

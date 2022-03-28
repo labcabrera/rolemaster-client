@@ -21,7 +21,9 @@ import { MatCheckboxModule} from '@angular/material/checkbox';
 import { MatExpansionModule} from '@angular/material/expansion'; 
 import { DragDropModule} from '@angular/cdk/drag-drop';
 import { MatTableModule} from '@angular/material/table';
-import { MatAutocompleteModule} from '@angular/material/autocomplete'; 
+import { MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -93,7 +95,9 @@ import { CharacterViewComponent } from './character/character-view/character-vie
     MatCheckboxModule,
     MatExpansionModule,
     MatTableModule,
+    MatTooltipModule,
     MatAutocompleteModule,
+    MatDialogModule,
     DragDropModule,
     BrowserAnimationsModule
   ],

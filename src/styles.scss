@@ -1,18 +1,23 @@
-@import '~@angular/material/theming';
-@include mat-core();
+@use '@angular/material' as mat;
+@include mat.core();
 
-$my-app-primary: mat-palette($mat-blue-grey);
-$my-app-accent:  mat-palette($mat-pink, 500, 900, A100);
-$my-app-warn:    mat-palette($mat-deep-orange);
-$my-app-theme:   mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+//@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 
-@include angular-material-theme($my-app-theme);
+/*
+$my-primary: mat.define-palette(mat.$indigo-palette, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
-.attribute-value {
-    text-align: right;
-    color: #111;
-}
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+ )
+));
 
-.attribute-value-disabled {
-    color: #DDD;
+@include mat.all-component-themes($my-theme);
+*/
+
+body {
+    background-color: #303030;
 }
