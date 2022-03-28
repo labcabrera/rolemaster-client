@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { MatStepper } from '@angular/material/stepper';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
-import { CharacterCreationRequest, CharacterInfo } from '../model/character-info';
-import { CharacterService } from '../services/character-service';
-import { CharacterGenerationUtilsService } from '../services/character-generation-utils.service';
-import { RandomUtilsService } from '../services/random-utils.service';
+import { CharacterCreationRequest, CharacterInfo } from '../../model/character-info';
+import { CharacterService } from '../../services/character-service';
+import { CharacterGenerationUtilsService } from '../../services/character-generation-utils.service';
+import { RandomUtilsService } from '../../services/random-utils.service';
 @Component({
   selector: 'app-character-creation',
   templateUrl: './character-creation.component.html',

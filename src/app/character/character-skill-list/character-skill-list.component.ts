@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CharacterInfo, CharacterSkill } from '../model/character-info';
+import { CharacterInfo, CharacterSkill } from '../../model/character-info';
 
 @Component({
   selector: 'app-character-skill-list',

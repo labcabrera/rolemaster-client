@@ -3,9 +3,9 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
 
-import { CharacterInfo, CharacterSkillCategory, RankType } from '../model/character-info';
-import { SkillUpgradeRequest } from '../model/character-info';
-import { SkillCategory } from '../model/skill-category';
+import { CharacterInfo, CharacterSkillCategory, RankType } from '../../model/character-info';
+import { SkillUpgradeRequest } from '../../model/character-info';
+import { SkillCategory } from '../../model/skill-category';
 
 @Component({
   selector: 'app-character-skill-category-list',

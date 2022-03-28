@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { CharacterInfo } from '../model/character-info';
+import { CharacterInfo } from '../../model/character-info';
 
 @Component({
   selector: 'app-character-attributes',

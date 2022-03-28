@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { CharacterInfo, CharacterSkillCategory } from '../model/character-info';
-import { CharacterService } from '../services/character-service';
+import { CharacterInfo, CharacterSkillCategory } from '../../model/character-info';
+import { CharacterService } from '../../services/character-service';
 
 @Component({
   selector: 'app-character-view',

@@ -1,4 +1,3 @@
-import { CharacterSkillCategoryListComponent } from "../character-skill-category-list/character-skill-category-list.component";
 
 export interface CharacterInfo {
     id: string;

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CharacterCreationComponent } from './character-creation/character-creation.component';
-import { CharacterDetailComponent } from './character-detail/character-detail.component';
-import { CharacterListComponent } from './character-list/characters.component';
-import { CharacterViewComponent } from './character-view/character-view.component';
+import { CharacterCreationComponent } from './character/character-creation/character-creation.component';
+import { CharacterDetailComponent } from './character/character-detail/character-detail.component';
+import { CharacterListComponent } from './character/character-list/characters.component';
+import { CharacterViewComponent } from './character/character-view/character-view.component';
 import { ProfessionListComponent } from './profession-list/profession-list.component';
 import { RaceListComponent } from './race-list/race-list.component';
 import { SessionDetailComponent } from './session-detail/session-detail.component';
