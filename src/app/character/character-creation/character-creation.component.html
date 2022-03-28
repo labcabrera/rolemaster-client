@@ -131,29 +131,14 @@
                 <mat-card-content>
                     <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
                         <mat-list role="list">
-                            <mat-list-item role="listitem" *ngFor="let wCat of this.characterCreationFormGroupValue.weaponCategoryPriority" cdkDrag>{{wCat}}>Item 1
-        
+                            <mat-list-item role="listitem" *ngFor="let wCat of this.characterCreationFormGroupValue.weaponCategoryPriority" cdkDrag>
+                                <mat-icon> drag_handle</mat-icon>
+                                <span>{{wCat}}</span>
                             </mat-list-item>
                           </mat-list>
-                          
-                        <div class="example-box" *ngFor="let wCat of this.characterCreationFormGroupValue.weaponCategoryPriority" cdkDrag>{{wCat}}
-                        </div>
                     </div>
                 </mat-card-content>
               </mat-card>
-              <!--
-              <br>
-              <mat-card>
-                <mat-card-title>Actions Buttons</mat-card-title>
-                <mat-card-subtitle>End</mat-card-subtitle>
-                <mat-card-actions align="end">
-                  <button mat-button>Like</button>
-                  <button mat-button>SHARE</button>
-                </mat-card-actions>
-              </mat-card>
-
-            <div>Weapon category priority</div>
-            -->
 
 
             <div>
