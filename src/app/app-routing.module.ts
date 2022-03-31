@@ -11,12 +11,14 @@ import { SessionListComponent } from './strategic-session-list/strategic-session
 import { SkillCategoryListComponent } from './skill-category-list/skill-category-list.component';
 import { SkillListComponent } from './skill-list/skill-list.component';
 import { TacticalViewComponent } from './tactical-view/tactical-view.component';
+import { TacticalSessionsComponent } from './pages/tactical-sessions/tactical-sessions.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/characters', pathMatch: 'full' },
   { path: 'characters', component: CharacterListComponent },
   { path: 'characters/detail/:id', component: CharacterViewComponent },
   { path: 'strategic-sessions', component: SessionListComponent },
+  { path: 'tactical-sessions', component: TacticalSessionsComponent },
   { path: 'sessions/detail/:id', component: SessionDetailComponent },
   { path: 'characters/creation', component: CharacterCreationComponent },
   { path: 'races', component: RaceListComponent },
