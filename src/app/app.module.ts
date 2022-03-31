@@ -29,7 +29,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RealmsComponent } from './realms/realms.component';
-import { SessionListComponent } from './strategic-session-list/strategic-session-list.component';
+import { SessionListComponent } from './pages/strategic-session-list/strategic-session-list.component';
 import { SessionDetailComponent } from './session-detail/session-detail.component';
 import { SkillListComponent } from './skill-list/skill-list.component';
 import { ProfessionListComponent } from './profession-list/profession-list.component';
@@ -49,11 +49,13 @@ import { CharacterAttributesComponent } from './character/character-attributes/c
 import { CharacterBasicInfoComponent } from './character/character-basic-info/character-basic-info.component';
 import { CharacterViewComponent } from './character/character-view/character-view.component';
 import { TacticalViewComponent } from './tactical-view/tactical-view.component';
+import { TacticalSessionsComponent } from './pages/tactical-sessions/tactical-sessions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RealmsComponent,
+    TacticalSessionsComponent,
     CharacterListComponent,
     CharacterDetailComponent,
     SessionListComponent,

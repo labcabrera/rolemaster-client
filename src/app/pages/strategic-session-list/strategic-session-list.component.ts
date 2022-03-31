@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { StrategicSession } from '../model/session';
-import { StrategicSessionsService } from '../services/sessions.service';
+import { StrategicSession } from '../../model/session';
+import { StrategicSessionsService } from '../../services/sessions.service';
 
 @Component({
   selector: 'app-sessions',

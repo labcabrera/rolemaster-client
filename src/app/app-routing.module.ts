@@ -7,7 +7,7 @@ import { CharacterViewComponent } from './character/character-view/character-vie
 import { ProfessionListComponent } from './profession-list/profession-list.component';
 import { RaceListComponent } from './race-list/race-list.component';
 import { SessionDetailComponent } from './session-detail/session-detail.component';
-import { SessionListComponent } from './strategic-session-list/strategic-session-list.component';
+import { SessionListComponent } from './pages/strategic-session-list/strategic-session-list.component';
 import { SkillCategoryListComponent } from './skill-category-list/skill-category-list.component';
 import { SkillListComponent } from './skill-list/skill-list.component';
 import { TacticalViewComponent } from './tactical-view/tactical-view.component';

@@ -9,7 +9,7 @@ import { TacticalSession  } from '../model/session';
 })
 export class TacticalSessionsService {
 
-  private sessionsUrl = 'http://localhost:8080/tactical-sessions';
+  private sessionsUrl = 'http://localhost:8080/tactical/sessions';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
