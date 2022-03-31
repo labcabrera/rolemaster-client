@@ -1,5 +1,11 @@
-<h3>Tactical session</h3>
+<mat-card>
+    <mat-card-title>Tactical session</mat-card-title>
 
-<a routerLink="/strategic-sessions/detail/{{tacticalSession.strategicSessionId}}">Strategic session</a>
+    <mat-card-content>
 
-<pre>{{this.tacticalSession | json}}</pre>
+        <a routerLink="/strategic-sessions/detail/{{tacticalSession.strategicSessionId}}">Strategic session</a>
+
+        <pre>{{this.tacticalSession | json}}</pre>
+
+    </mat-card-content>
+</mat-card>

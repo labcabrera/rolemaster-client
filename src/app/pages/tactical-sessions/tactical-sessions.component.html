@@ -1,8 +1,11 @@
-<h3>Tactical sessions</h3>
-
-<mat-list>
-    <mat-list-item *ngFor="let session of tacticalSessions">
-        <mat-icon mat-list-icon>scatter_plot</mat-icon>
-        <a mat-list-item routerLink="/tactical-sessions/detail/{{session.id}}">{{session.name}}</a>
-    </mat-list-item>
-</mat-list>
+<mat-card>
+    <mat-card-title>Tactical sessions</mat-card-title>
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item *ngFor="let session of tacticalSessions">
+                <mat-icon mat-list-icon>scatter_plot</mat-icon>
+                <a mat-list-item routerLink="/tactical-sessions/detail/{{session.id}}">{{session.name}}</a>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>

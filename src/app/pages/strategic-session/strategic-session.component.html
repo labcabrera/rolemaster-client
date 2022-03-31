@@ -1,12 +1,18 @@
-<pre>Session detail</pre>
+<mat-card>
+  <mat-card-title>Strategic session</mat-card-title>
+  
+  <mat-card-content>
+    <div *ngIf="session">
+      <h2>{{session.name | uppercase}}</h2>
+      <div><span>Id: </span>{{session.id}}</div>
+      <div><span>Name: </span>{{session.name}}</div>
+      <div><span>Created: </span>{{session.metadata.created}}</div>
+      <div>
+      </div>
+      <button type="button">Add character</button>
+      <button type="button" (click)="goBack()">go back</button>
+    </div>
+  </mat-card-content>
 
-<div *ngIf="session">
-  <h2>{{session.name | uppercase}}</h2>
-  <div><span>Id: </span>{{session.id}}</div>
-  <div><span>Name: </span>{{session.name}}</div>
-  <div><span>Created: </span>{{session.metadata.created}}</div>
-  <div>
-  </div>
-  <button type="button">Add character</button>
-  <button type="button" (click)="goBack()">go back</button>
-</div>
+</mat-card>
+
