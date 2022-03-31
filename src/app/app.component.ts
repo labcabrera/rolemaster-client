@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  title = 'Rolemaster Engine';
+  title = 'RM Engine';
   showSideBar = true;
 
 }

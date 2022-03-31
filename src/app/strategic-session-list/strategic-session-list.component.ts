@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { Session } from '../model/session';
-import { SessionsService } from '../services/sessions.service';
+import { StrategicSession } from '../model/session';
+import { StrategicSessionsService } from '../services/sessions.service';
 
 @Component({
   selector: 'app-sessions',
-  templateUrl: './session-list.component.html',
-  styleUrls: ['./session-list.component.css']
+  templateUrl: './strategic-session-list.component.html',
+  styleUrls: ['./strategic-session-list.component.css']
 })
 export class SessionListComponent implements OnInit {
 
-  sessions: Session[] = [];
-  selectedSession?: Session;
+  sessions: StrategicSession[] = [];
+  selectedSession?: StrategicSession;
 
   constructor(
-    private sessionService: SessionsService) {}
+    private sessionService: StrategicSessionsService) {}
 
   ngOnInit(): void {
     this.getSessions();
@@ -25,7 +25,7 @@ export class SessionListComponent implements OnInit {
     this.sessionService.getSessions().subscribe(c => this.sessions = c);
   }
 
-  onSelect(session: Session): void {
+  onSelect(session: StrategicSession): void {
     this.selectedSession = session;
   }
 
@@ -39,7 +39,7 @@ export class SessionListComponent implements OnInit {
       });
   }
 
-  deleteSession(session: Session): void {
+  deleteSession(session: StrategicSession): void {
     this.sessions = this.sessions.filter(h => h !== session);
     this.sessionService.deleteSession(session.id).subscribe();
   }

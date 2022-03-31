@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
-import { Session, SessionCreationRequest } from '../model/session';
+import { StrategicSession, SessionCreationRequest } from '../model/session';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SessionsService {
+export class StrategicSessionsService {
 
-  private sessionsUrl = 'http://localhost:8080/sessions';
+  private sessionsUrl = 'http://localhost:8080/strategic-sessions';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,34 +18,34 @@ export class SessionsService {
   constructor(
     private http: HttpClient) {}
 
-  getSessions(): Observable<Session[]> {
-    return this.http.get<Session[]>(this.sessionsUrl)
+  getSessions(): Observable<StrategicSession[]> {
+    return this.http.get<StrategicSession[]>(this.sessionsUrl)
       .pipe(
         tap(_ => this.log('fetched sessions')),
-        catchError(this.handleError<Session[]>('getSessions', []))
+        catchError(this.handleError<StrategicSession[]>('getSessions', []))
       );
   }
 
-  getSession(id: String): Observable<Session> {
+  getSession(id: String): Observable<StrategicSession> {
     const url = `${this.sessionsUrl}/${id}`;
-    return this.http.get<Session>(url).pipe(
+    return this.http.get<StrategicSession>(url).pipe(
         tap(_ => this.log('fetched session')),
-        catchError(this.handleError<Session>('getSession', {id:'',name:'',metadata:{created:''}}))
+        catchError(this.handleError<StrategicSession>('getSession', {id:'',name:'',metadata:{created:''}}))
       );
   }
 
-  createSession(request: SessionCreationRequest): Observable<Session> {
-    return this.http.post<Session>(this.sessionsUrl, request, this.httpOptions)
+  createSession(request: SessionCreationRequest): Observable<StrategicSession> {
+    return this.http.post<StrategicSession>(this.sessionsUrl, request, this.httpOptions)
       .pipe(
         catchError(this.handleError2)
     );
   }
 
-  deleteSession(id: String): Observable<Session> {
+  deleteSession(id: String): Observable<StrategicSession> {
     const url = `${this.sessionsUrl}/${id}`;
-    return this.http.delete<Session>(url, this.httpOptions).pipe(
+    return this.http.delete<StrategicSession>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted session id=${id}`)),
-      catchError(this.handleError<Session>('deleteSession'))
+      catchError(this.handleError<StrategicSession>('deleteSession'))
     );
   }
 

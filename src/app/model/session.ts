@@ -1,6 +1,6 @@
 import { Metadata } from "./metadata";
 
-export interface Session {
+export interface StrategicSession {
     id: string;
     name: string;
     metadata: Metadata

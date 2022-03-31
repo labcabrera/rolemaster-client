@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Session } from '../model/session';
-import { SessionsService } from '../services/sessions.service';
+import { StrategicSession } from '../model/session';
+import { StrategicSessionsService } from '../services/sessions.service';
 
 @Component({
   selector: 'app-session-detail',
@@ -12,11 +12,11 @@ import { SessionsService } from '../services/sessions.service';
 })
 export class SessionDetailComponent implements OnInit {
 
-  session: Session | undefined;
+  session: StrategicSession | undefined;
 
   constructor(
     private route: ActivatedRoute,
-    private sessionService: SessionsService,
+    private sessionService: StrategicSessionsService,
     private location: Location) {}
 
   ngOnInit(): void {

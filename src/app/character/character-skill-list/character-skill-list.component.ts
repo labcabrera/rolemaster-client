@@ -37,4 +37,8 @@ export class CharacterSkillListComponent implements OnInit {
     }
   }
 
+  addSkill(event: any) {
+    console.log("TODO: addSKill", event)
+  }
+
 }
