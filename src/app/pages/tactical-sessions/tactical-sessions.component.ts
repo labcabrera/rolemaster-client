@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TacticalSession } from 'src/app/model/session';
+import { TacticalSessionsService } from 'src/app/services/tactical-sessions.service';
 
 @Component({
   selector: 'app-tactical-sessions',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TacticalSessionsComponent implements OnInit {
 
-  constructor() { }
+  tacticalSessions?: TacticalSession[];
+
+  constructor( private tacticalSessionService: TacticalSessionsService) { }
 
   ngOnInit(): void {
+    this.tacticalSessionService.getTacticalSessions().subscribe(sessions => this.tacticalSessions = sessions);
   }
 
 }

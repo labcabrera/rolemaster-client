@@ -6,6 +6,13 @@ export interface StrategicSession {
     metadata: Metadata
 }
 
+export interface TacticalSession {
+    id: string;
+    name: string;
+    description: string;
+    metadata: Metadata;
+}
+
 export interface SessionCreationRequest {
     name: string;
 }
