@@ -50,6 +50,7 @@ import { CharacterBasicInfoComponent } from './character/character-basic-info/ch
 import { CharacterViewComponent } from './character/character-view/character-view.component';
 import { TacticalViewComponent } from './tactical-view/tactical-view.component';
 import { TacticalSessionsComponent } from './pages/tactical-sessions/tactical-sessions.component';
+import { TacticalSessionComponent } from './pages/tactical-session/tactical-session.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { TacticalSessionsComponent } from './pages/tactical-sessions/tactical-se
     CharacterBasicInfoComponent,
     CharacterViewComponent,
     SkillSelectComponent,
-    TacticalViewComponent
+    TacticalViewComponent,
+    TacticalSessionComponent
   ],
   imports: [
     FormsModule,

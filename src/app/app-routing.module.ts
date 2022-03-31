@@ -12,6 +12,7 @@ import { SkillCategoryListComponent } from './skill-category-list/skill-category
 import { SkillListComponent } from './skill-list/skill-list.component';
 import { TacticalViewComponent } from './tactical-view/tactical-view.component';
 import { TacticalSessionsComponent } from './pages/tactical-sessions/tactical-sessions.component';
+import { TacticalSessionComponent } from './pages/tactical-session/tactical-session.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/characters', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'characters/detail/:id', component: CharacterViewComponent },
   { path: 'strategic-sessions', component: SessionListComponent },
   { path: 'tactical-sessions', component: TacticalSessionsComponent },
+  { path: 'tactical-sessions/detail/:id', component: TacticalSessionComponent },
   { path: 'sessions/detail/:id', component: SessionDetailComponent },
   { path: 'characters/creation', component: CharacterCreationComponent },
   { path: 'races', component: RaceListComponent },

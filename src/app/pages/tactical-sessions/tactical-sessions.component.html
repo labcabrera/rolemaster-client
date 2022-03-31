@@ -1,17 +1,7 @@
 <h3>Tactical sessions</h3>
 
-<!--
-<ul>
-    <li *ngFor="let session of tacticalSessions">
-        {{session.name}}
-    </li>
-</ul>
-
--->
-
 <mat-list>
     <mat-list-item *ngFor="let session of tacticalSessions">
-        <span>{{session.name}}</span>
+        <a mat-list-item routerLink="/tactical-sessions/detail/{{session.id}}">{{session.name}}</a>
     </mat-list-item>
 </mat-list>
-
