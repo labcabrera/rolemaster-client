@@ -10,6 +10,7 @@ import { SessionDetailComponent } from './session-detail/session-detail.componen
 import { SessionListComponent } from './session-list/session-list.component';
 import { SkillCategoryListComponent } from './skill-category-list/skill-category-list.component';
 import { SkillListComponent } from './skill-list/skill-list.component';
+import { TacticalViewComponent } from './tactical-view/tactical-view.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/characters', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'professions', component: ProfessionListComponent },
   { path: 'skill-categories', component: SkillCategoryListComponent },
   { path: 'skills', component: SkillListComponent },
+  { path: 'tactical', component: TacticalViewComponent },
 ];
 
 @NgModule({

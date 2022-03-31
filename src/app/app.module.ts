@@ -24,6 +24,7 @@ import { MatTableModule} from '@angular/material/table';
 import { MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,6 +48,9 @@ import { CharacterSkillListComponent } from './character/character-skill-list/ch
 import { CharacterAttributesComponent } from './character/character-attributes/character-attributes.component';
 import { CharacterBasicInfoComponent } from './character/character-basic-info/character-basic-info.component';
 import { CharacterViewComponent } from './character/character-view/character-view.component';
+import { TacticalViewComponent } from './tactical-view/tactical-view.component';
+import { ComponentsComponent } from './components/components.component';
+import { PagesComponent } from './pages/pages.component';
 
 
 
@@ -71,7 +75,10 @@ import { CharacterViewComponent } from './character/character-view/character-vie
     ProfessionDetailComponent,
     CharacterBasicInfoComponent,
     CharacterViewComponent,
-    SkillSelectComponent
+    SkillSelectComponent,
+    TacticalViewComponent,
+    ComponentsComponent,
+    PagesComponent
   ],
   imports: [
     FormsModule,
@@ -98,6 +105,7 @@ import { CharacterViewComponent } from './character/character-view/character-vie
     MatTooltipModule,
     MatAutocompleteModule,
     MatDialogModule,
+    FlexLayoutModule,
     DragDropModule,
     BrowserAnimationsModule
   ],
