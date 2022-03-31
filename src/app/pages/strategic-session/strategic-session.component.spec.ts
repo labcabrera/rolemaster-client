@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SessionDetailComponent } from './session-detail.component';
+import { StrategicSessionComponent } from './strategic-session.component';
 
 describe('SessionDetailComponent', () => {
-  let component: SessionDetailComponent;
-  let fixture: ComponentFixture<SessionDetailComponent>;
+  let component: StrategicSessionComponent;
+  let fixture: ComponentFixture<StrategicSessionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SessionDetailComponent ]
+      declarations: [ StrategicSessionComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SessionDetailComponent);
+    fixture = TestBed.createComponent(StrategicSessionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

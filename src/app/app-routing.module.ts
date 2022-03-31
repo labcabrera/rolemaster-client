@@ -6,7 +6,7 @@ import { CharacterListComponent } from './character/character-list/characters.co
 import { CharacterViewComponent } from './character/character-view/character-view.component';
 import { ProfessionListComponent } from './profession-list/profession-list.component';
 import { RaceListComponent } from './race-list/race-list.component';
-import { SessionDetailComponent } from './session-detail/session-detail.component';
+import { StrategicSessionComponent } from './pages/strategic-session/strategic-session.component';
 import { StrategicSessionsComponent } from './pages/strategic-sessions/strategic-sessions.component';
 import { SkillCategoryListComponent } from './skill-category-list/skill-category-list.component';
 import { SkillListComponent } from './skill-list/skill-list.component';
@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'characters', component: CharacterListComponent },
   { path: 'characters/detail/:id', component: CharacterViewComponent },
   { path: 'strategic-sessions', component: StrategicSessionsComponent },
-  { path: 'strategic-sessions/detail/:id', component: SessionDetailComponent },
+  { path: 'strategic-sessions/detail/:id', component: StrategicSessionComponent },
   { path: 'tactical-sessions', component: TacticalSessionsComponent },
   { path: 'tactical-sessions/detail/:id', component: TacticalSessionComponent },
   { path: 'characters/creation', component: CharacterCreationComponent },

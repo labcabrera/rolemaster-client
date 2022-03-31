@@ -2,15 +2,15 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { StrategicSession } from '../model/session';
-import { StrategicSessionsService } from '../services/sessions.service';
+import { StrategicSession } from '../../model/session';
+import { StrategicSessionsService } from '../../services/sessions.service';
 
 @Component({
   selector: 'app-session-detail',
-  templateUrl: './session-detail.component.html',
-  styleUrls: ['./session-detail.component.css']
+  templateUrl: './strategic-session.component.html',
+  styleUrls: ['./strategic-session.component.css']
 })
-export class SessionDetailComponent implements OnInit {
+export class StrategicSessionComponent implements OnInit {
 
   session: StrategicSession | undefined;
 

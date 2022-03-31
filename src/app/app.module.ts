@@ -32,7 +32,7 @@ import { AppComponent } from './app.component';
 import { TacticalSessionsComponent } from './pages/tactical-sessions/tactical-sessions.component';
 import { TacticalSessionComponent } from './pages/tactical-session/tactical-session.component';
 
-import { SessionDetailComponent } from './session-detail/session-detail.component';
+import { StrategicSessionComponent } from './pages/strategic-session/strategic-session.component';
 
 import { RealmsComponent } from './realms/realms.component';
 import { StrategicSessionsComponent } from './pages/strategic-sessions/strategic-sessions.component';
@@ -64,7 +64,7 @@ import { TacticalViewComponent } from './tactical-view/tactical-view.component';
     CharacterListComponent,
     CharacterDetailComponent,
     StrategicSessionsComponent,
-    SessionDetailComponent,
+    StrategicSessionComponent,
     CharacterCreationComponent,
     CharacterDevelopmentComponent,
     CharacterSkillCategoryListComponent,
