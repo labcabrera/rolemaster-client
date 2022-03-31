@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CharacterCreationComponent } from './character/character-creation/character-creation.component';
+import { CharacterCreationComponent } from './pages/character-creation/character-creation.component';
 import { CharacterDetailComponent } from './character/character-detail/character-detail.component';
 import { CharacterListComponent } from './character/character-list/characters.component';
-import { CharacterViewComponent } from './character/character-view/character-view.component';
-import { ProfessionListComponent } from './profession-list/profession-list.component';
-import { RaceListComponent } from './race-list/race-list.component';
+import { CharacterViewComponent } from './pages/character-view/character-view.component';
+import { ProfessionListComponent } from './pages/profession-list/profession-list.component';
+import { RaceListComponent } from './pages/race-list/race-list.component';
 import { StrategicSessionComponent } from './pages/strategic-session/strategic-session.component';
 import { StrategicSessionsComponent } from './pages/strategic-sessions/strategic-sessions.component';
 import { SkillCategoryListComponent } from './skill-category-list/skill-category-list.component';
 import { SkillListComponent } from './skill-list/skill-list.component';
-import { TacticalViewComponent } from './tactical-view/tactical-view.component';
+import { TacticalViewComponent } from './pages/tactical-view/tactical-view.component';
 import { TacticalSessionsComponent } from './pages/tactical-sessions/tactical-sessions.component';
 import { TacticalSessionComponent } from './pages/tactical-session/tactical-session.component';
 

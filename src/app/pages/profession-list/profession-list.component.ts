@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Profession } from '../model/profession';
-import { ProfessionService } from '../services/profession.service';
+import { Profession } from '../../model/profession';
+import { ProfessionService } from '../../services/profession.service';
 
 @Component({
   selector: 'app-profession-list',

@@ -37,24 +37,24 @@ import { StrategicSessionComponent } from './pages/strategic-session/strategic-s
 import { RealmsComponent } from './realms/realms.component';
 import { StrategicSessionsComponent } from './pages/strategic-sessions/strategic-sessions.component';
 import { SkillListComponent } from './skill-list/skill-list.component';
-import { ProfessionListComponent } from './profession-list/profession-list.component';
-import { RaceListComponent } from './race-list/race-list.component';
-import { RaceDetailComponent } from './race-detail/race-detail.component';
-import { ProfessionDetailComponent } from './profession-detail/profession-detail.component';
+import { ProfessionListComponent } from './pages/profession-list/profession-list.component';
+import { RaceListComponent } from './pages/race-list/race-list.component';
+import { RaceDetailComponent } from './pages/race-detail/race-detail.component';
+import { ProfessionDetailComponent } from './pages/profession-detail/profession-detail.component';
 import { SkillCategoryListComponent } from './skill-category-list/skill-category-list.component';
 import { SkillSelectComponent } from './skill-select/skill-select.component';
 
 import { CharacterListComponent } from './character/character-list/characters.component';
 import { CharacterDetailComponent } from './character/character-detail/character-detail.component';
-import { CharacterCreationComponent } from './character/character-creation/character-creation.component';
+import { CharacterCreationComponent } from './pages/character-creation/character-creation.component';
 import { CharacterDevelopmentComponent } from './character/character-development/character-development.component';
 import { CharacterSkillCategoryListComponent } from './character/character-skill-category-list/character-skill-category-list.component';
 import { CharacterSkillListComponent } from './character/character-skill-list/character-skill-list.component';
 import { CharacterAttributesComponent } from './character/character-attributes/character-attributes.component';
 import { CharacterBasicInfoComponent } from './character/character-basic-info/character-basic-info.component';
-import { CharacterViewComponent } from './character/character-view/character-view.component';
+import { CharacterViewComponent } from './pages/character-view/character-view.component';
 
-import { TacticalViewComponent } from './tactical-view/tactical-view.component';
+import { TacticalViewComponent } from './pages/tactical-view/tactical-view.component';
 
 @NgModule({
   declarations: [
