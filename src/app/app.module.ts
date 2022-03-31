@@ -28,9 +28,14 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RealmsComponent } from './realms/realms.component';
-import { SessionListComponent } from './pages/strategic-session-list/strategic-session-list.component';
+
+import { TacticalSessionsComponent } from './pages/tactical-sessions/tactical-sessions.component';
+import { TacticalSessionComponent } from './pages/tactical-session/tactical-session.component';
+
 import { SessionDetailComponent } from './session-detail/session-detail.component';
+
+import { RealmsComponent } from './realms/realms.component';
+import { StrategicSessionsComponent } from './pages/strategic-sessions/strategic-sessions.component';
 import { SkillListComponent } from './skill-list/skill-list.component';
 import { ProfessionListComponent } from './profession-list/profession-list.component';
 import { RaceListComponent } from './race-list/race-list.component';
@@ -48,9 +53,8 @@ import { CharacterSkillListComponent } from './character/character-skill-list/ch
 import { CharacterAttributesComponent } from './character/character-attributes/character-attributes.component';
 import { CharacterBasicInfoComponent } from './character/character-basic-info/character-basic-info.component';
 import { CharacterViewComponent } from './character/character-view/character-view.component';
+
 import { TacticalViewComponent } from './tactical-view/tactical-view.component';
-import { TacticalSessionsComponent } from './pages/tactical-sessions/tactical-sessions.component';
-import { TacticalSessionComponent } from './pages/tactical-session/tactical-session.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +63,7 @@ import { TacticalSessionComponent } from './pages/tactical-session/tactical-sess
     TacticalSessionsComponent,
     CharacterListComponent,
     CharacterDetailComponent,
-    SessionListComponent,
+    StrategicSessionsComponent,
     SessionDetailComponent,
     CharacterCreationComponent,
     CharacterDevelopmentComponent,

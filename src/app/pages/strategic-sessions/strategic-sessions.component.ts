@@ -6,10 +6,10 @@ import { StrategicSessionsService } from '../../services/sessions.service';
 
 @Component({
   selector: 'app-sessions',
-  templateUrl: './strategic-session-list.component.html',
-  styleUrls: ['./strategic-session-list.component.css']
+  templateUrl: './strategic-sessions.component.html',
+  styleUrls: ['./strategic-sessions.component.css']
 })
-export class SessionListComponent implements OnInit {
+export class StrategicSessionsComponent implements OnInit {
 
   sessions: StrategicSession[] = [];
   selectedSession?: StrategicSession;
