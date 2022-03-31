@@ -14,7 +14,7 @@ export class TacticalSessionsComponent implements OnInit {
   constructor( private tacticalSessionService: TacticalSessionsService) { }
 
   ngOnInit(): void {
-    this.tacticalSessionService.getTacticalSessions().subscribe(sessions => this.tacticalSessions = sessions);
+    this.tacticalSessionService.getTacticalSessions().subscribe(s => this.tacticalSessions = s);
   }
 
 }

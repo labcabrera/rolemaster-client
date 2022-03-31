@@ -8,6 +8,7 @@ export interface StrategicSession {
 
 export interface TacticalSession {
     id: string;
+    strategicSessionId: string;
     name: string;
     description: string;
     metadata: Metadata;
