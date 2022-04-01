@@ -14,7 +14,7 @@ import { StrategicSessionsComponent } from './pages/strategic-sessions/strategic
 import { StrategicSessionComponent } from './pages/strategic-session/strategic-session.component';
 
 import { RealmsComponent } from './realms/realms.component';
-import { SkillListComponent } from './skill-list/skill-list.component';
+import { SkillListComponent } from './pages/skill-list/skill-list.component';
 import { ProfessionListComponent } from './pages/profession-list/profession-list.component';
 import { RaceListComponent } from './pages/race-list/race-list.component';
 import { RaceDetailComponent } from './pages/race-detail/race-detail.component';
@@ -34,6 +34,9 @@ import { CharacterViewComponent } from './pages/character-view/character-view.co
 
 import { TacticalViewComponent } from './pages/tactical-view/tactical-view.component';
 import { SharedModule } from './components/shared/shared.module';
+
+import { NpcListComponent } from './pages/npc-list/npc-list.component';
+import { NpcDetailComponent } from './pages/npc-detail/npc-detail.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,9 @@ import { SharedModule } from './components/shared/shared.module';
     CharacterViewComponent,
     SkillSelectComponent,
     TacticalViewComponent,
-    TacticalSessionComponent
+    TacticalSessionComponent,
+    NpcListComponent,
+    NpcDetailComponent
   ],
   imports: [
     FormsModule,

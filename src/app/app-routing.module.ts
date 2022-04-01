@@ -9,10 +9,12 @@ import { RaceListComponent } from './pages/race-list/race-list.component';
 import { StrategicSessionComponent } from './pages/strategic-session/strategic-session.component';
 import { StrategicSessionsComponent } from './pages/strategic-sessions/strategic-sessions.component';
 import { SkillCategoryListComponent } from './skill-category-list/skill-category-list.component';
-import { SkillListComponent } from './skill-list/skill-list.component';
+import { SkillListComponent } from './pages/skill-list/skill-list.component';
 import { TacticalViewComponent } from './pages/tactical-view/tactical-view.component';
 import { TacticalSessionsComponent } from './pages/tactical-sessions/tactical-sessions.component';
 import { TacticalSessionComponent } from './pages/tactical-session/tactical-session.component';
+import { NpcListComponent } from './pages/npc-list/npc-list.component';
+import { NpcDetailComponent } from './pages/npc-detail/npc-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/characters', pathMatch: 'full' },
@@ -24,6 +26,8 @@ const routes: Routes = [
   { path: 'tactical-sessions/detail/:id', component: TacticalSessionComponent },
   { path: 'characters/creation', component: CharacterCreationComponent },
   { path: 'races', component: RaceListComponent },
+  { path: 'npc', component: NpcListComponent },
+  { path: 'npc/detail/:id', component: NpcDetailComponent },
   { path: 'professions', component: ProfessionListComponent },
   { path: 'skill-categories', component: SkillCategoryListComponent },
   { path: 'skills', component: SkillListComponent },

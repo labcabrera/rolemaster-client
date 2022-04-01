@@ -9,6 +9,7 @@ import { ProfessionService } from '../../services/profession.service';
 })
 export class ProfessionListComponent implements OnInit {
 
+  displayedColumns: string[] = [ "id", "name", "availableRealms" ];
   professions?: Profession[];
 
   constructor(private professionService: ProfessionService) { }
