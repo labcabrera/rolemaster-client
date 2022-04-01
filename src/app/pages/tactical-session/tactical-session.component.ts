@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { TacticalSession } from 'src/app/model/session';
 import { TacticalSessionsService } from 'src/app/services/tactical-sessions.service';
 
@@ -16,6 +17,7 @@ export class TacticalSessionComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private tacticalSessionService: TacticalSessionsService,
     private fb: FormBuilder) {
       this.form = fb.group({
@@ -28,6 +30,12 @@ export class TacticalSessionComponent implements OnInit {
     const id = String(this.route.snapshot.paramMap.get('id'));
     this.tacticalSessionService.findTacticalSessionById(id).subscribe(s => {
       this.tacticalSession = s;
+    });
+  }
+
+  delete() {
+    this.tacticalSessionService.delete(this.tacticalSession.id).subscribe(result => {
+      this.router.navigateByUrl("/tactical-sessions");
     });
   }
 

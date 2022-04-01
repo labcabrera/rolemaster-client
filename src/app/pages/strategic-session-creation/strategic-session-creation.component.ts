@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { StrategicSessionsService } from 'src/app/services/strategic-sessions.service';
 import { SessionCreationRequest } from 'src/app/model/session';
-import { Router } from '@angular/router';
-
+import { Universe } from 'src/app/model/commons';
 @Component({
   selector: 'app-strategic-session-creation',
   templateUrl: './strategic-session-creation.component.html',
@@ -15,6 +15,11 @@ export class StrategicSessionCreationComponent implements OnInit {
 
   form: FormGroup;
 
+  universes: Universe[] = [
+    {id: 'middle-earth', name: "Middle Earth"},
+    {id: 'generic', name: "Generic"}
+  ]
+
   constructor(
     private strategicSessionService: StrategicSessionsService,
     private router: Router,
@@ -23,7 +28,8 @@ export class StrategicSessionCreationComponent implements OnInit {
 
     this.form = this.fb.group({
       name: ['', Validators.required],
-      description: ['']
+      description: [''],
+      universeId: ['', Validators.required]
     });
   }
 
@@ -36,6 +42,11 @@ export class StrategicSessionCreationComponent implements OnInit {
       let id = result.id;
       this.router.navigateByUrl("strategic-sessions/detail/" + id);
     });
+  }
+
+  loadUniverse(event: any) {
+    console.log(event);
+    this.form.value['universe'] = event.id;
   }
 
   goBack(): void {

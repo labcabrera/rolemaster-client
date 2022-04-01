@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { StrategicSession } from '../../model/session';
 import { StrategicSessionsService } from '../../services/strategic-sessions.service';
+import { Universe } from 'src/app/model/commons';
 
 @Component({
   selector: 'app-session-detail',
@@ -16,6 +17,11 @@ export class StrategicSessionComponent implements OnInit {
   strategicSession?: StrategicSession;
   form: FormGroup;
 
+  universes: Universe[] = [
+    {id: 'middle-earth', name: "Middle Earth"},
+    {id: 'generic', name: "Generic"}
+  ]
+
   constructor(
     private sessionService: StrategicSessionsService,
     private route: ActivatedRoute,
@@ -26,6 +32,7 @@ export class StrategicSessionComponent implements OnInit {
       this.form = this.fb.group({
         id: [''],
         name: ['', Validators.required],
+        universeId: ['', Validators.required],
         description: [''],
         authorization: [ [] ],
         metadata: this.fb.group({
@@ -67,7 +74,8 @@ export class StrategicSessionComponent implements OnInit {
   
   startEdit() {
     this.form.enable();
-    this.form.get("metadata")?.disable()
+    this.form.get("metadata")?.disable();
+    this.form.get("universe")?.disable();
   }
 
   cancelEdit() {
