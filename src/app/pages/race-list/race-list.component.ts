@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Race } from '../../model/race';
 import { RaceService } from '../../services/race.service';
-
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-race-list',
   templateUrl: './race-list.component.html',
   styleUrls: ['./race-list.component.scss']
 })
-export class RaceListComponent implements OnInit {
+export class RaceListComponent implements OnInit, AfterViewInit {
 
   races?: Race[];
+
+  displayedColumns: string[] = ["id", "name"];
+  dataSource: MatTableDataSource<Race> = new MatTableDataSource<Race>(this.races);
+  @ViewChild(MatPaginator) paginator?: MatPaginator;
+  @ViewChild(MatSort) sort?: MatSort;
 
   constructor(private skillService: RaceService) { }
 
@@ -17,8 +24,21 @@ export class RaceListComponent implements OnInit {
     this.getRaces();
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator!;
+    this.dataSource.sort = this.sort!;
+  }
+
   getRaces(): void {
-    this.skillService.getRaces().subscribe(result => this.races = result);
+    this.skillService.getRaces().subscribe(result => {
+      this.races = result;
+      this.dataSource.data = this.races;
+    });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

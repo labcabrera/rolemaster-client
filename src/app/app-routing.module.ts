@@ -8,7 +8,7 @@ import { ProfessionListComponent } from './pages/profession-list/profession-list
 import { RaceListComponent } from './pages/race-list/race-list.component';
 import { StrategicSessionComponent } from './pages/strategic-session/strategic-session.component';
 import { StrategicSessionsComponent } from './pages/strategic-sessions/strategic-sessions.component';
-import { SkillCategoryListComponent } from './skill-category-list/skill-category-list.component';
+import { SkillCategoryListComponent } from './pages/skill-category-list/skill-category-list.component';
 import { SkillListComponent } from './pages/skill-list/skill-list.component';
 import { TacticalViewComponent } from './pages/tactical-view/tactical-view.component';
 import { TacticalSessionsComponent } from './pages/tactical-sessions/tactical-sessions.component';

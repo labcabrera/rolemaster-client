@@ -19,7 +19,7 @@ import { ProfessionListComponent } from './pages/profession-list/profession-list
 import { RaceListComponent } from './pages/race-list/race-list.component';
 import { RaceDetailComponent } from './pages/race-detail/race-detail.component';
 import { ProfessionDetailComponent } from './pages/profession-detail/profession-detail.component';
-import { SkillCategoryListComponent } from './skill-category-list/skill-category-list.component';
+import { SkillCategoryListComponent } from './pages/skill-category-list/skill-category-list.component';
 import { SkillSelectComponent } from './skill-select/skill-select.component';
 
 import { CharacterListComponent } from './character/character-list/characters.component';

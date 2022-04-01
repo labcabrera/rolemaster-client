@@ -1,11 +1,12 @@
+
 <h2>Skills</h2>
 
 <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="skill name" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="filter" #input>
 </mat-form-field>
 
-<table mat-table #skillTable [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>Id</th>
         <td mat-cell *matCellDef="let element">{{element.id}}</td>
@@ -19,3 +20,17 @@
 
 </table>
 <mat-paginator [pageSizeOptions]="[10, 25, 50]" aria-label="Select page of users"></mat-paginator>
+
+
+<h2>Skill categories</h2>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+    </tr>
+    <tr *ngFor="let skillCategory of skillCategories">
+        <td><div>{{skillCategory.id}}</div></td>
+        <td><div>{{skillCategory.name}}</div></td>
+    </tr>
+
+</table>

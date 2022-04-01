@@ -1,7 +1,5 @@
 <h2>Professions</h2>
 
-<h2>NPCs</h2>
-
 <table mat-table [dataSource]="professions!" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> Id </th>
@@ -18,5 +16,3 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-
-<pre>{{professions | json}}</pre>
