@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { AfterViewInit } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 
 import { Skill } from '../../model/skill';

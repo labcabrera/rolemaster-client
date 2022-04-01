@@ -1,5 +1,5 @@
 
-<h2>Skills</h2>
+<h2>Skill categories</h2>
 
 <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
@@ -20,17 +20,3 @@
 
 </table>
 <mat-paginator [pageSizeOptions]="[10, 25, 50]" aria-label="Select page of users"></mat-paginator>
-
-
-<h2>Skill categories</h2>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-    </tr>
-    <tr *ngFor="let skillCategory of skillCategories">
-        <td><div>{{skillCategory.id}}</div></td>
-        <td><div>{{skillCategory.name}}</div></td>
-    </tr>
-
-</table>

@@ -1,5 +1,10 @@
 <h2>NPCs</h2>
 
+<mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="filter" #input>
+</mat-form-field>
+
 <table mat-table [dataSource]="npcs!" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> Id </th>
@@ -21,3 +26,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<mat-paginator [pageSizeOptions]="[10, 25, 50]" aria-label="Select page of users"></mat-paginator>
