@@ -2,10 +2,10 @@
 
 <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="skill name" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="profession" #input>
 </mat-form-field>
 
-<table mat-table [dataSource]="professions!" class="mat-elevation-z8">
+<table mat-table #professionsTable [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> Id </th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
@@ -16,7 +16,7 @@
     </ng-container>
     <ng-container matColumnDef="availableRealms">
         <th mat-header-cell *matHeaderCellDef> Realms </th>
-        <td mat-cell *matCellDef="let element"> {{element.availableRealms | json}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.availableRealms}} </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
