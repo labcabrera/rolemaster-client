@@ -17,6 +17,7 @@ import { NpcListComponent } from './pages/npc-list/npc-list.component';
 import { NpcDetailComponent } from './pages/npc-detail/npc-detail.component';
 import { StrategicSessionCreationComponent } from './pages/strategic-session-creation/strategic-session-creation.component';
 import { TacticalSessionCreationComponent } from './pages/tactical-session-creation/tactical-session-creation.component';
+import { SkillDetailComponent } from './pages/skill-detail/skill-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/characters', pathMatch: 'full' },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'professions', component: ProfessionListComponent },
   { path: 'skill-categories', component: SkillCategoryListComponent },
   { path: 'skills', component: SkillListComponent },
+  { path: 'skills/detail/:id', component: SkillDetailComponent },
   { path: 'tactical', component: TacticalViewComponent },
 ];
 

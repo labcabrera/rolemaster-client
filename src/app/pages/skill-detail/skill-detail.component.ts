@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { Skill } from 'src/app/model/skill';
+import { SkillService } from 'src/app/services/skill.service';
 
 @Component({
   selector: 'app-skill-detail',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SkillDetailComponent implements OnInit {
 
-  constructor() { }
+  skill: Skill = {} as Skill;
+
+  constructor(
+    private skillService: SkillService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.getSkill();
+  }
+
+  getSkill() {
+    const id = String(this.route.snapshot.paramMap.get('id'));
+    this.skillService.findById(id).subscribe(result => {
+      this.skill = result;
+    });
   }
 
 }

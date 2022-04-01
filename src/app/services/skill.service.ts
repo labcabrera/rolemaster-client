@@ -21,4 +21,8 @@ export class SkillService {
   getSkills(): Observable<Skill[]> {
     return this.http.get<Skill[]>(this.charactersUrl).pipe();
   }
+
+  findById(id: string): Observable<Skill> {
+    return this.http.get<Skill>(this.charactersUrl + "/" + id).pipe();
+  }
 }
