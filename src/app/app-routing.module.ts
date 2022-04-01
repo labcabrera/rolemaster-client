@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CharacterCreationComponent } from './pages/character-creation/character-creation.component';
 import { CharacterDetailComponent } from './character/character-detail/character-detail.component';
-import { CharacterListComponent } from './character/character-list/characters.component';
+import { CharacterListComponent } from './pages/character-list/characters.component';
 import { CharacterViewComponent } from './pages/character-view/character-view.component';
 import { ProfessionListComponent } from './pages/profession-list/profession-list.component';
 import { RaceListComponent } from './pages/race-list/race-list.component';

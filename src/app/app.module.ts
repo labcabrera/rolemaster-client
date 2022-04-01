@@ -22,7 +22,7 @@ import { ProfessionDetailComponent } from './pages/profession-detail/profession-
 import { SkillCategoryListComponent } from './pages/skill-category-list/skill-category-list.component';
 import { SkillSelectComponent } from './skill-select/skill-select.component';
 
-import { CharacterListComponent } from './character/character-list/characters.component';
+import { CharacterListComponent } from './pages/character-list/characters.component';
 import { CharacterDetailComponent } from './character/character-detail/character-detail.component';
 import { CharacterCreationComponent } from './pages/character-creation/character-creation.component';
 import { CharacterDevelopmentComponent } from './character/character-development/character-development.component';
