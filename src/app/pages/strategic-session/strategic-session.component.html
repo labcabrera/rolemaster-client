@@ -1,5 +1,8 @@
 <mat-toolbar>
-  <span>Strategic session</span>
+  <div>
+    <a routerLink="/strategic-sessions" style="color: white;">Strategic sessions</a>
+    <span> / {{this.strategicSession?.id}}</span>
+  </div>
   <div class="div-spacer"></div>
   <button mat-button (click)="cancelEdit()" *ngIf="isEditMode()">Cancel</button>
   <button mat-button (click)="startEdit()" *ngIf="!isEditMode()">Edit</button>
