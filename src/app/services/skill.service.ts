@@ -19,7 +19,8 @@ export class SkillService {
   constructor(private http: HttpClient) {}
 
   getSkills(): Observable<Skill[]> {
-    return this.http.get<Skill[]>(this.charactersUrl).pipe();
+    const url = this.charactersUrl + "/?page=0&size=1000";
+    return this.http.get<Skill[]>(url).pipe();
   }
 
   findById(id: string): Observable<Skill> {
