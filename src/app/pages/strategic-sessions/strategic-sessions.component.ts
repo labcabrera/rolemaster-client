@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 
 import { StrategicSession } from '../../model/session';
-import { StrategicSessionsService } from '../../services/sessions.service';
+import { StrategicSessionsService } from '../../services/strategic-sessions.service';
 
 @Component({
   selector: 'app-sessions',

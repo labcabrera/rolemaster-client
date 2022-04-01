@@ -37,6 +37,7 @@ import { SharedModule } from './components/shared/shared.module';
 
 import { NpcListComponent } from './pages/npc-list/npc-list.component';
 import { NpcDetailComponent } from './pages/npc-detail/npc-detail.component';
+import { StrategicSessionCreationComponent } from './pages/strategic-session-creation/strategic-session-creation.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { NpcDetailComponent } from './pages/npc-detail/npc-detail.component';
     TacticalViewComponent,
     TacticalSessionComponent,
     NpcListComponent,
-    NpcDetailComponent
+    NpcDetailComponent,
+    StrategicSessionCreationComponent
   ],
   imports: [
     FormsModule,

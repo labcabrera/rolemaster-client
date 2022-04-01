@@ -1,20 +1,23 @@
-<h2>Strategic session</h2>
+<mat-toolbar>
+  <span>Strategic session</span>
+  <div class="div-spacer"></div>
+  <button mat-button (click)="cancelEdit()" *ngIf="isEditMode()">Cancel</button>
+  <button mat-button (click)="startEdit()" *ngIf="!isEditMode()">Edit</button>
+  <button mat-button (click)="saveSession()" *ngIf="isEditMode()">Save</button>
+  <button mat-button (click)="deleteSession()">Delete</button>
+  <button mat-button (click)="goBack();">Back</button>
+</mat-toolbar>
 
-<mat-card>
-  <mat-card-title>Strategic session</mat-card-title>
-  
-  <mat-card-content>
-    <div *ngIf="session">
-      <h2>{{session.name | uppercase}}</h2>
-      <div><span>Id: </span>{{session.id}}</div>
-      <div><span>Name: </span>{{session.name}}</div>
-      <div><span>Created: </span>{{session.metadata.created}}</div>
-      <div>
-      </div>
-      <button type="button">Add character</button>
-      <button type="button" (click)="goBack()">go back</button>
-    </div>
-  </mat-card-content>
 
-</mat-card>
-
+<form [formGroup]="form">
+  <br>
+  <mat-form-field appearance="fill" class="common-form-field">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill" class="common-form-field">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+</form>
