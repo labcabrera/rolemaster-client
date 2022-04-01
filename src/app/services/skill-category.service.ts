@@ -20,4 +20,8 @@ export class SkillCategoryService {
     return this.http.get<SkillCategory[]>(this.skillCategoryUrl).pipe();
   }
 
+  findById(id: string): Observable<SkillCategory> {
+    return this.http.get<SkillCategory>(this.skillCategoryUrl + "/" + id).pipe();
+  }
+
 }

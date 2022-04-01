@@ -1,1 +1,9 @@
+<mat-toolbar>
+    <a routerLink="/skill-categories" style="color: white;">Skill categories</a>
+    <span> / </span>
+    <a routerLink="/skill-categories/detail/{{skill.categoryId}}" style="color:white;"> {{skill.categoryId}}</a>
+    <span> / </span>
+    <span>{{skill.name}}</span>
+</mat-toolbar>
+
 <pre>{{skill | json}}</pre>
