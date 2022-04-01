@@ -5,7 +5,7 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="filter" #input>
 </mat-form-field>
 
-<table mat-table [dataSource]="npcs!" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> Id </th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
@@ -13,6 +13,10 @@
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="universes">
+        <th mat-header-cell *matHeaderCellDef>Universes</th>
+        <td mat-cell *matCellDef="let element"> {{element.universes}} </td>
     </ng-container>
     <ng-container matColumnDef="level">
         <th mat-header-cell *matHeaderCellDef>Level</th>
@@ -28,3 +32,5 @@
 </table>
 
 <mat-paginator [pageSizeOptions]="[10, 25, 50]" aria-label="Select page of users"></mat-paginator>
+
+<pre>{{npcs | json}}</pre>

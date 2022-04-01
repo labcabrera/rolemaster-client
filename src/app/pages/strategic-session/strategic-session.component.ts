@@ -75,7 +75,7 @@ export class StrategicSessionComponent implements OnInit {
   startEdit() {
     this.form.enable();
     this.form.get("metadata")?.disable();
-    this.form.get("universe")?.disable();
+    this.form.get("universeId")?.disable();
   }
 
   cancelEdit() {

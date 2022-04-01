@@ -4,4 +4,5 @@ export interface Npc {
     level: number;
     hp: number;
     unique: boolean;
+    universe: string[];
 }

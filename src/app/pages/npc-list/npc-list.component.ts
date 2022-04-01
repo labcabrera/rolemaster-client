@@ -16,7 +16,7 @@ export class NpcListComponent implements OnInit, AfterViewInit {
   npcs?: Npc[];
   
   dataSource: MatTableDataSource<Npc> = new MatTableDataSource<Npc>(this.npcs);
-  displayedColumns: string[] = [ "name", "level", "unique"];
+  displayedColumns: string[] = [ "name", "level", "universes", "unique"];
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
 
