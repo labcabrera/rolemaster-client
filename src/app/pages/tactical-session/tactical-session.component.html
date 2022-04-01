@@ -1,5 +1,9 @@
 <mat-toolbar>
-    <span>Strategic session</span>
+    <div>
+        <a routerLink="/tactical-sessions" style="color: white;">Tactical sessions</a>
+        <span> / {{this.tacticalSession?.id}}</span>
+      </div>
+    <span>Tactical sessions</span>
     <div class="div-spacer"></div>
     <button mat-button>Cancel</button>
     <button mat-button>Edit</button>

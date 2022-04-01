@@ -1,3 +1,9 @@
+<mat-toolbar>
+    <span>Character / {{character.name}}</span>
+    <div class="div-spacer"></div>
+    <button mat-button>Delete</button>
+</mat-toolbar>
+
 <app-character-basic-info [characterInfo]="character"></app-character-basic-info>
 
 <app-character-attributes [characterInfo]="character"></app-character-attributes>

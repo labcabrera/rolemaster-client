@@ -28,10 +28,7 @@ export class StrategicSessionsService {
 
   getSession(id: String): Observable<StrategicSession> {
     const url = `${this.sessionsUrl}/${id}`;
-    return this.http.get<StrategicSession>(url).pipe(
-        tap(_ => this.log('fetched session')),
-        catchError(this.handleError<StrategicSession>('getSession', {id:'',name:'',metadata:{created:''}}))
-      );
+    return this.http.get<StrategicSession>(url).pipe();
   }
 
   createSession(request: SessionCreationRequest): Observable<StrategicSession> {

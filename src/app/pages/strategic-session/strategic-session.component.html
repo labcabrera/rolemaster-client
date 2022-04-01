@@ -8,19 +8,33 @@
   <button mat-button (click)="startEdit()" *ngIf="!isEditMode()">Edit</button>
   <button mat-button (click)="saveSession()" *ngIf="isEditMode()">Save</button>
   <button mat-button (click)="deleteSession()">Delete</button>
-  <button mat-button (click)="goBack();">Back</button>
 </mat-toolbar>
 
 
 <form [formGroup]="form">
   <br>
-  <mat-form-field appearance="fill" class="common-form-field">
+  <mat-form-field appearance="outline" class="common-form-field">
     <mat-label>Name</mat-label>
     <input matInput formControlName="name">
   </mat-form-field>
   <br>
-  <mat-form-field appearance="fill" class="common-form-field">
+  <mat-form-field appearance="outline" class="common-form-field">
     <mat-label>Description</mat-label>
     <textarea matInput formControlName="description"></textarea>
   </mat-form-field>
+  <br>
+  <div formGroupName="metadata">
+    <mat-form-field appearance="outline" class="common-form-field">
+      <mat-label>Created</mat-label>
+      <input matInput formControlName="created">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="common-form-field">
+      <mat-label>Updated</mat-label>
+      <input matInput formControlName="updated">
+    </mat-form-field>
+  </div>
 </form>
+
+<hr>
+<pre>{{this.strategicSession | json}}</pre>

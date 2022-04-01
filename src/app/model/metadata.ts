@@ -1,4 +1,4 @@
 export interface Metadata {
-    //TODO datetime
-    created: string;
+    created: Date;
+    updated: Date;
 }

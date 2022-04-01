@@ -29,7 +29,7 @@ export class StrategicSessionComponent implements OnInit {
         description: [''],
         authorization: [ [] ],
         metadata: this.fb.group({
-          created: [''],
+          created: [{ value: '', disabled: true }],
           updated: ['']
         }),
       });
@@ -67,6 +67,7 @@ export class StrategicSessionComponent implements OnInit {
   
   startEdit() {
     this.form.enable();
+    this.form.get("metadata")?.disable()
   }
 
   cancelEdit() {
@@ -76,10 +77,6 @@ export class StrategicSessionComponent implements OnInit {
 
   isEditMode() {
     return this.form.enabled;
-  }
-
-  goBack(): void {
-    this.location.back();
   }
 
 }
