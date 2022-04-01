@@ -9,7 +9,7 @@ import { TacticalSession  } from '../model/session';
 })
 export class TacticalSessionsService {
 
-  private sessionsUrl = 'http://localhost:8080/tactical/sessions';
+  private sessionsUrl = 'http://localhost:8080/tactical-sessions';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,13 +18,17 @@ export class TacticalSessionsService {
   constructor(
     private http: HttpClient) {}
 
-  getTacticalSessions(): Observable<TacticalSession[]> {
+  findTacticalSessions(): Observable<TacticalSession[]> {
     return this.http.get<TacticalSession[]>(this.sessionsUrl).pipe();
   }
 
-  getTacticalSession(id: String): Observable<TacticalSession> {
+  findTacticalSessionById(id: String): Observable<TacticalSession> {
     const url = `${this.sessionsUrl}/${id}`;
     return this.http.get<TacticalSession>(url).pipe();
+  }
+
+  create(request: any): Observable<TacticalSession> {
+    return this.http.post<TacticalSession>(this.sessionsUrl, request, this.httpOptions).pipe();
   }
 
 }

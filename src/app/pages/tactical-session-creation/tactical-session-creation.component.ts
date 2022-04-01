@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TacticalSessionsService } from 'src/app/services/tactical-sessions.service';
 
 @Component({
   selector: 'app-tactical-session-creation',
@@ -12,7 +13,9 @@ export class TacticalSessionCreationComponent implements OnInit {
   form: FormGroup;
 
   constructor(
+    private tacticalSessionService: TacticalSessionsService,
     private fb: FormBuilder,
+    private router: Router,
     private route: ActivatedRoute) {
 
     this.form = this.fb.group({
@@ -27,6 +30,12 @@ export class TacticalSessionCreationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  save() {
+    this.tacticalSessionService.create(this.form.value).subscribe(result => {
+      this.router.navigateByUrl("tactical-sessions/detail/" + result.id);
+    });
   }
 
 }

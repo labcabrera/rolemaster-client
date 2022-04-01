@@ -3,7 +3,7 @@
         <span>Tactical session creation</span>
     </div>
     <div class="div-spacer"></div>
-    <button mat-button>Save</button>
+    <button mat-button (click)="save()">Save</button>
 </mat-toolbar>
 
 <form [formGroup]="form">
@@ -23,3 +23,5 @@
         <textarea matInput formControlName="description"></textarea>
     </mat-form-field>
 </form>
+
+<pre>{{this.form.value | json}}</pre>

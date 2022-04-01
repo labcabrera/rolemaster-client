@@ -26,7 +26,7 @@ export class TacticalSessionComponent implements OnInit {
 
   ngOnInit(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
-    this.tacticalSessionService.getTacticalSession(id).subscribe(s => {
+    this.tacticalSessionService.findTacticalSessionById(id).subscribe(s => {
       this.tacticalSession = s;
     });
   }
