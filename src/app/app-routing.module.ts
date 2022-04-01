@@ -16,6 +16,7 @@ import { TacticalSessionComponent } from './pages/tactical-session/tactical-sess
 import { NpcListComponent } from './pages/npc-list/npc-list.component';
 import { NpcDetailComponent } from './pages/npc-detail/npc-detail.component';
 import { StrategicSessionCreationComponent } from './pages/strategic-session-creation/strategic-session-creation.component';
+import { TacticalSessionCreationComponent } from './pages/tactical-session-creation/tactical-session-creation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/characters', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'strategic-sessions/creation', component: StrategicSessionCreationComponent },
   { path: 'tactical-sessions', component: TacticalSessionsComponent },
   { path: 'tactical-sessions/detail/:id', component: TacticalSessionComponent },
+  { path: 'tactical-sessions/creation', component: TacticalSessionCreationComponent},
   { path: 'characters/creation', component: CharacterCreationComponent },
   { path: 'races', component: RaceListComponent },
   { path: 'npc', component: NpcListComponent },

@@ -1,0 +1,25 @@
+<mat-toolbar>
+    <div>
+        <span>Tactical session creation</span>
+    </div>
+    <div class="div-spacer"></div>
+    <button mat-button>Save</button>
+</mat-toolbar>
+
+<form [formGroup]="form">
+    <br>
+    <mat-form-field appearance="fill" class="common-form-field">
+        <mat-label>Strategic session</mat-label>
+        <input matInput formControlName="strategicSessionId">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="common-form-field">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="common-form-field">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+</form>

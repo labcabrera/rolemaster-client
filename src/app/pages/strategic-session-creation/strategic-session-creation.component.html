@@ -1,21 +1,19 @@
-<div>
-
 <mat-toolbar>
-    <span>Strategic session creation</span>
-    <div class="div-spacer"></div>
-    <button mat-button (click)="createStrategicSession()">Save</button>
-    <button mat-button (click)="goBack();">Back</button>
+  <span>Strategic session creation</span>
+  <div class="div-spacer"></div>
+  <button mat-button (click)="createStrategicSession()">Save</button>
+  <button mat-button (click)="goBack();">Back</button>
 </mat-toolbar>
 
 <form [formGroup]="form">
-    <br>
-    <mat-form-field appearance="fill" class="common-form-field">
-      <mat-label>Name</mat-label>
-      <input matInput formControlName="name">
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill" class="common-form-field">
-      <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description"></textarea>
-    </mat-form-field>
-  </form>
+  <br>
+  <mat-form-field appearance="fill" class="common-form-field">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill" class="common-form-field">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+</form>

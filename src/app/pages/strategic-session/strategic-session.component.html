@@ -4,6 +4,10 @@
     <span> / {{this.strategicSession?.id}}</span>
   </div>
   <div class="div-spacer"></div>
+  <button mat-button
+    routerLink="/tactical-sessions/creation"
+    [queryParams]="{strategicSessionId: this.strategicSession?.id}"
+    *ngIf="!isEditMode()">New tactical</button>
   <button mat-button (click)="cancelEdit()" *ngIf="isEditMode()">Cancel</button>
   <button mat-button (click)="startEdit()" *ngIf="!isEditMode()">Edit</button>
   <button mat-button (click)="saveSession()" *ngIf="isEditMode()">Save</button>
