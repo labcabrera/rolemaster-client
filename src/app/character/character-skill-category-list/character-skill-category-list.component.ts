@@ -15,9 +15,7 @@ import { SkillCategory } from '../../model/skill-category';
 export class CharacterSkillCategoryListComponent implements OnInit {
 
   @Input() characterInfo: CharacterInfo;
-  @Input() dataSource: MatTableDataSource<CharacterSkillCategory>;
-
-  expandedElement: CharacterSkillCategory | null;
+  @Input() dataSource: MatTableDataSource<CharacterSkillCategory> = new MatTableDataSource<CharacterSkillCategory>();
 
   displayedColumns: string[] = ['categoryId',
     'group',
@@ -34,9 +32,7 @@ export class CharacterSkillCategoryListComponent implements OnInit {
   allowModifications = true;
 
   constructor() {
-    this.expandedElement = {} as CharacterSkillCategory;
     this.characterInfo = {} as CharacterInfo;
-    this.dataSource = new MatTableDataSource(this.characterInfo?.skillCategories);
     this.skillUpgradeRequest = {
       categoryRanks: new Map<string, number>(),
       skillRanks: new Map<string, number>()
