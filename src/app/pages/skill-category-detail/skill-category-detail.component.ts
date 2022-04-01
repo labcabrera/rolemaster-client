@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 import { SkillCategory } from 'src/app/model/skill-category';
 import { Skill } from 'src/app/model/skill';
@@ -15,6 +18,11 @@ export class SkillCategoryDetailComponent implements OnInit {
 
   skillCategory: SkillCategory = {} as SkillCategory;
   skills: Skill[] = [];
+  
+  displayedColumns: string[] = ["id", "name", "categoryId", "description"];
+  dataSource: MatTableDataSource<Skill> = new MatTableDataSource<Skill>(this.skills);
+  @ViewChild(MatPaginator) paginator?: MatPaginator;
+  @ViewChild(MatSort) sort?: MatSort;
 
   constructor(
     private skillCategoryService: SkillCategoryService,
@@ -34,6 +42,7 @@ export class SkillCategoryDetailComponent implements OnInit {
     });
     this.skillService.getSkillsByCategoryId(id).subscribe(result => {
       this.skills = result;
+      this.dataSource.data = this.skills;
     })
     
   }
