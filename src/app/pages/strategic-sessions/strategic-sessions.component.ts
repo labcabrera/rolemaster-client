@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 import { StrategicSession } from '../../model/session';
 import { StrategicSessionsService } from '../../services/sessions.service';
@@ -9,10 +11,14 @@ import { StrategicSessionsService } from '../../services/sessions.service';
   templateUrl: './strategic-sessions.component.html',
   styleUrls: ['./strategic-sessions.component.css']
 })
-export class StrategicSessionsComponent implements OnInit {
+export class StrategicSessionsComponent implements OnInit, AfterViewInit {
 
   sessions: StrategicSession[] = [];
-  selectedSession?: StrategicSession;
+
+  displayedColumns: string[] = ["id", "name", "created", "modified" ];
+  dataSource: MatTableDataSource<StrategicSession> = new MatTableDataSource<StrategicSession>(this.sessions);
+  @ViewChild(MatPaginator) paginator?: MatPaginator;
+  @ViewChild(MatSort) sort?: MatSort;
 
   constructor(
     private sessionService: StrategicSessionsService) {}
@@ -21,12 +27,21 @@ export class StrategicSessionsComponent implements OnInit {
     this.getSessions();
   }
 
-  getSessions(): void {
-    this.sessionService.getSessions().subscribe(c => this.sessions = c);
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator!;
+    this.dataSource.sort = this.sort!;
   }
 
-  onSelect(session: StrategicSession): void {
-    this.selectedSession = session;
+  getSessions(): void {
+    this.sessionService.getSessions().subscribe(c => {
+      this.sessions = c;
+      this.dataSource.data = this.sessions;
+    });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   createSession(): void {

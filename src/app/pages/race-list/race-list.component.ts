@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { Race } from '../../model/race';
-import { RaceService } from '../../services/race.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+
+import { Race } from '../../model/race';
+import { RaceService } from '../../services/race.service';
+
 @Component({
   selector: 'app-race-list',
   templateUrl: './race-list.component.html',
