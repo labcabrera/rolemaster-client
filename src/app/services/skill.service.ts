@@ -23,6 +23,13 @@ export class SkillService {
   }
 
   findById(id: string): Observable<Skill> {
-    return this.http.get<Skill>(this.charactersUrl + "/" + id).pipe();
+    const url = this.charactersUrl + "/" + id;
+    return this.http.get<Skill>(url).pipe();
   }
+  
+  getSkillsByCategoryId(categoryId: string): Observable<Skill[]> {
+    const url = this.charactersUrl + "?categoryId=" + categoryId;
+    return this.http.get<Skill[]>(url).pipe();
+  }
+
 }
