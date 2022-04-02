@@ -1,0 +1,23 @@
+<mat-toolbar>
+    <span>Character / {{character.name}}</span>
+    <div class="div-spacer"></div>
+    <button mat-button>Delete</button>
+</mat-toolbar>
+
+<app-character-basic-info [characterInfo]="character"></app-character-basic-info>
+
+<app-character-attributes [characterInfo]="character"></app-character-attributes>
+
+<app-character-skill-category-list [characterInfo]="character" [dataSource]="skillCategoryDataSource"></app-character-skill-category-list>
+
+<app-character-skill-list [characterInfo]="character"></app-character-skill-list>
+
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Debug skill category list</mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+        </mat-expansion-panel-header>
+        <pre>{{this.character | json}}</pre>
+    </mat-expansion-panel>
+</mat-accordion>

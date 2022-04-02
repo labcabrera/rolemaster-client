@@ -1,0 +1,53 @@
+<mat-toolbar>
+  <div>
+    <a routerLink="/strategic-sessions" style="color: white;">Strategic sessions</a>
+    <span> / {{this.strategicSession?.id}}</span>
+  </div>
+  <div class="div-spacer"></div>
+  <button mat-button
+    routerLink="/tactical-sessions/creation"
+    [queryParams]="{strategicSessionId: this.strategicSession?.id}"
+    *ngIf="!isEditMode()">New tactical</button>
+  <button mat-button (click)="cancelEdit()" *ngIf="isEditMode()">Cancel</button>
+  <button mat-button (click)="startEdit()" *ngIf="!isEditMode()">Edit</button>
+  <button mat-button (click)="saveSession()" *ngIf="isEditMode()">Save</button>
+  <button mat-button (click)="deleteSession()">Delete</button>
+</mat-toolbar>
+
+
+<form [formGroup]="form">
+  <br>
+  <mat-form-field appearance="outline" class="common-form-field">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline" class="common-form-field">
+    <mat-label>Universe</mat-label>
+    <mat-select formControlName="universeId">
+      <mat-option *ngFor="let universe of universes" [value]="universe.id">
+        {{universe.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline" class="common-form-field">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+  <br>
+  <div formGroupName="metadata">
+    <mat-form-field appearance="outline" class="common-form-field">
+      <mat-label>Created</mat-label>
+      <input matInput formControlName="created">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="common-form-field">
+      <mat-label>Updated</mat-label>
+      <input matInput formControlName="updated">
+    </mat-form-field>
+  </div>
+</form>
+
+<hr>
+<pre>{{this.strategicSession | json}}</pre>
