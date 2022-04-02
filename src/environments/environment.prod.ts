@@ -1,3 +1,8 @@
 export const environment = {
-  production: true
+  production: true,
+
+  apiURL: 'https://rolemaster-core.herokuapp.com',
+
+  spellIcon: 'blur_on',
+  skillIcon: 'build'
 };
