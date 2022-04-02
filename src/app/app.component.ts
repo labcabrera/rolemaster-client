@@ -15,9 +15,6 @@ export class AppComponent {
   title = 'RM Engine';
   showSideBar = true;
 
-  spellIcon = environment.spellIcon;
-  skillIcon = environment.skillIcon;
-
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 

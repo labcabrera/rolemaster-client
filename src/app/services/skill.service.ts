@@ -25,7 +25,7 @@ export class SkillService {
   }
 
   findById(id: string): Observable<Skill> {
-    const url = `${this.baseUrl}/id`;
+    const url = `${this.baseUrl}/${id}`;
     return this.http.get<Skill>(url).pipe();
   }
   

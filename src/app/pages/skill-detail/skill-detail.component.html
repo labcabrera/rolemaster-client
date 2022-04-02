@@ -1,30 +1,37 @@
 <mat-toolbar>
-    <span>
-        <mat-icon>{{skillIcon}}</mat-icon>&nbsp;
-    </span>
-    <a routerLink="/skill-categories" style="color: white;">&nbsp;Skill categories</a>
-    <span>&nbsp;/&nbsp;</span>
-    <a routerLink="/skill-categories/detail/{{skill.categoryId}}" style="color:white;">{{skill.categoryId}}</a>
-    <span>&nbsp;/ {{skill.name}}</span>
+    <mat-icon>pets</mat-icon>&nbsp;
+    <div>Skill</div>
 </mat-toolbar>
 
 <div style="margin-top: 15pt;">
     <p>
         <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Placeholder" value="{{skill?.name}}" readonly="true">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <input matInput placeholder="Placeholder" value="{{skillCategory?.name}}" readonly="true">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
             <mat-label>Type</mat-label>
-            <input matInput placeholder="Placeholder" value="{{skill.type}}" readonly="true">
+            <input matInput placeholder="Placeholder" value="{{skill?.type}}" readonly="true">
         </mat-form-field>
     </p>
     <p>
         <mat-form-field appearance="outline">
             <mat-label>Progression type</mat-label>
-            <input matInput placeholder="Placeholder" value="{{skill.progressionType}}" readonly="true">
+            <input matInput placeholder="Placeholder" value="{{skill?.progressionType}}" readonly="true">
         </mat-form-field>
     </p>
-    <p>{{skill.description}}</p>
+    <p>{{skill?.description}}</p>
 </div>
 
-<div *ngIf="skill.modifiers.length > 0">
+<div *ngIf="skill != null && skill.modifiers != null && skill.modifiers.length > 0">
     <h4>Common modifiers</h4>
     <mat-list role="list">
         <mat-list-item *ngFor="let modifier of skill.modifiers">

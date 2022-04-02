@@ -6,7 +6,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SpellList, Spell } from 'src/app/model/spell';
 import { SpellListService } from 'src/app/services/spell-list.service';
 import { SpellService } from 'src/app/services/spell.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-spell-list-detail',
@@ -19,7 +18,6 @@ export class SpellListDetailComponent implements OnInit {
   spells: Spell[] = [];
   dataSource: MatTableDataSource<Spell> = new MatTableDataSource<Spell>(this.spells);
   displayedColumns: string[] = [ "name", "level", "type", "subtype", "preparation", "targetType", "rangeType" ];
-  spellIcon = environment.spellIcon;
 
   constructor(
     private spellListService: SpellListService,

@@ -13,7 +13,6 @@ import { environment } from 'src/environments/environment';
 export class SpellDetailComponent implements OnInit {
 
   spell: Spell = {} as Spell;
-  spellIcon = environment.spellIcon;
 
   constructor(
     private spellService: SpellService,

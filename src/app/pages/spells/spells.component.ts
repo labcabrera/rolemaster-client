@@ -19,7 +19,6 @@ export class SpellsComponent implements OnInit {
   dataSource: MatTableDataSource<Spell> = new MatTableDataSource<Spell>(this.spells);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
-  spellIcon = environment.spellIcon;
 
   constructor( private spellService: SpellService) { }
 

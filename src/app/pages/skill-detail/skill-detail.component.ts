@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Skill } from 'src/app/model/skill';
+import { SkillCategory } from 'src/app/model/skill-category';
+import { SkillCategoryService } from 'src/app/services/skill-category.service';
 import { SkillService } from 'src/app/services/skill.service';
 import { environment } from 'src/environments/environment';
 
@@ -13,22 +15,32 @@ import { environment } from 'src/environments/environment';
 export class SkillDetailComponent implements OnInit {
 
   skill: Skill = {} as Skill;
-  skillIcon = environment.skillIcon;
+  skillCategory: SkillCategory = {} as SkillCategory;
 
   constructor(
     private skillService: SkillService,
+    private skillCategoryService: SkillCategoryService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.getSkill();
+    this.loadSkill();
   }
 
-  getSkill() {
+  loadSkill() {
     const id = String(this.route.snapshot.paramMap.get('id'));
+    console.log("Reading skill: ", id);
     this.skillService.findById(id).subscribe(result => {
+      console.log("Readed skill: ", result);
       this.skill = result;
+      this.loadSkillCategory(this.skill.categoryId);
+    });
+  }
+
+  loadSkillCategory(id: string) {
+    this.skillCategoryService.findById(id).subscribe(result => {
+      this.skillCategory = result;
     });
   }
 

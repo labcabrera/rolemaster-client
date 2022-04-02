@@ -24,7 +24,6 @@ export class SkillCategoryDetailComponent implements OnInit {
   dataSource: MatTableDataSource<Skill> = new MatTableDataSource<Skill>(this.skills);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
-  skillIcon = environment.skillIcon;
 
   constructor(
     private skillCategoryService: SkillCategoryService,

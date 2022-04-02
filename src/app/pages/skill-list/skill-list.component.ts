@@ -20,7 +20,6 @@ export class SkillListComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<Skill> = new MatTableDataSource<Skill>(this.skills);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
-  skillIcon = environment.skillIcon;
 
   constructor(private skillService: SkillService) { }
 

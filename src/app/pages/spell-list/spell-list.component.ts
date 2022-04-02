@@ -20,7 +20,6 @@ export class SpellListComponent implements OnInit {
   dataSource: MatTableDataSource<SpellList> = new MatTableDataSource<SpellList>(this.spellLists);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
-  spellIcon = environment.spellIcon;
 
   constructor(private skillListService: SpellListService) { }
 
