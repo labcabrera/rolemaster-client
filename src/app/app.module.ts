@@ -49,6 +49,7 @@ import { MovementComponent } from './pages/movement/movement.component';
 import { StaticManeuversComponent } from './pages/static-maneuvers/static-maneuvers.component';
 import { MovingManeuversComponent } from './pages/moving-maneuvers/moving-maneuvers.component';
 import { ItemsComponent } from './pages/items/items.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { ItemsComponent } from './pages/items/items.component';
     MovementComponent,
     StaticManeuversComponent,
     MovingManeuversComponent,
-    ItemsComponent
+    ItemsComponent,
+    NavBarComponent
   ],
   imports: [
     FormsModule,

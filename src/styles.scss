@@ -33,5 +33,13 @@ body {
   flex: 1 1 auto;
 }
 
+a {
+  color: white;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+}
