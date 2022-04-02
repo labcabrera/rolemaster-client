@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Spell } from 'src/app/model/spell';
 import { SpellService } from 'src/app/services/spell.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-spell-detail',
@@ -12,6 +13,7 @@ import { SpellService } from 'src/app/services/spell.service';
 export class SpellDetailComponent implements OnInit {
 
   spell: Spell = {} as Spell;
+  spellIcon = environment.spellIcon;
 
   constructor(
     private spellService: SpellService,

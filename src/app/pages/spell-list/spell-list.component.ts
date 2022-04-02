@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 
 import { SpellList } from 'src/app/model/spell';
 import { SpellListService } from 'src/app/services/spell-list.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-spell-list',
@@ -15,10 +16,11 @@ export class SpellListComponent implements OnInit {
 
   spellLists: SpellList[] = [];
 
-  displayedColumns: string[] = ["id", "name", "realm", "type" ];
+  displayedColumns: string[] = [ "name", "realm", "type" ];
   dataSource: MatTableDataSource<SpellList> = new MatTableDataSource<SpellList>(this.spellLists);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
+  spellIcon = environment.spellIcon;
 
   constructor(private skillListService: SpellListService) { }
 

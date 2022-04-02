@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import { Spell } from 'src/app/model/spell';
 import { SpellService } from 'src/app/services/spell.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-spells',
@@ -14,10 +15,11 @@ import { SpellService } from 'src/app/services/spell.service';
 export class SpellsComponent implements OnInit {
 
   spells?: Spell[];
-  displayedColumns: string[] = ["id", "name", "spellListId", "level", "type", "subtype", "preparation", "targetType", "rangeType" ];
+  displayedColumns: string[] = [ "name", "spellListId", "level", "type", "subtype", "preparation", "targetType", "rangeType" ];
   dataSource: MatTableDataSource<Spell> = new MatTableDataSource<Spell>(this.spells);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
+  spellIcon = environment.spellIcon;
 
   constructor( private spellService: SpellService) { }
 
@@ -31,7 +33,7 @@ export class SpellsComponent implements OnInit {
   }
   
   getSpells() {
-    this.spellService.findSpells().subscribe(s => {
+    this.spellService.find().subscribe(s => {
       this.spells = s;
       this.dataSource.data = this.spells;
     });

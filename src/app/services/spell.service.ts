@@ -18,14 +18,20 @@ export class SpellService {
 
   constructor(private http: HttpClient) {}
 
-  findSpells(): Observable<Spell[]> {
-    const url = `${this.baseUrl}/?page=0&size=1000`;
-    return this.http.get<Spell[]>(url).pipe();
-  }
-
   findById(id: string): Observable<Spell> {
     const url = `${this.baseUrl}/${id}`;
     return this.http.get<Spell>(url).pipe();
   }
+
+  find(): Observable<Spell[]> {
+    const url = `${this.baseUrl}/?page=0&size=1000`;
+    return this.http.get<Spell[]>(url).pipe();
+  }
+
+  findBySpellListId(spellListId: string): Observable<Spell[]> {
+    const url = `${this.baseUrl}/?spellListId=${spellListId}&page=0&size=1000&sort=level,asc`;
+    return this.http.get<Spell[]>(url).pipe();
+  }
+
 
 }

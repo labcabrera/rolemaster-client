@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 
 import { Skill } from '../../model/skill';
 import { SkillService } from '../../services/skill.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-skill-list',
@@ -15,10 +16,11 @@ export class SkillListComponent implements OnInit, AfterViewInit {
 
   skills: Skill[] = [];
 
-  displayedColumns: string[] = ["id", "name", "categoryId", "description"];
+  displayedColumns: string[] = [ "name", "categoryId", "description"];
   dataSource: MatTableDataSource<Skill> = new MatTableDataSource<Skill>(this.skills);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
+  skillIcon = environment.skillIcon;
 
   constructor(private skillService: SkillService) { }
 

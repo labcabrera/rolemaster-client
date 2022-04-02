@@ -1,23 +1,54 @@
 <mat-toolbar>
-    <a routerLink="/spell-lists" style="color: white;">Spell Lists</a>
+    <mat-icon>{{spellIcon}}</mat-icon>
+    <a routerLink="/spell-lists" style="color: white;">&nbsp;Spell Lists</a>
     <span>&nbsp;/&nbsp;</span>
-    <a routerLink="/spell-lists/{{spell.spellListId}}" style="color: white;">{{spell.spellListId}}</a>
+    <a routerLink="/spell-lists/detail/{{spell.spellListId}}" style="color: white;">{{spell.spellListId}}</a>
     <span>&nbsp;/&nbsp;</span>
     <span>{{spell.name}}</span>
 </mat-toolbar>
 
-<div>
-    <p>List: <a routerLink="/spell-lists/detail/{{spell.spellListId}}">{{spell.spellListId}}</a></p>
-    <p>Level: {{spell.level}}</p>
-    <p>Type: {{spell.type}}</p>
-    <p>Preparation: {{spell.preparation}}</p>
-    <p>Target: {{spell.targetType}}</p>
-    <p>Duration: {{spell.durationType}}</p>
-    <p>Range: {{spell.rangeType}}</p>
+<div style="margin-top: 15pt;">
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Level</mat-label>
+            <input matInput placeholder="Placeholder" value="{{spell.level}}" readonly="true">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Preparation</mat-label>
+            <input matInput placeholder="Placeholder" value="{{spell.preparation}}" readonly="true">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Target</mat-label>
+            <input matInput placeholder="Placeholder" value="{{spell.targetType}}" readonly="true">
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10pt;">
+            <mat-label>Target modifier</mat-label>
+            <input matInput placeholder="Placeholder" value="{{spell.targetModifier}}" readonly="true">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Duration</mat-label>
+            <input matInput placeholder="Placeholder" value="{{spell.durationType}}" readonly="true">
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10pt;">
+            <mat-label>Duration modifier</mat-label>
+            <input matInput placeholder="Placeholder" value="{{spell.durationModifier}}" readonly="true">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Range</mat-label>
+            <input matInput placeholder="Placeholder" value="{{spell.rangeType}}" readonly="true">
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10pt;">
+            <mat-label>Range modifier</mat-label>
+            <input matInput placeholder="Placeholder" value="{{spell.rangeModifier}}" readonly="true">
+        </mat-form-field>
+    </p>
     <p>{{spell.description}}</p>
 </div>
-
-<hr>
-<br>
-
-<pre>{{spell | json}}</pre>

@@ -1,5 +1,6 @@
 <mat-toolbar>
-    <span>Spell Lists</span>
+    <mat-icon>{{spellIcon}}</mat-icon>
+    <span>&nbsp;Spell Lists</span>
     <div class="div-spacer"></div>
 </mat-toolbar>
 
@@ -32,5 +33,3 @@
     </tr>
 </table>
 <mat-paginator [pageSizeOptions]="[10, 25, 50]" aria-label="Select page of users"></mat-paginator>
-
-<pre>{{spellLists | json}}</pre>

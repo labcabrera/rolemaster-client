@@ -1,13 +1,25 @@
 <mat-toolbar>
     <div>
         <a routerLink="/skill-categories" style="color: white;">Skill categories</a>
-        <span> / {{this.skillCategory.id}}</span>
+        <span> / {{this.skillCategory.name}}</span>
     </div>
 </mat-toolbar>
 
-Skill category:
-
-<pre>{{skillCategory | json}}</pre>
+<div style="margin-top: 15pt;">
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Group</mat-label>
+            <input matInput placeholder="Placeholder" value="{{skillCategory.group}}" readonly="true">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Attributes</mat-label>
+            <input matInput placeholder="Placeholder" value="{{skillCategory.attributeBonus}}" readonly="true">
+        </mat-form-field>
+    </p>
+    <p>{{skillCategory.description}}</p>
+</div>
 
 <table mat-table #skillTable [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
@@ -43,6 +55,14 @@ Skill category:
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/skills/detail/', row.id]" class="tr-data"></tr>
 
 </table>
+
+
+<br>
+<hr>
+
+Skill:
+
+<pre>{{skillCategory | json}}</pre>
 
 Skills:
 
