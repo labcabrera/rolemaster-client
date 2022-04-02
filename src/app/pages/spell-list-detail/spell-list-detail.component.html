@@ -1,1 +1,7 @@
-<p>spell-list-detail works!</p>
+<mat-toolbar>
+    <a routerLink="/spell-lists" style="color: white;">Spell Lists</a>
+    <span>&nbsp;/&nbsp;</span>
+    <span>{{spellList.name}}</span>
+</mat-toolbar>
+
+<pre>{{spellList | json}}</pre>
