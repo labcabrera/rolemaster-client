@@ -4,8 +4,17 @@ export interface Skill {
     name: string;
     description: string;
     categoryId: string;
+    type: string;
     loadOnNewCharacters: boolean;
-    attributeBonus: string[];
-    rankBonusProgression: string;
-    categoryBonusProgression: string;
+    progressionType: string;
+    modifiers: SkillModifier[];
+    skillBonus: number;
+    //attributeBonus: string[];
+    //rankBonusProgression: string;
+    //categoryBonusProgression: string;
+}
+
+export interface SkillModifier {
+    key: string;
+    modifier: number;
 }

@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { SkillCategory } from '../../model/skill-category';
-import { SkillCategoryService } from '../../services/skill-category.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+
+import { SkillCategory } from '../../model/skill-category';
+import { SkillCategoryService } from '../../services/skill-category.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-skill-category-list',
@@ -14,10 +16,11 @@ export class SkillCategoryListComponent implements OnInit, AfterViewInit {
 
   skillCategories?: SkillCategory[];
 
-  displayedColumns: string[] = [ "name", "attributeBonus", "description" ];
+  displayedColumns: string[] = [ "name", "group", "attributeBonus", "description" ];
   dataSource: MatTableDataSource<SkillCategory> = new MatTableDataSource<SkillCategory>(this.skillCategories);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
+  skillIcon = environment.skillIcon;
 
   constructor(private skillCategoryService: SkillCategoryService) { }
 

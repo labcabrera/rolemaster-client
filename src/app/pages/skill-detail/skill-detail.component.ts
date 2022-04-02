@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Skill } from 'src/app/model/skill';
 import { SkillService } from 'src/app/services/skill.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-skill-detail',
@@ -12,6 +13,7 @@ import { SkillService } from 'src/app/services/skill.service';
 export class SkillDetailComponent implements OnInit {
 
   skill: Skill = {} as Skill;
+  skillIcon = environment.skillIcon;
 
   constructor(
     private skillService: SkillService,

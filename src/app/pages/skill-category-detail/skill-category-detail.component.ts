@@ -8,6 +8,7 @@ import { SkillCategory } from 'src/app/model/skill-category';
 import { Skill } from 'src/app/model/skill';
 import { SkillCategoryService } from 'src/app/services/skill-category.service';
 import { SkillService } from 'src/app/services/skill.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-skill-category-detail',
@@ -19,10 +20,11 @@ export class SkillCategoryDetailComponent implements OnInit {
   skillCategory: SkillCategory = {} as SkillCategory;
   skills: Skill[] = [];
   
-  displayedColumns: string[] = ["id", "name", "categoryId", "description"];
+  displayedColumns: string[] = [ "name", "description" ];
   dataSource: MatTableDataSource<Skill> = new MatTableDataSource<Skill>(this.skills);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
+  skillIcon = environment.skillIcon;
 
   constructor(
     private skillCategoryService: SkillCategoryService,
