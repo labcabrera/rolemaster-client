@@ -29,7 +29,7 @@ export class SkillService {
   }
   
   getSkillsByCategoryId(categoryId: string): Observable<Skill[]> {
-    const url = this.charactersUrl + "?categoryId=" + categoryId;
+    const url = this.charactersUrl + "?categoryId=" + categoryId + "&page=0&size=1000&sort=name,asc";
     return this.http.get<Skill[]>(url).pipe();
   }
 

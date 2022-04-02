@@ -19,6 +19,7 @@ import { StrategicSessionCreationComponent } from './pages/strategic-session-cre
 import { TacticalSessionCreationComponent } from './pages/tactical-session-creation/tactical-session-creation.component';
 import { SkillDetailComponent } from './pages/skill-detail/skill-detail.component';
 import { SkillCategoryDetailComponent } from './pages/skill-category-detail/skill-category-detail.component';
+import { SpellsComponent } from './pages/spells/spells.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/characters', pathMatch: 'full' },
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'skill-categories/detail/:id', component: SkillCategoryDetailComponent },
   { path: 'skills', component: SkillListComponent },
   { path: 'skills/detail/:id', component: SkillDetailComponent },
+  { path: 'spells', component: SpellsComponent },
   { path: 'tactical', component: TacticalViewComponent },
 ];
 

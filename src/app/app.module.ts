@@ -41,6 +41,7 @@ import { StrategicSessionCreationComponent } from './pages/strategic-session-cre
 import { TacticalSessionCreationComponent } from './pages/tactical-session-creation/tactical-session-creation.component';
 import { SkillDetailComponent } from './pages/skill-detail/skill-detail.component';
 import { SkillCategoryDetailComponent } from './pages/skill-category-detail/skill-category-detail.component';
+import { SpellsComponent } from './pages/spells/spells.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { SkillCategoryDetailComponent } from './pages/skill-category-detail/skil
     StrategicSessionCreationComponent,
     TacticalSessionCreationComponent,
     SkillDetailComponent,
-    SkillCategoryDetailComponent
+    SkillCategoryDetailComponent,
+    SpellsComponent
   ],
   imports: [
     FormsModule,
