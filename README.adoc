@@ -1,6 +1,8 @@
-= Rolemaster Client
+= Rolemaster Angular Client
 
-Angular based web application that integrates the Rolemaster Core API https://github.com/labcabrera/rolemaster-core/.
+Angular based web application that integrates the Rolemaster Core API:
+
+https://github.com/labcabrera/rolemaster-core/
 
 == Development server
 
