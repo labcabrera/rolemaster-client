@@ -4,13 +4,14 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 
 import { CharacterCreationAttributes } from '../model/character-info';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharacterGenerationUtilsService {
 
-  private baseUrl = 'http://localhost:8080/character-creation';
+  private baseUrl = `${environment.apiURL}/character-creation`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,9 +21,8 @@ export class CharacterGenerationUtilsService {
     private http: HttpClient) { }
 
   calculateAttributeCost(attributes: CharacterCreationAttributes): Observable<number> {
-    var url = this.baseUrl + "/attribute-costs";
-    return this.http.post<number>(url, attributes, this.httpOptions)
-      .pipe();
+    const url = `${this.baseUrl}/attribute-costs`;
+    return this.http.post<number>(url, attributes, this.httpOptions).pipe();
   }
 
 }

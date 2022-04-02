@@ -20,7 +20,7 @@ export class SkillCategoryDetailComponent implements OnInit {
   skillCategory: SkillCategory = {} as SkillCategory;
   skills: Skill[] = [];
   
-  displayedColumns: string[] = [ "name", "description" ];
+  displayedColumns: string[] = [ "name", "type", "description" ];
   dataSource: MatTableDataSource<Skill> = new MatTableDataSource<Skill>(this.skills);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;

@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { CharacterCreationRequest, CharacterInfo } from '../model/character-info';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
+
+import { CharacterCreationRequest, CharacterInfo } from '../model/character-info';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharacterService {
 
-  private charactersUrl = 'http://localhost:8080/characters';
+  private baseUrl = `${environment.apiURL}/characters`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,11 +21,12 @@ export class CharacterService {
     private http: HttpClient) { }
 
   getCharacter(id: string): Observable<CharacterInfo> {
-    return this.http.get<CharacterInfo>(this.charactersUrl + "/" + id).pipe();
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.get<CharacterInfo>(url).pipe();
   }
 
   getCharacters(): Observable<CharacterInfo[]> {
-    return this.http.get<CharacterInfo[]>(this.charactersUrl)
+    return this.http.get<CharacterInfo[]>(this.baseUrl)
       .pipe(
         tap(_ => this.log('fetched characters')),
         catchError(this.handleError<CharacterInfo[]>('getSessions', []))
@@ -31,14 +34,14 @@ export class CharacterService {
   }
 
   createCharacter(request: CharacterCreationRequest): Observable<CharacterInfo> {
-    return this.http.post<CharacterInfo>(this.charactersUrl, request, this.httpOptions)
+    return this.http.post<CharacterInfo>(this.baseUrl, request, this.httpOptions)
       .pipe(
         catchError(this.handleError2)
       );
   }
 
   deleteCharacter(id: string): Observable<null> {
-    var url = this.charactersUrl + "/" + id;
+    const url = `${this.baseUrl}/${id}`
     return this.http.delete<null>(url, this.httpOptions).pipe(
       catchError(this.handleError2)
     );

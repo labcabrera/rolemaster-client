@@ -3,12 +3,14 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class RandomUtilsService {
 
-  private baseUrl = 'http://localhost:8080/rolls';
+  private baseUrl = `${environment.apiURL}/rolls`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,15 +20,13 @@ export class RandomUtilsService {
     private http: HttpClient) { }
 
   randomRoll(max: number): Observable<number> {
-    var url = this.baseUrl + "/d/" + max;
-    return this.http.get<number>(url, this.httpOptions)
-      .pipe();
+    const url = `${this.baseUrl}/d/${max}`;
+    return this.http.get<number>(url, this.httpOptions).pipe();
   }
 
   randomRollSum(max: number, count: number): Observable<number> {
-    var url = this.baseUrl + "/d/" + max + "/" + count + "/sum" ;
-    return this.http.get<number>(url, this.httpOptions)
-      .pipe();
+    const url = `${this.baseUrl}/d/${max}/${count}`;
+    return this.http.get<number>(url, this.httpOptions).pipe();
   }
 
 }

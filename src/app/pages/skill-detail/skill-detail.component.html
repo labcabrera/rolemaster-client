@@ -21,9 +21,7 @@
             <input matInput placeholder="Placeholder" value="{{skill.progressionType}}" readonly="true">
         </mat-form-field>
     </p>
-    <p>
-        {{skill.description}}
-    </p>
+    <p>{{skill.description}}</p>
 </div>
 
 <div *ngIf="skill.modifiers.length > 0">
@@ -37,7 +35,9 @@
     </mat-list>
 </div>
 
+<!--
 <br />
 <hr />
 
 <pre>{{skill | json}}</pre>
+-->
