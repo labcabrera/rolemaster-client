@@ -1,8 +1,5 @@
 <mat-toolbar>
-    <div>
-        <a routerLink="/tactical-sessions" style="color: white;">Tactical sessions</a>
-        <span> / {{this.tacticalSession?.id}}</span>
-    </div>
+    <div>Tactical session</div>
     <div class="div-spacer"></div>
     <button mat-button>Cancel</button>
     <button mat-button>Edit</button>
@@ -10,15 +7,18 @@
     <button mat-button (click)="delete()">Delete</button>
 </mat-toolbar>
 
-
 <form [formGroup]="form">
+    <mat-form-field appearance="outline" class="common-form-field">
+        <mat-label>Strategic session</mat-label>
+        <input matInput formControlName="strategicSessionName">
+    </mat-form-field>
     <br>
-    <mat-form-field appearance="fill" class="common-form-field">
+    <mat-form-field appearance="outline" class="common-form-field">
         <mat-label>Name</mat-label>
         <input matInput formControlName="name">
     </mat-form-field>
     <br>
-    <mat-form-field appearance="fill" class="common-form-field">
+    <mat-form-field appearance="outline" class="common-form-field">
         <mat-label>Description</mat-label>
         <textarea matInput formControlName="description"></textarea>
     </mat-form-field>
