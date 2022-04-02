@@ -3,14 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { Spell } from '../model/spell';
+import { SpellList } from '../model/spell';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SpellService {
+export class SpellListService {
 
-  private baseUrl = `${environment.apiURL}/spells`;
+  private baseUrl = `${environment.apiURL}/spell-lists`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,14 +18,14 @@ export class SpellService {
 
   constructor(private http: HttpClient) {}
 
-  findSpells(): Observable<Spell[]> {
+  find(): Observable<SpellList[]> {
     const url = `${this.baseUrl}/?page=0&size=1000`;
-    return this.http.get<Spell[]>(url).pipe();
+    return this.http.get<SpellList[]>(url).pipe();
   }
 
-  findById(id: string): Observable<Spell> {
+  findById(id: string): Observable<SpellList> {
     const url = `${this.baseUrl}/${id}`;
-    return this.http.get<Spell>(url).pipe();
+    return this.http.get<SpellList>(url).pipe();
   }
 
 }

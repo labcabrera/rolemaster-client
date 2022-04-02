@@ -20,6 +20,9 @@ import { TacticalSessionCreationComponent } from './pages/tactical-session-creat
 import { SkillDetailComponent } from './pages/skill-detail/skill-detail.component';
 import { SkillCategoryDetailComponent } from './pages/skill-category-detail/skill-category-detail.component';
 import { SpellsComponent } from './pages/spells/spells.component';
+import { SpellListDetailComponent } from './pages/spell-list-detail/spell-list-detail.component';
+import { SpellDetailComponent } from './pages/spell-detail/spell-detail.component';
+import { SpellListComponent } from './pages/spell-list/spell-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/characters', pathMatch: 'full' },
@@ -40,7 +43,10 @@ const routes: Routes = [
   { path: 'skill-categories/detail/:id', component: SkillCategoryDetailComponent },
   { path: 'skills', component: SkillListComponent },
   { path: 'skills/detail/:id', component: SkillDetailComponent },
+  { path: 'spell-lists', component: SpellListComponent },
+  { path: 'spell-lists/detail/:id', component: SpellListDetailComponent },
   { path: 'spells', component: SpellsComponent },
+  { path: 'spells/detail/:id', component: SpellDetailComponent },
   { path: 'tactical', component: TacticalViewComponent },
 ];
 

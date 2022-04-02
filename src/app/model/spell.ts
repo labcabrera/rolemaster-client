@@ -4,3 +4,8 @@ export interface Spell {
     level: number;
     description: string;
 }
+
+export interface SpellList {
+    id: string;
+    name: string;
+}
