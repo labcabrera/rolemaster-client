@@ -45,6 +45,10 @@ import { SpellsComponent } from './pages/spells/spells.component';
 import { SpellDetailComponent } from './pages/spell-detail/spell-detail.component';
 import { SpellListDetailComponent } from './pages/spell-list-detail/spell-list-detail.component';
 import { SpellListComponent } from './pages/spell-list/spell-list.component';
+import { MovementComponent } from './pages/movement/movement.component';
+import { StaticManeuversComponent } from './pages/static-maneuvers/static-maneuvers.component';
+import { MovingManeuversComponent } from './pages/moving-maneuvers/moving-maneuvers.component';
+import { ItemsComponent } from './pages/items/items.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +84,11 @@ import { SpellListComponent } from './pages/spell-list/spell-list.component';
     SpellsComponent,
     SpellDetailComponent,
     SpellListDetailComponent,
-    SpellListComponent
+    SpellListComponent,
+    MovementComponent,
+    StaticManeuversComponent,
+    MovingManeuversComponent,
+    ItemsComponent
   ],
   imports: [
     FormsModule,

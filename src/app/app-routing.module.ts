@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CharacterCreationComponent } from './pages/character-creation/character-creation.component';
 import { CharacterDetailComponent } from './character/character-detail/character-detail.component';
@@ -23,6 +23,10 @@ import { SpellsComponent } from './pages/spells/spells.component';
 import { SpellListDetailComponent } from './pages/spell-list-detail/spell-list-detail.component';
 import { SpellDetailComponent } from './pages/spell-detail/spell-detail.component';
 import { SpellListComponent } from './pages/spell-list/spell-list.component';
+import { MovementComponent } from './pages/movement/movement.component';
+import { ItemsComponent } from './pages/items/items.component';
+import { StaticManeuversComponent } from './pages/static-maneuvers/static-maneuvers.component';
+import { MovingManeuversComponent } from './pages/moving-maneuvers/moving-maneuvers.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/characters', pathMatch: 'full' },
@@ -35,6 +39,9 @@ const routes: Routes = [
   { path: 'tactical-sessions/detail/:id', component: TacticalSessionComponent },
   { path: 'tactical-sessions/creation', component: TacticalSessionCreationComponent},
   { path: 'characters/creation', component: CharacterCreationComponent },
+  { path: 'movement', component: MovementComponent},
+  { path: 'static-maneuvers', component: StaticManeuversComponent },
+  { path: 'moving-maneuvers', component: MovingManeuversComponent },
   { path: 'races', component: RaceListComponent },
   { path: 'npc', component: NpcListComponent },
   { path: 'npc/detail/:id', component: NpcDetailComponent },
@@ -48,6 +55,7 @@ const routes: Routes = [
   { path: 'spells', component: SpellsComponent },
   { path: 'spells/detail/:id', component: SpellDetailComponent },
   { path: 'tactical', component: TacticalViewComponent },
+  { path: 'items', component: ItemsComponent },
 ];
 
 @NgModule({
