@@ -3,3 +3,16 @@
   max-width: 500px;
   width: 100%;
 }
+
+.tactical-session-list {
+  background-color: #222;
+  cursor: pointer;
+  border: 1px;
+  border-color: red;
+  border-radius: 3px;
+}
+
+.tactical-session-list:hover{
+  background-color: #333;
+}
+

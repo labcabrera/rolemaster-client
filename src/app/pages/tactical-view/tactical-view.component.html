@@ -1,7 +1,10 @@
 <mat-toolbar>
     <span>Tactical view</span>
     <div class="div-spacer"></div>
-    <button mat-button *ngIf="tacticalSession.state=='created'" (click)="start()">Start</button>
+    <button mat-button (click)="startRound()">Start round</button>
+    <button mat-button>Calculate initiatives</button>
+    <button mat-button>Calculate initiatives</button>
+    <button mat-button>Execute actions</button>
 </mat-toolbar>
 
 <div class="outerContainer">

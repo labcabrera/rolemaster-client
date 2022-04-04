@@ -42,7 +42,7 @@ export class TacticalViewComponent implements OnInit {
     })
   }
 
-  start() {
+  startRound() {
     this.tacticalSessionService.startRound(this.tacticalSession.id).subscribe(response => {
       this.tacticalRound = response;
     });
