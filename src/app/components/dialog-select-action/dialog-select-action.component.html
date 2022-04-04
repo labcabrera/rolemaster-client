@@ -2,17 +2,31 @@
 <mat-dialog-content>
 
     <mat-tab-group mat-align-tabs="start">
-        <mat-tab label="Movement">Movement
+
+        <mat-tab label="Movement">
             <mat-form-field appearance="fill">
                 <mat-label>Pace</mat-label>
                 <mat-select>
-                    <mat-option>foo</mat-option>
-                    <mat-option>bar</mat-option>
+                    <mat-option *ngFor="let option of movementPaces" [value]="option.key">{{option.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </mat-tab>
 
-        <mat-tab label="Melee">Melee</mat-tab>
+        <mat-tab label="Melee">
+            <mat-form-field appearance="fill">
+                <mat-label>Attack type</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let option of meleeAttackTypes" [value]="option.key">{{option.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+                <mat-label>Target</mat-label>
+                <mat-select>
+                    <mat-option>todo</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-tab>
 
         <mat-tab label="Ranged">Ranged</mat-tab>
 
@@ -27,6 +41,7 @@
     <mat-slider thumbLabel min="{{minActionPercent}}" max="{{maxActionPercent}}" aria-label="units"></mat-slider>
 
 </mat-dialog-content>
+
 <mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancel</button>
     <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Add</button>

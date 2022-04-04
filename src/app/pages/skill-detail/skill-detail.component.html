@@ -32,7 +32,9 @@
                 <input matInput placeholder="Placeholder" value="{{skill?.progressionType}}" readonly="true">
             </mat-form-field>
         </p>
-        <p>{{skill?.description}}</p>
+        <p>
+            <span class="text-detail">{{skill?.description}}</span>
+        </p>
     </div>
 
     <div *ngIf="skill != null && skill.modifiers != null && skill.modifiers.length > 0">

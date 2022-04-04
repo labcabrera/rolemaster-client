@@ -5,10 +5,9 @@
 }
 
 .tactical-session-list {
-  background-color: #222;
+  background-color: #22222222;
   cursor: pointer;
   border: 1px;
-  border-color: red;
   border-radius: 3px;
 }
 
