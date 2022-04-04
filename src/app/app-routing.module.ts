@@ -27,6 +27,8 @@ import { MovementComponent } from './pages/movement/movement.component';
 import { ItemsComponent } from './pages/items/items.component';
 import { StaticManeuversComponent } from './pages/static-maneuvers/static-maneuvers.component';
 import { MovingManeuversComponent } from './pages/moving-maneuvers/moving-maneuvers.component';
+import { RaceDetailComponent } from './pages/race-detail/race-detail.component';
+import { ProfessionDetailComponent } from './pages/profession-detail/profession-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/characters', pathMatch: 'full' },
@@ -43,9 +45,11 @@ const routes: Routes = [
   { path: 'static-maneuvers', component: StaticManeuversComponent },
   { path: 'moving-maneuvers', component: MovingManeuversComponent },
   { path: 'races', component: RaceListComponent },
+  { path: 'races/detail/:id', component: RaceDetailComponent },
   { path: 'npc', component: NpcListComponent },
   { path: 'npc/detail/:id', component: NpcDetailComponent },
   { path: 'professions', component: ProfessionListComponent },
+  { path: 'professions/detail/:id', component: ProfessionDetailComponent },
   { path: 'skill-categories', component: SkillCategoryListComponent },
   { path: 'skill-categories/detail/:id', component: SkillCategoryDetailComponent },
   { path: 'skills', component: SkillListComponent },

@@ -32,7 +32,7 @@ export class RaceListComponent implements OnInit, AfterViewInit {
   }
 
   getRaces(): void {
-    this.skillService.getRaces().subscribe(result => {
+    this.skillService.find().subscribe(result => {
       this.races = result;
       this.dataSource.data = this.races;
     });

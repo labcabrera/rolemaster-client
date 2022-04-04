@@ -23,4 +23,9 @@ export class ProfessionService {
     return this.http.get<Profession[]>(this.baseUrl).pipe();
   }
 
+  findById(professionId: string): Observable<Profession> {
+    const url = `${this.baseUrl}/${professionId}`;
+    return this.http.get<Profession>(url).pipe();
+  }
+
 }

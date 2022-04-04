@@ -1,23 +1,20 @@
 <mat-toolbar>
-    <div>
-        <mat-icon>pets</mat-icon>
-        <span>&nbsp;</span>
-        <a routerLink="/skill-categories" style="color: white;">Skill categories</a>
-        <span> / {{this.skillCategory.name}}</span>
-    </div>
+    <span><mat-icon>build</mat-icon> Skill category</span>
+    <div class="div-spacer"></div>
+    <button mat-button routerLink="/skill-categories"><mat-icon>arrow_upward</mat-icon></button>
 </mat-toolbar>
 
 <div class="outerContainer">
 
     <div>
         <p>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="custom-form-field">
                 <mat-label>Group</mat-label>
                 <input matInput placeholder="Placeholder" value="{{skillCategory.group}}" readonly="true">
             </mat-form-field>
         </p>
         <p>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="custom-form-field">
                 <mat-label>Attributes</mat-label>
                 <input matInput placeholder="Placeholder" value="{{skillCategory.attributeBonus}}" readonly="true">
             </mat-form-field>
@@ -56,20 +53,8 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/skills/detail/', row.id]" class="tr-data"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/skills/detail/', row.id]" class="tr-link"></tr>
 
     </table>
 
 </div>
-<!--
-<br>
-<hr>
-
-Skill:
-
-<pre>{{skillCategory | json}}</pre>
-
-Skills:
-
-<pre>{{skills | json}}</pre>
--->

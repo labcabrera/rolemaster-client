@@ -29,6 +29,13 @@ body {
   padding-bottom: 10pt;
 }
 
+.tr-link {
+  cursor: pointer;
+}
+.tr-link:hover {
+  background-color: #505050;
+}
+
 .div-content {
   padding: 10px;
 }

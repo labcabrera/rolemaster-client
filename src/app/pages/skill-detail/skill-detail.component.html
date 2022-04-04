@@ -1,31 +1,33 @@
 <mat-toolbar>
-    <mat-icon>pets</mat-icon>&nbsp;
-    <div>Skill</div>
+    <div><mat-icon>build</mat-icon> Skill</div>
+    <div class="div-spacer"></div>
+    <button mat-button routerLink="/skills"><mat-icon>arrow_upward</mat-icon></button>
 </mat-toolbar>
 
 <div class="outerContainer">
 
     <div>
         <p>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="custom-form-field">
                 <mat-label>Name</mat-label>
                 <input matInput placeholder="Placeholder" value="{{skill?.name}}" readonly="true">
             </mat-form-field>
         </p>
         <p>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="custom-form-field">
                 <mat-label>Category</mat-label>
                 <input matInput placeholder="Placeholder" value="{{skillCategory?.name}}" readonly="true">
+                <mat-icon matSuffix routerLink="/skill-categories/detail/{{skillCategory?.id}}">launch</mat-icon>
             </mat-form-field>
         </p>
         <p>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="custom-form-field">
                 <mat-label>Type</mat-label>
                 <input matInput placeholder="Placeholder" value="{{skill?.type}}" readonly="true">
             </mat-form-field>
         </p>
         <p>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="custom-form-field">
                 <mat-label>Progression type</mat-label>
                 <input matInput placeholder="Placeholder" value="{{skill?.progressionType}}" readonly="true">
             </mat-form-field>

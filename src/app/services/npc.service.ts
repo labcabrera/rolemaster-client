@@ -18,7 +18,7 @@ export class NpcService {
     return this.http.get<Npc[]>(this.baseUrl).pipe();
   }
 
-  findNpcById(id: string): Observable<Npc> {
+  findById(id: string): Observable<Npc> {
     const url = `${this.baseUrl}/${id}`
     return this.http.get<Npc>(url).pipe();
   }

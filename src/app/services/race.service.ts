@@ -18,8 +18,13 @@ export class RaceService {
 
   constructor(private http: HttpClient) {}
 
-  getRaces(): Observable<Race[]> {
+  find(): Observable<Race[]> {
     return this.http.get<Race[]>(this.baseUrl).pipe();
+  }
+
+  findById(raceId: string): Observable<Race> {
+    const url = `${this.baseUrl}/${raceId}`;
+    return this.http.get<Race>(url).pipe();
   }
 
 }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Race } from 'src/app/model/race';
+import { RaceService } from 'src/app/services/race.service';
 
 @Component({
   selector: 'app-race-detail',
@@ -7,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RaceDetailComponent implements OnInit {
 
-  constructor() { }
+  race: Race = {} as Race;
+
+  constructor(
+    private raceService: RaceService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    const raceId = String(this.route.snapshot.paramMap.get('id'));
+    this.loadRace(raceId);
+  }
+
+  loadRace(raceId: string) {
+    this.raceService.findById(raceId).subscribe(result => {
+      this.race = result;
+    });
   }
 
 }
