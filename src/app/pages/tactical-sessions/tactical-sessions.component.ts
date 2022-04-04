@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 
 import { TacticalSession } from 'src/app/model/session';
-import { TacticalSessionsService } from 'src/app/services/tactical-sessions.service';
+import { TacticalSessionService } from 'src/app/services/tactical-session.service';
 
 @Component({
   selector: 'app-tactical-sessions',
@@ -19,7 +19,7 @@ export class TacticalSessionsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
 
-  constructor( private tacticalSessionService: TacticalSessionsService) { }
+  constructor( private tacticalSessionService: TacticalSessionService) { }
 
   ngOnInit(): void {
     this.getTacticalSessions();

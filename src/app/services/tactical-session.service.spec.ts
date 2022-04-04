@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TacticalSessionsService } from './tactical-sessions.service';
+import { TacticalSessionService } from './tactical-session.service';
 
 describe('TacticalSessionsService', () => {
-  let service: TacticalSessionsService;
+  let service: TacticalSessionService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TacticalSessionsService);
+    service = TestBed.inject(TacticalSessionService);
   });
 
   it('should be created', () => {

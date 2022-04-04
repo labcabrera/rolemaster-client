@@ -7,7 +7,7 @@ import { StrategicSession, TacticalSession } from '../../model/session';
 import { StrategicSessionsService } from '../../services/strategic-sessions.service';
 import { Universe } from 'src/app/model/commons';
 import { UniverseService } from 'src/app/services/universe.service';
-import { TacticalSessionsService as TacticalSessionService } from 'src/app/services/tactical-sessions.service';
+import { TacticalSessionService as TacticalSessionService } from 'src/app/services/tactical-session.service';
 
 @Component({
   selector: 'app-session-detail',

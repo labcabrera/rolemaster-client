@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { StrategicSession, TacticalSessionCreation } from 'src/app/model/session';
-import { TacticalSessionsService } from 'src/app/services/tactical-sessions.service';
+import { TacticalSessionService } from 'src/app/services/tactical-session.service';
 import { StrategicSessionsService } from 'src/app/services/strategic-sessions.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class TacticalSessionCreationComponent implements OnInit {
 
   constructor(
     private strategicSessionService: StrategicSessionsService,
-    private tacticalSessionService: TacticalSessionsService,
+    private tacticalSessionService: TacticalSessionService,
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute) {

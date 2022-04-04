@@ -1,10 +1,17 @@
 <mat-toolbar>
     <div>Tactical session</div>
     <div class="div-spacer"></div>
+    <button mat-button *ngIf="!isEditMode()" (click)="navigateToTacticalView()">Open</button>
     <button mat-button *ngIf="isEditMode()" (click)="cancelEdit()">Cancel</button>
-    <button mat-button *ngIf="isEditMode()" (click)="save()"><mat-icon>save_alt</mat-icon></button>
-    <button mat-button *ngIf="!isEditMode()" (click)="startEdit()"><mat-icon>edit</mat-icon></button>
-    <button mat-button (click)="delete()"><mat-icon>delete</mat-icon></button>
+    <button mat-button *ngIf="isEditMode()" (click)="save()">
+        <mat-icon>save_alt</mat-icon>
+    </button>
+    <button mat-button *ngIf="!isEditMode()" (click)="startEdit()">
+        <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-button (click)="delete()">
+        <mat-icon>delete</mat-icon>
+    </button>
 </mat-toolbar>
 
 <form [formGroup]="form">
@@ -34,3 +41,31 @@
         <input matInput value="{{this.tacticalSession.currentRound}}" readonly>
     </mat-form-field>
 </form>
+
+<h3>Characters</h3>
+
+<mat-grid-list cols="5" rowHeight="100px">
+    <mat-grid-tile *ngFor="let ctx of tacticalCharacterContexts" [colspan]=1 [rowspan]=1>
+        <mat-card class="character-context-card">
+            <span>{{ctx.name}}</span>
+            <button mat-button (click)="deleteTacticalCharacterContext(ctx.id)"><mat-icon>delete</mat-icon></button>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+<h3>Add npc</h3>
+<form [formGroup]="formAddNpc">
+    <mat-form-field appearance="outline" class="common-form-field">
+        <mat-label>NPC Identifier</mat-label>
+        <input matInput formControlName="npcId">
+    </mat-form-field>
+    <button mat-button (click)="addNpc()"><mat-icon>add_box</mat-icon></button>
+</form>
+
+<hr>
+
+<pre>{{formAddNpc.value | json}}</pre>
+
+
+<pre>{{tacticalCharacterContexts | json}}</pre>
