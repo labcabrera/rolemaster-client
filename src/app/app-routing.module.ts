@@ -29,6 +29,7 @@ import { StaticManeuversComponent } from './pages/static-maneuvers/static-maneuv
 import { MovingManeuversComponent } from './pages/moving-maneuvers/moving-maneuvers.component';
 import { RaceDetailComponent } from './pages/race-detail/race-detail.component';
 import { ProfessionDetailComponent } from './pages/profession-detail/profession-detail.component';
+import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/characters', pathMatch: 'full' },
@@ -60,6 +61,7 @@ const routes: Routes = [
   { path: 'spells/detail/:id', component: SpellDetailComponent },
   { path: 'tactical', component: TacticalViewComponent },
   { path: 'items', component: ItemsComponent },
+  { path: 'items/detail/:id', component: ItemDetailComponent },
 ];
 
 @NgModule({

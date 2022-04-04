@@ -50,6 +50,7 @@ import { StaticManeuversComponent } from './pages/static-maneuvers/static-maneuv
 import { MovingManeuversComponent } from './pages/moving-maneuvers/moving-maneuvers.component';
 import { ItemsComponent } from './pages/items/items.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     StaticManeuversComponent,
     MovingManeuversComponent,
     ItemsComponent,
-    NavBarComponent
+    NavBarComponent,
+    ItemDetailComponent
   ],
   imports: [
     FormsModule,
