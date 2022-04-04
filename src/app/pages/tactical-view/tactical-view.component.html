@@ -1,44 +1,76 @@
 <mat-toolbar>
     <span>Tactical view</span>
     <div class="div-spacer"></div>
+    <button mat-button *ngIf="tacticalSession.state=='created'" (click)="start()">Start</button>
 </mat-toolbar>
-
-UNDER DEVELOPMENT
 
 <div class="outerContainer">
     <div fxLayout="row" fxLayoutGap="10px" class="container">
-        <div fxLayoutAlign="center center">
+        <div fxFlex="20" fxLayoutAlign="left center" class="div-tactical">Character</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">Swap</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">Normal</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">Deliberate</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">init roll</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">initiative</div>
+    </div>
 
-            <mat-grid-list cols="2" rowHeight="2:1">
-                <mat-grid-tile>P1</mat-grid-tile>
-                <mat-grid-tile>P2</mat-grid-tile>
-                <mat-grid-tile>P3</mat-grid-tile>
-                <mat-grid-tile>P4</mat-grid-tile>
-              </mat-grid-list>
-              
-
+    <div fxLayout="row" fxLayoutGap="10px" class="container" *ngFor="let character of characters">
+        <div fxFlex="20" fxLayoutAlign="left center" class="div-tactical">
+            <mat-card>
+                {{character.name}}
+            </mat-card>
         </div>
-        <div fxLayoutAlign="center center">2</div>
-        <div fxLayoutAlign="center center">3</div>
-        <div fxLayoutAlign="center center">4</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">
+            <mat-card>
+                <button mat-button>
+                    <mat-icon>add</mat-icon>
+                </button>
+            </mat-card>
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">
+            <mat-card>
+                <button mat-button>
+                    <mat-icon>add</mat-icon>
+                </button>
+            </mat-card>
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">
+            <mat-card>
+                <button mat-button>
+                    <mat-icon>add</mat-icon>
+                </button>
+            </mat-card>
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">
+            <mat-form-field class="initiative-form-field" appearance="outline" style="width: 80%;">
+                <mat-label>Roll</mat-label>
+                <input matInput placeholder="Roll" value="">
+              </mat-form-field>
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">
+            <mat-form-field class="initiative-form-field" appearance="outline" style="width: 80%;">
+                <mat-label>Roll</mat-label>
+                <input matInput placeholder="Roll" value="">
+              </mat-form-field>
+        </div>
     </div>
 </div>
 
-<div class="outerContainer">
-    <div fxLayout="row" fxLayoutGap="1px" fxLayout.sm="column" class="container">
-        <div fxLayoutAlign="center center">1</div>
-        <div fxFlex="2 1 auto" fxLayoutAlign="center center">
-            2
-        </div>
-        <div fxLayoutAlign="center center">3</div>
-        <div fxLayoutAlign="center center">4</div>
-    </div>
-</div>
+<br>
+<br>
 
-<hr>
-
-Context:
-<pre>{{tacticalSession | json}}</pre>
-
-Characters:
-<pre>{{characters | json}}</pre>
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Debug
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        Context:
+        <pre>{{tacticalSession | json}}</pre>
+        Round:
+        <pre>{{tacticalRound | json}}</pre>
+        Characters:
+        <pre>{{characters | json}}</pre>
+    </mat-expansion-panel>
+</mat-accordion>

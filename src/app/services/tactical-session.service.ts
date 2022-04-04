@@ -5,6 +5,7 @@ import { Observable, of, throwError } from 'rxjs';
 
 import { TacticalCharacterContext } from '../model/character-context';
 import { TacticalSession, TacticalSessionCreation, TacticalSessionUpdate  } from '../model/session';
+import { TacticalRound } from '../model/round';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -67,6 +68,11 @@ export class TacticalSessionService {
     return this.http.delete(url, {observe: 'response'}).pipe(
       switchMap(res => res.status === 204 ? of([]) : of(res))
     );
+  }
+
+  startRound(tacticalSessionId: string): Observable<TacticalRound> {
+    const url = `${this.baseUrlTacticalSessions}/${tacticalSessionId}/round`;
+    return this.http.post<TacticalRound>(url, this.httpOptions).pipe();
   }
 
 }

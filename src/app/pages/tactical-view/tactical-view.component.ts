@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TacticalCharacterContext } from 'src/app/model/character-context';
+import { TacticalRound } from 'src/app/model/round';
 
 import { TacticalSession } from 'src/app/model/session';
 import { TacticalSessionService } from 'src/app/services/tactical-session.service';
@@ -13,6 +14,7 @@ import { TacticalSessionService } from 'src/app/services/tactical-session.servic
 export class TacticalViewComponent implements OnInit {
 
   tacticalSession: TacticalSession = {} as TacticalSession;
+  tacticalRound: TacticalRound = {} as TacticalRound;
   characters: TacticalCharacterContext[] = [];
 
   constructor(
@@ -38,6 +40,12 @@ export class TacticalViewComponent implements OnInit {
     this.tacticalSessionService.findTacticalCharacterContexts(tacticalSessionId).subscribe(response => {
       this.characters = response;
     })
+  }
+
+  start() {
+    this.tacticalSessionService.startRound(this.tacticalSession.id).subscribe(response => {
+      this.tacticalRound = response;
+    });
   }
 
 }
