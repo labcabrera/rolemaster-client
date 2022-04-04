@@ -48,7 +48,7 @@ export class StrategicSessionsComponent implements OnInit, AfterViewInit {
     console.log("Creating session");
     var name = 'Demo session ' + new Date().toISOString();
     var request = {name:name};
-    this.sessionService.createSession(request)
+    this.sessionService.create(request)
       .subscribe(session => {
         this.sessions.push(session);
       });
@@ -56,7 +56,7 @@ export class StrategicSessionsComponent implements OnInit, AfterViewInit {
 
   deleteSession(session: StrategicSession): void {
     this.sessions = this.sessions.filter(h => h !== session);
-    this.sessionService.deleteSession(session.id).subscribe();
+    this.sessionService.delete(session.id).subscribe();
   }
 
 }

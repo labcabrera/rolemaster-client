@@ -1,9 +1,9 @@
 <mat-toolbar>
     <div>Tactical session</div>
     <div class="div-spacer"></div>
-    <button mat-button>Cancel</button>
-    <button mat-button><mat-icon>edit</mat-icon></button>
-    <button mat-button><mat-icon>save_alt</mat-icon></button>
+    <button mat-button *ngIf="isEditMode()" (click)="cancelEdit()">Cancel</button>
+    <button mat-button *ngIf="isEditMode()" (click)="save()"><mat-icon>save_alt</mat-icon></button>
+    <button mat-button *ngIf="!isEditMode()" (click)="startEdit()"><mat-icon>edit</mat-icon></button>
     <button mat-button (click)="delete()"><mat-icon>delete</mat-icon></button>
 </mat-toolbar>
 
@@ -22,5 +22,15 @@
     <mat-form-field appearance="outline" class="common-form-field">
         <mat-label>Description</mat-label>
         <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="common-form-field">
+        <mat-label>State</mat-label>
+        <input matInput value="{{this.tacticalSession.state}}" readonly>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="common-form-field">
+        <mat-label>Round</mat-label>
+        <input matInput value="{{this.tacticalSession.currentRound}}" readonly>
     </mat-form-field>
 </form>

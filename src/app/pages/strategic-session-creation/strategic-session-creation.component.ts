@@ -38,7 +38,7 @@ export class StrategicSessionCreationComponent implements OnInit {
 
   createStrategicSession() {
     let request = this.form.value as SessionCreationRequest;
-    this.strategicSessionService.createSession(request).subscribe(result => {
+    this.strategicSessionService.create(request).subscribe(result => {
       let id = result.id;
       this.router.navigateByUrl("strategic-sessions/detail/" + id);
     });

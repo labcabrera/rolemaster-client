@@ -46,7 +46,15 @@
   </div>
 </form>
 
+<h3>Tactical sessions</h3>
+<mat-list>
+  <mat-list-item *ngFor="let ts of tacticalSessions" routerLink="/tactical-sessions/detail/{{ts.id}}">
+    {{ts.name}}
+  </mat-list-item>
+</mat-list>
+
 <!--
 <hr>
 <pre>{{this.strategicSession | json}}</pre>
+<pre>{{tacticalSessions | json}}</pre>
 -->

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, map, tap, switchMap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 
-import { TacticalSession, TacticalSessionCreation  } from '../model/session';
+import { TacticalSession, TacticalSessionCreation, TacticalSessionUpdate  } from '../model/session';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -20,17 +20,27 @@ export class TacticalSessionsService {
   constructor(
     private http: HttpClient) {}
 
-  findTacticalSessions(): Observable<TacticalSession[]> {
+  find(): Observable<TacticalSession[]> {
     return this.http.get<TacticalSession[]>(this.baseUrl).pipe();
   }
 
-  findTacticalSessionById(id: String): Observable<TacticalSession> {
+  findById(id: String): Observable<TacticalSession> {
     const url = `${this.baseUrl}/${id}`;
     return this.http.get<TacticalSession>(url).pipe();
   }
 
+  findByStrategicSessionId(id: String): Observable<TacticalSession[]> {
+    const url = `${this.baseUrl}/?strategicSessionId=${id}`;
+    return this.http.get<TacticalSession[]>(url).pipe();
+  }
+
   create(request: TacticalSessionCreation): Observable<TacticalSession> {
     return this.http.post<TacticalSession>(this.baseUrl, request, this.httpOptions).pipe();
+  }
+
+  update(id: string, request: TacticalSessionUpdate): Observable<TacticalSession> {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.patch<TacticalSession>(url, request, this.httpOptions).pipe();
   }
 
   delete(id: String) {

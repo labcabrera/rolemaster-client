@@ -13,6 +13,8 @@ export interface TacticalSession {
     strategicSessionId: string;
     name: string;
     description: string;
+    currentRound: number;
+    state: string;
     metadata: Metadata;
 }
 
@@ -22,6 +24,11 @@ export interface SessionCreationRequest {
 
 export interface TacticalSessionCreation {
     strategicSessionId: string;
+    name: string;
+    description: string;
+}
+
+export interface TacticalSessionUpdate {
     name: string;
     description: string;
 }

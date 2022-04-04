@@ -28,23 +28,23 @@ export class StrategicSessionsService {
       );
   }
 
-  getSession(id: String): Observable<StrategicSession> {
+  findById(id: String): Observable<StrategicSession> {
     const url = `${this.baseUrl}/${id}`;
     return this.http.get<StrategicSession>(url).pipe();
   }
 
-  createSession(request: SessionCreationRequest): Observable<StrategicSession> {
+  create(request: SessionCreationRequest): Observable<StrategicSession> {
     return this.http.post<StrategicSession>(this.baseUrl, request, this.httpOptions)
       .pipe(
         catchError(this.handleError2)
     );
   }
 
-  updateSession(id: string, request: any): Observable<StrategicSession> {
+  update(id: string, request: any): Observable<StrategicSession> {
     return this.http.patch<any>(this.baseUrl + "/" + id, request, this.httpOptions).pipe();
   }
 
-  deleteSession(id: String) {
+  delete(id: String) {
     const url = `${this.baseUrl}/${id}`;
     return this.http.delete<StrategicSession>(url, {observe: 'response'}).pipe(
       switchMap(res => res.status === 204 ? of([]) : of(res))

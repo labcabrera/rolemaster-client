@@ -30,7 +30,7 @@ export class TacticalSessionCreationComponent implements OnInit {
     });
     this.route.queryParams.subscribe(params => {
       const id = params['strategicSessionId'];
-      this.strategicSessionService.getSession(id).subscribe(response => {
+      this.strategicSessionService.findById(id).subscribe(response => {
         this.strategicSession = response;
       });
     });

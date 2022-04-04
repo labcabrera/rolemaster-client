@@ -31,7 +31,7 @@ export class TacticalSessionsComponent implements OnInit, AfterViewInit {
   }
   
   getTacticalSessions() {
-    this.tacticalSessionService.findTacticalSessions().subscribe(s => {
+    this.tacticalSessionService.find().subscribe(s => {
       this.tacticalSessions = s;
       this.dataSource.data = this.tacticalSessions;
     });
