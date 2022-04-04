@@ -4,36 +4,40 @@
     <button mat-button routerLink="/strategic-sessions/creation"><mat-icon>add_box</mat-icon></button>
 </mat-toolbar>
 
-<mat-form-field appearance="standard">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="skill name" #input>
-</mat-form-field>
+<div class="outerContainer">
 
-<table mat-table #skillTable [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>Id</th>
-        <td mat-cell *matCellDef="let element">{{element.id}}</td>
-    </ng-container>
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let element">{{element.name}}</td>
-    </ng-container>
-    <ng-container matColumnDef="universe">
-        <th mat-header-cell *matHeaderCellDef>Universe</th>
-        <td mat-cell *matCellDef="let element">{{element.universeId}}</td>
-    </ng-container>
-    <ng-container matColumnDef="created">
-        <th mat-header-cell *matHeaderCellDef>Created</th>
-        <td mat-cell *matCellDef="let element">{{element.metadata?.created}}</td>
-    </ng-container>
-    <ng-container matColumnDef="updated">
-        <th mat-header-cell *matHeaderCellDef>Updated</th>
-        <td mat-cell *matCellDef="let element">{{element.metadata?.updated}}</td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/strategic-sessions/detail/', row.id]" class="tr-data"></tr>
-    <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
-</table>
-<mat-paginator [pageSizeOptions]="[10, 25, 50]" aria-label="Select page of users"></mat-paginator>
+    <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="skill name" #input>
+    </mat-form-field>
+
+    <table mat-table #skillTable [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let element">{{element.id}}</td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element">{{element.name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="universe">
+            <th mat-header-cell *matHeaderCellDef>Universe</th>
+            <td mat-cell *matCellDef="let element">{{element.universeId}}</td>
+        </ng-container>
+        <ng-container matColumnDef="created">
+            <th mat-header-cell *matHeaderCellDef>Created</th>
+            <td mat-cell *matCellDef="let element">{{element.metadata?.created}}</td>
+        </ng-container>
+        <ng-container matColumnDef="updated">
+            <th mat-header-cell *matHeaderCellDef>Updated</th>
+            <td mat-cell *matCellDef="let element">{{element.metadata?.updated}}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/strategic-sessions/detail/', row.id]" class="tr-data"></tr>
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 25, 50]" aria-label="Select page of users"></mat-paginator>
+
+</div>

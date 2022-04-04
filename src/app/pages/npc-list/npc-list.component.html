@@ -3,6 +3,8 @@
     <span>&nbsp;NPCs</span>
 </mat-toolbar>
 
+<div class="outerContainer">
+
 <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="filter" #input>
@@ -35,6 +37,7 @@
 </table>
 <mat-paginator [pageSizeOptions]="[10, 25, 50]" aria-label="Select page of users"></mat-paginator>
 
+</div>
 <!--
 <pre>{{npcs | json}}</pre>
 -->

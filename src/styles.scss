@@ -22,8 +22,12 @@ body {
     background-color: #303030;
 }
 
-
-//border-bottom: 1px solid #1D77D5;
+.outerContainer {
+  margin-top: 10pt;
+  margin-left: 10pt;
+  margin-right: 10pt;
+  padding-bottom: 10pt;
+}
 
 .div-content {
   padding: 10px;

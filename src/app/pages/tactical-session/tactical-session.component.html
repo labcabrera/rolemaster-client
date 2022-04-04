@@ -14,54 +14,58 @@
     </button>
 </mat-toolbar>
 
-<form [formGroup]="form">
-    <mat-form-field appearance="outline" class="common-form-field">
-        <mat-label>Strategic session</mat-label>
-        <input matInput value="{{this.strategicSession.name}}" readonly>
-        <mat-icon matSuffix (click)="navigateToStrategicSession()" class="u-mat-icon-button">launch</mat-icon>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" class="common-form-field">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name">
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" class="common-form-field">
-        <mat-label>Description</mat-label>
-        <textarea matInput formControlName="description"></textarea>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" class="common-form-field">
-        <mat-label>State</mat-label>
-        <input matInput value="{{this.tacticalSession.state}}" readonly>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" class="common-form-field">
-        <mat-label>Round</mat-label>
-        <input matInput value="{{this.tacticalSession.currentRound}}" readonly>
-    </mat-form-field>
-</form>
+<div class="outerContainer">
 
-<h3>Characters</h3>
+    <form [formGroup]="form">
+        <mat-form-field appearance="outline" class="common-form-field">
+            <mat-label>Strategic session</mat-label>
+            <input matInput value="{{this.strategicSession.name}}" readonly>
+            <mat-icon matSuffix (click)="navigateToStrategicSession()" class="u-mat-icon-button">launch</mat-icon>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline" class="common-form-field">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline" class="common-form-field">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline" class="common-form-field">
+            <mat-label>State</mat-label>
+            <input matInput value="{{this.tacticalSession.state}}" readonly>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline" class="common-form-field">
+            <mat-label>Round</mat-label>
+            <input matInput value="{{this.tacticalSession.currentRound}}" readonly>
+        </mat-form-field>
+    </form>
 
-<mat-grid-list cols="5" rowHeight="100px">
-    <mat-grid-tile *ngFor="let ctx of tacticalCharacterContexts" [colspan]=1 [rowspan]=1>
-        <mat-card class="character-context-card">
-            <span>{{ctx.name}}</span>
-            <button mat-button (click)="deleteTacticalCharacterContext(ctx.id)"><mat-icon>delete</mat-icon></button>
-        </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>
+    <h3>Characters</h3>
+
+    <mat-grid-list cols="5" rowHeight="100px">
+        <mat-grid-tile *ngFor="let ctx of tacticalCharacterContexts" [colspan]=1 [rowspan]=1>
+            <mat-card class="character-context-card">
+                <span>{{ctx.name}}</span>
+                <button mat-button (click)="deleteTacticalCharacterContext(ctx.id)"><mat-icon>delete</mat-icon></button>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
 
 
-<h3>Add npc</h3>
-<form [formGroup]="formAddNpc">
-    <mat-form-field appearance="outline" class="common-form-field">
-        <mat-label>NPC Identifier</mat-label>
-        <input matInput formControlName="npcId">
-    </mat-form-field>
-    <button mat-button (click)="addNpc()"><mat-icon>add_box</mat-icon></button>
-</form>
+    <h3>Add npc</h3>
+    <form [formGroup]="formAddNpc">
+        <mat-form-field appearance="outline" class="common-form-field">
+            <mat-label>NPC Identifier</mat-label>
+            <input matInput formControlName="npcId">
+        </mat-form-field>
+        <button mat-button (click)="addNpc()"><mat-icon>add_box</mat-icon></button>
+    </form>
+
+</div>
 
 <hr>
 

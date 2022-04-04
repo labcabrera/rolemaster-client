@@ -8,7 +8,7 @@
 </mat-toolbar>
 
 <div class="outerContainer">
-    <div fxLayout="row" fxLayoutGap="10px" class="container">
+    <div fxLayout="row" fxLayoutGap="10px">
         <div fxFlex="20" fxLayoutAlign="left center" class="div-tactical">Character</div>
         <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">Swap</div>
         <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">Normal</div>
@@ -17,7 +17,7 @@
         <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">initiative</div>
     </div>
 
-    <div fxLayout="row" fxLayoutGap="10px" class="container" *ngFor="let character of characters">
+    <div fxLayout="row" fxLayoutGap="10px" *ngFor="let character of characters">
         <div fxFlex="20" fxLayoutAlign="left center" class="div-tactical">
             <mat-card>
                 {{character.name}}
