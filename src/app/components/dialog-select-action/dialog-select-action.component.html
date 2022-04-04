@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Action selection</h2>
+<mat-dialog-content>
+
+    <mat-tab-group mat-align-tabs="start">
+        <mat-tab label="Movement">Movement
+            <mat-form-field appearance="fill">
+                <mat-label>Pace</mat-label>
+                <mat-select>
+                    <mat-option>foo</mat-option>
+                    <mat-option>bar</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-tab>
+
+        <mat-tab label="Melee">Melee</mat-tab>
+
+        <mat-tab label="Ranged">Ranged</mat-tab>
+
+        <mat-tab label="Static M">Static M</mat-tab>
+
+        <mat-tab label="Moving M">Moving M</mat-tab>
+
+        <mat-tab label="Spell">Spell</mat-tab>
+    </mat-tab-group>
+
+    Action Percent:
+    <mat-slider thumbLabel min="{{minActionPercent}}" max="{{maxActionPercent}}" aria-label="units"></mat-slider>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Add</button>
+</mat-dialog-actions>

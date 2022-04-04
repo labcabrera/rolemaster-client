@@ -51,6 +51,7 @@ import { MovingManeuversComponent } from './pages/moving-maneuvers/moving-maneuv
 import { ItemsComponent } from './pages/items/items.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
+import { DialogSelectActionComponent } from './components/dialog-select-action/dialog-select-action.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
     MovingManeuversComponent,
     ItemsComponent,
     NavBarComponent,
-    ItemDetailComponent
+    ItemDetailComponent,
+    DialogSelectActionComponent
   ],
   imports: [
     FormsModule,

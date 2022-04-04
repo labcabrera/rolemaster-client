@@ -23,7 +23,8 @@ import { MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatPaginatorModule } from '@angular/material/paginator'; 
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTabsModule } from '@angular/material/tabs'; 
 
 // Flex Layout
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -51,6 +52,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatAutocompleteModule,
     MatDialogModule,
     MatPaginatorModule,
+    MatTabsModule,
     FlexLayoutModule
   ],
   exports: [
@@ -75,6 +77,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatAutocompleteModule,
     MatDialogModule,
     MatPaginatorModule,
+    MatTabsModule,
     FlexLayoutModule
   ]
 })
