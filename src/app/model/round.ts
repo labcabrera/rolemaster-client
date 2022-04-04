@@ -13,5 +13,6 @@ export interface TacticalRound {
 }
 
 export interface TacticalAction {
-
+    type: string;
+    percent: number;
 }

@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Action selection</h2>
 <mat-dialog-content>
 
-    <mat-tab-group mat-align-tabs="start">
+    <mat-tab-group #matTabGroup mat-align-tabs="start" (selectedTabChange)="configureActionType($event)">
 
         <mat-tab label="Movement">
             <mat-form-field appearance="fill">
@@ -26,6 +26,9 @@
                     <mat-option>todo</mat-option>
                 </mat-select>
             </mat-form-field>
+            <br>
+            Parry percent
+            <mat-slider thumbLabel min="0" max="100" aria-label="units"></mat-slider>
         </mat-tab>
 
         <mat-tab label="Ranged">Ranged</mat-tab>
@@ -46,3 +49,5 @@
     <button mat-button mat-dialog-close>Cancel</button>
     <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Add</button>
 </mat-dialog-actions>
+
+<pre>{{action | json}}</pre>

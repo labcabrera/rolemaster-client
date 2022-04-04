@@ -32,7 +32,7 @@ import { ProfessionDetailComponent } from './pages/profession-detail/profession-
 import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/characters', pathMatch: 'full' },
+  { path: '', redirectTo: '/strategic-sessions', pathMatch: 'full' },
   { path: 'characters', component: CharacterListComponent },
   { path: 'characters/detail/:id', component: CharacterViewComponent },
   { path: 'strategic-sessions', component: StrategicSessionsComponent },
