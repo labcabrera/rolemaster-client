@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { StrategicSession, TacticalSessionCreation } from 'src/app/model/session';
 import { TacticalSessionsService } from 'src/app/services/tactical-sessions.service';
+import { StrategicSessionsService } from 'src/app/services/strategic-sessions.service';
 
 @Component({
   selector: 'app-tactical-session-creation',
@@ -10,9 +13,11 @@ import { TacticalSessionsService } from 'src/app/services/tactical-sessions.serv
 })
 export class TacticalSessionCreationComponent implements OnInit {
 
+  strategicSession: StrategicSession = {} as StrategicSession;
   form: FormGroup;
 
   constructor(
+    private strategicSessionService: StrategicSessionsService,
     private tacticalSessionService: TacticalSessionsService,
     private fb: FormBuilder,
     private router: Router,
@@ -24,8 +29,10 @@ export class TacticalSessionCreationComponent implements OnInit {
       description: ['']
     });
     this.route.queryParams.subscribe(params => {
-      console.log(params);
-      this.form.get("strategicSessionId")?.setValue(params['strategicSessionId']);
+      const id = params['strategicSessionId'];
+      this.strategicSessionService.getSession(id).subscribe(response => {
+        this.strategicSession = response;
+      });
     });
   }
 
@@ -33,7 +40,9 @@ export class TacticalSessionCreationComponent implements OnInit {
   }
 
   save() {
-    this.tacticalSessionService.create(this.form.value).subscribe(result => {
+    var request = this.form.value as TacticalSessionCreation;
+    request.strategicSessionId = this.strategicSession.id;
+    this.tacticalSessionService.create(request).subscribe(result => {
       this.router.navigateByUrl("tactical-sessions/detail/" + result.id);
     });
   }

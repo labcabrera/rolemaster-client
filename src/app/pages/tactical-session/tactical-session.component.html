@@ -2,15 +2,16 @@
     <div>Tactical session</div>
     <div class="div-spacer"></div>
     <button mat-button>Cancel</button>
-    <button mat-button>Edit</button>
-    <button mat-button>Save</button>
-    <button mat-button (click)="delete()">Delete</button>
+    <button mat-button><mat-icon>edit</mat-icon></button>
+    <button mat-button><mat-icon>save_alt</mat-icon></button>
+    <button mat-button (click)="delete()"><mat-icon>delete</mat-icon></button>
 </mat-toolbar>
 
 <form [formGroup]="form">
     <mat-form-field appearance="outline" class="common-form-field">
         <mat-label>Strategic session</mat-label>
-        <input matInput formControlName="strategicSessionName">
+        <input matInput value="{{this.strategicSession.name}}" readonly>
+        <mat-icon matSuffix (click)="navigateToStrategicSession()" class="u-mat-icon-button">launch</mat-icon>
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline" class="common-form-field">

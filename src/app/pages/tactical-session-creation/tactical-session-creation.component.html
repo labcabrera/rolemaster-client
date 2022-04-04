@@ -3,14 +3,14 @@
         <span>Tactical session creation</span>
     </div>
     <div class="div-spacer"></div>
-    <button mat-button (click)="save()">Save</button>
+    <button mat-button (click)="save()"><mat-icon>save_alt</mat-icon></button>
 </mat-toolbar>
 
 <form [formGroup]="form">
     <br>
     <mat-form-field appearance="fill" class="common-form-field">
         <mat-label>Strategic session</mat-label>
-        <input matInput formControlName="strategicSessionId">
+        <input matInput readonly value="{{this.strategicSession.name}}">
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill" class="common-form-field">

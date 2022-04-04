@@ -6,9 +6,9 @@
     [queryParams]="{strategicSessionId: this.strategicSession?.id}"
     *ngIf="!isEditMode()">New tactical</button>
   <button mat-button (click)="cancelEdit()" *ngIf="isEditMode()">Cancel</button>
-  <button mat-button (click)="startEdit()" *ngIf="!isEditMode()">Edit</button>
-  <button mat-button (click)="saveSession()" *ngIf="isEditMode()">Save</button>
-  <button mat-button (click)="deleteSession()">Delete</button>
+  <button mat-button (click)="startEdit()" *ngIf="!isEditMode()"><mat-icon>edit</mat-icon></button>
+  <button mat-button (click)="saveSession()" *ngIf="isEditMode()"><mat-icon>save_alt</mat-icon></button>
+  <button mat-button (click)="deleteSession()"><mat-icon>delete</mat-icon></button>
 </mat-toolbar>
 
 

@@ -19,3 +19,9 @@ export interface TacticalSession {
 export interface SessionCreationRequest {
     name: string;
 }
+
+export interface TacticalSessionCreation {
+    strategicSessionId: string;
+    name: string;
+    description: string;
+}

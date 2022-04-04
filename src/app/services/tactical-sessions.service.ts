@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, map, tap, switchMap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 
-import { TacticalSession  } from '../model/session';
+import { TacticalSession, TacticalSessionCreation  } from '../model/session';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -29,7 +29,7 @@ export class TacticalSessionsService {
     return this.http.get<TacticalSession>(url).pipe();
   }
 
-  create(request: any): Observable<TacticalSession> {
+  create(request: TacticalSessionCreation): Observable<TacticalSession> {
     return this.http.post<TacticalSession>(this.baseUrl, request, this.httpOptions).pipe();
   }
 

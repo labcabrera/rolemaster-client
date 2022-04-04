@@ -24,7 +24,6 @@ export class TacticalSessionComponent implements OnInit {
     private strategicSessionService: StrategicSessionsService,
     private fb: FormBuilder) {
       this.form = fb.group({
-        strategicSessionName: [''],
         name: ['', Validators.required],
         description: [''],
       });
@@ -55,6 +54,10 @@ export class TacticalSessionComponent implements OnInit {
     this.tacticalSessionService.delete(this.tacticalSession.id).subscribe(result => {
       this.router.navigateByUrl("/tactical-sessions");
     });
+  }
+
+  navigateToStrategicSession() {
+    this.router.navigateByUrl("/strategic-sessions/detail/" + this.strategicSession.id);
   }
 
 }
