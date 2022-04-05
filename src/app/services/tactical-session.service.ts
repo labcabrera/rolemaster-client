@@ -7,6 +7,7 @@ import { TacticalCharacterContext } from '../model/character-context';
 import { TacticalSession, TacticalSessionCreation, TacticalSessionUpdate  } from '../model/session';
 import { TacticalRound } from '../model/round';
 import { environment } from 'src/environments/environment';
+import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class TacticalSessionService {
   };
 
   constructor(
+    private messageService: MessageService,
     private http: HttpClient) {}
 
   find(): Observable<TacticalSession[]> {

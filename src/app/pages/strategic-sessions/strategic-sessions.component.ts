@@ -32,8 +32,8 @@ export class StrategicSessionsComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort!;
   }
 
-  getSessions(): void {
-    this.sessionService.getSessions().subscribe(c => {
+  getSessions() {
+    this.sessionService.find().subscribe(c => {
       this.sessions = c;
       this.dataSource.data = this.sessions;
     });
