@@ -19,10 +19,10 @@ export class TrainingPackageComponent implements OnInit {
 
   ngOnInit(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
-    this.loadSpell(id);
+    this.loadTrainingPackage(id);
   }
 
-  loadSpell(id: string) {
+  loadTrainingPackage(id: string) {
     this.trainingPackageService.findById(id).subscribe(result => {
       this.trainingPackage = result;
     });

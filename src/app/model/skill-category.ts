@@ -4,4 +4,7 @@ export interface SkillCategory {
     group: string;
     description: string;
     attributeBonus: string[];
+    useRealmAttributeBonus: boolean;
+    skillCategoryBonusProgression: string;
+    skillBonusProgression: string;
 }
