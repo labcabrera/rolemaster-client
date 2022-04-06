@@ -62,8 +62,8 @@
     <form class="example-form">
         <mat-form-field class="common-form-field" appearance="outline">
             <mat-label>Npc</mat-label>
-            <input matInput aria-label="Npc" [matAutocomplete]="auto" [formControl]="npcAddFormControl">
-            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayNpcOption">
+            <input matInput aria-label="Npc" [matAutocomplete]="autoCompleteNpc" [formControl]="npcAddFormControl">
+            <mat-autocomplete #autoCompleteNpc="matAutocomplete" [displayWith]="displayNpcOption">
                 <mat-option *ngFor="let npc of npcAddFiltered | async" [value]="npc">
                     {{npc.name}}
                 </mat-option>

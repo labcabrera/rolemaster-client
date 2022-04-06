@@ -30,6 +30,7 @@ import { MovingManeuversComponent } from './pages/moving-maneuvers/moving-maneuv
 import { RaceDetailComponent } from './pages/race-detail/race-detail.component';
 import { ProfessionDetailComponent } from './pages/profession-detail/profession-detail.component';
 import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
+import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/strategic-sessions', pathMatch: 'full' },
@@ -62,6 +63,7 @@ const routes: Routes = [
   { path: 'tactical', component: TacticalViewComponent },
   { path: 'items', component: ItemsComponent },
   { path: 'items/detail/:id', component: ItemDetailComponent },
+  { path: 'settings', component: UserSettingsComponent },
 ];
 
 @NgModule({

@@ -53,6 +53,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
 import { DialogSelectActionComponent } from './components/dialog-select-action/dialog-select-action.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { MessagesComponent } from './components/messages/messages.component';
     NavBarComponent,
     ItemDetailComponent,
     DialogSelectActionComponent,
-    MessagesComponent
+    MessagesComponent,
+    UserSettingsComponent
   ],
   imports: [
     FormsModule,
