@@ -58,6 +58,11 @@ export class TacticalSessionService {
     return this.http.post<TacticalCharacterContext>(url, this.httpOptions).pipe();
   }
 
+  addCharacter(tacticalSessionId: string, characterId: string): Observable<TacticalCharacterContext> {
+    const url = `${this.baseUrlTacticalSessions}/${tacticalSessionId}/characters/player/${characterId}`;
+    return this.http.post<TacticalCharacterContext>(url, this.httpOptions).pipe();
+  }
+
   delete(id: String) {
     const url = `${this.baseUrlTacticalSessions}/${id}`;
     return this.http.delete(url, {observe: 'response'}).pipe(
