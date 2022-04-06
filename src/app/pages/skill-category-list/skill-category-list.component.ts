@@ -16,7 +16,7 @@ export class SkillCategoryListComponent implements OnInit, AfterViewInit {
 
   skillCategories?: SkillCategory[];
 
-  displayedColumns: string[] = [ "name", "group", "attributeBonus", "description" ];
+  displayedColumns: string[] = [ "name", "group", "attributeBonus", "skillBonusProgression", "skillCategoryBonusProgression", "description" ];
   dataSource: MatTableDataSource<SkillCategory> = new MatTableDataSource<SkillCategory>(this.skillCategories);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
