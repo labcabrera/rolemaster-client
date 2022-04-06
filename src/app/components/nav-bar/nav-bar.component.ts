@@ -25,6 +25,7 @@ export class NavBarComponent implements OnInit {
     { link: '/professions', name: 'Professions', icon: 'scatter_plot'},
     { link: '/skill-categories', name: 'Skill categories', icon: 'build'},
     { link: '/skills', name: 'Skills', icon: 'build'},
+    { link: '/training-packages', name: 'Training packages', icon: 'scatter_plot'},
     { link: '/spell-lists', name: 'Spell lists', icon: 'blur_on'},
     { link: '/spells', name: 'Spells', icon: 'blur_on'},
     { link: '/npc', name: 'NPCs', icon: 'pets'},

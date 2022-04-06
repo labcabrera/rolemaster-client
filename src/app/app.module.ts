@@ -54,6 +54,8 @@ import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
 import { DialogSelectActionComponent } from './components/dialog-select-action/dialog-select-action.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
+import { TrainingPackagesComponent } from './pages/training-packages/training-packages.component';
+import { TrainingPackageComponent } from './pages/training-package/training-package.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +100,9 @@ import { UserSettingsComponent } from './pages/user-settings/user-settings.compo
     ItemDetailComponent,
     DialogSelectActionComponent,
     MessagesComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    TrainingPackagesComponent,
+    TrainingPackageComponent
   ],
   imports: [
     FormsModule,

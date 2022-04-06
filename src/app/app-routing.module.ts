@@ -31,6 +31,8 @@ import { RaceDetailComponent } from './pages/race-detail/race-detail.component';
 import { ProfessionDetailComponent } from './pages/profession-detail/profession-detail.component';
 import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
+import { TrainingPackageComponent } from './pages/training-package/training-package.component';
+import { TrainingPackagesComponent } from './pages/training-packages/training-packages.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/strategic-sessions', pathMatch: 'full' },
@@ -56,6 +58,8 @@ const routes: Routes = [
   { path: 'skill-categories/detail/:id', component: SkillCategoryDetailComponent },
   { path: 'skills', component: SkillListComponent },
   { path: 'skills/detail/:id', component: SkillDetailComponent },
+  { path: 'training-packages', component: TrainingPackagesComponent },
+  { path: 'training-packages/detail/:id', component: TrainingPackageComponent },
   { path: 'spell-lists', component: SpellListComponent },
   { path: 'spell-lists/detail/:id', component: SpellListDetailComponent },
   { path: 'spells', component: SpellsComponent },
