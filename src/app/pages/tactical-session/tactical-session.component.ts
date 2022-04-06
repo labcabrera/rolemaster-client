@@ -1,12 +1,16 @@
 import { TagCloseToken } from '@angular/compiler/src/ml_parser/tokens';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TacticalCharacterContext } from 'src/app/model/character-context';
+import { Observable, tap } from 'rxjs';
+import { map, startWith} from 'rxjs/operators';
 
+import { Npc } from 'src/app/model/npc';
+import { TacticalCharacterContext } from 'src/app/model/character-context';
 import { StrategicSession, TacticalSession, TacticalSessionUpdate } from 'src/app/model/session';
 import { StrategicSessionsService } from 'src/app/services/strategic-sessions.service';
 import { TacticalSessionService } from 'src/app/services/tactical-session.service';
+import { NpcService } from 'src/app/services/npc.service';
 
 @Component({
   selector: 'app-tactical-session',
@@ -20,21 +24,27 @@ export class TacticalSessionComponent implements OnInit {
   tacticalCharacterContexts: TacticalCharacterContext[] = [];
 
   form: FormGroup;
-  formAddNpc: FormGroup;
+
+  npcList: Npc[] = [];
+  npcAddFormControl = new FormControl();
+  npcAddFiltered: Observable<Npc[]>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private tacticalSessionService: TacticalSessionService,
     private strategicSessionService: StrategicSessionsService,
+    private npcService: NpcService,
     private fb: FormBuilder) {
     this.form = fb.group({
       name: ['', Validators.required],
       description: [''],
     });
-    this.formAddNpc = fb.group({
-      npcId: ['ork-figther-mele-i', Validators.required]
-    });
+    this.npcAddFiltered = this.npcAddFormControl.valueChanges.pipe(
+      startWith(''),
+      map(value => (typeof value === 'string' ? value : value.name)),
+      map(name => (name ? this._filterStates(name) : this.npcList.slice())),
+    );
     this.form.disable();
   }
 
@@ -42,6 +52,7 @@ export class TacticalSessionComponent implements OnInit {
     const tacticalSessionId = String(this.route.snapshot.paramMap.get('id'));
     this.loadTacticalSession(tacticalSessionId);
     this.loadTacticalCharacterContexts(tacticalSessionId);
+    this.loadNpcs();
   }
 
   loadTacticalSession(tacticalSessionId: string) {
@@ -70,6 +81,10 @@ export class TacticalSessionComponent implements OnInit {
     });
   }
 
+  loadNpcs() {
+    this.npcService.find().subscribe(result => this.npcList = result);
+  }
+
   save() {
     const id = this.tacticalSession.id;
     const update = this.form.value as TacticalSessionUpdate;
@@ -96,12 +111,20 @@ export class TacticalSessionComponent implements OnInit {
   }
 
   addNpc() {
-    var npcId = this.formAddNpc.value["npcId"];
+    const npcId = this.npcAddFormControl.value.id;
     this.tacticalSessionService.addNpc(this.tacticalSession.id, npcId).subscribe(result => {
       this.tacticalCharacterContexts.push(result);
     });
   }
 
+  displayNpcOption(npc: Npc) {
+    return npc && npc.name ? npc.name : '';
+  }
+
+  private _filterStates(value: string): Npc[] {
+    const filterValue = value.toLowerCase();
+    return this.npcList.filter(value => value.name.toLowerCase().includes(filterValue));
+  }
   
   startEdit() {
     this.form.enable();

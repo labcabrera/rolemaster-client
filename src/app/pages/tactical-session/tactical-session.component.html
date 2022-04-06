@@ -50,26 +50,32 @@
         <mat-grid-tile *ngFor="let ctx of tacticalCharacterContexts" [colspan]=1 [rowspan]=1>
             <mat-card class="character-context-card">
                 <span>{{ctx.name}}</span>
-                <button mat-button (click)="deleteTacticalCharacterContext(ctx.id)"><mat-icon>delete</mat-icon></button>
+                <button mat-button (click)="deleteTacticalCharacterContext(ctx.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
 
+    <br>
 
-    <h3>Add npc</h3>
-    <form [formGroup]="formAddNpc">
-        <mat-form-field appearance="outline" class="common-form-field">
-            <mat-label>NPC Identifier</mat-label>
-            <input matInput formControlName="npcId">
+    <form class="example-form">
+        <mat-form-field class="common-form-field" appearance="outline">
+            <mat-label>Npc</mat-label>
+            <input matInput aria-label="Npc" [matAutocomplete]="auto" [formControl]="npcAddFormControl">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayNpcOption">
+                <mat-option *ngFor="let npc of npcAddFiltered | async" [value]="npc">
+                    {{npc.name}}
+                </mat-option>
+            </mat-autocomplete>
         </mat-form-field>
-        <button mat-button (click)="addNpc()"><mat-icon>add_box</mat-icon></button>
+        <button mat-button (click)="addNpc()">
+            <mat-icon>add</mat-icon>
+        </button>
     </form>
 
 </div>
 
 <hr>
 
-<pre>{{formAddNpc.value | json}}</pre>
-
-
-<pre>{{tacticalCharacterContexts | json}}</pre>
+<pre>{{npcAddFormControl.value | json}}</pre>
