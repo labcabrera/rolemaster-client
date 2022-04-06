@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { CharacterInfo, CharacterSkillCategory } from '../../model/character-info';
@@ -16,8 +16,9 @@ export class CharacterViewComponent implements OnInit {
   skillCategoryDataSource: MatTableDataSource<CharacterSkillCategory>;
 
   constructor(
+    private characterService: CharacterService,
     private route: ActivatedRoute,
-    private characterService: CharacterService) {
+    private router: Router) {
     this.character = {} as CharacterInfo;
     this.skillCategoryDataSource = new MatTableDataSource([] as CharacterSkillCategory[]);
   }
@@ -27,6 +28,12 @@ export class CharacterViewComponent implements OnInit {
     this.characterService.getCharacter(id).subscribe(c => {
       this.character = c;
       this.skillCategoryDataSource = new MatTableDataSource(this.character.skillCategories);
+    });
+  }
+
+  delete() {
+    this.characterService.deleteCharacter(this.character.id).subscribe(result => {
+      this.router.navigateByUrl("/characters");
     });
   }
 
