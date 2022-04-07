@@ -21,28 +21,53 @@
         <div fxFlex="20" fxLayoutAlign="left center" class="div-tactical">
             <mat-card>
                 {{character.name}}
+                
             </mat-card>
         </div>
-        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">
-            <mat-card>
-                <button mat-button (click)="openActionSelectionDialog()">
+        <div fxFlex="10" fxLayoutAlign="center center" class="action-declaration">
+            
+            <div *ngIf="!hasAction(character.characterId, 'snap')">
+                <button mat-button (click)="openActionSelectionDialog(character.characterId, 'snap')">
                     <mat-icon>add</mat-icon>
                 </button>
-            </mat-card>
+            </div>
+            <div *ngIf="hasAction(character.characterId, 'snap')">
+                {{getAction(character.characterId, 'snap')?.type}}
+                <button mat-button (click)="removeDeclaredAction(character.characterId, 'snap')">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+            
         </div>
-        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">
-            <mat-card>
-                <button mat-button>
+        <div fxFlex="10" fxLayoutAlign="center center" class="action-declaration">
+            
+            <div *ngIf="!hasAction(character.characterId, 'normal')">
+                <button mat-button (click)="openActionSelectionDialog(character.characterId, 'normal')">
                     <mat-icon>add</mat-icon>
                 </button>
-            </mat-card>
+            </div>
+            <div *ngIf="hasAction(character.characterId, 'normal')">
+                {{getAction(character.characterId, 'normal')?.type}}
+                <button mat-button (click)="removeDeclaredAction(character.characterId, 'normal')">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+
         </div>
-        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">
-            <mat-card>
-                <button mat-button>
+        <div fxFlex="10" fxLayoutAlign="center center" class="action-declaration">
+
+            <div *ngIf="!hasAction(character.characterId, 'deliberate')">
+                <button mat-button (click)="openActionSelectionDialog(character.characterId, 'deliberate')">
                     <mat-icon>add</mat-icon>
                 </button>
-            </mat-card>
+            </div>
+            <div *ngIf="hasAction(character.characterId, 'deliberate')">
+                {{getAction(character.characterId, 'deliberate')?.type}}
+                <button mat-button (click)="removeDeclaredAction(character.characterId, 'deliberate')">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+
         </div>
         <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">
             <mat-form-field class="initiative-form-field" appearance="outline" style="width: 80%;">

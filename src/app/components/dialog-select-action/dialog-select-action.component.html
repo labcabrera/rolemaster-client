@@ -6,7 +6,7 @@
         <mat-tab label="Movement">
             <mat-form-field appearance="fill">
                 <mat-label>Pace</mat-label>
-                <mat-select>
+                <mat-select [(ngModel)]="action.pace">
                     <mat-option *ngFor="let option of movementPaces" [value]="option.key">{{option.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -41,13 +41,13 @@
     </mat-tab-group>
 
     Action Percent:
-    <mat-slider thumbLabel min="{{minActionPercent}}" max="{{maxActionPercent}}" aria-label="units"></mat-slider>
+    <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="{{minActionPercent}}" max="{{maxActionPercent}}" aria-label="units"></mat-slider>
 
 </mat-dialog-content>
 
 <mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Add</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="declareAction()">Add</button>
 </mat-dialog-actions>
 
 <pre>{{action | json}}</pre>

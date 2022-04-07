@@ -1,4 +1,5 @@
 import { Metadata } from "./metadata";
+import { TacticalAction } from "./actions";
 
 export interface TacticalRound {
 	id: string;
@@ -10,9 +11,4 @@ export interface TacticalRound {
     initiativeModifiersMap: Map<string,number>;
     initiatives: Map<string,Map<string,number>>;
     metadata: Metadata;
-}
-
-export interface TacticalAction {
-    type: string;
-    percent: number;
 }

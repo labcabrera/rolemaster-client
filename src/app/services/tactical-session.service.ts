@@ -14,6 +14,7 @@ import { MessageService } from './message.service';
 })
 export class TacticalSessionService {
 
+
   private baseUrlTacticalSessions = `${environment.apiURL}/tactical-sessions`;
   private baseUrlTacticalContexts = `${environment.apiURL}/tactical-character-contexts`;
 
@@ -75,6 +76,11 @@ export class TacticalSessionService {
     return this.http.delete(url, {observe: 'response'}).pipe(
       switchMap(res => res.status === 204 ? of([]) : of(res))
     );
+  }
+
+  getCurrentRound(tacticalSessionId: string): Observable<TacticalRound> {
+    const url = `${this.baseUrlTacticalSessions}/${tacticalSessionId}/round`;
+    return this.http.get<TacticalRound>(url, this.httpOptions).pipe();
   }
 
   startRound(tacticalSessionId: string): Observable<TacticalRound> {
