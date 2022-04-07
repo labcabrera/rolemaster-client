@@ -6,6 +6,8 @@ export interface TacticalAction {
     source: string;
     target: string;
     pace: string;
+    meleeAttackType: string;
+    parry: number;
 }
 
 export interface TacticalActionDeclaration {

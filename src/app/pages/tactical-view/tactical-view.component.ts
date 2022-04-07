@@ -61,7 +61,7 @@ export class TacticalViewComponent implements OnInit {
 
   openActionSelectionDialog(source: string, priority: string) {
     var dialogRef = this.actionSelectionDialog.open(DialogSelectActionComponent);
-    dialogRef.componentInstance.loadActionData(this.tacticalSession.id, source, priority);
+    dialogRef.componentInstance.loadActionData(this.tacticalSession.id, source, priority, this.characters);
     dialogRef.afterClosed().subscribe(result => {
       if(dialogRef.componentInstance.tacticalRoundUpdated) {
         this.tacticalRound = dialogRef.componentInstance.tacticalRoundUpdated!;

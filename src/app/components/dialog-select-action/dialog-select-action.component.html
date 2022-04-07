@@ -15,20 +15,20 @@
         <mat-tab label="Melee">
             <mat-form-field appearance="fill">
                 <mat-label>Attack type</mat-label>
-                <mat-select>
+                <mat-select [(ngModel)]="action.meleeAttackType">
                     <mat-option *ngFor="let option of meleeAttackTypes" [value]="option.key">{{option.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <br>
             <mat-form-field appearance="fill">
                 <mat-label>Target</mat-label>
-                <mat-select>
-                    <mat-option>todo</mat-option>
+                <mat-select [(ngModel)]="action.target">
+                    <mat-option *ngFor="let character of characters" [value]="character.characterId">{{character.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <br>
             Parry percent
-            <mat-slider thumbLabel min="0" max="100" aria-label="units"></mat-slider>
+            <mat-slider thumbLabel min="0" max="100" aria-label="units" [(ngModel)]="action.parry"></mat-slider>
         </mat-tab>
 
         <mat-tab label="Ranged">Ranged</mat-tab>

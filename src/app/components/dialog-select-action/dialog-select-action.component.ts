@@ -6,6 +6,7 @@ import { TacticalAction } from 'src/app/model/actions';
 import { EnumService } from 'src/app/services/enum.service';
 import { ActionService } from 'src/app/services/action.service';
 import { TacticalRound } from 'src/app/model/round';
+import { TacticalCharacterContext } from 'src/app/model/character-context';
 
 @Component({
   selector: 'app-dialog-select-action',
@@ -14,21 +15,20 @@ import { TacticalRound } from 'src/app/model/round';
 })
 export class DialogSelectActionComponent implements OnInit {
 
+  characters: TacticalCharacterContext[] = [];
   tacticalSessionId: string = "";
   action: TacticalAction = { type: 'movement' } as TacticalAction;
 
   tacticalRoundUpdated?: TacticalRound;
-
+  
   minActionPercent = 1;
   maxActionPercent = 100;
-
   movementPaces: NamedKey[] = [];
   meleeAttackTypes: NamedKey[] = [];
-
   actionPercentMap = new Map<string, number[]>([
     ["snap", [1, 20]],
     ["normal", [1, 80]],
-    ["deliberated", [1, 100]],
+    ["deliberate", [1, 100]],
   ]);
 
   @ViewChild(MatTabGroup) matTabGroup!: MatTabGroup;
@@ -43,7 +43,7 @@ export class DialogSelectActionComponent implements OnInit {
     this.enumService.findMeleeAttackTypes().subscribe(result => this.meleeAttackTypes = result);
   }
 
-  public loadActionData(tacticalSessionId: string, source: string, priority: string) {
+  public loadActionData(tacticalSessionId: string, source: string, priority: string, contexts: TacticalCharacterContext[]) {
     //TODO read current used percent from character
     this.minActionPercent = this.actionPercentMap.get(priority)![0];
     this.maxActionPercent = this.actionPercentMap.get(priority)![1];
@@ -51,6 +51,7 @@ export class DialogSelectActionComponent implements OnInit {
     this.action.source = source;
     this.action.priority = priority;
     this.action.actionPercent = this.maxActionPercent;
+    this.characters = contexts;
   }
 
   configureActionType(event: MatTabChangeEvent) {
