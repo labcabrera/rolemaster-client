@@ -1,1 +1,12 @@
-<p>tactical-view-character-action works!</p>
+<div *ngIf="!action">
+    <button mat-button (click)="openActionSelectionDialog()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<div *ngIf="action">
+    {{action.type}} ({{action.actionPercent}}%)
+    <button mat-button (click)="deleteAction()">
+        <mat-icon>delete</mat-icon>
+    </button>
+</div>
+<span>{{this.action?.id}}</span>

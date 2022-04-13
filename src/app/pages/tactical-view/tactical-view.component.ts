@@ -90,12 +90,12 @@ export class TacticalViewComponent implements OnInit {
     return check.length > 0;
   }
 
-  getAction(source: string, priority: string) {
+  getAction(source: string, priority: string): TacticalAction | undefined {
     if (this.actions == null) {
-      return null;
+      return undefined;
     }
     var check = this.actions.filter(a => a.source == source && a.priority == priority);
-    return check.length > 0 ? check[0] : null;
+    return check.length > 0 ? check[0] : undefined;
   }
 
 }

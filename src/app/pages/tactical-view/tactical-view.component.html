@@ -25,7 +25,7 @@
             </mat-card>
         </div>
         <div fxFlex="10" fxLayoutAlign="left center" class="action-declaration">
-            
+            <!--
             <div *ngIf="!hasAction(character.id, 'snap')">
                 <button mat-button (click)="openActionSelectionDialog(character.id, 'snap')">
                     <mat-icon>add</mat-icon>
@@ -39,6 +39,16 @@
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
+        -->
+            <app-tactical-view-character-action
+                [source]="character.id"
+                [priority]="'snap'"
+                [tacticalRound]="this.tacticalRound"
+                [characters]="this.characters"
+                [action]="getAction(character.id, 'snap')">
+
+
+            </app-tactical-view-character-action>
             
         </div>
         <div fxFlex="10" fxLayoutAlign="left center" class="action-declaration">
