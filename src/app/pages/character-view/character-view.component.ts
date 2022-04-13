@@ -37,4 +37,11 @@ export class CharacterViewComponent implements OnInit {
     });
   }
 
+  availableDevelopmentPoints() {
+    if(!this.character || !this.character.developmentPoints) {
+      return false;
+    }
+    return this.character.developmentPoints.usedPoints < this.character.developmentPoints.totalPoints;
+  }
+
 }

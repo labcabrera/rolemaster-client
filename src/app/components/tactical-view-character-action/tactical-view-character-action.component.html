@@ -1,3 +1,4 @@
+<div *ngIf="tacticalRound">
 <div *ngIf="!action">
     <button mat-button (click)="openActionSelectionDialog()">
         <mat-icon>add</mat-icon>
@@ -8,4 +9,5 @@
     <button mat-button (click)="deleteAction()">
         <mat-icon>delete</mat-icon>
     </button>
+</div>
 </div>

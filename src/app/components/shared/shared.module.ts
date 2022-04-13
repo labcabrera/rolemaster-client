@@ -26,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatBadgeModule } from '@angular/material/badge'; 
 
 // Flex Layout
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -56,6 +57,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatTabsModule,
     MatMenuModule,
     MatChipsModule,
+    MatBadgeModule,
     FlexLayoutModule
   ],
   exports: [
@@ -83,6 +85,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatTabsModule,
     MatMenuModule,
     MatChipsModule,
+    MatBadgeModule,
     FlexLayoutModule
   ]
 })

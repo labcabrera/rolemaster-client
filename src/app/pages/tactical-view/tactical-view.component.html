@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <span>Tactical view</span>
+    <span>{{this.tacticalSession.name}} ({{this.tacticalSession.state}})</span>
     <div class="div-spacer"></div>
     <button mat-button (click)="startRound()">Start round</button>
     <button mat-button>Calculate initiatives</button>

@@ -29,7 +29,6 @@ import { CharacterDevelopmentComponent } from './character/character-development
 import { CharacterSkillCategoryListComponent } from './character/character-skill-category-list/character-skill-category-list.component';
 import { CharacterSkillListComponent } from './character/character-skill-list/character-skill-list.component';
 import { CharacterAttributesComponent } from './character/character-attributes/character-attributes.component';
-import { CharacterBasicInfoComponent } from './character/character-basic-info/character-basic-info.component';
 import { CharacterViewComponent } from './pages/character-view/character-view.component';
 
 import { TacticalViewComponent } from './pages/tactical-view/tactical-view.component';
@@ -57,6 +56,8 @@ import { UserSettingsComponent } from './pages/user-settings/user-settings.compo
 import { TrainingPackagesComponent } from './pages/training-packages/training-packages.component';
 import { TrainingPackageComponent } from './pages/training-package/training-package.component';
 import { TacticalViewCharacterActionComponent } from './components/tactical-view-character-action/tactical-view-character-action.component';
+import { CharacterSkillUpgradeComponent } from './pages/character-skill-upgrade/character-skill-upgrade.component';
+import { CharacterGeneralDataComponent } from './components/character-general-data/character-general-data.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,6 @@ import { TacticalViewCharacterActionComponent } from './components/tactical-view
     RaceListComponent,
     RaceDetailComponent,
     ProfessionDetailComponent,
-    CharacterBasicInfoComponent,
     CharacterViewComponent,
     SkillSelectComponent,
     TacticalViewComponent,
@@ -104,7 +104,9 @@ import { TacticalViewCharacterActionComponent } from './components/tactical-view
     UserSettingsComponent,
     TrainingPackagesComponent,
     TrainingPackageComponent,
-    TacticalViewCharacterActionComponent
+    TacticalViewCharacterActionComponent,
+    CharacterSkillUpgradeComponent,
+    CharacterGeneralDataComponent
   ],
   imports: [
     FormsModule,

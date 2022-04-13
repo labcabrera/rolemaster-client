@@ -33,11 +33,13 @@ import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { TrainingPackageComponent } from './pages/training-package/training-package.component';
 import { TrainingPackagesComponent } from './pages/training-packages/training-packages.component';
+import { CharacterSkillUpgradeComponent } from './pages/character-skill-upgrade/character-skill-upgrade.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/strategic-sessions', pathMatch: 'full' },
   { path: 'characters', component: CharacterListComponent },
   { path: 'characters/detail/:id', component: CharacterViewComponent },
+  { path: 'characters/skill-upgrade/:id', component: CharacterSkillUpgradeComponent },
   { path: 'strategic-sessions', component: StrategicSessionsComponent },
   { path: 'strategic-sessions/detail/:id', component: StrategicSessionComponent },
   { path: 'strategic-sessions/creation', component: StrategicSessionCreationComponent },

@@ -14,13 +14,13 @@ export class NavBarComponent implements OnInit {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
 
   links = [
-    { link: '/strategic-sessions', name: 'Strategic sessions', icon: 'list'},
-    { link: '/tactical-sessions', name: 'Tactical sessions', icon: 'list'},
+    { link: '/strategic-sessions', name: 'Strategic', icon: 'list'},
+    { link: '/tactical-sessions', name: 'Tactical', icon: 'list'},
     { link: '/characters', name: 'Characters', icon: 'person'},
-    { link: '/characters/creation', name: 'Character creation', icon: 'create'},
+    { link: '/characters/creation', name: 'New character', icon: 'create'},
     { link: '/movement', name: 'Movement', icon: 'scatter_plot'},
-    { link: '/moving-maneuvers', name: 'Static maneuvers', icon: 'scatter_plot'},
-    { link: '/static-maneuvers', name: 'Moving maneuvers', icon: 'scatter_plot'},
+    { link: '/moving-maneuvers', name: 'Static-M', icon: 'scatter_plot'},
+    { link: '/static-maneuvers', name: 'Moving-M', icon: 'scatter_plot'},
     { link: '/races', name: 'Races', icon: 'scatter_plot'},
     { link: '/professions', name: 'Professions', icon: 'scatter_plot'},
     { link: '/skill-categories', name: 'Skill categories', icon: 'build'},
