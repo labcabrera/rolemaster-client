@@ -26,16 +26,16 @@
         </div>
         <div fxFlex="10" fxLayoutAlign="left center" class="action-declaration">
             
-            <div *ngIf="!hasAction(character.characterId, 'snap')">
-                <button mat-button (click)="openActionSelectionDialog(character.characterId, 'snap')">
+            <div *ngIf="!hasAction(character.id, 'snap')">
+                <button mat-button (click)="openActionSelectionDialog(character.id, 'snap')">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
-            <div *ngIf="hasAction(character.characterId, 'snap')">
-                {{getAction(character.characterId, 'snap')?.type}}
-                ({{getAction(character.characterId, 'snap')?.actionPercent}} %)
+            <div *ngIf="hasAction(character.id, 'snap')">
+                {{getAction(character.id, 'snap')?.type}}
+                ({{getAction(character.id, 'snap')?.actionPercent}} %)
                 <br>
-                <button mat-button (click)="removeDeclaredAction(character.characterId, 'snap')">
+                <button mat-button (click)="removeDeclaredAction(character.id, 'snap')">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
@@ -44,7 +44,7 @@
         <div fxFlex="10" fxLayoutAlign="left center" class="action-declaration">
             
             <div *ngIf="!hasAction(character.characterId, 'normal')">
-                <button mat-button (click)="openActionSelectionDialog(character.characterId, 'normal')">
+                <button mat-button (click)="openActionSelectionDialog(character.id, 'normal')">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
@@ -52,7 +52,7 @@
                 {{getAction(character.characterId, 'normal')?.type}}
                 ({{getAction(character.characterId, 'normal')?.actionPercent}} %)
                 <br>
-                <button mat-button (click)="removeDeclaredAction(character.characterId, 'normal')">
+                <button mat-button (click)="removeDeclaredAction(character.id, 'normal')">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
@@ -61,7 +61,7 @@
         <div fxFlex="10" fxLayoutAlign="left center" class="action-declaration">
 
             <div *ngIf="!hasAction(character.characterId, 'deliberate')">
-                <button mat-button (click)="openActionSelectionDialog(character.characterId, 'deliberate')">
+                <button mat-button (click)="openActionSelectionDialog(character.id, 'deliberate')">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
@@ -69,7 +69,7 @@
                 {{getAction(character.characterId, 'deliberate')?.type}}
                 ({{getAction(character.characterId, 'deliberate')?.actionPercent}} %)
                 <br>
-                <button mat-button (click)="removeDeclaredAction(character.characterId, 'deliberate')">
+                <button mat-button (click)="removeDeclaredAction(character.id, 'deliberate')">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
@@ -104,6 +104,8 @@
         <pre>{{tacticalSession | json}}</pre>
         Round:
         <pre>{{tacticalRound | json}}</pre>
+        Actions:
+        <pre>{{actions | json}}</pre>
         Characters:
         <pre>{{characters | json}}</pre>
     </mat-expansion-panel>

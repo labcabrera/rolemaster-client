@@ -56,6 +56,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { TrainingPackagesComponent } from './pages/training-packages/training-packages.component';
 import { TrainingPackageComponent } from './pages/training-package/training-package.component';
+import { TacticalViewCharacterActionComponent } from './components/tactical-view-character-action/tactical-view-character-action.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { TrainingPackageComponent } from './pages/training-package/training-pack
     MessagesComponent,
     UserSettingsComponent,
     TrainingPackagesComponent,
-    TrainingPackageComponent
+    TrainingPackageComponent,
+    TacticalViewCharacterActionComponent
   ],
   imports: [
     FormsModule,

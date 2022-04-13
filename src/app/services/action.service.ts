@@ -21,14 +21,18 @@ export class ActionService {
   constructor(
     private http: HttpClient) { }
 
-  declare(tacticalSessionId: string, action: TacticalActionDeclaration): Observable<TacticalRound> {
-    const url = `${this.baseUrl}/tactical-sessions/${tacticalSessionId}/actions`;
-    console.log("Action declaration url: ", url);
+  findActionsByRound(roundId: string): Observable<TacticalAction[]>  {
+    const url = `${this.baseUrl}/tactical-actions/rounds/${roundId}`;
+    return this.http.get<TacticalAction[]>(url, this.httpOptions).pipe();
+  }
+
+  declare(action: TacticalActionDeclaration): Observable<TacticalRound> {
+    const url = `${this.baseUrl}/tactical-actions`;
     return this.http.post<TacticalRound>(url, action, this.httpOptions).pipe();
   }
 
-  delete(tacticalSessionId: string, source: string, priority: string): Observable<TacticalRound> {
-    const url = `${this.baseUrl}/tactical-sessions/${tacticalSessionId}/actions/${source}/${priority}`;
+  delete(actionId: string): Observable<TacticalRound> {
+    const url = `${this.baseUrl}/tactical-actions/${actionId}`;
     return this.http.delete<TacticalRound>(url, this.httpOptions).pipe();
   }
 

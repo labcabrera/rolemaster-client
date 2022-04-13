@@ -18,8 +18,6 @@ export class DialogSelectActionComponent implements OnInit {
   characters: TacticalCharacterContext[] = [];
   tacticalSessionId: string = "";
   action: TacticalAction = { type: 'movement' } as TacticalAction;
-
-  tacticalRoundUpdated?: TacticalRound;
   
   minActionPercent = 1;
   maxActionPercent = 100;
@@ -43,11 +41,11 @@ export class DialogSelectActionComponent implements OnInit {
     this.enumService.findMeleeAttackTypes().subscribe(result => this.meleeAttackTypes = result);
   }
 
-  public loadActionData(tacticalSessionId: string, source: string, priority: string, contexts: TacticalCharacterContext[]) {
+  public load(tacticalRound: TacticalRound, source: string, priority: string, contexts: TacticalCharacterContext[]) {
     //TODO read current used percent from character
     this.minActionPercent = this.actionPercentMap.get(priority)![0];
     this.maxActionPercent = this.actionPercentMap.get(priority)![1];
-    this.tacticalSessionId = tacticalSessionId;
+    this.action.roundId = tacticalRound.id;
     this.action.source = source;
     this.action.priority = priority;
     this.action.actionPercent = this.maxActionPercent;
@@ -67,10 +65,9 @@ export class DialogSelectActionComponent implements OnInit {
   }
 
   declareAction() {
-    console.log("Tactical session id: ", this.tacticalSessionId);
-    this.actionService.declare(this.tacticalSessionId, this.action).subscribe(result => {
+    this.actionService.declare(this.action).subscribe(result => {
       console.log("Declared action result: ", result);
-      this.tacticalRoundUpdated = result;
+      //this.tacticalRoundUpdated = result;
     });
   }
 
