@@ -11,6 +11,8 @@ import { CharacterGenerationUtilsService } from '../../services/character-genera
 import { RandomUtilsService } from '../../services/random-utils.service';
 import { ProfessionService } from 'src/app/services/profession.service';
 import { RaceService } from 'src/app/services/race.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-character-creation',
   templateUrl: './character-creation.component.html',
@@ -35,6 +37,7 @@ export class CharacterCreationComponent implements OnInit {
     private professionService: ProfessionService,
     private randomUtilsService: RandomUtilsService,
     private characterGenerationUtilsService: CharacterGenerationUtilsService,
+    private router: Router,
     private fb: FormBuilder) {
 
     this.characterInfo = {} as CharacterInfo;
@@ -110,14 +113,9 @@ export class CharacterCreationComponent implements OnInit {
 
   createCharacter(): void {
     this.characterService.createCharacter(this.characterCreationFormGroupValue).subscribe(character => {
-      console.log("created character");
-      this.basicDataDisabled = true;
-      this.characterInfo = character;
+      const url = `characters/detail/${character.id}`
+      this.router.navigateByUrl(url);
     });
-  }
-
-  createCharacterNext(): void {
-    this.createCharacter();
   }
 
   drop(event: CdkDragDrop<string[]>) {
