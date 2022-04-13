@@ -3,10 +3,14 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { MatStepper } from '@angular/material/stepper';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
+import { Race } from 'src/app/model/race';
+import { Profession } from 'src/app/model/profession';
 import { CharacterCreationRequest, CharacterInfo } from '../../model/character-info';
 import { CharacterService } from '../../services/character-service';
 import { CharacterGenerationUtilsService } from '../../services/character-generation-utils.service';
 import { RandomUtilsService } from '../../services/random-utils.service';
+import { ProfessionService } from 'src/app/services/profession.service';
+import { RaceService } from 'src/app/services/race.service';
 @Component({
   selector: 'app-character-creation',
   templateUrl: './character-creation.component.html',
@@ -14,10 +18,11 @@ import { RandomUtilsService } from '../../services/random-utils.service';
 })
 export class CharacterCreationComponent implements OnInit {
 
-  characterCreationFormGroup: FormGroup;
-
   characterInfo: CharacterInfo;
-
+  races: Race[] = [];
+  professions: Profession[] = [];
+  
+  characterCreationFormGroup: FormGroup;
   characterBasicData: FormGroup;
   characterDevelopment: FormGroup;
   trainingPackages: FormGroup;
@@ -26,6 +31,8 @@ export class CharacterCreationComponent implements OnInit {
 
   constructor(
     private characterService: CharacterService,
+    private raceService: RaceService,
+    private professionService: ProfessionService,
     private randomUtilsService: RandomUtilsService,
     private characterGenerationUtilsService: CharacterGenerationUtilsService,
     private fb: FormBuilder) {
@@ -34,6 +41,7 @@ export class CharacterCreationComponent implements OnInit {
 
     this.characterCreationFormGroup = fb.group({
       'name': ['', Validators.required],
+      'level': ['1', Validators.required],
       'raceId': ['common-men', Validators.required],
       'professionId': ['thief', Validators.required],
       'realmId': ['essence', Validators.required],
@@ -76,6 +84,8 @@ export class CharacterCreationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.raceService.find().subscribe(result => this.races = result);
+    this.professionService.getProfessions().subscribe(result => this.professions = result);
   }
 
   get characterCreationFormGroupValue() {
