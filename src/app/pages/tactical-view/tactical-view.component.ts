@@ -68,28 +68,6 @@ export class TacticalViewComponent implements OnInit {
     });
   }
 
-  openActionSelectionDialog(source: string, priority: string) {
-    var dialogRef = this.actionSelectionDialog.open(DialogSelectActionComponent);
-    dialogRef.componentInstance.load(this.tacticalRound, source, priority, this.characters);
-    dialogRef.afterClosed().subscribe(result => {
-      this.loadRound(this.tacticalSession.id);
-    });
-  }
-
-  removeDeclaredAction(actionId: string, priority: string) {
-    this.actionService.delete(actionId).subscribe(result => {
-      this.loadActions(this.tacticalRound.id);
-    });
-  }
-
-  hasAction(source: string, priority: string): boolean {
-    if(this.actions == null) {
-      return false;
-    }
-    var check = this.actions.filter(a => a.source == source && a.priority == priority);
-    return check.length > 0;
-  }
-
   getAction(source: string, priority: string): TacticalAction | undefined {
     if (this.actions == null) {
       return undefined;

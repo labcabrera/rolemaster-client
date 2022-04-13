@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Output, EventEmitter } from '@angular/core';
 
 import { TacticalAction } from 'src/app/model/actions';
 import { TacticalRound } from 'src/app/model/round';
@@ -20,6 +21,8 @@ export class TacticalViewCharacterActionComponent implements OnInit {
   @Input() tacticalRound: TacticalRound | undefined;
   @Input() characters: TacticalCharacterContext[] | undefined;
 
+  @Output() actionsUpdated = new EventEmitter<string>();
+
   constructor(
     private actionService: ActionService,
     private actionSelectionDialog: MatDialog) { }
@@ -31,13 +34,13 @@ export class TacticalViewCharacterActionComponent implements OnInit {
     var dialogRef = this.actionSelectionDialog.open(DialogSelectActionComponent);
     dialogRef.componentInstance.load(this.tacticalRound!, this.source!, this.priority!, this.characters!);
     dialogRef.afterClosed().subscribe(result => {
-      //this.loadRound(this.tacticalSession.id);
+      this.actionsUpdated.emit("closed dialog");
     });
   }
 
   deleteAction() {
     this.actionService.delete(this.action!.id).subscribe(result => {
-      
+      this.actionsUpdated.emit("deleted action");
     });
   }
 

@@ -25,65 +25,34 @@
             </mat-card>
         </div>
         <div fxFlex="10" fxLayoutAlign="left center" class="action-declaration">
-            <!--
-            <div *ngIf="!hasAction(character.id, 'snap')">
-                <button mat-button (click)="openActionSelectionDialog(character.id, 'snap')">
-                    <mat-icon>add</mat-icon>
-                </button>
-            </div>
-            <div *ngIf="hasAction(character.id, 'snap')">
-                {{getAction(character.id, 'snap')?.type}}
-                ({{getAction(character.id, 'snap')?.actionPercent}} %)
-                <br>
-                <button mat-button (click)="removeDeclaredAction(character.id, 'snap')">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </div>
-        -->
             <app-tactical-view-character-action
                 [source]="character.id"
                 [priority]="'snap'"
                 [tacticalRound]="this.tacticalRound"
                 [characters]="this.characters"
-                [action]="getAction(character.id, 'snap')">
-
-
+                [action]="getAction(character.id, 'snap')"
+                (actionsUpdated)="this.loadActions(this.tacticalRound.id)">
             </app-tactical-view-character-action>
-            
         </div>
         <div fxFlex="10" fxLayoutAlign="left center" class="action-declaration">
-            
-            <div *ngIf="!hasAction(character.characterId, 'normal')">
-                <button mat-button (click)="openActionSelectionDialog(character.id, 'normal')">
-                    <mat-icon>add</mat-icon>
-                </button>
-            </div>
-            <div *ngIf="hasAction(character.characterId, 'normal')">
-                {{getAction(character.characterId, 'normal')?.type}}
-                ({{getAction(character.characterId, 'normal')?.actionPercent}} %)
-                <br>
-                <button mat-button (click)="removeDeclaredAction(character.id, 'normal')">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </div>
-
+            <app-tactical-view-character-action
+                [source]="character.id"
+                [priority]="'normal'"
+                [tacticalRound]="this.tacticalRound"
+                [characters]="this.characters"
+                [action]="getAction(character.id, 'normal')"
+                (actionsUpdated)="this.loadActions(this.tacticalRound.id)">
+            </app-tactical-view-character-action>
         </div>
         <div fxFlex="10" fxLayoutAlign="left center" class="action-declaration">
-
-            <div *ngIf="!hasAction(character.characterId, 'deliberate')">
-                <button mat-button (click)="openActionSelectionDialog(character.id, 'deliberate')">
-                    <mat-icon>add</mat-icon>
-                </button>
-            </div>
-            <div *ngIf="hasAction(character.characterId, 'deliberate')">
-                {{getAction(character.characterId, 'deliberate')?.type}}
-                ({{getAction(character.characterId, 'deliberate')?.actionPercent}} %)
-                <br>
-                <button mat-button (click)="removeDeclaredAction(character.id, 'deliberate')">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </div>
-
+            <app-tactical-view-character-action
+                [source]="character.id"
+                [priority]="'deliberate'"
+                [tacticalRound]="this.tacticalRound"
+                [characters]="this.characters"
+                [action]="getAction(character.id, 'deliberate')"
+                (actionsUpdated)="this.loadActions(this.tacticalRound.id)">
+            </app-tactical-view-character-action>
         </div>
         <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">
             <mat-form-field class="initiative-form-field" appearance="outline" style="width: 80%;">
