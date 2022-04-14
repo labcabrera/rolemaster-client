@@ -1,0 +1,12 @@
+<div>
+
+    <button mat-button>
+        {{character?.name}}
+    </button>
+
+    <button mat-button (click)="openManualEditionDialog()">
+        {{character?.hp?.current}}/{{character?.hp?.max}}
+        <mat-icon>upgrade</mat-icon>
+    </button>
+
+</div>

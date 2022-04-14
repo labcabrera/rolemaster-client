@@ -58,6 +58,8 @@ import { TrainingPackageComponent } from './pages/training-package/training-pack
 import { TacticalViewCharacterActionComponent } from './components/tactical-view-character-action/tactical-view-character-action.component';
 import { CharacterSkillUpgradeComponent } from './pages/character-skill-upgrade/character-skill-upgrade.component';
 import { CharacterGeneralDataComponent } from './components/character-general-data/character-general-data.component';
+import { TacticalViewCharacterComponent } from './components/tactical-view-character/tactical-view-character.component';
+import { TacticalViewCharacterManualEditionComponent } from './components/tactical-view-character-manual-edition/tactical-view-character-manual-edition.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +108,9 @@ import { CharacterGeneralDataComponent } from './components/character-general-da
     TrainingPackageComponent,
     TacticalViewCharacterActionComponent,
     CharacterSkillUpgradeComponent,
-    CharacterGeneralDataComponent
+    CharacterGeneralDataComponent,
+    TacticalViewCharacterComponent,
+    TacticalViewCharacterManualEditionComponent
   ],
   imports: [
     FormsModule,

@@ -1,5 +1,8 @@
 <mat-toolbar>
-    <span>{{this.tacticalSession.name}} ({{this.tacticalSession.state}})</span>
+    <span>
+        <a routerLink="/tactical-sessions/detail/{{tacticalSession.id}}">{{tacticalSession.name}}</a>
+        ({{this.tacticalRound.state}})
+    </span>
     <div class="div-spacer"></div>
     <button mat-button (click)="startRound()">Start round</button>
     <button mat-button>Calculate initiatives</button>
@@ -19,12 +22,11 @@
 
     <div fxLayout="row" fxLayoutGap="10px" *ngFor="let character of characters">
         <div fxFlex="20" fxLayoutAlign="left center" class="div-tactical">
-            <mat-card>
-                {{character.name}}
-                
-            </mat-card>
+
+            <app-tactical-view-character [character]="character"></app-tactical-view-character>
+
         </div>
-        <div fxFlex="10" fxLayoutAlign="left center" class="action-declaration">
+        <div fxFlex="10" fxLayoutAlign="center center" class="action-declaration">
             <app-tactical-view-character-action
                 [source]="character.id"
                 [priority]="'snap'"
@@ -34,7 +36,7 @@
                 (actionsUpdated)="this.loadActions(this.tacticalRound.id)">
             </app-tactical-view-character-action>
         </div>
-        <div fxFlex="10" fxLayoutAlign="left center" class="action-declaration">
+        <div fxFlex="10" fxLayoutAlign="center center" class="action-declaration">
             <app-tactical-view-character-action
                 [source]="character.id"
                 [priority]="'normal'"
@@ -44,7 +46,7 @@
                 (actionsUpdated)="this.loadActions(this.tacticalRound.id)">
             </app-tactical-view-character-action>
         </div>
-        <div fxFlex="10" fxLayoutAlign="left center" class="action-declaration">
+        <div fxFlex="10" fxLayoutAlign="center center" class="action-declaration">
             <app-tactical-view-character-action
                 [source]="character.id"
                 [priority]="'deliberate'"

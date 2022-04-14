@@ -8,6 +8,11 @@ import { ActionService } from 'src/app/services/action.service';
 import { TacticalRound } from 'src/app/model/round';
 import { TacticalCharacterContext } from 'src/app/model/character-context';
 
+export interface Entry {
+  key: string;
+  value: string;
+}
+
 @Component({
   selector: 'app-dialog-select-action',
   templateUrl: './dialog-select-action.component.html',
@@ -18,7 +23,7 @@ export class DialogSelectActionComponent implements OnInit {
   characters: TacticalCharacterContext[] = [];
   tacticalSessionId: string = "";
   action: TacticalAction = { type: 'movement' } as TacticalAction;
-  
+
   minActionPercent = 1;
   maxActionPercent = 100;
   movementPaces: NamedKey[] = [];
@@ -41,7 +46,7 @@ export class DialogSelectActionComponent implements OnInit {
     this.enumService.findMeleeAttackTypes().subscribe(result => this.meleeAttackTypes = result);
   }
 
-  public load(tacticalRound: TacticalRound, source: string, priority: string, contexts: TacticalCharacterContext[]) {
+  public load(tacticalRound: TacticalRound, source: string, priority: string, characters: TacticalCharacterContext[]) {
     //TODO read current used percent from character
     this.minActionPercent = this.actionPercentMap.get(priority)![0];
     this.maxActionPercent = this.actionPercentMap.get(priority)![1];
@@ -49,7 +54,7 @@ export class DialogSelectActionComponent implements OnInit {
     this.action.source = source;
     this.action.priority = priority;
     this.action.actionPercent = this.maxActionPercent;
-    this.characters = contexts;
+    this.characters = characters;
   }
 
   configureActionType(event: MatTabChangeEvent) {
@@ -60,8 +65,14 @@ export class DialogSelectActionComponent implements OnInit {
       case 1:
         this.action.type = "melee-attack";
         break;
+      case 2:
+        this.action.type = "missile-attack";
+        break;
     }
     console.log("Mat change: ", event);
+  }
+
+  getTargets() {
   }
 
   declareAction() {

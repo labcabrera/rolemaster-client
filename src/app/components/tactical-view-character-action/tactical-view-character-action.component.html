@@ -5,9 +5,16 @@
     </button>
 </div>
 <div *ngIf="action">
-    {{action.type}} ({{action.actionPercent}}%)
+    
+    <button mat-button color="primary" (click)=openAction()>
+        <mat-icon *ngIf="action.type == 'movement'">directions_run</mat-icon>
+        <mat-icon *ngIf="action.type == 'melee-attack'">local_dining</mat-icon>
+        {{action.actionPercent}}
+    </button>
+   
     <button mat-button (click)="deleteAction()">
         <mat-icon>delete</mat-icon>
     </button>
+
 </div>
 </div>

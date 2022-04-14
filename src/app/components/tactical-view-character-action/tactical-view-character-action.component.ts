@@ -38,6 +38,14 @@ export class TacticalViewCharacterActionComponent implements OnInit {
     });
   }
 
+  openAction() {
+    var dialogRef = this.actionSelectionDialog.open(DialogSelectActionComponent);
+    dialogRef.componentInstance.load(this.tacticalRound!, this.source!, this.priority!, this.characters!);
+    dialogRef.afterClosed().subscribe(result => {
+      this.actionsUpdated.emit("closed dialog");
+    });
+  }
+
   deleteAction() {
     this.actionService.delete(this.action!.id).subscribe(result => {
       this.actionsUpdated.emit("deleted action");

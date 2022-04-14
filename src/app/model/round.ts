@@ -4,6 +4,7 @@ import { TacticalAction } from "./actions";
 export interface TacticalRound {
 	id: string;
     tacticalSessionId: string;
+    state: string;
 	round: number;
 	initiativeLoaded: false;
     actions: TacticalAction[];

@@ -1,6 +1,9 @@
 <h2 mat-dialog-title>Action selection</h2>
 <mat-dialog-content>
 
+    Action Percent:
+    <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="{{minActionPercent}}" max="{{maxActionPercent}}" aria-label="units"></mat-slider>
+
     <mat-tab-group #matTabGroup mat-align-tabs="start" (selectedTabChange)="configureActionType($event)">
 
         <mat-tab label="Movement">
@@ -40,8 +43,6 @@
         <mat-tab label="Spell">Spell</mat-tab>
     </mat-tab-group>
 
-    Action Percent:
-    <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="{{minActionPercent}}" max="{{maxActionPercent}}" aria-label="units"></mat-slider>
 
 </mat-dialog-content>
 

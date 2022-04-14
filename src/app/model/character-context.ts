@@ -36,7 +36,7 @@ export interface CombatStatus {
     mustParryRounds: number;
     reloadingActivityPercent: number;
     surprised: number;
-    bleeding: Bleeding;
+    bleeding: Bleeding[];
     penalty: Penalty;
 }
 
@@ -56,6 +56,17 @@ export interface ContextCharacterModifiers {
 
 export interface Items {
     mainWeaponEquippedId: string;
-	secondaryWeaponEquippedId: string;
-	armorEquippedId: string;
+    secondaryWeaponEquippedId: string;
+    armorEquippedId: string;
+}
+
+export enum Debuff {
+    STUNNED = "stunned",
+    DOWNED = "downed",
+    PRONE = "prone",
+    SURPRISED = "surprised",
+    UNCONSCIOUS = "unconscious",
+    CANT_PARRY = "cantParry",
+    MUST_PARRY = "mustParry",
+    SHOCK = "shock"
 }
