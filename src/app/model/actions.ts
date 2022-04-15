@@ -1,3 +1,5 @@
+import { OpenRoll } from "./commons";
+
 export interface TacticalAction {
     id: string;
     roundId: string;
@@ -5,6 +7,7 @@ export interface TacticalAction {
     state: string;
     priority: string;
     actionPercent: number;
+    effectiveInitiative: number;
     source: string;
     target: string;
     pace: string;
@@ -21,7 +24,10 @@ export interface TacticalActionDeclaration {
     pace: string;
 }
 
-export interface TacticalActionDelete {
-    source: string;
-    priority: string;
+export interface TacticalActionExecution {
+    roll: OpenRoll;
+    secondaryRoll: OpenRoll;
+    target: string;
+    secondaryTarget: string;
+    position: string;
 }

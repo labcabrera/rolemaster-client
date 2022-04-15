@@ -86,6 +86,7 @@ export class TacticalViewComponent implements OnInit {
   startExecutionPhase() {
     this.tacticalSessionService.startExecutionPhase(this.tacticalSession.id).subscribe(response => {
       this.tacticalRound = response;
+      this.loadActions(this.tacticalRound.id);
     })
   }
 

@@ -4,7 +4,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 
 import { TacticalRound } from '../model/round';
-import { TacticalAction, TacticalActionDeclaration } from '../model/actions';
+import { TacticalAction, TacticalActionDeclaration, TacticalActionExecution } from '../model/actions';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -29,6 +29,11 @@ export class ActionService {
   declare(action: TacticalActionDeclaration): Observable<TacticalRound> {
     const url = `${this.baseUrl}/tactical-actions`;
     return this.http.post<TacticalRound>(url, action, this.httpOptions).pipe();
+  }
+
+  execute(actionId: string, actionExecution: TacticalActionExecution): Observable<TacticalAction> {
+    const url = `${this.baseUrl}/tactical-actions/${actionId}/execution`;
+    return this.http.post<TacticalAction>(url, actionExecution, this.httpOptions).pipe();
   }
 
   delete(actionId: string): Observable<TacticalRound> {

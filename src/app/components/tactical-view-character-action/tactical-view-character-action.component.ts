@@ -7,6 +7,7 @@ import { TacticalRound } from 'src/app/model/round';
 import { DialogSelectActionComponent } from 'src/app/components/dialogs/dialog-select-action/dialog-select-action.component';
 import { TacticalCharacterContext } from 'src/app/model/character-context';
 import { ActionService } from 'src/app/services/action.service';
+import { DialogActionExecutionComponent } from '../dialogs/dialog-action-execution/dialog-action-execution.component';
 
 @Component({
   selector: 'app-tactical-view-character-action',
@@ -25,7 +26,8 @@ export class TacticalViewCharacterActionComponent implements OnInit {
 
   constructor(
     private actionService: ActionService,
-    private actionSelectionDialog: MatDialog) { }
+    private actionSelectionDialog: MatDialog,
+    private actionExecutionDialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -43,6 +45,14 @@ export class TacticalViewCharacterActionComponent implements OnInit {
     dialogRef.componentInstance.load(this.tacticalRound!, this.source!, this.priority!, this.characters!);
     dialogRef.afterClosed().subscribe(result => {
       this.actionsUpdated.emit("closed dialog");
+    });
+  }
+
+  openActionExecutionDialog(action: TacticalAction) {
+    var dialogRef = this.actionExecutionDialog.open(DialogActionExecutionComponent);
+    dialogRef.componentInstance.load(action);
+    dialogRef.afterClosed().subscribe(result => {
+      //TODO reload actions
     });
   }
 

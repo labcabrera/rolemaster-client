@@ -1,11 +1,16 @@
 <div *ngIf="tacticalRound">
 <div *ngIf="!action">
-    <button mat-button *ngIf="this.tacticalRound.state == 'action-declaration'" (click)="openActionSelectionDialog()">
+    <button mat-button *ngIf="tacticalRound.state == 'action-declaration'" (click)="openActionSelectionDialog()">
         <mat-icon>add</mat-icon>
     </button>
 </div>
 <div *ngIf="action">
     
+    <span *ngIf="action.effectiveInitiative">
+        <mat-icon>flash_on</mat-icon>
+        {{action.effectiveInitiative}}
+    </span>
+
     <button mat-button color="primary" (click)=openAction()>
         <mat-icon *ngIf="action.type == 'movement'">directions_run</mat-icon>
         <mat-icon *ngIf="action.type == 'melee-attack'">local_dining</mat-icon>
@@ -13,7 +18,9 @@
         {{action.actionPercent}}
     </button>
 
-    <button mat-button color="primary" *ngIf="this.tacticalRound.state == 'action-resolution' && this.action.state != 'TODO'">
+    <button mat-button color="primary"
+        *ngIf="tacticalRound.state == 'action-resolution' && action.state != 'TODO'"
+        (click)="openActionExecutionDialog(action)">
         <mat-icon>arrow_circle_up</mat-icon>
     </button>
     
