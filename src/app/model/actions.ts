@@ -25,6 +25,7 @@ export interface TacticalActionDeclaration {
 }
 
 export interface TacticalActionExecution {
+    type: string;
     roll: OpenRoll;
     secondaryRoll: OpenRoll;
     target: string;

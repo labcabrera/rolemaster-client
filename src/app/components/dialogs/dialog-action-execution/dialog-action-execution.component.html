@@ -1,13 +1,16 @@
 <h2 mat-dialog-title>Action execution</h2>
 <mat-dialog-content>
 
-    TODO
+    <mat-form-field class="initiative-form-field" appearance="outline" style="width: 80%;">
+        <mat-label>Roll</mat-label>
+        <input matInput placeholder="Roll" value="" [(ngModel)]="actionExecution!.roll.result">
+      </mat-form-field>
 
 </mat-dialog-content>
 
 <mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="executeAction()">Execute</button>
+    <button mat-button [mat-dialog-close]="false" cdkFocusInitial (click)="executeAction()">Execute</button>
 </mat-dialog-actions>
 
-<pre>{{action | json}}</pre>
+<pre>{{actionExecution | json}}</pre>

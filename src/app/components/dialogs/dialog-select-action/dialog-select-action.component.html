@@ -27,7 +27,7 @@
             <mat-form-field appearance="fill">
                 <mat-label>Target</mat-label>
                 <mat-select [(ngModel)]="action.target">
-                    <mat-option *ngFor="let character of characters" [value]="character.characterId">{{character.name}}</mat-option>
+                    <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <br>

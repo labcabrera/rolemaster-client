@@ -6,10 +6,10 @@
 </div>
 <div *ngIf="action">
     
-    <span *ngIf="action.effectiveInitiative">
+    <button mat-button *ngIf="action.effectiveInitiative">
         <mat-icon>flash_on</mat-icon>
         {{action.effectiveInitiative}}
-    </span>
+    </button>
 
     <button mat-button color="primary" (click)=openAction()>
         <mat-icon *ngIf="action.type == 'movement'">directions_run</mat-icon>
@@ -18,10 +18,14 @@
         {{action.actionPercent}}
     </button>
 
+    <button mat-button *ngIf="action.state == 'resolved'">
+        <mat-icon>info</mat-icon>
+    </button>
+
     <button mat-button color="primary"
-        *ngIf="tacticalRound.state == 'action-resolution' && action.state != 'TODO'"
+        *ngIf="tacticalRound.state == 'action-resolution' && action.state != 'resolved'"
         (click)="openActionExecutionDialog(action)">
-        <mat-icon>arrow_circle_up</mat-icon>
+        <mat-icon>upload</mat-icon>
     </button>
     
    

@@ -11,6 +11,7 @@ export class DialogActionExecutionComponent implements OnInit {
 
   action: TacticalAction = {} as TacticalAction;
   actionExecution: TacticalActionExecution = {} as TacticalActionExecution;
+  roll: number = 0;
 
   constructor(
     private actionService: ActionService) { }
@@ -20,15 +21,14 @@ export class DialogActionExecutionComponent implements OnInit {
 
   load(action: TacticalAction) {
     this.action = action;
+
+    //TODO
+    this.actionExecution.type = this.action.type;
+    this.actionExecution.roll = { result: 75, rolls: [75] }
+    this.actionExecution.position = 'normal';
   }
 
   executeAction() {
-    //TODO
-    this.actionExecution.roll = { result: 75, rolls: [75] }
-    this.actionExecution.position = 'normal';
-
-    console.log("Execution action ", this.action.id, ", execution: ", this.actionExecution);
-
     this.actionService.execute(this.action.id, this.actionExecution).subscribe(result => {
       //TODO reload actions
       this.action = result;
