@@ -80,17 +80,6 @@ export class DialogActionExecutionComponent implements OnInit {
     })
   }
 
-  getOffensiveModifiers(): string[] {
-    const map = new Map(Object.entries(this.action.offensiveBonusMap));
-    var result: string[] = [];
-    map.forEach((value, key) => {
-      if (value != 0) {
-        result.push(key + ": " + value);
-      }
-    });
-    return result;
-  }
-
   checkTargetVisible() {
     if(this.action.type != "melee-attack") {
       return false;

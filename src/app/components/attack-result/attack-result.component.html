@@ -1,0 +1,54 @@
+<div fxLayout="column">
+    <div *ngIf="action.attackResult"><b>Attack result: </b>{{action.attackResult?.attackResult}}</div>
+    <div *ngIf="action.attackResult"><b>Weapon: </b>{{action.attackResult?.weaponTableId}}</div>
+    <div *ngIf="action.attackResult"><b>Armor: </b>{{action.attackResult?.targetArmor}}</div>
+    <div>&nbsp;</div>
+    <div *ngIf="action.attackResult"><b>HP: </b>{{action.attackResult?.hp}}</div>
+    <div *ngIf="action.attackResult?.criticalResult">
+        <b>Critical attack!</b>
+        {{action.attackResult.criticalResult.severity}}
+        {{action.attackResult.criticalResult.type}}
+    </div>
+    <div>&nbsp;</div>
+    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.text">
+        {{action.attackResult?.criticalResult?.criticalTableResult?.text}}
+    </div>
+    <div>&nbsp;</div>
+    
+    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.deathAfterRounds">
+        Target will die after {{action.attackResult?.criticalResult?.criticalTableResult?.deathAfterRounds}} rounds.
+    </div>
+    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.hp">
+        HP: {{action.attackResult?.criticalResult?.criticalTableResult?.hp}}
+    </div>
+    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.bleeding">
+        Bleeding: {{action.attackResult?.criticalResult?.criticalTableResult?.bleeding}}
+    </div>
+    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.shock">
+        Shocked for {{action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.shock}} rounds.
+    </div>
+    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.stunned">
+        Stunned for {{action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.stunned}} rounds.
+    </div>
+    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.['cant-parry']">
+        Can not parry for {{action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.['cant-parry']}} rounds.
+    </div>
+    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.['must-parry']">
+        Must parry for {{action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.['must-parry']}} rounds.
+    </div>
+    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.bonus">
+        Bonus +{{action.attackResult?.criticalResult?.criticalTableResult?.bonus?.bonus}} for {{action.attackResult?.criticalResult?.criticalTableResult?.bonus?.rounds}} rounds.
+    </div>
+
+    <div>&nbsp;</div>
+    <div *ngIf="action.roll?.result"><b>Roll</b>: {{action.roll.result}}</div>
+    <div>&nbsp;</div>
+    <div *ngIf="action.offensiveBonus"><b>Offensive bonus</b>: {{action.offensiveBonus}}</div>
+    <div>&nbsp;</div>
+    <div *ngIf="action.offensiveBonusMap"><b>Offensive modifiers:</b></div>
+    <div *ngFor="let modifier of getOffensiveModifiers()">
+        <div>
+            {{modifier}}
+        </div>
+    </div>
+</div>
