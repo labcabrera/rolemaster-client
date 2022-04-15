@@ -11,6 +11,7 @@ import { ActionService } from 'src/app/services/action.service';
 import { TacticalAction } from 'src/app/model/actions';
 import { MessageService } from 'src/app/services/message.service';
 import { DialogSetInitiativeComponent } from 'src/app/components/dialogs/dialog-set-initiative/dialog-set-initiative.component';
+import { DialogTacticalCharacterComponent } from 'src/app/components/dialogs/dialog-tactical-character/dialog-tactical-character.component';
 
 @Component({
   selector: 'app-tactical-view',

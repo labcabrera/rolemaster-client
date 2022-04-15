@@ -1,16 +1,128 @@
 <h2 mat-dialog-title>Action execution</h2>
 <mat-dialog-content>
 
-    <mat-form-field class="initiative-form-field" appearance="outline" style="width: 80%;">
-        <mat-label>Roll</mat-label>
-        <input matInput placeholder="Roll" value="" [(ngModel)]="actionExecution!.roll.result">
-      </mat-form-field>
+    <div fxLayout="row">
+        <div fxFlex="40" fxLayoutAlign="left top" class="div-tactical">
+
+            <div fxLayout="column">
+                <div><b>Type</b>: {{action.type}}</div>
+                <div><b>State</b>: {{action.state}}</div>
+                <div><b>Priority</b>: {{action.priority}}</div>
+                <div><b>Percent</b>: {{action.actionPercent}}</div>
+                <div><b>Melee attack type</b>: {{action.meleeAttackType}}</div>
+            </div>
+        </div>
+
+        <div fxFlex="20" fxLayoutAlign="left top" class="div-tactical">
+
+            <div fxLayout="column">
+                <div>
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Roll</mat-label>
+                        <input matInput placeholder="Roll" value="" [(ngModel)]="actionExecution!.roll.result">
+                    </mat-form-field>
+                </div>
+                <div *ngIf="checkTargetVisible()">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Target</mat-label>
+                        <mat-select [(ngModel)]="actionExecution.target">
+                            <mat-option *ngFor="let option of targets" [value]="option.key">{{option.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="action.type == 'melee-attack'">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Facing</mat-label>
+                        <mat-select [(ngModel)]="actionExecution.facing">
+                            <mat-option *ngFor="let option of meleeAttackFacingValues" [value]="option.key">{{option.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="action.state == 'pending-critical-resolution'">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Critical roll</mat-label>
+                        <input matInput placeholder="Critical roll" value="" [(ngModel)]="criticalExecution.roll">
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </div>
+
+        <div fxFlex="40" fxLayoutAlign="left top" class="div-tactical">
+            <div fxLayout="column">
+                <div *ngIf="action.attackResult"><b>Attack result: </b>{{action.attackResult?.attackResult}}</div>
+                <div *ngIf="action.attackResult"><b>Weapon: </b>{{action.attackResult?.weaponTableId}}</div>
+                <div *ngIf="action.attackResult"><b>Armor: </b>{{action.attackResult?.targetArmor}}</div>
+                <div>&nbsp;</div>
+                <div *ngIf="action.attackResult"><b>HP: </b>{{action.attackResult?.hp}}</div>
+                <div *ngIf="action.attackResult?.criticalResult">
+                    <b>Critical attack!</b>
+                    {{action.attackResult.criticalResult.severity}}
+                    {{action.attackResult.criticalResult.type}}
+                </div>
+                <div>&nbsp;</div>
+                <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.text">
+                    {{action.attackResult?.criticalResult?.criticalTableResult?.text}}
+                </div>
+                <div>&nbsp;</div>
+                
+                <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.deathAfterRounds">
+                    Target will die after {{action.attackResult?.criticalResult?.criticalTableResult?.deathAfterRounds}} rounds.
+                </div>
+                <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.hp">
+                    HP: {{action.attackResult?.criticalResult?.criticalTableResult?.hp}}
+                </div>
+                <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.bleeding">
+                    Bleeding: {{action.attackResult?.criticalResult?.criticalTableResult?.bleeding}}
+                </div>
+                <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.shock">
+                    Shocked for {{action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.shock}} rounds.
+                </div>
+                <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.stunned">
+                    Stunned for {{action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.stunned}} rounds.
+                </div>
+                <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.['cant-parry']">
+                    Can not parry for {{action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.['cant-parry']}} rounds.
+                </div>
+                <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.['must-parry']">
+                    Must parry for {{action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.['must-parry']}} rounds.
+                </div>
+                <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.bonus">
+                    Bonus +{{action.attackResult?.criticalResult?.criticalTableResult?.bonus?.bonus}} for {{action.attackResult?.criticalResult?.criticalTableResult?.bonus?.rounds}} rounds.
+                </div>
+
+                <div>&nbsp;</div>
+                <div *ngIf="action.roll?.result"><b>Roll</b>: {{action.roll.result}}</div>
+                <div>&nbsp;</div>
+                <div *ngIf="action.offensiveBonus"><b>Offensive bonus</b>: {{action.offensiveBonus}}</div>
+                <div>&nbsp;</div>
+                <div *ngIf="action.offensiveBonusMap"><b>Offensive modifiers:</b></div>
+                <div *ngFor="let modifier of getOffensiveModifiers()">
+                    <div>
+                        {{modifier}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div fxFlex="40" fxLayoutAlign="left top" class="div-tactical">
+            <pre>{{action | json}}</pre>
+        </div>
+
+    </div>
+
 
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="false" cdkFocusInitial (click)="executeAction()">Execute</button>
+    <button mat-button mat-dialog-close>Back</button>
+    <button mat-button (click)="executeAction()">Execute</button>
+    <button mat-button (click)="executeCritical()" *ngIf="action.state == 'pending-critical-resolution'">Resolve critical</button>
+    <!--
+    <button mat-button [mat-dialog-close]="false">Accept</button>
+    -->
 </mat-dialog-actions>
 
+<!--
 <pre>{{actionExecution | json}}</pre>
+-->

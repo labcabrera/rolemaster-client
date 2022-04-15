@@ -50,16 +50,40 @@ export class TacticalViewCharacterActionComponent implements OnInit {
 
   openActionExecutionDialog(action: TacticalAction) {
     var dialogRef = this.actionExecutionDialog.open(DialogActionExecutionComponent);
-    dialogRef.componentInstance.load(action);
+    dialogRef.componentInstance.load(action, this.characters!);
     dialogRef.afterClosed().subscribe(result => {
       //TODO reload actions
     });
+  }
+
+  openCriticalExecutionDialog(action: TacticalAction) {
+    this.openActionExecutionDialog(action);
   }
 
   deleteAction() {
     this.actionService.delete(this.action!.id).subscribe(result => {
       this.actionsUpdated.emit("deleted action");
     });
+  }
+
+  checkDisplayButtonActionExecution(action: TacticalAction) {
+    if(this.tacticalRound?.state != 'action-resolution') {
+      return false;
+    }
+    if(action.state == 'resolved' || action.state == 'pending-critical-resolution' || action.state == 'pending-fumble-resolution') {
+      return false;
+    }
+    return true;
+  }
+
+  checkDisplayButtonCriticalExecution(action: TacticalAction) {
+    if(this.tacticalRound?.state != 'action-resolution') {
+      return false;
+    }
+    if(action.state != "pending-critical-resolution") {
+      return false;
+    }
+    return true;
   }
 
 }

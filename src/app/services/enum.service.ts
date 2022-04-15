@@ -30,4 +30,9 @@ export class EnumService {
     return this.http.get<NamedKey[]>(url).pipe();
   }
 
+  findMeleeAttackFacingList(): Observable<NamedKey[]> {
+    var url = `${this.baseUrl}/melee-attack-facing`
+    return this.http.get<NamedKey[]>(url).pipe();
+  }
+
 }

@@ -62,6 +62,8 @@ import { TacticalViewCharacterComponent } from './components/tactical-view-chara
 import { DialogTacticalCharacterEditionComponent } from './components/dialogs/dialog-tactical-character-edition/dialog-tactical-character-edition.component';
 import { DialogSetInitiativeComponent } from './components/dialogs/dialog-set-initiative/dialog-set-initiative.component';
 import { DialogActionExecutionComponent } from './components/dialogs/dialog-action-execution/dialog-action-execution.component';
+import { TacticalSessionLogTableComponent } from './components/tactical-session-log-table/tactical-session-log-table.component';
+import { DialogTacticalCharacterComponent } from './components/dialogs/dialog-tactical-character/dialog-tactical-character.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +116,9 @@ import { DialogActionExecutionComponent } from './components/dialogs/dialog-acti
     TacticalViewCharacterComponent,
     DialogTacticalCharacterEditionComponent,
     DialogSetInitiativeComponent,
-    DialogActionExecutionComponent
+    DialogActionExecutionComponent,
+    TacticalSessionLogTableComponent,
+    DialogTacticalCharacterComponent,
   ],
   imports: [
     FormsModule,
