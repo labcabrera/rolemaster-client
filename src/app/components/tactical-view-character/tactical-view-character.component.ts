@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { TacticalCharacterContext } from 'src/app/model/character-context';
-import { TacticalViewCharacterManualEditionComponent } from '../tactical-view-character-manual-edition/tactical-view-character-manual-edition.component';
+import { DialogTacticalCharacterEditionComponent } from '../dialogs/dialog-tactical-character-edition/dialog-tactical-character-edition.component';
 
 @Component({
   selector: 'app-tactical-view-character',
@@ -21,7 +21,7 @@ export class TacticalViewCharacterComponent implements OnInit {
   }
 
   openManualEditionDialog() {
-    var dialogRef = this.manualEditionDialog.open(TacticalViewCharacterManualEditionComponent);
+    var dialogRef = this.manualEditionDialog.open(DialogTacticalCharacterEditionComponent);
     dialogRef.componentInstance.loadCharacter(this.character!);
     dialogRef.afterClosed().subscribe(result => {
       //this.actionsUpdated.emit("closed dialog");

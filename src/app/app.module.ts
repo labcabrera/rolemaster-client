@@ -50,7 +50,7 @@ import { MovingManeuversComponent } from './pages/moving-maneuvers/moving-maneuv
 import { ItemsComponent } from './pages/items/items.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
-import { DialogSelectActionComponent } from './components/dialog-select-action/dialog-select-action.component';
+import { DialogSelectActionComponent } from './components/dialogs/dialog-select-action/dialog-select-action.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { TrainingPackagesComponent } from './pages/training-packages/training-packages.component';
@@ -59,7 +59,9 @@ import { TacticalViewCharacterActionComponent } from './components/tactical-view
 import { CharacterSkillUpgradeComponent } from './pages/character-skill-upgrade/character-skill-upgrade.component';
 import { CharacterGeneralDataComponent } from './components/character-general-data/character-general-data.component';
 import { TacticalViewCharacterComponent } from './components/tactical-view-character/tactical-view-character.component';
-import { TacticalViewCharacterManualEditionComponent } from './components/tactical-view-character-manual-edition/tactical-view-character-manual-edition.component';
+import { DialogTacticalCharacterEditionComponent } from './components/dialogs/dialog-tactical-character-edition/dialog-tactical-character-edition.component';
+import { DialogSetInitiativeComponent } from './components/dialogs/dialog-set-initiative/dialog-set-initiative.component';
+import { DialogActionExecutionComponent } from './components/dialogs/dialog-action-execution/dialog-action-execution.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +112,9 @@ import { TacticalViewCharacterManualEditionComponent } from './components/tactic
     CharacterSkillUpgradeComponent,
     CharacterGeneralDataComponent,
     TacticalViewCharacterComponent,
-    TacticalViewCharacterManualEditionComponent
+    DialogTacticalCharacterEditionComponent,
+    DialogSetInitiativeComponent,
+    DialogActionExecutionComponent
   ],
   imports: [
     FormsModule,

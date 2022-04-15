@@ -14,7 +14,6 @@ import { MessageService } from './message.service';
 })
 export class TacticalSessionService {
 
-
   private baseUrlTacticalSessions = `${environment.apiURL}/tactical-sessions`;
   private baseUrlTacticalContexts = `${environment.apiURL}/tactical-character-contexts`;
 
@@ -85,6 +84,21 @@ export class TacticalSessionService {
 
   startRound(tacticalSessionId: string): Observable<TacticalRound> {
     const url = `${this.baseUrlTacticalSessions}/${tacticalSessionId}/round`;
+    return this.http.post<TacticalRound>(url, this.httpOptions).pipe();
+  }
+
+  startInitiativeDeclaration(tacticalSessionId: string): Observable<TacticalRound> {
+    const url = `${this.baseUrlTacticalSessions}/${tacticalSessionId}/round/initiative-declaration`;
+    return this.http.post<TacticalRound>(url, this.httpOptions).pipe();
+  }
+
+  startExecutionPhase(tacticalSessionId: string): Observable<TacticalRound> {
+    const url = `${this.baseUrlTacticalSessions}/${tacticalSessionId}/round/start-execution`;
+    return this.http.post<TacticalRound>(url, this.httpOptions).pipe();
+  }
+
+  declareInitiative(tacticalSessionId: string, characterId: string, roll: number) {
+    const url = `${this.baseUrlTacticalSessions}/${tacticalSessionId}/round/initiative-declaration/${characterId}/${roll}`;
     return this.http.post<TacticalRound>(url, this.httpOptions).pipe();
   }
 

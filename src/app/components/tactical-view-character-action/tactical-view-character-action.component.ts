@@ -4,7 +4,7 @@ import { Output, EventEmitter } from '@angular/core';
 
 import { TacticalAction } from 'src/app/model/actions';
 import { TacticalRound } from 'src/app/model/round';
-import { DialogSelectActionComponent } from 'src/app/components/dialog-select-action/dialog-select-action.component';
+import { DialogSelectActionComponent } from 'src/app/components/dialogs/dialog-select-action/dialog-select-action.component';
 import { TacticalCharacterContext } from 'src/app/model/character-context';
 import { ActionService } from 'src/app/services/action.service';
 

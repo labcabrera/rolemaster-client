@@ -2,6 +2,7 @@ export interface TacticalAction {
     id: string;
     roundId: string;
     type: string;
+    state: string;
     priority: string;
     actionPercent: number;
     source: string;

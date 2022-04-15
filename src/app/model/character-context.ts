@@ -4,6 +4,7 @@ export interface TacticalCharacterContext {
     id: string;
     tacticalSessionId: string;
     name: string;
+    shortDescription: string;
     characterId: string;
     isNpc: boolean;
     hp: Hp;

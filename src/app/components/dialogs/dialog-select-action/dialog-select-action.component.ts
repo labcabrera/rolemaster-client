@@ -22,7 +22,7 @@ export class DialogSelectActionComponent implements OnInit {
 
   characters: TacticalCharacterContext[] = [];
   tacticalSessionId: string = "";
-  action: TacticalAction = { type: 'movement' } as TacticalAction;
+  action: TacticalAction = { type: 'movement', pace: 'walk' } as TacticalAction;
 
   minActionPercent = 1;
   maxActionPercent = 100;
@@ -61,9 +61,15 @@ export class DialogSelectActionComponent implements OnInit {
     switch (event.index) {
       case 0:
         this.action.type = "movement";
+        if(!this.action.pace) {
+          this.action.pace = "walk";
+        }
         break;
       case 1:
         this.action.type = "melee-attack";
+        if(!this.action.meleeAttackType) {
+          this.action.meleeAttackType = 'full';
+        }
         break;
       case 2:
         this.action.type = "missile-attack";
