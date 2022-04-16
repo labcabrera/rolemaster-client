@@ -4,6 +4,7 @@ export interface TacticalCharacterContext {
     id: string;
     tacticalSessionId: string;
     name: string;
+    level: number;
     shortDescription: string;
     characterId: string;
     isNpc: boolean;
@@ -12,6 +13,8 @@ export interface TacticalCharacterContext {
     exhaustionPoints: ExhaustionPoints;
     combatStatus: CombatStatus;
     modifiers: ContextCharacterModifiers;
+    armor: number;
+    defensiveBonus: number;
     metadata: Metadata
 }
 

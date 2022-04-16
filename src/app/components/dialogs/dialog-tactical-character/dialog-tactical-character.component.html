@@ -1,5 +1,35 @@
-<h2 mat-dialog-title>Action selection</h2>
+<h2 mat-dialog-title>{{character.name}}</h2>
 <mat-dialog-content>
+
+    <div>
+        <div>{{character.shortDescription}}</div>
+        <div fxLayout="row">
+            <div fxFlex="30">Level</div>
+            <div fxFlex="30">{{character.level}}</div>
+            <div fxFlex="30"></div>
+            <div fxFlex="30"></div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex="30">HP</div>
+            <div fxFlex="30">{{character.hp.current}} / {{character.hp.max}}</div>
+            <div fxFlex="30">PP</div>
+            <div fxFlex="30">{{character.powerPoints.current}} / {{character.powerPoints.max}}</div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex="30">Exhaustion</div>
+            <div fxFlex="30">{{character.exhaustionPoints.current}} / {{character.exhaustionPoints.max}}</div>
+            <div fxFlex="30"></div>
+            <div fxFlex="30"></div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex="30">Armor</div>
+            <div fxFlex="30">{{character.armor}}</div>
+            <div fxFlex="30">BD</div>
+            <div fxFlex="30">{{character.defensiveBonus}}</div>
+        </div>
+    </div>
+
+
 
     <pre>{{character | json}}</pre>
 
@@ -8,4 +38,3 @@
 <mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancel</button>
 </mat-dialog-actions>
-
