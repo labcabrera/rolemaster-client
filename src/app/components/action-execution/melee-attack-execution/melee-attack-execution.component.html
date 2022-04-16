@@ -1,0 +1,64 @@
+<div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+    
+    <div fxFlex="20">
+
+        <div fxLayout="column">
+            <div><b>Type</b>: {{action.type}}</div>
+            <div><b>State</b>: {{action.state}}</div>
+            <div><b>Priority</b>: {{action.priority}}</div>
+            <div><b>Percent</b>: {{action.actionPercent}}</div>
+            <div><b>Melee attack type</b>: {{action.meleeAttackType}}</div>
+            <div *ngIf="action.target"><b>Target</b>: {{getCharacterName(action.target)}}</div>
+        </div>
+    </div>
+
+    <div fxFlex="20">
+
+        <div fxLayout="column">
+            <div>
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Roll</mat-label>
+                    <input matInput placeholder="Roll" value="" [(ngModel)]="actionExecution!.roll.result">
+                </mat-form-field>
+            </div>
+            <div *ngIf="action.meleeAttackType != 'full'">
+                <mat-form-field appearance="fill">
+                    <mat-label>Target</mat-label>
+                    <mat-select [(ngModel)]="actionExecution.target">
+                        <mat-option *ngFor="let option of availableTargets" [value]="option.key">{{option.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div *ngIf="action.type == 'melee-attack'">
+                <mat-form-field appearance="fill">
+                    <mat-label>Facing</mat-label>
+                    <mat-select [(ngModel)]="actionExecution.facing">
+                        <mat-option *ngFor="let option of meleeAttackFacingValues" [value]="option.key">{{option.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div *ngIf="action.state == 'pending-critical-resolution'">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Critical roll</mat-label>
+                    <input matInput placeholder="Critical roll" value="" [(ngModel)]="criticalExecution.roll">
+                </mat-form-field>
+            </div>
+            <div *ngIf="action.state == 'pending-fumble-resolution'">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Critical roll</mat-label>
+                    <input matInput placeholder="Critical roll" value="" [(ngModel)]="fumbleExecution.roll">
+                </mat-form-field>
+            </div>
+        </div>
+
+    </div>
+
+    <div fxFlex="30">
+        <app-attack-result [action]="action"></app-attack-result>
+    </div>
+
+    <div fxFlex="30">
+        <app-critical-result-view [action]="action"></app-critical-result-view>
+    </div>
+
+</div>

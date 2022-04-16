@@ -65,6 +65,8 @@ import { DialogActionExecutionComponent } from './components/dialogs/dialog-acti
 import { TacticalSessionLogTableComponent } from './components/tactical-session-log-table/tactical-session-log-table.component';
 import { DialogTacticalCharacterComponent } from './components/dialogs/dialog-tactical-character/dialog-tactical-character.component';
 import { AttackResultComponent } from './components/attack-result/attack-result.component';
+import { MeleeAttackExecutionComponent } from './components/action-execution/melee-attack-execution/melee-attack-execution.component';
+import { CriticalResultViewComponent } from './components/action-execution/critical-result-view/critical-result-view.component';
 
 @NgModule({
   declarations: [
@@ -121,6 +123,8 @@ import { AttackResultComponent } from './components/attack-result/attack-result.
     TacticalSessionLogTableComponent,
     DialogTacticalCharacterComponent,
     AttackResultComponent,
+    MeleeAttackExecutionComponent,
+    CriticalResultViewComponent,
   ],
   imports: [
     FormsModule,

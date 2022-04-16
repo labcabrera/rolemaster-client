@@ -1,75 +1,35 @@
 <h2 mat-dialog-title>Action execution</h2>
 <mat-dialog-content>
 
-    <div fxLayout="row">
-        <div fxFlex="40" fxLayoutAlign="left top" class="div-tactical">
 
-            <div fxLayout="column">
-                <div><b>Type</b>: {{action.type}}</div>
-                <div><b>State</b>: {{action.state}}</div>
-                <div><b>Priority</b>: {{action.priority}}</div>
-                <div><b>Percent</b>: {{action.actionPercent}}</div>
-                <div><b>Melee attack type</b>: {{action.meleeAttackType}}</div>
-            </div>
-        </div>
+    <app-melee-attack-execution [action]="action" [actionExecution]="actionExecution" [characters]="characters"
+        [criticalExecution]="criticalExecution" [fumbleExecution]="fumbleExecution">
+    </app-melee-attack-execution>
 
-        <div fxFlex="20" fxLayoutAlign="left top" class="div-tactical">
-
-            <div fxLayout="column">
-                <div>
-                    <mat-form-field appearance="outline" style="width: 100%;">
-                        <mat-label>Roll</mat-label>
-                        <input matInput placeholder="Roll" value="" [(ngModel)]="actionExecution!.roll.result">
-                    </mat-form-field>
-                </div>
-                <div *ngIf="checkTargetVisible()">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Target</mat-label>
-                        <mat-select [(ngModel)]="actionExecution.target">
-                            <mat-option *ngFor="let option of targets" [value]="option.key">{{option.name}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div *ngIf="action.type == 'melee-attack'">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Facing</mat-label>
-                        <mat-select [(ngModel)]="actionExecution.facing">
-                            <mat-option *ngFor="let option of meleeAttackFacingValues" [value]="option.key">{{option.name}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div *ngIf="action.state == 'pending-critical-resolution'">
-                    <mat-form-field appearance="outline" style="width: 100%;">
-                        <mat-label>Critical roll</mat-label>
-                        <input matInput placeholder="Critical roll" value="" [(ngModel)]="criticalExecution.roll">
-                    </mat-form-field>
-                </div>
-            </div>
-
-        </div>
-
-        <div fxFlex="40" fxLayoutAlign="left top" class="div-tactical">
-            <app-attack-result [action]="action"></app-attack-result>
-        </div>
-
-        <div fxFlex="40" fxLayoutAlign="left top" class="div-tactical">
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Debug
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            Action:
             <pre>{{action | json}}</pre>
-        </div>
-
-    </div>
-
+            Action execution:
+            <pre>{{actionExecution | json}}</pre>
+            Critical execution:
+            <pre>{{criticalExecution | json}}</pre>
+        </mat-expansion-panel>
+    </mat-accordion>
 
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Back</button>
-    <button mat-button (click)="executeAction()">Execute</button>
-    <button mat-button (click)="executeCritical()" *ngIf="action.state == 'pending-critical-resolution'">Resolve critical</button>
+    <button mat-button mat-dialog-close>Close</button>
+    <button mat-button (click)="executeAction()" *ngIf="!action.roll">Execute</button>
+    <button mat-button (click)="executeCritical()" *ngIf="action.state == 'pending-critical-resolution'">Resolve
+        critical</button>
     <!--
     <button mat-button [mat-dialog-close]="false">Accept</button>
     -->
 </mat-dialog-actions>
-
-<!--
-<pre>{{actionExecution | json}}</pre>
--->

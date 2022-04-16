@@ -57,6 +57,10 @@ export class DialogSelectActionComponent implements OnInit {
     this.characters = characters;
   }
 
+  public loadAction(action: TacticalAction) {
+    this.action = action;
+  }
+
   configureActionType(event: MatTabChangeEvent) {
     switch (event.index) {
       case 0:

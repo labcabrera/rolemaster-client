@@ -1,54 +1,36 @@
-<div fxLayout="column">
-    <div *ngIf="action.attackResult"><b>Attack result: </b>{{action.attackResult?.attackResult}}</div>
-    <div *ngIf="action.attackResult"><b>Weapon: </b>{{action.attackResult?.weaponTableId}}</div>
-    <div *ngIf="action.attackResult"><b>Armor: </b>{{action.attackResult?.targetArmor}}</div>
-    <div>&nbsp;</div>
-    <div *ngIf="action.attackResult"><b>HP: </b>{{action.attackResult?.hp}}</div>
-    <div *ngIf="action.attackResult?.criticalResult">
-        <b>Critical attack!</b>
-        {{action.attackResult.criticalResult.severity}}
-        {{action.attackResult.criticalResult.type}}
-    </div>
-    <div>&nbsp;</div>
-    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.text">
-        {{action.attackResult?.criticalResult?.criticalTableResult?.text}}
-    </div>
-    <div>&nbsp;</div>
-    
-    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.deathAfterRounds">
-        Target will die after {{action.attackResult?.criticalResult?.criticalTableResult?.deathAfterRounds}} rounds.
-    </div>
-    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.hp">
-        HP: {{action.attackResult?.criticalResult?.criticalTableResult?.hp}}
-    </div>
-    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.bleeding">
-        Bleeding: {{action.attackResult?.criticalResult?.criticalTableResult?.bleeding}}
-    </div>
-    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.shock">
-        Shocked for {{action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.shock}} rounds.
-    </div>
-    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.stunned">
-        Stunned for {{action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.stunned}} rounds.
-    </div>
-    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.['cant-parry']">
-        Can not parry for {{action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.['cant-parry']}} rounds.
-    </div>
-    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.['must-parry']">
-        Must parry for {{action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.['must-parry']}} rounds.
-    </div>
-    <div *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.bonus">
-        Bonus +{{action.attackResult?.criticalResult?.criticalTableResult?.bonus?.bonus}} for {{action.attackResult?.criticalResult?.criticalTableResult?.bonus?.rounds}} rounds.
-    </div>
+<div fxLayout="column" *ngIf="!action.attackResult">
+    Attack not resolved.
+</div>
 
-    <div>&nbsp;</div>
-    <div *ngIf="action.roll?.result"><b>Roll</b>: {{action.roll.result}}</div>
-    <div>&nbsp;</div>
-    <div *ngIf="action.offensiveBonus"><b>Offensive bonus</b>: {{action.offensiveBonus}}</div>
-    <div>&nbsp;</div>
-    <div *ngIf="action.offensiveBonusMap"><b>Offensive modifiers:</b></div>
-    <div *ngFor="let modifier of getOffensiveModifiers()">
-        <div>
-            {{modifier}}
+<div fxLayout="column" *ngIf="action.attackResult">
+
+    <div fxLayout="row">
+        <div fxFlex="60">Attack result</div>
+        <div fxFlexAuto>
+            {{action.attackResult.attackResult}} ({{action.roll.result}} + {{action.offensiveBonus}})
         </div>
     </div>
+    <div fxLayout="row">
+        <div fxFlex="60">Weapon</div>
+        <div fxFlexAuto>{{action.attackResult.weaponTableId}}</div>
+    </div>
+    <div fxLayout="row">
+        <div fxFlex="60">Armor</div>
+        <div fxFlexAuto>{{action.attackResult.targetArmor}}</div>
+    </div>
+
+    <div fxLayout="row" style="padding-top: 20pt;">
+        <div fxFlex="60">HP</div>
+        <div fxFlexAuto>{{action.attackResult.hp}}</div>
+    </div>
+
+    <div fxLayout="row" style="padding-top: 20pt;">
+        <div fxFlex="60">Offensive modifiers</div>
+        <div fxFlexAuto></div>
+    </div>
+    <div  fxLayout="row" *ngFor="let option of this.getOffensiveModifiers()">
+        <div fxFlex="60">{{option.key}}</div>
+        <div fxFlexAuto>{{option.name}}</div>
+    </div>
+
 </div>

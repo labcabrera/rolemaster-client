@@ -7,7 +7,7 @@ export interface TacticalAction {
     state: string;
     priority: string;
     actionPercent: number;
-    effectiveInitiative: number;
+    initiative: number;
     source: string;
     target: string;
     pace: string;
@@ -15,8 +15,21 @@ export interface TacticalAction {
     parry: number;
     roll: OpenRoll;
     offensiveBonus: number;
-    offensiveBonusMap: Map<string,number>;
+    offensiveBonusMap: OffensiveBonusMap;
     attackResult: AttackResult;
+}
+
+export interface OffensiveBonusMap {
+    skill: number;
+    'defensive-bonus': number;
+    shield: number;
+    'target-status': number;
+    hp: number;
+    exhaustion: number;
+    'action-percent': number;
+    'melee-facing': number;
+    parry: number;
+    'distance': number;
 }
 
 export interface TacticalActionDeclaration {
@@ -79,7 +92,10 @@ export interface AttackBonus {
 }
 
 export interface AttackCriticalExecution {
-    actionId: string;
+    roll: number;
+}
+
+export interface FumbleExecution {
     roll: number;
 }
 

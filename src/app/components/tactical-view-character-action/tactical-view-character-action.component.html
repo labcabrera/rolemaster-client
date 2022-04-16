@@ -6,12 +6,12 @@
 </div>
 <div *ngIf="action">
     
-    <button mat-button *ngIf="action.effectiveInitiative" matTooltip="Initiative">
+    <button mat-button *ngIf="action.initiative" matTooltip="Initiative">
         <mat-icon>flash_on</mat-icon>
-        {{action.effectiveInitiative}}
+        {{action.initiative}}
     </button>
 
-    <button mat-button color="primary" (click)=openAction()>
+    <button mat-button color="primary" (click)="openAction(action)">
         <mat-icon *ngIf="action.type == 'movement'">directions_run</mat-icon>
         <mat-icon *ngIf="action.type == 'melee-attack'">local_dining</mat-icon>
         <mat-icon *ngIf="action.type == 'missile-attack'">u_turn_right</mat-icon>
@@ -28,9 +28,14 @@
         <mat-icon>upload</mat-icon>
     </button>
 
-    <button mat-button color="primary" *ngIf="checkDisplayButtonCriticalExecution(action)" (click)="openCriticalExecutionDialog(action)" matTooltip="Critical resolution">
+    <button mat-button color="primary" *ngIf="checkDisplayButtonCriticalExecution(action)" (click)="openCriticalExecutionDialog(action)" matTooltip="Critical">
         <mat-icon>apps_outage</mat-icon>
     </button>
+
+    <button mat-button color="primary" *ngIf="checkDisplayButtonFumbleExecution(action)" (click)="openFumbleExecutionDialog(action)" matTooltip="Fumble">
+        <mat-icon>feedback</mat-icon>
+    </button>
+    
     
    
     <button mat-button

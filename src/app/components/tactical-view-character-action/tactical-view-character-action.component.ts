@@ -40,9 +40,10 @@ export class TacticalViewCharacterActionComponent implements OnInit {
     });
   }
 
-  openAction() {
+  openAction(action: TacticalAction) {
     var dialogRef = this.actionSelectionDialog.open(DialogSelectActionComponent);
     dialogRef.componentInstance.load(this.tacticalRound!, this.source!, this.priority!, this.characters!);
+    dialogRef.componentInstance.loadAction(action);
     dialogRef.afterClosed().subscribe(result => {
       this.actionsUpdated.emit("closed dialog");
     });
@@ -57,6 +58,10 @@ export class TacticalViewCharacterActionComponent implements OnInit {
   }
 
   openCriticalExecutionDialog(action: TacticalAction) {
+    this.openActionExecutionDialog(action);
+  }
+
+  openFumbleExecutionDialog(action: TacticalAction) {
     this.openActionExecutionDialog(action);
   }
 
@@ -81,6 +86,16 @@ export class TacticalViewCharacterActionComponent implements OnInit {
       return false;
     }
     if(action.state != "pending-critical-resolution") {
+      return false;
+    }
+    return true;
+  }
+
+  checkDisplayButtonFumbleExecution(action: TacticalAction) {
+    if(this.tacticalRound?.state != 'action-resolution') {
+      return false;
+    }
+    if(action.state != "pending-fumble-resolution") {
       return false;
     }
     return true;

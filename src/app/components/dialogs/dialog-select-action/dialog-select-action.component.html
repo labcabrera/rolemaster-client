@@ -1,49 +1,112 @@
 <h2 mat-dialog-title>Action selection</h2>
 <mat-dialog-content>
 
-    Action Percent:
-    <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="{{minActionPercent}}" max="{{maxActionPercent}}" aria-label="units"></mat-slider>
-
     <mat-tab-group #matTabGroup mat-align-tabs="start" (selectedTabChange)="configureActionType($event)">
 
         <mat-tab label="Movement">
-            <mat-form-field appearance="fill">
-                <mat-label>Pace</mat-label>
-                <mat-select [(ngModel)]="action.pace">
-                    <mat-option *ngFor="let option of movementPaces" [value]="option.key">{{option.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
+
+            <div fxLayout="column" fxLayoutGap="15px">
+                <div>
+                    <h4>Action percent</h4>
+                    <span>{{action.actionPercent}}&nbsp;</span>
+                    <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="0" max="{{maxActionPercent}}"
+                        step="5" aria-label="units">
+                    </mat-slider>
+                </div>
+                <div>
+                    <h4>Pace</h4>
+                    <mat-button-toggle-group [(ngModel)]="action.pace" aria-label="Font Style">
+                        <mat-button-toggle *ngFor="let option of movementPaces" [value]="option.key">{{option.name}}
+                        </mat-button-toggle>
+                    </mat-button-toggle-group>
+                </div>
+            </div>
         </mat-tab>
 
         <mat-tab label="Melee">
 
-            <mat-form-field appearance="fill">
-                <mat-label>Attack type</mat-label>
-                <mat-select [(ngModel)]="action.meleeAttackType">
-                    <mat-option *ngFor="let option of meleeAttackTypes" [value]="option.key">{{option.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <br>
-            <mat-form-field appearance="fill">
-                <mat-label>Target</mat-label>
-                <mat-select [(ngModel)]="action.target">
-                    <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <br>
-            Parry percent
-            <mat-slider thumbLabel min="0" max="100" aria-label="units" [(ngModel)]="action.parry"></mat-slider>
+            <div fxLayout="column" fxLayoutGap="15px">
+                <div>
+                    <h4>Action percent</h4>
+                    <span>{{action.actionPercent}}&nbsp;</span>
+                    <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="0" max="{{maxActionPercent}}"
+                        step="5" aria-label="units">
+                    </mat-slider>
+                </div>
+                <div>
+                    <h4>Parry percent</h4>
+                    <span>{{action.parry}}&nbsp;</span>
+                    <mat-slider thumbLabel min="0" max="100" step="5" aria-label="percent" [(ngModel)]="action.parry">
+                    </mat-slider>
+                </div>
+                <div>
+                    <h4>Attack type</h4>
+                    <mat-button-toggle-group [(ngModel)]="action.meleeAttackType" aria-label="Font Style">
+                        <mat-button-toggle *ngFor="let option of meleeAttackTypes" [value]="option.key">{{option.name}}
+                        </mat-button-toggle>
+                    </mat-button-toggle-group>
+                </div>
+                <div *ngIf="action.meleeAttackType == 'full'">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Target</mat-label>
+                        <mat-select [(ngModel)]="action.target">
+                            <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
         </mat-tab>
 
-        <mat-tab label="Ranged">Ranged</mat-tab>
+        <mat-tab label="Ranged">
+            <div fxLayout="column" fxLayoutGap="15px">
+                <div>
+                    <h4>Action percent</h4>
+                    <span>{{action.actionPercent}}&nbsp;</span>
+                    <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="0" max="{{maxActionPercent}}"
+                        step="5" aria-label="units">
+                    </mat-slider>
+                </div>
+            </div>
+        </mat-tab>
 
-        <mat-tab label="Static M">Static M</mat-tab>
+        <mat-tab label="Static M">
+            <div fxLayout="column" fxLayoutGap="15px">
+                <div>
+                    <h4>Action percent</h4>
+                    <span>{{action.actionPercent}}&nbsp;</span>
+                    <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="0" max="{{maxActionPercent}}"
+                        step="5" aria-label="units">
+                    </mat-slider>
+                </div>
+            </div>
+        </mat-tab>
 
-        <mat-tab label="Moving M">Moving M</mat-tab>
+        <mat-tab label="Moving M">
+            <div fxLayout="column" fxLayoutGap="15px">
+                <div>
+                    <h4>Action percent</h4>
+                    <span>{{action.actionPercent}}&nbsp;</span>
+                    <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="0" max="{{maxActionPercent}}"
+                        step="5" aria-label="units">
+                    </mat-slider>
+                </div>
+            </div>
+        </mat-tab>
 
-        <mat-tab label="Spell">Spell</mat-tab>
+        <mat-tab label="Spell">
+            <div fxLayout="column" fxLayoutGap="15px">
+                <div>
+                    <h4>Action percent</h4>
+                    <span>{{action.actionPercent}}&nbsp;</span>
+                    <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="0" max="{{maxActionPercent}}"
+                        step="5" aria-label="units">
+                    </mat-slider>
+                </div>
+            </div>
+        </mat-tab>
+
     </mat-tab-group>
-
 
 </mat-dialog-content>
 
@@ -52,4 +115,6 @@
     <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="declareAction()">Add</button>
 </mat-dialog-actions>
 
+<!--
 <pre>{{action | json}}</pre>
+-->

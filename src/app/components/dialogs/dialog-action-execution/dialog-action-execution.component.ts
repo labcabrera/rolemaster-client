@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
-import { AttackCriticalExecution, TacticalAction, TacticalActionExecution } from 'src/app/model/actions';
+import { AttackCriticalExecution, FumbleExecution, TacticalAction, TacticalActionExecution } from 'src/app/model/actions';
 import { TacticalCharacterContext } from 'src/app/model/character-context';
 import { NamedKey } from 'src/app/model/commons';
 import { TacticalSession } from 'src/app/model/session';
@@ -18,12 +18,11 @@ export class DialogActionExecutionComponent implements OnInit {
 
   action: TacticalAction = {} as TacticalAction;
   tacticalSession: TacticalSession = {} as TacticalSession;
+  characters: TacticalCharacterContext[] = [];
 
   actionExecution: TacticalActionExecution = {} as TacticalActionExecution;
-  criticalExecution: AttackCriticalExecution = {} as AttackCriticalExecution;
-
-  meleeAttackFacingValues: NamedKey[] = [];
-  targets: NamedKey[] = [];
+  criticalExecution: AttackCriticalExecution = { roll: 0 };
+  fumbleExecution: FumbleExecution = { roll: 0 };
 
   constructor(
     private actionService: ActionService,
@@ -32,14 +31,13 @@ export class DialogActionExecutionComponent implements OnInit {
     private dialogRef: MatDialogRef<any>) { }
 
   ngOnInit(): void {
-    this.dialogRef.updateSize('80%', '80%');
-    this.enumService.findMeleeAttackFacingList().subscribe(result => this.meleeAttackFacingValues = result);
+    this.dialogRef.updateSize('90%', '90%');
   }
 
   load(action: TacticalAction, characters: TacticalCharacterContext[]) {
     this.action = action;
+    this.characters = characters;
     this.loadActionExecution();
-    this.loadTargets(characters);
   }
 
   loadActionExecution() {
@@ -47,22 +45,10 @@ export class DialogActionExecutionComponent implements OnInit {
     this.actionExecution.roll = { result: 0, rolls: [0] }
     if (this.action.type == 'melee-attack') {
       this.actionExecution.facing = 'normal';
-      if(this.action.meleeAttackType != 'full') {
+      if (this.action.meleeAttackType != 'full') {
         this.actionExecution.target = this.action.target;
       }
     }
-    this.criticalExecution.actionId = this.action.id;
-  }
-
-  loadTargets(characters: TacticalCharacterContext[]) {
-    var source = this.action.source;
-    var tmp: NamedKey[] = [];
-    characters.forEach(function (character) {
-      if (character.id != source) {
-        tmp.push({ key: character.id, name: character.name });
-      }
-    });
-    this.targets = tmp;
   }
 
   executeAction() {
@@ -75,19 +61,21 @@ export class DialogActionExecutionComponent implements OnInit {
   }
 
   executeCritical() {
+    if (this.criticalExecution.roll == 0) {
+      return;
+    }
     this.actionService.executeCritical(this.action.id, this.criticalExecution).subscribe(result => {
       this.action = result;
-    })
+    });
   }
 
-  checkTargetVisible() {
-    if(this.action.type != "melee-attack") {
-      return false;
+  executeFumble() {
+    if (this.fumbleExecution.roll == 0) {
+      return;
     }
-    if(this.action.type == "melee-attack" && this.action.meleeAttackType == 'full') {
-      return false;
-    }
-    return true;
+    this.actionService.executeFumble(this.action.id, this.fumbleExecution).subscribe(result => {
+      this.action = result;
+    });
   }
 
 }
