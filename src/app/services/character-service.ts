@@ -41,10 +41,15 @@ export class CharacterService {
   }
 
   upgradeSkillCategory(characterId: string, skillCategoryId: string, value: number): Observable<CharacterInfo> {
-    const request: any = {
-      categoryRanks: {}
-    };
+    const request: any = { categoryRanks: {} };
     request.categoryRanks[skillCategoryId] = value;
+    const url = `${this.baseUrl}/${characterId}/skills/upgrade`;
+    return this.http.post<CharacterInfo>(url, request, this.httpOptions).pipe();
+  }
+
+  upgradeSkill(characterId: string, skillId: string, value: number): Observable<CharacterInfo> {
+    const request: any = { skillRanks: {} };
+    request.categoryRanks[skillId] = value;
     const url = `${this.baseUrl}/${characterId}/skills/upgrade`;
     return this.http.post<CharacterInfo>(url, request, this.httpOptions).pipe();
   }

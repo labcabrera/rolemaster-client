@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { CharacterInfo, CharacterSkillCategory } from '../../model/character-info';
+import { CharacterInfo, CharacterSkillCategory, CharacterSkill } from '../../model/character-info';
 import { CharacterService } from '../../services/character-service';
 
 @Component({
@@ -14,6 +14,7 @@ export class CharacterViewComponent implements OnInit {
 
   character: CharacterInfo;
   skillCategoryDataSource: MatTableDataSource<CharacterSkillCategory>;
+  skillDataSource: MatTableDataSource<CharacterSkill>;
 
   constructor(
     private characterService: CharacterService,
@@ -21,13 +22,15 @@ export class CharacterViewComponent implements OnInit {
     private router: Router) {
     this.character = {} as CharacterInfo;
     this.skillCategoryDataSource = new MatTableDataSource([] as CharacterSkillCategory[]);
+    this.skillDataSource = new MatTableDataSource([] as CharacterSkill[]);
   }
 
   ngOnInit(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
-    this.characterService.getCharacter(id).subscribe(c => {
-      this.character = c;
-      this.skillCategoryDataSource = new MatTableDataSource(this.character.skillCategories);
+    this.characterService.getCharacter(id).subscribe(result => {
+      this.character = result;
+      this.skillCategoryDataSource.data = this.character.skillCategories;
+      this.skillDataSource.data = this.character.skills;
     });
   }
 
@@ -42,11 +45,11 @@ export class CharacterViewComponent implements OnInit {
     });
   }
 
-  availableDevelopmentPoints() {
+  availableDevelopmentPoints(): number {
     if(!this.character || !this.character.developmentPoints) {
-      return false;
+      return 0;
     }
-    return this.character.developmentPoints.usedPoints < this.character.developmentPoints.totalPoints;
+    return this.character.developmentPoints.totalPoints - this.character.developmentPoints.usedPoints;
   }
 
 }

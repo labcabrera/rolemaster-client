@@ -1,6 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+
 import { Skill } from 'src/app/model/skill';
 import { CharacterInfo, CharacterSkill } from '../../model/character-info';
+import { CharacterService } from 'src/app/services/character-service';
 
 @Component({
   selector: 'app-character-skill-list',
@@ -9,36 +12,34 @@ import { CharacterInfo, CharacterSkill } from '../../model/character-info';
 })
 export class CharacterSkillListComponent implements OnInit {
 
-  @Input() characterInfo?: CharacterInfo;
+  @Input() character: CharacterInfo = {} as CharacterInfo;
+  @Input() skillDataSource: MatTableDataSource<CharacterSkill> | undefined;
 
-  constructor() { }
+  @Output() onCharacterUpdated = new EventEmitter<CharacterInfo>();
+
+  displayedColumns: string[] = ['categoryId', 'group', 'developmentCost', 'ranks', 'bonus', 'totalRanks', 'totalBonus', 'options'];
+
+  constructor(private characterService: CharacterService) { }
 
   ngOnInit(): void {
   }
 
-  updateDevelopmentRank(value: number, skill: CharacterSkill): void {
-    if(value != 1 && value != -1) {
-      throw("Invalid increment");
-    }
-    let newValue = skill.ranks.development + value;
-    if(newValue < 0) {
-      return;
-    }
-    if(newValue <= skill.developmentCost.length) {
-      let cost = 0;
-      if(value > 0) {
-        cost = skill.developmentCost[newValue - 1];
-      } else {
-        cost = -skill.developmentCost[newValue];
-      }
-      console.log("cost += " + cost);
-      skill.ranks.development = newValue;
-      this.characterInfo!.developmentPoints.usedPoints += cost;
-    }
+  updateRank(skillId: string, value: number): void {
+    this.characterService.upgradeSkill(this.character.id, skillId, value).subscribe(result => {
+      //TODO
+      this.character = result;
+      this.onCharacterUpdated.emit(result);
+      //this.skillCategoryDataSource!.data = this.character.skillCategories;
+    });
   }
 
   addSkill(event: any) {
     console.log("TODO: addSKill", event)
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.skillDataSource!.filter = filterValue.trim().toLowerCase();
   }
 
 }

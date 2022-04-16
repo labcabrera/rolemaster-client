@@ -1,88 +1,76 @@
-<!--
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
+
+<table mat-table [dataSource]="skillDataSource!" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="categoryId">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element"> {{element.categoryId}} </td>
+  </ng-container>
+  <ng-container matColumnDef="group">
+    <th mat-header-cell *matHeaderCellDef>Group</th>
+    <td mat-cell *matCellDef="let element"> {{element.group}} </td>
+  </ng-container>
+  <ng-container matColumnDef="developmentCost">
+    <th mat-header-cell *matHeaderCellDef>Dev</th>
+    <td mat-cell *matCellDef="let element">{{element.developmentCost}}</td>
+  </ng-container>
+  <!--
+  <ng-container matColumnDef="adolescenceRanks">
+    <th mat-header-cell *matHeaderCellDef>Adolescence ranks</th>
+    <td mat-cell *matCellDef="let element">{{getAdolescenceRank(element)}}</td>
+  </ng-container>
+  -->
+  <ng-container matColumnDef="ranks">
+    <th mat-header-cell *matHeaderCellDef>Ranks</th>
+    <td mat-cell *matCellDef="let element">{{element.ranks | json}}</td>
+  </ng-container>
+  <ng-container matColumnDef="bonus">
+    <th mat-header-cell *matHeaderCellDef>Bonus</th>
+    <td mat-cell *matCellDef="let element">{{element.bonus | json}}</td>
+  </ng-container>
+  <ng-container matColumnDef="totalRanks">
+    <th mat-header-cell *matHeaderCellDef>Total Ranks</th>
+    <td mat-cell *matCellDef="let element">{{element.totalRanks}}</td>
+  </ng-container>
+  <ng-container matColumnDef="totalBonus">
+    <th mat-header-cell *matHeaderCellDef>Total Bonus</th>
+    <td mat-cell *matCellDef="let element">{{element.totalBonus}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="options" stickyEnd>
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" (click)="updateRank(element.categoryId, 1)">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" (click)="updateRank(element.categoryId, -1)">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+  </tr>
+</table>
+
 <mat-accordion>
   <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
-      <mat-panel-title>
-        <div>Skills
-          <span>({{this.characterInfo?.developmentPoints?.usedPoints}}/{{this.characterInfo?.developmentPoints?.totalPoints}})</span>
-        </div>
-      </mat-panel-title>
-      <mat-panel-description>
-      </mat-panel-description>
+      <mat-panel-title>Debug skill category list</mat-panel-title>
+      <mat-panel-description></mat-panel-description>
     </mat-expansion-panel-header>
-  -->
-
-    <table mat class="mat-table cdk-table mat-elevation-z8 ng-tns-c149-66">
-      <thead>
-      <tr class="mat-header-row cdk-header-row ng-star-inserted">
-        <th class="mat-header-cell cdk-header-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">Skill</th>
-        <th class="mat-header-cell cdk-header-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">Group</th>
-        <th class="mat-header-cell cdk-header-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">Category</th>
-        <th class="mat-header-cell cdk-header-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">Attributes</th>
-        <th class="mat-header-cell cdk-header-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">Development</th>
-        <th class="mat-header-cell cdk-header-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">Rank (ad)</th>
-        <th class="mat-header-cell cdk-header-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">Rank (co)</th>
-        <th class="mat-header-cell cdk-header-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">Rank (de)</th>
-        <th class="mat-header-cell cdk-header-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">Skill bonus</th>
-        <th class="mat-header-cell cdk-header-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">Total</th>
-      </tr>
-    </thead>
-      <tr *ngFor="let skill of characterInfo?.skills" class="mat-row cdk-row ng-star-inserted">
-        <td style="text-align: left;" class="mat-cell cdk-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">
-          <div>{{skill.skillId}}</div>
-        </td>
-        <td style="text-align: left;" class="mat-cell cdk-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">
-          <div>{{skill.group}}</div>
-        </td>
-        <td style="text-align: left;" class="mat-cell cdk-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">
-          <div>{{skill.categoryId}}</div>
-        </td>
-        <td style="text-align: left;" class="mat-cell cdk-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">
-          <div>{{skill.attributes}}</div>
-        </td>
-        <td style="text-align: left;" class="mat-cell cdk-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">
-          <div>{{skill.developmentCost}}</div>
-        </td>
-        <td class="mat-cell cdk-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">
-          <div>{{skill.ranks.adolescence}}</div>
-        </td>
-        <td class="mat-cell cdk-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">
-          <div>{{skill.ranks.consolidated}}</div>
-        </td>
-        <td class="mat-cell cdk-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">
-          <div>{{skill.ranks.development}}</div>
-        </td>
-        <td class="mat-cell cdk-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">
-          <div>{{skill.bonus | json}}</div>
-        </td>
-        <td class="mat-cell cdk-cell cdk-column-categoryId mat-column-categoryId ng-star-inserted">
-          <div>{{skill.totalBonus}}</div>
-        </td>
-        <td>
-          <button mat-icon-button color="accent" (click)="updateDevelopmentRank(1, skill)">
-            <mat-icon>add</mat-icon>
-          </button>
-          <button mat-icon-button color="accent" (click)="updateDevelopmentRank(-1, skill)">
-            <mat-icon>remove</mat-icon>
-          </button>
-       </td>
-      </tr>      
-    </table>
-    
-    <app-skill-select (onAddSkill)="addSkill($event)"></app-skill-select>
-
-<!--
-    <mat-accordion>
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>Debug skill list</mat-panel-title>
-          <mat-panel-description></mat-panel-description>
-        </mat-expansion-panel-header>
-        <pre>{{this.characterInfo?.skills| json}}</pre>
-      </mat-expansion-panel>
-      </mat-accordion>
-
+    <pre>{{this.character?.skillCategories| json}}</pre>
   </mat-expansion-panel>
 </mat-accordion>
-
--->

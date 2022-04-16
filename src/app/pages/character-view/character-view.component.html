@@ -1,10 +1,9 @@
 <mat-toolbar>
     <span>Character / {{character.name}}</span>
     <div class="div-spacer"></div>
-    <div *ngIf="availableDevelopmentPoints()">
+    <div *ngIf="availableDevelopmentPoints() > 0">
         <span>&nbsp;</span>
-        <mat-icon routerLink="/characters/skill-upgrade/{character.id}" matBadge="1" matBadgeColor="warn">arrow_upward
-        </mat-icon>
+        <span [matBadge]="availableDevelopmentPoints()" matBadgeColor="primary"><mat-icon>upload</mat-icon></span>
     </div>
     <button mat-button (click)="delete()">
         <mat-icon>delete</mat-icon>
@@ -13,13 +12,13 @@
 
 <div class="outerContainer">
 
-    Development points (root): {{character.developmentPoints.usedPoints}} / {{character.developmentPoints.totalPoints}}
-
     <mat-tab-group mat-align-tabs="start">
+        
         <mat-tab label="Overview">
             <app-character-attributes [characterInfo]="character"></app-character-attributes>
             <pre>TODO</pre>
         </mat-tab>
+        
         <mat-tab label="Skill category development">
             <app-character-skill-category-list
                 [character]="character"
@@ -27,10 +26,17 @@
                 (onCharacterUpdated)="reloadCharacterInfo($event)"
                 ></app-character-skill-category-list>
         </mat-tab>
+        
         <mat-tab label="Skill development">
-            <app-character-development [characterInfo]="character"></app-character-development>
+            <app-character-skill-list
+                [character]="character"
+                [skillDataSource]="skillDataSource"
+                (onCharacterUpdated)="reloadCharacterInfo($event)"
+            ></app-character-skill-list>
         </mat-tab>
+        
         <mat-tab label="Training packages"></mat-tab>
+
     </mat-tab-group>
 
 </div>

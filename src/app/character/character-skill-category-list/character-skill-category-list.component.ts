@@ -20,27 +20,11 @@ export class CharacterSkillCategoryListComponent implements OnInit {
 
   @Output() onCharacterUpdated = new EventEmitter<CharacterInfo>();
 
-  displayedColumns: string[] = ['categoryId',
-    'group',
-    'developmentCost',
-    'adolescenceRanks',
-    'ranks',
-    'bonus',
-    'totalRanks',
-    'totalBonus',
-    'options'
-  ];
+  displayedColumns: string[] = ['categoryId', 'group', 'developmentCost', 'adolescenceRanks', 'ranks', 'bonus', 'totalRanks', 'totalBonus', 'options'];
 
-  skillUpgradeRequest: SkillUpgradeRequest;
   allowModifications = true;
 
-  constructor(
-    private characterService: CharacterService
-  ) {
-    this.skillUpgradeRequest = {
-      categoryRanks: new Map<string, number>(),
-      skillRanks: new Map<string, number>()
-    };
+  constructor(private characterService: CharacterService) {
   }
 
   ngOnInit(): void {
@@ -48,22 +32,9 @@ export class CharacterSkillCategoryListComponent implements OnInit {
 
   updateRank(categoryId: string, value: number): void {
     this.characterService.upgradeSkillCategory(this.character.id, categoryId, value).subscribe(result => {
-      //TODO
       this.character = result;
       this.onCharacterUpdated.emit(result);
-      //this.skillCategoryDataSource!.data = this.character.skillCategories;
     });
-  }
-
-  _updateDevelopmentRank(value: number, categoryId: string): void {
-    let category = this.character?.skillCategories.filter(e => categoryId == e.categoryId)[0]!;
-    let current = category.ranks.has(RankType.development) ? category.ranks.get(RankType.development) : 0;
-    let newRank = current! + value;
-    if (newRank > 0) {
-      category.ranks.set(RankType.development, newRank);
-    } else {
-      category.ranks.delete(RankType.development);
-    }
   }
 
   getAdolescenceRank(category: CharacterSkillCategory) {
