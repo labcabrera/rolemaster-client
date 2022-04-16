@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 
-import { CharacterCreationRequest, CharacterInfo } from '../model/character-info';
+import { CharacterCreationRequest, CharacterInfo, SkillUpgradeRequest } from '../model/character-info';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -38,6 +38,15 @@ export class CharacterService {
       .pipe(
         catchError(this.handleError2)
       );
+  }
+
+  upgradeSkillCategory(characterId: string, skillCategoryId: string, value: number): Observable<CharacterInfo> {
+    const request: any = {
+      categoryRanks: {}
+    };
+    request.categoryRanks[skillCategoryId] = value;
+    const url = `${this.baseUrl}/${characterId}/skills/upgrade`;
+    return this.http.post<CharacterInfo>(url, request, this.httpOptions).pipe();
   }
 
   deleteCharacter(id: string): Observable<null> {

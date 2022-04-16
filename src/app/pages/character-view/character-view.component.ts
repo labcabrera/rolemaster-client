@@ -31,6 +31,11 @@ export class CharacterViewComponent implements OnInit {
     });
   }
 
+  reloadCharacterInfo(character: CharacterInfo) {
+    this.character = character;
+    this.skillCategoryDataSource.data = this.character.skillCategories;
+  }
+
   delete() {
     this.characterService.deleteCharacter(this.character.id).subscribe(result => {
       this.router.navigateByUrl("/characters");

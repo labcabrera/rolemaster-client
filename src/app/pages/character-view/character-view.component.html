@@ -2,8 +2,9 @@
     <span>Character / {{character.name}}</span>
     <div class="div-spacer"></div>
     <div *ngIf="availableDevelopmentPoints()">
-        <span>&nbsp;</span> 
-        <mat-icon routerLink="/characters/skill-upgrade/{character.id}" matBadge="1" matBadgeColor="warn">arrow_upward</mat-icon>
+        <span>&nbsp;</span>
+        <mat-icon routerLink="/characters/skill-upgrade/{character.id}" matBadge="1" matBadgeColor="warn">arrow_upward
+        </mat-icon>
     </div>
     <button mat-button (click)="delete()">
         <mat-icon>delete</mat-icon>
@@ -12,26 +13,33 @@
 
 <div class="outerContainer">
 
-    <app-character-development [characterInfo]="character"></app-character-development>
+    Development points (root): {{character.developmentPoints.usedPoints}} / {{character.developmentPoints.totalPoints}}
 
-    <app-character-attributes [characterInfo]="character"></app-character-attributes>
-
-    <app-character-skill-category-list [characterInfo]="character" [dataSource]="skillCategoryDataSource">
-    </app-character-skill-category-list>
-
-    <app-character-skill-list [characterInfo]="character"></app-character-skill-list>
-
-    <mat-accordion>
-        <mat-expansion-panel hideToggle>
-            <mat-expansion-panel-header>
-                <mat-panel-title>Debug skill category list</mat-panel-title>
-                <mat-panel-description></mat-panel-description>
-            </mat-expansion-panel-header>
-            <pre>{{this.character | json}}</pre>
-        </mat-expansion-panel>
-    </mat-accordion>
+    <mat-tab-group mat-align-tabs="start">
+        <mat-tab label="Overview">
+            <app-character-attributes [characterInfo]="character"></app-character-attributes>
+            <pre>TODO</pre>
+        </mat-tab>
+        <mat-tab label="Skill category development">
+            <app-character-skill-category-list
+                [character]="character"
+                [skillCategoryDataSource]="skillCategoryDataSource"
+                (onCharacterUpdated)="reloadCharacterInfo($event)"
+                ></app-character-skill-category-list>
+        </mat-tab>
+        <mat-tab label="Skill development">
+            <app-character-development [characterInfo]="character"></app-character-development>
+        </mat-tab>
+        <mat-tab label="Training packages"></mat-tab>
+    </mat-tab-group>
 
 </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <mat-accordion>
     <mat-expansion-panel hideToggle>
