@@ -67,6 +67,7 @@ import { DialogTacticalCharacterComponent } from './components/dialogs/dialog-ta
 import { AttackResultComponent } from './components/attack-result/attack-result.component';
 import { MeleeAttackExecutionComponent } from './components/action-execution/melee-attack-execution/melee-attack-execution.component';
 import { CriticalResultViewComponent } from './components/action-execution/critical-result-view/critical-result-view.component';
+import { DialogAddSkillComponent } from './components/dialogs/dialog-add-skill/dialog-add-skill.component';
 
 @NgModule({
   declarations: [
@@ -125,6 +126,7 @@ import { CriticalResultViewComponent } from './components/action-execution/criti
     AttackResultComponent,
     MeleeAttackExecutionComponent,
     CriticalResultViewComponent,
+    DialogAddSkillComponent,
   ],
   imports: [
     FormsModule,

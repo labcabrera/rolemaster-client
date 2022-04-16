@@ -3,7 +3,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
 
-import { CharacterInfo, CharacterSkillCategory, RankType } from '../../model/character-info';
+import { CharacterInfo, CharacterSkillCategory } from '../../model/character-info';
 import { SkillUpgradeRequest } from '../../model/character-info';
 import { SkillCategory } from '../../model/skill-category';
 import { CharacterService } from 'src/app/services/character-service';
@@ -20,7 +20,10 @@ export class CharacterSkillCategoryListComponent implements OnInit {
 
   @Output() onCharacterUpdated = new EventEmitter<CharacterInfo>();
 
-  displayedColumns: string[] = ['categoryId', 'group', 'developmentCost', 'adolescenceRanks', 'ranks', 'bonus', 'totalRanks', 'totalBonus', 'options'];
+  displayedColumns: string[] = ['categoryId', 'group', 'developmentCost',
+    'adolescenceRanks', 'developmentRanks', 'consolidatedRanks',
+    'bonusAttribute', 'bonusProfession', 'bonusRanks',
+    'totalRanks', 'totalBonus', 'options'];
 
   allowModifications = true;
 

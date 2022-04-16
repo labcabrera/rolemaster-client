@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Skill } from 'src/app/model/skill';
 import { CharacterInfo, CharacterSkill } from '../../model/character-info';
 import { CharacterService } from 'src/app/services/character-service';
+import { TrainingPackageService } from 'src/app/services/training-packages.service';
 
 @Component({
   selector: 'app-character-skill-list',
@@ -18,6 +19,7 @@ export class CharacterSkillListComponent implements OnInit {
   @Output() onCharacterUpdated = new EventEmitter<CharacterInfo>();
 
   displayedColumns: string[] = ['categoryId', 'group', 'developmentCost', 'ranks', 'bonus', 'totalRanks', 'totalBonus', 'options'];
+  includeUndevelopedSkills: boolean = true;
 
   constructor(private characterService: CharacterService) { }
 

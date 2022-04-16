@@ -1,3 +1,13 @@
+<section class="example-section">
+  <mat-slide-toggle
+      [(ngModel)]="includeUndevelopedSkills"
+      class="example-margin"
+      color="primary"
+      checked="true">
+      Include undeveloped skills.
+  </mat-slide-toggle>
+</section>
+
 <mat-form-field appearance="standard">
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>

@@ -43,30 +43,35 @@ export interface CharacterSkillCategory {
     categoryId: string;
     attributes: string[];
     developmentCost: number[];
-    ranks: Map<RankType,number>;
+    ranks: SkillRankMap;
     bonus: Map<String,number>;
     totalRanks: number;
     totalBonus: number;
-}
-
-export enum RankType {
-    adolescence,
-    lifestyle,
-    consolidated,
-    development
 }
 
 export interface CharacterSkill {
     skillId: number;
     categoryId: string;
     group: string;
-    bonus: CharacterSkillBonus;
     attributes: string[];
     developmentCost: number[];
-    ranks: CharacterSkillRanks;
+    bonus: CharacterSkillBonus;
+    ranks: SkillBonusMap;
     totalBonus: number;
 }
 
+export interface SkillRankMap {
+    adolescence: number;
+    lifestyle: number;
+    consolidated: number;
+    development: number;
+}
+
+export interface SkillBonusMap {
+    rank: number;
+    attribute: number;
+    profession: number;
+}
 export interface CharacterSkillBonus {
     rank: number;
     category: number;

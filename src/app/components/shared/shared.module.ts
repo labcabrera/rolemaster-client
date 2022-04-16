@@ -27,7 +27,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatButtonToggleModule } from '@angular/material/button-toggle'; 
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
 
 // Flex Layout
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -60,6 +61,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatChipsModule,
     MatBadgeModule,
     MatButtonToggleModule,
+    MatSlideToggleModule,
     FlexLayoutModule
   ],
   exports: [
@@ -89,6 +91,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatChipsModule,
     MatBadgeModule,
     MatButtonToggleModule,
+    MatSlideToggleModule,
     FlexLayoutModule
   ]
 })
