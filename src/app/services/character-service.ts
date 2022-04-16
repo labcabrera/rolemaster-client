@@ -40,6 +40,15 @@ export class CharacterService {
       );
   }
 
+  addSkill(characterId: string, skillId: string, customizations: string[]): Observable<CharacterInfo> {
+    const request = {
+      skillId: skillId,
+      customizations: customizations
+    };
+    const url = `${this.baseUrl}/${characterId}/skills`;
+    return this.http.post<CharacterInfo>(url, request, this.httpOptions).pipe();
+  }
+
   upgradeSkillCategory(characterId: string, skillCategoryId: string, value: number): Observable<CharacterInfo> {
     const request: any = { categoryRanks: {} };
     request.categoryRanks[skillCategoryId] = value;
@@ -49,7 +58,7 @@ export class CharacterService {
 
   upgradeSkill(characterId: string, skillId: string, value: number): Observable<CharacterInfo> {
     const request: any = { skillRanks: {} };
-    request.categoryRanks[skillId] = value;
+    request.skillRanks[skillId] = value;
     const url = `${this.baseUrl}/${characterId}/skills/upgrade`;
     return this.http.post<CharacterInfo>(url, request, this.httpOptions).pipe();
   }

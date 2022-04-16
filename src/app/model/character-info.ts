@@ -44,7 +44,7 @@ export interface CharacterSkillCategory {
     attributes: string[];
     developmentCost: number[];
     ranks: SkillRankMap;
-    bonus: Map<String,number>;
+    bonus: SkillBonusMap;
     totalRanks: number;
     totalBonus: number;
 }
@@ -55,7 +55,7 @@ export interface CharacterSkill {
     group: string;
     attributes: string[];
     developmentCost: number[];
-    bonus: CharacterSkillBonus;
+    bonus: SkillRankMap;
     ranks: SkillBonusMap;
     totalBonus: number;
 }
@@ -71,6 +71,7 @@ export interface SkillBonusMap {
     rank: number;
     attribute: number;
     profession: number;
+    category: number;
 }
 export interface CharacterSkillBonus {
     rank: number;

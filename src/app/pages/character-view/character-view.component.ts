@@ -37,6 +37,7 @@ export class CharacterViewComponent implements OnInit {
   reloadCharacterInfo(character: CharacterInfo) {
     this.character = character;
     this.skillCategoryDataSource.data = this.character.skillCategories;
+    this.skillDataSource.data = this.character.skills;
   }
 
   delete() {

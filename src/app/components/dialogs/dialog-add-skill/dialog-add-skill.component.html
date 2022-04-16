@@ -1,1 +1,21 @@
-<p>dialog-add-skill works!</p>
+<h1 mat-dialog-title>Skill selection</h1>
+
+<form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Assignee</mat-label>
+      <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+ 
+
+  <pre>{{myControl.value | json}}</pre>
+
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+    <button mat-button cdkFocusInitial (click)="addSkill()">Add</button>
+</div>

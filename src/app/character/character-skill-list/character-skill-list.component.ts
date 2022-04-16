@@ -1,10 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Skill } from 'src/app/model/skill';
 import { CharacterInfo, CharacterSkill } from '../../model/character-info';
 import { CharacterService } from 'src/app/services/character-service';
 import { TrainingPackageService } from 'src/app/services/training-packages.service';
+import { DialogAddSkillComponent } from 'src/app/components/dialogs/dialog-add-skill/dialog-add-skill.component';
 
 @Component({
   selector: 'app-character-skill-list',
@@ -18,25 +20,33 @@ export class CharacterSkillListComponent implements OnInit {
 
   @Output() onCharacterUpdated = new EventEmitter<CharacterInfo>();
 
-  displayedColumns: string[] = ['categoryId', 'group', 'developmentCost', 'ranks', 'bonus', 'totalRanks', 'totalBonus', 'options'];
+  displayedColumns: string[] = [
+    'skillId', 'categoryId', 'group', 'developmentCost',
+    'adolescenceRanks', 'developmentRanks', 'consolidatedRanks',
+    'bonusAttribute', 'bonusCategory', 'bonusRanks',
+    'totalRanks', 'totalBonus', 'options'];
   includeUndevelopedSkills: boolean = true;
 
-  constructor(private characterService: CharacterService) { }
+  constructor(
+    private characterService: CharacterService,
+    private addSkillDialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   updateRank(skillId: string, value: number): void {
     this.characterService.upgradeSkill(this.character.id, skillId, value).subscribe(result => {
-      //TODO
       this.character = result;
       this.onCharacterUpdated.emit(result);
-      //this.skillCategoryDataSource!.data = this.character.skillCategories;
     });
   }
 
-  addSkill(event: any) {
-    console.log("TODO: addSKill", event)
+  openDialogAddSkill() {
+    var dialogRef = this.addSkillDialog.open(DialogAddSkillComponent);
+    dialogRef.componentInstance.load(this.character);
+    dialogRef.afterClosed().subscribe(result => {
+      //this.actionsUpdated.emit("closed dialog");
+    });
   }
 
   applyFilter(event: Event) {
