@@ -38,5 +38,11 @@ export class TacticalViewCharacterComponent implements OnInit {
     });
   }
 
+  isDead(): boolean {
+    return this.character!.hp.current < 1 ||
+      this.character!.combatStatus.debuffs['mortal-damage'] > 0 || 
+      this.character!.combatStatus.debuffs["instant-death"] > 0;
+  }
+
 
 }

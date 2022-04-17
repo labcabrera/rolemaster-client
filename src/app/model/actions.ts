@@ -1,5 +1,5 @@
 import { OpenRoll } from "./commons";
-
+import { Debuffs } from "./character-context";
 export interface TacticalAction {
     id: string;
     roundId: string;
@@ -99,9 +99,3 @@ export interface FumbleExecution {
     roll: number;
 }
 
-export interface Debuffs {
-    stunned: number;
-    shock: number;
-    'must-parry': number;
-    'cant-parry': number;
-}

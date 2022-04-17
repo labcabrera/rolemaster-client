@@ -1,5 +1,4 @@
 import { Metadata } from "./metadata";
-
 export interface TacticalCharacterContext {
     id: string;
     tacticalSessionId: string;
@@ -34,6 +33,8 @@ export interface ExhaustionPoints {
 }
 
 export interface CombatStatus {
+    debuffs: Debuffs;
+
     stunnedRounds: number;
     unconsciousRounds: number;
     canNotParryRounds: number;
@@ -42,6 +43,18 @@ export interface CombatStatus {
     surprised: number;
     bleeding: Bleeding[];
     penalty: Penalty;
+
+    totalBleeding: number;
+    totalPenalty: number;
+}
+
+export interface Debuffs {
+    stunned: number;
+    shock: number;
+    'must-parry': number;
+    'cant-parry': number;
+    'mortal-damage': number;
+    'instant-death': number;
 }
 
 export interface Bleeding {
