@@ -1,6 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+
+import { ViewChildren } from '@angular/core';
 
 import { Skill } from 'src/app/model/skill';
 import { CharacterInfo, CharacterSkill } from '../../model/character-info';
@@ -13,7 +16,7 @@ import { DialogAddSkillComponent } from 'src/app/components/dialogs/dialog-add-s
   templateUrl: './character-skill-list.component.html',
   styleUrls: ['./character-skill-list.component.scss']
 })
-export class CharacterSkillListComponent implements OnInit {
+export class CharacterSkillListComponent implements OnInit, AfterViewInit {
 
   @Input() character: CharacterInfo = {} as CharacterInfo;
   @Input() skillDataSource: MatTableDataSource<CharacterSkill> | undefined;
@@ -34,6 +37,9 @@ export class CharacterSkillListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngAfterViewInit() {
+  }
+
   updateRank(skillId: string, value: number): void {
     this.characterService.upgradeSkill(this.character.id, skillId, value).subscribe(result => {
       this.character = result;
@@ -45,7 +51,8 @@ export class CharacterSkillListComponent implements OnInit {
     var dialogRef = this.addSkillDialog.open(DialogAddSkillComponent);
     dialogRef.componentInstance.load(this.character);
     dialogRef.afterClosed().subscribe(result => {
-      //this.actionsUpdated.emit("closed dialog");
+      this.character = dialogRef.componentInstance.character;
+      this.onCharacterUpdated.emit(this.character);
     });
   }
 

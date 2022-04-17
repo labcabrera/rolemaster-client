@@ -25,7 +25,7 @@ export class RandomUtilsService {
   }
 
   randomRollSum(max: number, count: number): Observable<number> {
-    const url = `${this.baseUrl}/d/${max}/${count}`;
+    const url = `${this.baseUrl}/d/${max}/${count}/sum`;
     return this.http.get<number>(url, this.httpOptions).pipe();
   }
 

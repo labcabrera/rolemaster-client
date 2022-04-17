@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -18,15 +19,19 @@ export class DialogAddSkillComponent implements OnInit {
 
   character: CharacterInfo = {} as CharacterInfo;
 
+  selectedSkill: Skill | undefined;
+
   availableSkills: Skill[] = [];
   myControl = new FormControl();
   filteredOptions?: Observable<Skill[]>;
 
   constructor(
     private characterService: CharacterService,
-    private skillService: SkillService) { }
+    private skillService: SkillService,
+    private dialogRef: MatDialogRef<any>) { }
 
   ngOnInit(): void {
+    this.dialogRef.updateSize('50%', '50%');
     this.skillService.getSkills().subscribe(result => this.availableSkills = result);
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
