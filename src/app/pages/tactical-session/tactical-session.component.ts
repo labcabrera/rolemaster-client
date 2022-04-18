@@ -10,8 +10,10 @@ import { TacticalCharacterContext } from 'src/app/model/character-context';
 import { StrategicSession, TacticalSession, TacticalSessionUpdate } from 'src/app/model/session';
 import { StrategicSessionsService } from 'src/app/services/strategic-sessions.service';
 import { TacticalSessionService } from 'src/app/services/tactical-session.service';
+import { NamedKey } from 'src/app/model/commons';
 import { NpcService } from 'src/app/services/npc.service';
 import { CharacterService } from 'src/app/services/character-service';
+import { EnumService } from 'src/app/services/enum.service';
 
 export interface AddCharacterOption {
   id: string;
@@ -37,6 +39,9 @@ export class TacticalSessionComponent implements OnInit {
   addCharactersFormControl = new FormControl();
   addCharactersFiltered: Observable<AddCharacterOption[]>;
 
+  terrains: NamedKey[] = [];
+  temperatures: NamedKey[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -44,10 +49,14 @@ export class TacticalSessionComponent implements OnInit {
     private strategicSessionService: StrategicSessionsService,
     private characterService: CharacterService,
     private npcService: NpcService,
+    private enumService: EnumService,
     private fb: FormBuilder) {
     this.form = fb.group({
       name: ['', Validators.required],
       description: [''],
+      terrain: [''],
+      temperature: [''],
+      exhaustionMultiplier: [1]
     });
     this.addCharactersFiltered = this.addCharactersFormControl.valueChanges.pipe(
       startWith(''),
@@ -62,6 +71,8 @@ export class TacticalSessionComponent implements OnInit {
     this.loadTacticalSession(tacticalSessionId);
     this.loadTacticalCharacterContexts(tacticalSessionId);
     this.loadAddCharacterOptions();
+    this.enumService.findTerrains().subscribe(result => this.terrains = result);
+    this.enumService.findTemperatures().subscribe(result => this.temperatures = result);
   }
 
   loadTacticalSession(tacticalSessionId: string) {
@@ -69,7 +80,10 @@ export class TacticalSessionComponent implements OnInit {
       this.tacticalSession = result;
       this.form.patchValue({
         name: this.tacticalSession.name,
-        description: this.tacticalSession.description
+        description: this.tacticalSession.description,
+        terrain: this.tacticalSession.terrain,
+        temperature: this.tacticalSession.temperature,
+        exhaustionMultiplier: this.tacticalSession.exhaustionMultiplier
       });
       this.loadStrategicSession(this.tacticalSession.strategicSessionId);
     });

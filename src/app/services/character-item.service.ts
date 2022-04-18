@@ -24,6 +24,11 @@ export class CharacterItemService {
     return this.http.get<CharacterItem[]>(url, this.httpOptions).pipe();
   }
 
+  updateItemPosition(characterItemId: string, position: string) {
+    const url = `${this.baseUrl}/character-items/${characterItemId}/position/${position}`;
+    return this.http.post<CharacterItem>(url, this.httpOptions).pipe();
+  }
+
   deleteCharacterItem(characterItemId: string): Observable<any> {
     const url = `${this.baseUrl}/character-items/${characterItemId}`;
     return this.http.delete<CharacterItem>(url, this.httpOptions).pipe();

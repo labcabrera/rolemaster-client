@@ -53,7 +53,7 @@ export class TacticalViewCharacterActionComponent implements OnInit {
     var dialogRef = this.actionExecutionDialog.open(DialogActionExecutionComponent);
     dialogRef.componentInstance.load(action, this.characters!);
     dialogRef.afterClosed().subscribe(result => {
-      //TODO reload actions
+      //this.actionsUpdated.emit("updated");
     });
   }
 

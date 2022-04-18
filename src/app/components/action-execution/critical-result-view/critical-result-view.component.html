@@ -1,4 +1,4 @@
-<div fxLayout="column" *ngIf="action.attackResult.criticalResult">
+<div fxLayout="column" *ngIf="action.attackResult && action.attackResult.criticalResult">
 
     <h3>Critical attack {{action.attackResult.criticalResult.severity}}{{action.attackResult.criticalResult.type}}</h3>
 

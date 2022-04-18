@@ -13,7 +13,9 @@ export interface TacticalSession {
     strategicSessionId: string;
     name: string;
     description: string;
-    currentRound: number;
+    terrain: string;
+    temperature: string;
+    exhaustionMultiplier: number;
     state: string;
     metadata: Metadata;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTab, MatTabGroup, MatTabChangeEvent } from '@angular/material/tabs';
+import { MatDialogRef } from '@angular/material/dialog';
 
 import { NamedKey } from 'src/app/model/commons';
 import { TacticalAction } from 'src/app/model/actions';
@@ -38,12 +39,15 @@ export class DialogSelectActionComponent implements OnInit {
 
   constructor(
     private actionService: ActionService,
-    private enumService: EnumService
+    private enumService: EnumService,
+    private dialogRef: MatDialogRef<any>
   ) { }
 
   ngOnInit(): void {
+    this.dialogRef.updateSize('50%', '70%');
     this.enumService.findMovementPaces().subscribe(result => this.movementPaces = result);
     this.enumService.findMeleeAttackTypes().subscribe(result => this.meleeAttackTypes = result);
+    
   }
 
   public load(tacticalRound: TacticalRound, source: string, priority: string, characters: TacticalCharacterContext[]) {

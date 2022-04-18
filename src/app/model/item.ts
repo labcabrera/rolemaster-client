@@ -19,6 +19,7 @@ export interface CharacterItem {
     name: string;
     position: string;
     weight: number;
+    count: number;
     broken: boolean;
     //TODO
     customization: any[];

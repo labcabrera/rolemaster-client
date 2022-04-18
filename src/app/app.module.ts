@@ -28,7 +28,7 @@ import { CharacterCreationComponent } from './pages/character-creation/character
 import { CharacterDevelopmentComponent } from './character/character-development/character-development.component';
 import { CharacterSkillCategoryListComponent } from './character/character-skill-category-list/character-skill-category-list.component';
 import { CharacterSkillListComponent } from './character/character-skill-list/character-skill-list.component';
-import { CharacterAttributesComponent } from './character/character-attributes/character-attributes.component';
+import { CharacterAttributesComponent } from './components/character/character-attributes/character-attributes.component';
 import { CharacterViewComponent } from './pages/character-view/character-view.component';
 
 import { TacticalViewComponent } from './pages/tactical-view/tactical-view.component';
@@ -70,6 +70,7 @@ import { CriticalResultViewComponent } from './components/action-execution/criti
 import { DialogAddSkillComponent } from './components/dialogs/dialog-add-skill/dialog-add-skill.component';
 import { CharacterItemViewComponent } from './components/character/character-item-view/character-item-view.component';
 import { DialogAddCharacterItemComponent } from './components/dialogs/dialog-add-character-item/dialog-add-character-item.component';
+import { CharacterBasicInfoComponent } from './components/character/character-basic-info/character-basic-info.component';
 
 @NgModule({
   declarations: [
@@ -131,6 +132,7 @@ import { DialogAddCharacterItemComponent } from './components/dialogs/dialog-add
     DialogAddSkillComponent,
     CharacterItemViewComponent,
     DialogAddCharacterItemComponent,
+    CharacterBasicInfoComponent,
   ],
   imports: [
     FormsModule,

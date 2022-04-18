@@ -35,7 +35,8 @@ export class DialogAddCharacterItemComponent implements OnInit {
     this.addItemForm = this.fb.group({
       itemId: [''],
       position: ['carried'],
-      weight: ['']
+      weight: [''],
+      count: ['1']
     });
     this.itemFilteredOptions = this.addItemForm.controls['itemId'].valueChanges.pipe(
       startWith(''),
@@ -64,8 +65,10 @@ export class DialogAddCharacterItemComponent implements OnInit {
     return this.items.filter(option => option.name.toLowerCase().includes(filterValue));
   }
 
-  displayFnItem(item: Item): string {
-    return item && item.name ? item.name : '';
+  displayFnItem(item: any): string {
+    console.log("Item: ", item);
+    return item;
+    //return item && item.name ? item.name : '';
   }
 
 }

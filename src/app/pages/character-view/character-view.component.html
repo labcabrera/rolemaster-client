@@ -3,7 +3,7 @@
     <div class="div-spacer"></div>
     <div *ngIf="availableDevelopmentPoints() > 0">
         <span>&nbsp;</span>
-        <span [matBadge]="availableDevelopmentPoints()" matBadgeColor="primary">
+        <span [matBadge]="availableDevelopmentPoints()" matBadgeColor="primary" matTooltip="Available development points">
             <mat-icon>upload</mat-icon>
         </span>
     </div>
@@ -17,8 +17,16 @@
     <mat-tab-group mat-align-tabs="start">
 
         <mat-tab label="Overview">
-            <app-character-attributes [characterInfo]="character"></app-character-attributes>
-            <pre>TODO</pre>
+            <div *ngIf="character">
+                <div fxLayout="row" fxLayoutGap="15pt">
+                    <div fxFlex="20">
+                        <app-character-basic-info [character]="character"></app-character-basic-info>
+                    </div>
+                    <div fxFlex="60">
+                        <app-character-attributes [characterInfo]="character"></app-character-attributes>
+                    </div>
+                </div>
+            </div>
         </mat-tab>
 
         <mat-tab label="Inventory">
@@ -53,6 +61,7 @@
 
 </div>
 
+<!--
 <br>
 <br>
 <br>
@@ -69,3 +78,5 @@
         <pre>{{this.character | json}}</pre>
     </mat-expansion-panel>
 </mat-accordion>
+
+-->

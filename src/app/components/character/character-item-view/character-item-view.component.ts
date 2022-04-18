@@ -23,8 +23,8 @@ export class CharacterItemViewComponent implements OnInit {
   itemPositions: NamedKey[] = [];
 
   dataSource = new MatTableDataSource<CharacterItem>([]);
-  displayedColumns: string[] = ['name', 'itemId', 'position', 'delete'];
-  
+  displayedColumns: string[] = ['name', 'count', 'weight', 'position', 'delete'];
+
   constructor(
     private characterItemService: CharacterItemService,
     private enumService: EnumService,
@@ -59,40 +59,42 @@ export class CharacterItemViewComponent implements OnInit {
   }
 
   updateItemPosition(item: CharacterItem, position: string) {
-    //TODO
+    this.characterItemService.updateItemPosition(item.id, position).subscribe(result => {
+      this.loadCharacterItems();
+    });
   }
 
   checkPositionEnabled(item: CharacterItem, position: string) {
-    if(position === 'carried' || position === 'stored') {
+    if (position === 'carried' || position === 'stored') {
       return true;
     }
-    if(position === 'main-hand') {
+    if (position === 'main-hand') {
       return item.type === 'weapon';
     }
-    if(position === 'off-hand') {
+    if (position === 'off-hand') {
       return item.type === 'weapon' || item.armorType === 'shield';
     }
-    if(position === 'equipped') {
+    if (position === 'equipped') {
       return item.type === 'armor-piece';
     }
     return false;
   }
 
   sortItems() {
-    this.items.sort(function(a,b) {
+    this.items.sort(function (a, b) {
       var xa = 0;
       var xb = 0;
-      switch(a.position) {
+      switch (a.position) {
         case "main-hand":
           xa = 3;
           break;
       }
-      switch(b.position) {
+      switch (b.position) {
       }
-      if(xa > xb) {
+      if (xa > xb) {
         console.log("-1: ", a, ", ", b);
         return -1;
-      } else if(xa < xb) {
+      } else if (xa < xb) {
         return -0;
       }
       return a.name.localeCompare(b.name);

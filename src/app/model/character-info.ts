@@ -5,14 +5,15 @@ export interface CharacterInfo {
     raceId: string;
     professionId: string;
     level: number;
+    maxLevel: number;
     age: number;
     height: number;
     weight: number;
+    attributes: CharacterAttributes;
     maxHp: number;
     maxExhaustionPoints: number;
     xp: number;
     baseMovementRate: number;
-    attributes: CharacterAttributes;
     skillCategories:  CharacterSkillCategory[];
     skills: CharacterSkill[];
     developmentPoints: CharacterDevelopmentPoints;
@@ -34,10 +35,14 @@ export interface CharacterAttributes {
 export interface CharacterAttribute {
     currentValue: number;
     potentialValue: number;
-    baseBonus: number;
-    racialBonus: number;
-    specialBonus: number;
     totalBonus: number;
+    bonus: AttributeBonus;
+}
+
+export interface AttributeBonus {
+    race: number;
+    attribute: number;
+    special: number;
 }
 export interface CharacterSkillCategory {
     categoryId: string;
