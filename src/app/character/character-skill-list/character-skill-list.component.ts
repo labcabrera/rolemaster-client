@@ -18,7 +18,7 @@ import { DialogAddSkillComponent } from 'src/app/components/dialogs/dialog-add-s
 })
 export class CharacterSkillListComponent implements OnInit, AfterViewInit {
 
-  @Input() character: CharacterInfo = {} as CharacterInfo;
+  @Input() character?: CharacterInfo;
   @Input() skillDataSource: MatTableDataSource<CharacterSkill> | undefined;
 
   @Output() onCharacterUpdated = new EventEmitter<CharacterInfo>();
@@ -41,7 +41,7 @@ export class CharacterSkillListComponent implements OnInit, AfterViewInit {
   }
 
   updateRank(skillId: string, value: number): void {
-    this.characterService.upgradeSkill(this.character.id, skillId, value).subscribe(result => {
+    this.characterService.upgradeSkill(this.character!.id, skillId, value).subscribe(result => {
       this.character = result;
       this.onCharacterUpdated.emit(result);
     });
@@ -49,7 +49,7 @@ export class CharacterSkillListComponent implements OnInit, AfterViewInit {
 
   openDialogAddSkill() {
     var dialogRef = this.addSkillDialog.open(DialogAddSkillComponent);
-    dialogRef.componentInstance.load(this.character);
+    dialogRef.componentInstance.load(this.character!);
     dialogRef.afterClosed().subscribe(result => {
       this.character = dialogRef.componentInstance.character;
       this.onCharacterUpdated.emit(this.character);

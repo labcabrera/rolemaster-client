@@ -12,7 +12,7 @@ import { CharacterService } from '../../services/character-service';
 })
 export class CharacterViewComponent implements OnInit {
 
-  character: CharacterInfo;
+  character?: CharacterInfo;
   skillCategoryDataSource: MatTableDataSource<CharacterSkillCategory>;
   skillDataSource: MatTableDataSource<CharacterSkill>;
 
@@ -20,7 +20,6 @@ export class CharacterViewComponent implements OnInit {
     private characterService: CharacterService,
     private route: ActivatedRoute,
     private router: Router) {
-    this.character = {} as CharacterInfo;
     this.skillCategoryDataSource = new MatTableDataSource([] as CharacterSkillCategory[]);
     this.skillDataSource = new MatTableDataSource([] as CharacterSkill[]);
   }
@@ -41,7 +40,7 @@ export class CharacterViewComponent implements OnInit {
   }
 
   delete() {
-    this.characterService.deleteCharacter(this.character.id).subscribe(result => {
+    this.characterService.deleteCharacter(this.character!.id).subscribe(result => {
       this.router.navigateByUrl("/characters");
     });
   }

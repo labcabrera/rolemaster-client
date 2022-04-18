@@ -15,7 +15,7 @@ import { CharacterService } from 'src/app/services/character-service';
 })
 export class CharacterSkillCategoryListComponent implements OnInit {
 
-  @Input() character: CharacterInfo = {} as CharacterInfo;
+  @Input() character?: CharacterInfo = {} as CharacterInfo;
   @Input() skillCategoryDataSource: MatTableDataSource<CharacterSkillCategory> | undefined;
 
   @Output() onCharacterUpdated = new EventEmitter<CharacterInfo>();
@@ -34,7 +34,7 @@ export class CharacterSkillCategoryListComponent implements OnInit {
   }
 
   updateRank(categoryId: string, value: number): void {
-    this.characterService.upgradeSkillCategory(this.character.id, categoryId, value).subscribe(result => {
+    this.characterService.upgradeSkillCategory(this.character!.id, categoryId, value).subscribe(result => {
       this.character = result;
       this.onCharacterUpdated.emit(result);
     });
@@ -46,7 +46,7 @@ export class CharacterSkillCategoryListComponent implements OnInit {
   }
 
   getSkillCategoryById(categoryId: string): CharacterSkillCategory {
-    return this.character.skillCategories.filter(e => e.categoryId == categoryId)[0];
+    return this.character!.skillCategories.filter(e => e.categoryId == categoryId)[0];
   }
 
   applyFilter(event: Event) {

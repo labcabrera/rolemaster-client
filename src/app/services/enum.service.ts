@@ -35,4 +35,9 @@ export class EnumService {
     return this.http.get<NamedKey[]>(url).pipe();
   }
 
+  findItemPositions(): Observable<NamedKey[]> {
+    var url = `${this.baseUrl}/item-position`
+    return this.http.get<NamedKey[]>(url).pipe();
+  }
+
 }
