@@ -18,7 +18,7 @@
             <div>
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Attack roll</mat-label>
-                    <input matInput placeholder="Roll" value="" [(ngModel)]="actionExecution!.roll.result" disabled="{{action.attackResult.attackResult}}">
+                    <input matInput placeholder="Roll" value="" [(ngModel)]="actionExecution!.roll.result">
                 </mat-form-field>
             </div>
             <div *ngIf="action.meleeAttackType != 'full'">

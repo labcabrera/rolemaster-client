@@ -14,12 +14,14 @@ export interface TacticalCharacterContext {
     modifiers: ContextCharacterModifiers;
     armor: number;
     defensiveBonus: number;
+    state: string;
     metadata: Metadata
 }
 
 export interface Hp {
     max: number;
     current: number;
+    percent: number;
 }
 
 export interface PowerPoints {

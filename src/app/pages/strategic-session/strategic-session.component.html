@@ -19,10 +19,9 @@
 
   <div fxLayout="row" fxLayoutGap="20px">
 
-    <!-- flex general data -->
     <div fxFlex="40" fxLayoutAlign="left top">
-      <mat-card style="width: 100%;">
-        <mat-card-title>Info</mat-card-title>
+      <mat-card class="full-width">
+        <mat-card-title>Information</mat-card-title>
         <form [formGroup]="form">
           <br>
           <mat-form-field appearance="outline" class="common-form-field">
@@ -44,25 +43,13 @@
             <textarea matInput formControlName="description"></textarea>
           </mat-form-field>
           <br>
-          <div formGroupName="metadata">
-            <mat-form-field appearance="outline" class="common-form-field">
-              <mat-label>Created</mat-label>
-              <input matInput formControlName="created">
-            </mat-form-field>
-            <br>
-            <mat-form-field appearance="outline" class="common-form-field">
-              <mat-label>Updated</mat-label>
-              <input matInput formControlName="updated">
-            </mat-form-field>
-          </div>
         </form>
       </mat-card>
 
     </div>
 
-    <!-- flex tactical sessions -->
     <div fxFlex="40" fxLayoutAlign="left top">
-      <mat-card style="width: 100%;">
+      <mat-card class="full-width">
         <mat-card-title>Tactical sessions</mat-card-title>
         <mat-list>
           <mat-list-item *ngFor="let ts of tacticalSessions" routerLink="/tactical-sessions/detail/{{ts.id}}"
@@ -76,8 +63,9 @@
   </div>
 
 </div>
+
 <!--
-<hr>
-<pre>{{this.strategicSession | json}}</pre>
 <pre>{{tacticalSessions | json}}</pre>
+<pre>{{this.strategicSession | json}}</pre>
+<pre>{{this.universes| json}}</pre>
 -->

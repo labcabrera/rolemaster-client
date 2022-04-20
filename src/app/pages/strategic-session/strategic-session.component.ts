@@ -21,9 +21,6 @@ export class StrategicSessionComponent implements OnInit {
   form: FormGroup;
 
   universes: Universe[] = [];
-  /*{id: 'middle-earth', name: "Middle Earth"},
-  {id: 'generic', name: "Generic"}
-]*/
 
   constructor(
     private sessionService: StrategicSessionsService,
@@ -38,19 +35,14 @@ export class StrategicSessionComponent implements OnInit {
       id: [''],
       name: ['', Validators.required],
       universeId: ['', Validators.required],
-      description: [''],
-      authorization: [[]],
-      metadata: this.fb.group({
-        created: [{ value: '', disabled: true }],
-        updated: ['']
-      }),
+      description: ['']
     });
     this.form.disable();
   }
 
   ngOnInit(): void {
+    this.universeService.find().subscribe(response => this.universes = response);
     this.loadStrategicSession();
-    this.loadUniverses();
   }
 
   loadStrategicSession(): void {
@@ -58,15 +50,15 @@ export class StrategicSessionComponent implements OnInit {
     this.sessionService.findById(id).subscribe(response => {
       this.strategicSession = response;
       this.loadTacticalSessions(this.strategicSession.id);
-      this.form.setValue(this.strategicSession);
+      this.form.patchValue({
+        name: this.strategicSession.name,
+        description: this.strategicSession.description,
+        universeId: this.strategicSession.universeId
+      });
     });
   }
   loadTacticalSessions(strategicSessionId: string) {
     this.tacticalSessionService.findByStrategicSessionId(strategicSessionId).subscribe(response => this.tacticalSessions = response);
-  }
-
-  loadUniverses() {
-    this.universeService.find().subscribe(response => this.universes = response);
   }
 
   saveSession() {

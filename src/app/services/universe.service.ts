@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UniverseService {
 
-  private baseUrl = `${environment.apiURL}/tactical-sessions`;
+  private baseUrl = `${environment.apiURL}/universes`;
 
   constructor(private http: HttpClient) { }
 

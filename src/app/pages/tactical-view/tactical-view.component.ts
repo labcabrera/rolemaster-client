@@ -68,12 +68,14 @@ export class TacticalViewComponent implements OnInit {
   loadActions(roundId: string) {
     this.actionService.findActionsByRound(roundId).subscribe(response => {
       this.actions = response;
+      this.loadCharacters(this.tacticalSession.id);
     });
   }
 
   startRound() {
     this.tacticalSessionService.startRound(this.tacticalSession.id).subscribe(response => {
       this.tacticalRound = response;
+      this.loadCharacters(this.tacticalSession.id);
       this.actions = [];
     });
   }
@@ -128,6 +130,7 @@ export class TacticalViewComponent implements OnInit {
     dialogRef.componentInstance.load(this.tacticalSession, this.tacticalRound, character);
     dialogRef.afterClosed().subscribe(result => {
       this.tacticalRound = dialogRef.componentInstance.round;
+      this.loadCharacters(this.tacticalSession.id);
     });
   }
 
