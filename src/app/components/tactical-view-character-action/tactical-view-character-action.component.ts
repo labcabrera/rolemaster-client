@@ -21,6 +21,7 @@ export class TacticalViewCharacterActionComponent implements OnInit {
   @Input() action: TacticalAction | undefined;
   @Input() tacticalRound: TacticalRound | undefined;
   @Input() characters: TacticalCharacterContext[] | undefined;
+  @Input() actions: TacticalAction[] = [];
 
   @Output() actionsUpdated = new EventEmitter<string>();
 
@@ -34,7 +35,7 @@ export class TacticalViewCharacterActionComponent implements OnInit {
 
   openActionSelectionDialog() {
     var dialogRef = this.actionSelectionDialog.open(DialogSelectActionComponent);
-    dialogRef.componentInstance.load(this.tacticalRound!, this.source!, this.priority!, this.characters!);
+    dialogRef.componentInstance.load(this.tacticalRound!, this.source!, this.priority!, this.characters!, this.actions);
     dialogRef.afterClosed().subscribe(result => {
       this.actionsUpdated.emit("closed dialog");
     });
@@ -42,7 +43,7 @@ export class TacticalViewCharacterActionComponent implements OnInit {
 
   openAction(action: TacticalAction) {
     var dialogRef = this.actionSelectionDialog.open(DialogSelectActionComponent);
-    dialogRef.componentInstance.load(this.tacticalRound!, this.source!, this.priority!, this.characters!);
+    dialogRef.componentInstance.load(this.tacticalRound!, this.source!, this.priority!, this.characters!, this.actions);
     dialogRef.componentInstance.loadAction(action);
     dialogRef.afterClosed().subscribe(result => {
       this.actionsUpdated.emit("closed dialog");

@@ -35,9 +35,7 @@
     <button mat-button color="primary" *ngIf="checkDisplayButtonFumbleExecution(action)" (click)="openFumbleExecutionDialog(action)" matTooltip="Fumble">
         <mat-icon>feedback</mat-icon>
     </button>
-    
-    
-   
+
     <button mat-button
         *ngIf="tacticalRound.state != 'closed' && action.state != 'resolved'"
         (click)="deleteAction()">

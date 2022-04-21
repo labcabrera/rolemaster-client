@@ -1,79 +1,53 @@
 <div fxLayout="row" fxLayoutGap="15px">
 
-    <div fxFlex="50">
-        <div fxLayout="column" fxLayoutGap="15px">
-            <div>
-                <h4>Action percent</h4>
-                <span>{{action.actionPercent}}&nbsp;</span>
-                <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="0" max="{{maxActionPercent}}" step="5"
-                    aria-label="units">
-                </mat-slider>
-            </div>
-            <div>
-                <h4>Parry percent</h4>
-                <span>{{action.parry}}&nbsp;</span>
-                <mat-slider thumbLabel min="0" max="100" step="5" aria-label="percent" [(ngModel)]="action.parry">
-                </mat-slider>
-            </div>
-            <div *ngIf="action.meleeAttackType == 'full'">
-                <mat-form-field appearance="outline">
-                    <mat-label>Target</mat-label>
-                    <mat-select [(ngModel)]="action.target">
-                        <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <div *ngIf="action.meleeAttackType == 'full' && action!.meleeAttackMode == 'two-weapons'">
-                <mat-form-field appearance="outline">
-                    <mat-label>Secondary target</mat-label>
-                    <mat-select [(ngModel)]="action.secondaryTarget">
-                        <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+    <div [formGroup]="actionForm" *ngIf="actionForm.value.type == 'melee-attack'">
+        
+        <div fxFlex="50">
+            <div fxLayout="column" fxLayoutGap="15px">
+                <div>
+                    <h4>Action percent</h4>
+                    <span>{{actionForm.value.actionPercent}}&nbsp;</span>
+                    <mat-slider thumbLabel formControlName="actionPercent" min="0" max="{{maxActionPercent}}" step="5"></mat-slider>
+                </div>
+                <div>
+                    <h4>Parry percent</h4>
+                    <span>{{actionForm.value.parry}}&nbsp;</span>
+                    <mat-slider thumbLabel formControlName="parry" min="0" max="100" step="5" aria-label="percent"></mat-slider>
+                </div>
+                <div *ngIf="actionForm.value.targets" formGroupName="targets">
+                    <div *ngIf="actionForm.value.meleeAttackType == 'full' && actionForm.value.meleeAttackMode != 'off-hand-weapon'">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Main hand target</mat-label>
+                            <mat-select formControlName="main-hand">
+                                <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="actionForm.value.meleeAttackType == 'full' && actionForm.value.meleeAttackMode != 'main-hand-weapon'">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Off-hand target</mat-label>
+                            <mat-select formControlName="off-hand">
+                                <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div fxFlex="50">
-        <div>
-            <h4>Attack mode</h4>
-            <mat-button-toggle-group [(ngModel)]="action.meleeAttackMode" aria-label="Font Style">
-                <mat-button-toggle *ngFor="let option of meleeAttackModes" [value]="option.key">{{option.name}}
-                </mat-button-toggle>
-            </mat-button-toggle-group>
-        </div>
-        <div>
-            <h4>Attack type</h4>
-            <mat-button-toggle-group [(ngModel)]="action.meleeAttackType" aria-label="Font Style">
-                <mat-button-toggle *ngFor="let option of meleeAttackTypes" [value]="option.key">{{option.name}}
-                </mat-button-toggle>
-            </mat-button-toggle-group>
+        
+        <div fxFlex="50">
+            <div>
+                <h4>Attack type</h4>
+                <mat-button-toggle-group formControlName="meleeAttackType" (change)="onMeleeAttackTypeChange($event)">
+                    <mat-button-toggle *ngFor="let option of meleeAttackTypes" [value]="option.key">{{option.name}}</mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            <div>
+                <h4>Attack mode</h4>
+                <mat-button-toggle-group formControlName="meleeAttackMode" (change)="onMeleeAttackModeChange($event)">
+                    <mat-button-toggle *ngFor="let option of meleeAttackModes" [value]="option.key" [disabled]="isAttackModeDisabled(option.key)">{{option.name}}</mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
         </div>
     </div>
 </div>
-<!--
-
-<div fxFlex="40">
-    <div fxLayout="column" fxLayoutGap="15px">
-        <div fxLayout="column" fxFlex="40" fxLayoutGap="15px"></div>
-        <div *ngIf="action.meleeAttackType == 'full'">
-            <mat-form-field appearance="outline">
-                <mat-label>Target</mat-label>
-                <mat-select [(ngModel)]="action.target">
-                    <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div *ngIf="action.meleeAttackType == 'full' && action!.meleeAttackMode == 'two-weapons'">
-            <mat-form-field appearance="outline">
-                <mat-label>Secondary target</mat-label>
-                <mat-select [(ngModel)]="action.secondaryTarget">
-                    <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-    </div>
--->

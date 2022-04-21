@@ -33,6 +33,7 @@
                 [tacticalRound]="this.tacticalRound"
                 [characters]="this.characters"
                 [action]="getAction(character.id, 'snap')"
+                [actions]="actions"
                 (actionsUpdated)="this.loadActions(this.tacticalRound.id)">
             </app-tactical-view-character-action>
         </div>
@@ -43,6 +44,7 @@
                 [tacticalRound]="this.tacticalRound"
                 [characters]="this.characters"
                 [action]="getAction(character.id, 'normal')"
+                [actions]="actions"
                 (actionsUpdated)="this.loadActions(this.tacticalRound.id)">
             </app-tactical-view-character-action>
         </div>
@@ -52,6 +54,7 @@
                 [priority]="'deliberate'"
                 [tacticalRound]="this.tacticalRound"
                 [characters]="this.characters"
+                [actions]="actions"
                 [action]="getAction(character.id, 'deliberate')"
                 (actionsUpdated)="this.loadActions(this.tacticalRound.id)">
             </app-tactical-view-character-action>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ignoreElements } from 'rxjs';
 
@@ -29,6 +30,7 @@ export class DialogActionExecutionComponent implements OnInit {
     private actionService: ActionService,
     private tacticalService: TacticalSessionService,
     private enumService: EnumService,
+    private fb: FormBuilder,
     private dialogRef: MatDialogRef<any>) { }
 
   ngOnInit(): void {
