@@ -8,65 +8,67 @@
             <div><b>Priority</b>: {{action.priority}}</div>
             <div><b>Percent</b>: {{action.actionPercent}}</div>
             <div><b>Melee attack type</b>: {{action.meleeAttackType}}</div>
-            <div *ngIf="action.target"><b>Target</b>: {{getCharacterName(action.target)}}</div>
         </div>
+
     </div>
 
     <div fxFlex="20" *ngIf="actionExecutionForm">
+
         <div fxLayout="column" [formGroup]="actionExecutionForm">
-            <div formGroupName="rolls">
-                <div formGroupName='main-hand'>
+            <div formGroupName="rolls" fxLayout="row" fxLayoutGap="5px">
+                <div formGroupName='main-hand' [fxFlex]="actionExecutionForm.value.rolls['off-hand'] ? 50 : 100">
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Main hand attack roll</mat-label>
                         <input matInput formControlName="result" placeholder="Roll" value="">
                     </mat-form-field>
                 </div>
-                <div formGroupName="off-hand">
+                <div formGroupName="off-hand" fxFlex="50" *ngIf="actionExecutionForm.value.rolls['off-hand']">
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Off-hand attack roll</mat-label>
                         <input matInput formControlName="result" placeholder="Roll" value="">
                     </mat-form-field>
                 </div>
             </div>
-            <!--
-                <div *ngIf="action.meleeAttackType != 'full'">
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Target</mat-label>
-                    <mat-select [(ngModel)]="actionExecution.target">
-                        <mat-option *ngFor="let option of availableTargets" [value]="option.key">{{option.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+            <div formGroupName="targets" fxLayout="row" fxLayoutGap="5px">
+                <div [fxFlex]="displayOffHandTarget() ? 50 : 100">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Main hand target</mat-label>
+                        <mat-select formControlName="main-hand">
+                            <mat-option *ngFor="let option of availableTargets" [value]="option.key">{{option.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="50" *ngIf="displayOffHandTarget()">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Off-hand target</mat-label>
+                        <mat-select formControlName="off-hand">
+                            <mat-option *ngFor="let option of availableTargets" [value]="option.key">{{option.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </div>
-            <div *ngIf="action.meleeAttackType != 'full'">
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Secondary target</mat-label>
-                    <mat-select [(ngModel)]="actionExecution.secondaryTarget">
-                        <mat-option *ngFor="let option of availableTargets" [value]="option.key">{{option.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-        -->
-            <div formGroupName="facingMap">
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Main hand facing</mat-label>
-                    <mat-select formControlName="main-hand">
-                        <mat-option *ngFor="let option of meleeAttackFacingValues" [value]="option.key">{{option.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <div formGroupName="facingMap">
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Off-hand facing</mat-label>
-                    <mat-select formControlName="off-hand">
-                        <mat-option *ngFor="let option of meleeAttackFacingValues" [value]="option.key">{{option.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <!--
+            <div formGroupName="facingMap" fxLayout="row" fxLayoutGap="5px">
+                <div  [fxFlex]="actionExecutionForm.value.facingMap['off-hand'] ? 50 : 100">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Main hand facing</mat-label>
+                        <mat-select formControlName="main-hand">
+                            <mat-option *ngFor="let option of meleeAttackFacingValues" [value]="option.key">{{option.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="50" *ngIf="actionExecutionForm.value.facingMap['off-hand']">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Off-hand facing</mat-label>
+                        <mat-select formControlName="off-hand">
+                            <mat-option *ngFor="let option of meleeAttackFacingValues" [value]="option.key">{{option.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!--
                 <div *ngIf="action.state == 'pending-critical-resolution'">
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Critical roll</mat-label>
@@ -80,20 +82,20 @@
                     </mat-form-field>
                 </div>
             -->
-            <button mat-button (click)="executeMeleeAttackAction()" [disabled]="actionExecutionForm!.invalid">Execute attack</button>
+            </div>
+            <button mat-button color="primary" (click)="executeMeleeAttackAction()" [disabled]="actionExecutionForm!.invalid || this.action.state !== 'pending'">Resolve attack</button>
+
         </div>
-        
+
+
     </div>
-    
     <div fxFlex="30">
         <app-attack-result [action]="action"></app-attack-result>
     </div>
-    
+
     <div fxFlex="30">
         <app-critical-result-view [action]="action"></app-critical-result-view>
     </div>
-    
 </div>
-
 
 <pre>{{actionExecutionForm.value | json}}</pre>

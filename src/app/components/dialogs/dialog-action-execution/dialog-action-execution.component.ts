@@ -22,10 +22,6 @@ export class DialogActionExecutionComponent implements OnInit {
   tacticalSession: TacticalSession = {} as TacticalSession;
   characters: TacticalCharacterContext[] = [];
 
-  actionExecution: TacticalActionExecution = {} as TacticalActionExecution;
-  criticalExecution: AttackCriticalExecution = { roll: 0 };
-  fumbleExecution: FumbleExecution = { roll: 0 };
-
   constructor(
     private actionService: ActionService,
     private tacticalService: TacticalSessionService,

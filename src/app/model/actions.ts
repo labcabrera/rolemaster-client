@@ -9,7 +9,7 @@ export interface TacticalAction {
     actionPercent: number;
     initiative: number;
     source: string;
-    target: string;
+    targets: Targets; 
     secondaryTarget: string;
     pace: string;
     meleeAttackType: string;
@@ -21,6 +21,11 @@ export interface TacticalAction {
     offensiveBonusMap: TacticalActionOffensiveBonusMap;
     attackResults: AttackResult[];
     criticalResults: TacticalCriticalResult[];
+}
+
+export interface Targets {
+    ['main-hand']: string;
+    ['off-hand']: string;
 }
 
 export interface TacticalActionRolls {

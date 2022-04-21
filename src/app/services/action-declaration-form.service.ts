@@ -36,26 +36,36 @@ export class ActionDeclarationFormService {
     }
   }
 
-  buildMeleeAttackExecution(fb: FormBuilder, form: FormGroup, action: TacticalAction){
-    console.log("Building form. Action: ", action);
-
-    form.addControl('rolls', fb.group({
-      'main-hand': fb.group({ result: ['', Validators.required]})
-    }));
-
-    
-    /*
-    var result = fb.group({
-      type: ['melee-attack'],
-      rolls: fb.group({
-        'main-hand': fb.group({
-          result: ['', Validators.required]
-        }),
-        //'off-hand': this.fb.control({
-        //  result: ['']})
-      })
-    });
-    */
+  configureMeleeAttackExecution(fb: FormBuilder, form: FormGroup, action: TacticalAction){
+    if (action.rolls) {
+      if (action.rolls['main-hand']) {
+        form.patchValue({ rolls: { ['main-hand']: { result: action.rolls['main-hand'].result } } });
+      }
+      if (action.rolls['off-hand']) {
+        form.patchValue({ rolls: { ['off-hand']: { result: action.rolls['off-hand'].result } } });
+      }
+    }
+    if (action.targets) {
+      if (action.targets['main-hand']) {
+        form.patchValue({ targets: { ['main-hand']: action.targets['main-hand'] } })
+      }
+      if (action.targets['off-hand']) {
+        form.patchValue({ targets: { ['off-hand']: action.targets['off-hand'] } })
+      }
+    }
+    if(action.meleeAttackType === 'full') {
+      var t0 = (form.get('targets') as FormGroup).get("main-hand");
+      //TODO disable
+      //t0?.reset({value: this.action.targets['main-hand'], disabled: true});
+    }
+    if (action.meleeAttackMode !== 'two-weapons' && action.meleeAttackMode !== 'off-hand-weapon') {
+      (form.get('rolls') as FormGroup).removeControl('off-hand');
+      (form.get('facingMap') as FormGroup).removeControl('off-hand');
+      (form.get('targets') as FormGroup).removeControl('off-hand');
+    }
+    if (action.state != 'pending') {
+      form.disable();
+    }
   }
 
 }

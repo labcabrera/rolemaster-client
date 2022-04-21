@@ -61,10 +61,8 @@ export class AttackResultComponent implements OnInit {
     if (map.distance && map.distance != 0) {
       result.push({ key: "Distance", name: "" + map.distance });
     }
-    if(map['off-hand'] && map['off-hand'] != 0) {
-      if (map.distance && map.distance != 0) {
-        result.push({ key: "Off-Hand", name: "" + map['off-hand'] });
-      } 
+    if (map['off-hand'] && map['off-hand'] != 0) {
+      result.push({ key: "Off-Hand", name: "" + map['off-hand'] });
     }
     return result;
   }
