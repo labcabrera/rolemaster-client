@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ignoreElements } from 'rxjs';
 
 import { AttackCriticalExecution, FumbleExecution, TacticalAction, TacticalActionExecution } from 'src/app/model/actions';
 import { TacticalCharacterContext } from 'src/app/model/character-context';
@@ -43,10 +44,12 @@ export class DialogActionExecutionComponent implements OnInit {
   loadActionExecution() {
     this.actionExecution.type = this.action.type;
     this.actionExecution.roll = { result: 0, rolls: [0] }
+    this.actionExecution.secondaryRoll = { result: 0, rolls: [0] }
     if (this.action.type == 'melee-attack') {
       this.actionExecution.facing = 'normal';
       if (this.action.meleeAttackType != 'full') {
         this.actionExecution.target = this.action.target;
+        this.actionExecution.secondaryTarget = this.action.secondaryTarget;
       }
     }
   }
@@ -54,6 +57,7 @@ export class DialogActionExecutionComponent implements OnInit {
   executeAction() {
     //TODO OpenRollComponent
     this.actionExecution.roll.rolls = [this.actionExecution.roll.result];
+    this.actionExecution.secondaryRoll.rolls = [this.actionExecution.secondaryRoll.result];
     this.actionService.execute(this.action.id, this.actionExecution).subscribe(result => {
       //TODO reload actions
       this.action = result;

@@ -16,7 +16,7 @@ import { DialogActionExecutionComponent } from '../dialogs/dialog-action-executi
 })
 export class TacticalViewCharacterActionComponent implements OnInit {
 
-  @Input() source: string | undefined;
+  @Input() source: TacticalCharacterContext = {} as TacticalCharacterContext;
   @Input() priority: string | undefined;
   @Input() action: TacticalAction | undefined;
   @Input() tacticalRound: TacticalRound | undefined;

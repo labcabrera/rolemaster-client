@@ -10,10 +10,11 @@ export interface TacticalCharacterContext {
     hp: Hp;
     powerPoints: PowerPoints;
     exhaustionPoints: ExhaustionPoints;
+    defensiveBonus: number;
     combatStatus: CombatStatus;
     modifiers: ContextCharacterModifiers;
+    items: CharacterItem[];
     armor: number;
-    defensiveBonus: number;
     state: string;
     metadata: Metadata
 }
@@ -73,10 +74,18 @@ export interface ContextCharacterModifiers {
     initiative: number;
 }
 
-export interface Items {
-    mainWeaponEquippedId: string;
-    secondaryWeaponEquippedId: string;
-    armorEquippedId: string;
+export interface CharacterItem {
+    id: string;
+    itemId: string;
+    type: string;
+    armorType: string;
+    position: string;
+    name: string;
+    bonus: number;
+    count: number;
+    features: string[];
+    broken: boolean;
+    description: string;
 }
 
 export enum Debuff {

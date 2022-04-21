@@ -1,8 +1,7 @@
 <mat-toolbar>
   <span>Strategic session creation</span>
   <div class="div-spacer"></div>
-  <button mat-button (click)="createStrategicSession()"><mat-icon>save_alt</mat-icon></button>
-  <button mat-button (click)="goBack();">Back</button>
+  <button mat-button (click)="createStrategicSession()" [disabled]="form.invalid"><mat-icon>save_alt</mat-icon></button>
 </mat-toolbar>
 
 <form [formGroup]="form">

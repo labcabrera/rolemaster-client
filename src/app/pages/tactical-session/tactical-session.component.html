@@ -3,7 +3,7 @@
     <div class="div-spacer"></div>
     <button mat-button *ngIf="!isEditMode()" (click)="navigateToTacticalView()">Open</button>
     <button mat-button *ngIf="isEditMode()" (click)="cancelEdit()">Cancel</button>
-    <button mat-button *ngIf="isEditMode()" (click)="save()">
+    <button mat-button *ngIf="isEditMode()" (click)="save()" [disabled]="form.invalid">
         <mat-icon>save_alt</mat-icon>
     </button>
     <button mat-button *ngIf="!isEditMode()" (click)="startEdit()">

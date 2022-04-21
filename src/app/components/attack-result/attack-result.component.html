@@ -1,27 +1,27 @@
-<div fxLayout="column" *ngIf="!action.attackResult">
+<div fxLayout="column" *ngIf="action.attackResults.length > 0">
     Attack not resolved.
 </div>
 
-<div fxLayout="column" *ngIf="action.attackResult">
+<div fxLayout="column" *ngFor="let ar of action.attackResults">
 
     <div fxLayout="row">
         <div fxFlex="60">Attack result</div>
         <div fxFlexAuto>
-            {{action.attackResult.attackResult}} ({{action.roll.result}} + {{action.offensiveBonus}})
+            {{ar.attackResult}} ({{action.roll.result}} + {{action.offensiveBonus}})
         </div>
     </div>
     <div fxLayout="row">
         <div fxFlex="60">Weapon</div>
-        <div fxFlexAuto>{{action.attackResult.weaponTableId}}</div>
+        <div fxFlexAuto>{{ar.weaponTableId}}</div>
     </div>
     <div fxLayout="row">
         <div fxFlex="60">Armor</div>
-        <div fxFlexAuto>{{action.attackResult.targetArmor}}</div>
+        <div fxFlexAuto>{{ar.targetArmor}}</div>
     </div>
 
     <div fxLayout="row" style="padding-top: 20pt;">
         <div fxFlex="60">HP</div>
-        <div fxFlexAuto>{{action.attackResult.hp}}</div>
+        <div fxFlexAuto>{{ar.hp}}</div>
     </div>
 
     <div fxLayout="row" style="padding-top: 20pt;">

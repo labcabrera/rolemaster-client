@@ -21,10 +21,25 @@
                     <input matInput placeholder="Roll" value="" [(ngModel)]="actionExecution!.roll.result">
                 </mat-form-field>
             </div>
+            <div>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Secondary attack roll</mat-label>
+                    <input matInput placeholder="Roll" value="" [(ngModel)]="actionExecution!.secondaryRoll.result">
+                </mat-form-field>
+            </div>
             <div *ngIf="action.meleeAttackType != 'full'">
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Target</mat-label>
                     <mat-select [(ngModel)]="actionExecution.target">
+                        <mat-option *ngFor="let option of availableTargets" [value]="option.key">{{option.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div *ngIf="action.meleeAttackType != 'full'">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Secondary target</mat-label>
+                    <mat-select [(ngModel)]="actionExecution.secondaryTarget">
                         <mat-option *ngFor="let option of availableTargets" [value]="option.key">{{option.name}}
                         </mat-option>
                     </mat-select>

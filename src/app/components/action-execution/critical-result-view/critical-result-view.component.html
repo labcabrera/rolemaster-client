@@ -1,67 +1,71 @@
-<div fxLayout="column" *ngIf="action.attackResult && action.attackResult.criticalResult">
+<div *ngIf="action.criticalResults.length > 0">
 
-    <h3>Critical attack {{action.attackResult.criticalResult.severity}}{{action.attackResult.criticalResult.type}}</h3>
+<div fxLayout="column" *ngFor="let cr of action.criticalResults">
 
-    <div fxLayout="row" *ngIf="action.attackResult.criticalResult.roll">
+    <h3>Critical attack {{cr.severity}}{{cr.type}}</h3>
+
+    <div fxLayout="row" *ngIf="cr.roll">
         <div fxFlex="80">Roll:</div>
-        <div fxFlex="20">{{action.attackResult.criticalResult.roll}}</div>
+        <div fxFlex="20">{{cr.roll}}</div>
     </div>
 
-    <div *ngIf="action.attackResult.criticalResult.criticalTableResult" style="padding-top: 10pt;">
+    <div *ngIf="cr.criticalTableResult" style="padding-top: 10pt;">
 
         <div style="margin-bottom: 20pt;">
-            {{action.attackResult.criticalResult.criticalTableResult.text}}
+            {{cr.criticalTableResult.text}}
         </div>
 
-        <div fxLayout="row" *ngIf="action.attackResult.criticalResult.criticalTableResult.instantDeath">
+        <div fxLayout="row" *ngIf="cr.criticalTableResult.instantDeath">
             <div fxFlex="80">Instant death</div>
             <div fxFlex="20"></div>
         </div>
-        <div fxLayout="row" *ngIf="action.attackResult.criticalResult.criticalTableResult.deathAfterRounds > 0">
+        <div fxLayout="row" *ngIf="cr.criticalTableResult.deathAfterRounds > 0">
             <div fxFlex="80">Death after rounds</div>
-            <div fxFlex="20">{{action.attackResult.criticalResult.criticalTableResult.deathAfterRounds}}</div>
+            <div fxFlex="20">{{cr.criticalTableResult.deathAfterRounds}}</div>
         </div>
-        <div fxLayout="row" *ngIf="action.attackResult.criticalResult.criticalTableResult.hp > 0">
+        <div fxLayout="row" *ngIf="cr.criticalTableResult.hp > 0">
             <div fxFlex="80">HP</div>
-            <div fxFlex="20">{{action.attackResult.criticalResult.criticalTableResult.hp}}</div>
+            <div fxFlex="20">{{cr.criticalTableResult.hp}}</div>
         </div>
-        <div fxLayout="row" *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.bleeding">
+        <div fxLayout="row" *ngIf="cr.criticalTableResult?.bleeding">
             <div fxFlex="80">Bleeding</div>
-            <div fxFlex="20">{{action.attackResult.criticalResult.criticalTableResult.bleeding}}</div>
+            <div fxFlex="20">{{cr.criticalTableResult.bleeding}}</div>
         </div>
-        <div fxLayout="row" *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.shock">
+        <div fxLayout="row" *ngIf="cr.criticalTableResult?.debuffs?.shock">
             <div fxFlex="80">Shock</div>
-            <div fxFlex="20">{{action.attackResult.criticalResult.criticalTableResult.debuffs?.shock}}</div>
+            <div fxFlex="20">{{cr.criticalTableResult.debuffs?.shock}}</div>
         </div>
-        <div fxLayout="row" *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.stunned">
+        <div fxLayout="row" *ngIf="cr.criticalTableResult?.debuffs?.stunned">
             <div fxFlex="80">Stunned</div>
-            <div fxFlex="20">{{action.attackResult.criticalResult.criticalTableResult.debuffs.stunned}}</div>
+            <div fxFlex="20">{{cr.criticalTableResult.debuffs.stunned}}</div>
         </div>
-        <div fxLayout="row" *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.['cant-parry']">
+        <div fxLayout="row" *ngIf="cr.criticalTableResult?.debuffs?.['cant-parry']">
             <div fxFlex="80">Can not parry</div>
-            <div fxFlex="20">{{action.attackResult.criticalResult.criticalTableResult.debuffs?.['cant-parry']}}</div>
+            <div fxFlex="20">{{cr.criticalTableResult.debuffs?.['cant-parry']}}</div>
         </div>
-        <div fxLayout="row" *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.debuffs?.['must-parry']">
+        <div fxLayout="row" *ngIf="cr.criticalTableResult?.debuffs?.['must-parry']">
             <div fxFlex="80">Must parry</div>
-            <div fxFlex="20">{{action.attackResult.criticalResult.criticalTableResult.debuffs?.['must-parry']}}</div>
+            <div fxFlex="20">{{cr.criticalTableResult.debuffs?.['must-parry']}}</div>
         </div>
-        <div fxLayout="row" *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.penalty">
+        <div fxLayout="row" *ngIf="cr.criticalTableResult?.penalty">
             <div fxFlex="80">Penalty</div>
             <div fxFlex="20">
-                {{action.attackResult.criticalResult.criticalTableResult.penalty.penalty}}
-                <span *ngIf="action.attackResult.criticalResult.criticalTableResult.penalty.rounds">
-                    ({{action.attackResult.criticalResult.criticalTableResult.penalty.rounds}})
+                {{cr.criticalTableResult.penalty.penalty}}
+                <span *ngIf="cr.criticalTableResult.penalty.rounds">
+                    ({{cr.criticalTableResult.penalty.rounds}})
                 </span>
             </div>
         </div>
-        <div fxLayout="row" *ngIf="action.attackResult?.criticalResult?.criticalTableResult?.bonus">
+        <div fxLayout="row" *ngIf="cr.criticalTableResult?.bonus">
             <div fxFlex="80">Penalty</div>
             <div fxFlex="20">
-                {{action.attackResult.criticalResult.criticalTableResult.bonus.bonus}}
-                ({{action.attackResult.criticalResult.criticalTableResult.bonus.rounds}})
+                {{cr.criticalTableResult.bonus.bonus}}
+                ({{cr.criticalTableResult.bonus.rounds}})
             </div>
         </div>
 
     </div>
+
+</div>
 
 </div>

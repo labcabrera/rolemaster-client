@@ -10,13 +10,16 @@ export interface TacticalAction {
     initiative: number;
     source: string;
     target: string;
+    secondaryTarget: string;
     pace: string;
     meleeAttackType: string;
+    meleeAttackMode: string;
     parry: number;
     roll: OpenRoll;
     offensiveBonus: number;
     offensiveBonusMap: OffensiveBonusMap;
-    attackResult: AttackResult;
+    attackResults: AttackResult[];
+    criticalResults: TacticalCriticalResult[];
 }
 
 export interface OffensiveBonusMap {
@@ -63,7 +66,7 @@ export interface TacticalCriticalResult {
     severity: string;
     type: string;
     roll: number;
-	criticalTableResult: CriticalTableResult;
+    criticalTableResult: CriticalTableResult;
 }
 
 export interface CriticalTableResult {

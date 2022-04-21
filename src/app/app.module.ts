@@ -71,6 +71,7 @@ import { DialogAddSkillComponent } from './components/dialogs/dialog-add-skill/d
 import { CharacterItemViewComponent } from './components/character/character-item-view/character-item-view.component';
 import { DialogAddCharacterItemComponent } from './components/dialogs/dialog-add-character-item/dialog-add-character-item.component';
 import { CharacterBasicInfoComponent } from './components/character/character-basic-info/character-basic-info.component';
+import { ActionDeclarationMeleeAttackComponent } from './components/action-declaration/action-declaration-melee-attack/action-declaration-melee-attack.component';
 
 @NgModule({
   declarations: [
@@ -133,6 +134,7 @@ import { CharacterBasicInfoComponent } from './components/character/character-ba
     CharacterItemViewComponent,
     DialogAddCharacterItemComponent,
     CharacterBasicInfoComponent,
+    ActionDeclarationMeleeAttackComponent,
   ],
   imports: [
     FormsModule,

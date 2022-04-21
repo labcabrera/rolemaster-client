@@ -3,7 +3,7 @@
         <span>Tactical session creation</span>
     </div>
     <div class="div-spacer"></div>
-    <button mat-button (click)="save()">
+    <button mat-button (click)="save()" [disabled]="form.invalid">
         <mat-icon>save_alt</mat-icon>
     </button>
 </mat-toolbar>

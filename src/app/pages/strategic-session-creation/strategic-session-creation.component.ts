@@ -16,15 +16,14 @@ export class StrategicSessionCreationComponent implements OnInit {
   form: FormGroup;
 
   universes: Universe[] = [
-    {id: 'middle-earth', name: "Middle Earth"},
-    {id: 'generic', name: "Generic"}
+    { id: 'middle-earth', name: "Middle Earth" },
+    { id: 'generic', name: "Generic" }
   ]
 
   constructor(
     private strategicSessionService: StrategicSessionsService,
     private router: Router,
-    private fb: FormBuilder,
-    private location: Location) {
+    private fb: FormBuilder) {
 
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -47,10 +46,6 @@ export class StrategicSessionCreationComponent implements OnInit {
   loadUniverse(event: any) {
     console.log(event);
     this.form.value['universe'] = event.id;
-  }
-
-  goBack(): void {
-    this.location.back();
   }
 
 }

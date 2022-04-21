@@ -144,7 +144,7 @@ export class TacticalSessionComponent implements OnInit {
 
   delete() {
     this.tacticalSessionService.delete(this.tacticalSession.id).subscribe(result => {
-      this.router.navigateByUrl("/tactical-sessions");
+      this.router.navigateByUrl("/strategic-sessions/detail/" + this.strategicSession.id);
     });
   }
 

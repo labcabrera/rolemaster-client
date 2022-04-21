@@ -25,37 +25,8 @@
 
         <mat-tab label="Melee">
 
-            <div fxLayout="column" fxLayoutGap="15px">
-                <div>
-                    <h4>Action percent</h4>
-                    <span>{{action.actionPercent}}&nbsp;</span>
-                    <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="0" max="{{maxActionPercent}}"
-                        step="5" aria-label="units">
-                    </mat-slider>
-                </div>
-                <div>
-                    <h4>Parry percent</h4>
-                    <span>{{action.parry}}&nbsp;</span>
-                    <mat-slider thumbLabel min="0" max="100" step="5" aria-label="percent" [(ngModel)]="action.parry">
-                    </mat-slider>
-                </div>
-                <div>
-                    <h4>Attack type</h4>
-                    <mat-button-toggle-group [(ngModel)]="action.meleeAttackType" aria-label="Font Style">
-                        <mat-button-toggle *ngFor="let option of meleeAttackTypes" [value]="option.key">{{option.name}}
-                        </mat-button-toggle>
-                    </mat-button-toggle-group>
-                </div>
-                <div *ngIf="action.meleeAttackType == 'full'">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Target</mat-label>
-                        <mat-select [(ngModel)]="action.target">
-                            <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-            </div>
+            <app-action-declaration-melee-attack [action]="action" [maxActionPercent]="maxActionPercent"
+                [characters]="characters"></app-action-declaration-melee-attack>
         </mat-tab>
 
         <mat-tab label="Ranged">
@@ -108,13 +79,16 @@
 
     </mat-tab-group>
 
+    <pre>{{action | json}}</pre>
+    <!--
+        
+        Source:
+        <pre>{{source | json}}</pre>
+    -->
+
 </mat-dialog-content>
 
 <mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancel</button>
     <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="declareAction()">Add</button>
 </mat-dialog-actions>
-
-<!--
-<pre>{{action | json}}</pre>
--->

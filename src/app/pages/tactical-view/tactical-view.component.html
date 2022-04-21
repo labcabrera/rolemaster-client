@@ -28,7 +28,7 @@
         </div>
         <div fxFlex="20" fxLayoutAlign="left center" class="action-declaration">
             <app-tactical-view-character-action
-                [source]="character.id"
+                [source]="character"
                 [priority]="'snap'"
                 [tacticalRound]="this.tacticalRound"
                 [characters]="this.characters"
@@ -38,7 +38,7 @@
         </div>
         <div fxFlex="20" fxLayoutAlign="left center" class="action-declaration">
             <app-tactical-view-character-action
-                [source]="character.id"
+                [source]="character"
                 [priority]="'normal'"
                 [tacticalRound]="this.tacticalRound"
                 [characters]="this.characters"
@@ -48,7 +48,7 @@
         </div>
         <div fxFlex="20" fxLayoutAlign="left center" class="action-declaration">
             <app-tactical-view-character-action
-                [source]="character.id"
+                [source]="character"
                 [priority]="'deliberate'"
                 [tacticalRound]="this.tacticalRound"
                 [characters]="this.characters"

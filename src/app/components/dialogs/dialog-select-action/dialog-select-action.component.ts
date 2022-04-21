@@ -21,6 +21,7 @@ export interface Entry {
 })
 export class DialogSelectActionComponent implements OnInit {
 
+  source: TacticalCharacterContext = {} as TacticalCharacterContext;
   characters: TacticalCharacterContext[] = [];
   tacticalSessionId: string = "";
   action: TacticalAction = { type: 'movement', pace: 'walk' } as TacticalAction;
@@ -29,6 +30,8 @@ export class DialogSelectActionComponent implements OnInit {
   maxActionPercent = 100;
   movementPaces: NamedKey[] = [];
   meleeAttackTypes: NamedKey[] = [];
+  meleeAttackModes: NamedKey[] = [];
+
   actionPercentMap = new Map<string, number[]>([
     ["snap", [1, 20]],
     ["normal", [1, 80]],
@@ -44,18 +47,19 @@ export class DialogSelectActionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dialogRef.updateSize('50%', '70%');
+    this.dialogRef.updateSize('60%', '80%');
     this.enumService.findMovementPaces().subscribe(result => this.movementPaces = result);
     this.enumService.findMeleeAttackTypes().subscribe(result => this.meleeAttackTypes = result);
-    
+    this.enumService.findMeleeAttackModes().subscribe(result => this.meleeAttackModes = result);
   }
 
-  public load(tacticalRound: TacticalRound, source: string, priority: string, characters: TacticalCharacterContext[]) {
+  public load(tacticalRound: TacticalRound, source: TacticalCharacterContext, priority: string, characters: TacticalCharacterContext[]) {
+    this.source = source;
     //TODO read current used percent from character
     this.minActionPercent = this.actionPercentMap.get(priority)![0];
     this.maxActionPercent = this.actionPercentMap.get(priority)![1];
     this.action.roundId = tacticalRound.id;
-    this.action.source = source;
+    this.action.source = source.id;
     this.action.priority = priority;
     this.action.actionPercent = this.maxActionPercent;
     this.characters = characters;
@@ -65,17 +69,27 @@ export class DialogSelectActionComponent implements OnInit {
     this.action = action;
   }
 
+  private loadAttackMode() {
+    var offHand = this.source.items.filter(e => e.position === 'off-hand');
+      if (offHand.length > 0 && offHand[0].type === 'weapon') {
+        this.action.meleeAttackMode = 'two-weapons';
+      } else {
+        this.action.meleeAttackMode = 'main-hand-weapon';
+      }
+  }
+
   configureActionType(event: MatTabChangeEvent) {
     switch (event.index) {
       case 0:
         this.action.type = "movement";
-        if(!this.action.pace) {
+        if (!this.action.pace) {
           this.action.pace = "walk";
         }
         break;
       case 1:
+        this.loadAttackMode();
         this.action.type = "melee-attack";
-        if(!this.action.meleeAttackType) {
+        if (!this.action.meleeAttackType) {
           this.action.meleeAttackType = 'full';
         }
         break;
