@@ -1,36 +1,68 @@
-<div fxLayout="column" *ngIf="action.attackResults.length > 0">
+<div fxLayout="column" *ngIf="action.attackResults.length < 1">
     Attack not resolved.
 </div>
 
-<div fxLayout="column" *ngFor="let ar of action.attackResults">
-
-    <div fxLayout="row">
-        <div fxFlex="60">Attack result</div>
-        <div fxFlexAuto>
-            {{ar.attackResult}} ({{action.roll.result}} + {{action.offensiveBonus}})
+<mat-card *ngIf="action.attackResults.length > 0">
+    <mat-card-header>
+        <mat-card-title>Main hand attack</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div fxLayout="column" *ngIf="action.attackResults.length > 0">
+            <div fxLayout="row">
+                <div fxFlex="60">Attack</div>
+                <div fxFlexAuto>
+                    {{getMainHandResult()}}
+                </div>
+            </div>
+            <div fxLayout="row">
+                <div fxFlex="60">Weapon - armor</div>
+                <div fxFlexAuto>{{this.action.attackResults[0].weaponTableId}} - AT{{this.action.attackResults[0].targetArmor}}</div>
+            </div>
+            <div fxLayout="row" style="padding-top: 20pt;">
+                <div fxFlex="60">HP</div>
+                <div fxFlexAuto>{{this.action.attackResults[0].hp}}</div>
+            </div>
+            <div fxLayout="row" style="padding-top: 20pt;">
+                <div fxFlex="60">Offensive modifiers</div>
+                <div fxFlexAuto></div>
+            </div>
+            <div fxLayout="row" *ngFor="let option of this.getOffensiveModifiers(this.action.offensiveBonusMap['main-hand'])">
+                <div fxFlex="60">{{option.key}}</div>
+                <div fxFlexAuto>{{option.name}}</div>
+            </div>
         </div>
-    </div>
-    <div fxLayout="row">
-        <div fxFlex="60">Weapon</div>
-        <div fxFlexAuto>{{ar.weaponTableId}}</div>
-    </div>
-    <div fxLayout="row">
-        <div fxFlex="60">Armor</div>
-        <div fxFlexAuto>{{ar.targetArmor}}</div>
-    </div>
+    </mat-card-content>
+</mat-card>
 
-    <div fxLayout="row" style="padding-top: 20pt;">
-        <div fxFlex="60">HP</div>
-        <div fxFlexAuto>{{ar.hp}}</div>
-    </div>
+<mat-card *ngIf="action.attackResults.length > 1">
+    <mat-card-header>
+        <mat-card-title>Off-hand attack</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div fxLayout="column">
+            <div fxLayout="row">
+                <div fxFlex="60">Attack</div>
+                <div fxFlexAuto>
+                    {{getOffHandResult()}}
+                </div>
+            </div>
+            <div fxLayout="row">
+                <div fxFlex="60">Weapon - armor</div>
+                <div fxFlexAuto>{{this.action.attackResults[1].weaponTableId}} - AT{{this.action.attackResults[1].targetArmor}}</div>
+            </div>
+            <div fxLayout="row" style="padding-top: 20pt;">
+                <div fxFlex="60">HP</div>
+                <div fxFlexAuto>{{this.action.attackResults[1].hp}}</div>
+            </div>
 
-    <div fxLayout="row" style="padding-top: 20pt;">
-        <div fxFlex="60">Offensive modifiers</div>
-        <div fxFlexAuto></div>
-    </div>
-    <div  fxLayout="row" *ngFor="let option of this.getOffensiveModifiers()">
-        <div fxFlex="60">{{option.key}}</div>
-        <div fxFlexAuto>{{option.name}}</div>
-    </div>
-
-</div>
+            <div fxLayout="row" style="padding-top: 20pt;">
+                <div fxFlex="60">Offensive modifiers</div>
+                <div fxFlexAuto></div>
+            </div>
+            <div fxLayout="row" *ngFor="let option of this.getOffensiveModifiers(this.action.offensiveBonusMap['off-hand'])">
+                <div fxFlex="60">{{option.key}}</div>
+                <div fxFlexAuto>{{option.name}}</div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

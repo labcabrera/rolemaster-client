@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatOptgroup } from '@angular/material/core';
+
+import { OffensiveBonusMap } from 'src/app/model/actions';
 import { TacticalAction } from 'src/app/model/actions';
 import { NamedKey } from 'src/app/model/commons';
 
@@ -16,19 +19,52 @@ export class AttackResultComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getOffensiveModifiers(): NamedKey[] {
+  getMainHandResult() {
+    var attackResult = this.action.attackResults[0].result;
+    var bonus = this.action.attackResults[0].totalBonus;
+    var roll = this.action.rolls['main-hand'].result;
+    return `${attackResult} (${roll} + ${bonus})`;
+  }
+
+  getOffHandResult() {
+    var attackResult = this.action.attackResults[1].result;
+    var bonus = this.action.attackResults[1].totalBonus;
+    var roll = this.action.rolls['off-hand'].result;
+    return `${attackResult} (${roll} + ${bonus})`;
+  }
+
+  getOffensiveModifiers(map: OffensiveBonusMap): NamedKey[] {
     var result: NamedKey[] = [];
-    result.push({key: "Skill", name: "" + this.action.offensiveBonusMap.skill});
-    result.push({key: "Defensive bonus", name: "" + this.action.offensiveBonusMap['defensive-bonus']});
-    result.push({key: "Parry", name: "" + this.action.offensiveBonusMap.parry});
-    result.push({key: "Shield", name: "" + this.action.offensiveBonusMap.shield});
-    result.push({key: "Action percent", name: "" + this.action.offensiveBonusMap['action-percent']});
-    result.push({key: "Target status", name: "" + this.action.offensiveBonusMap['target-status']});
-    result.push({key: "Hp", name: "" + this.action.offensiveBonusMap.hp});
-    result.push({key: "Facing", name: "" + this.action.offensiveBonusMap['melee-facing']});
-    result.push({key: "Exhaustion", name: "" + this.action.offensiveBonusMap.exhaustion});
-    if(this.action.offensiveBonusMap.distance) {
-      result.push({key: "Distance", name: "" + this.action.offensiveBonusMap.distance});
+    result.push({ key: "Skill", name: "" + map.skill });
+    result.push({ key: "Defensive bonus", name: "" + map['defensive-bonus'] });
+    if (map.parry && map.parry != 0) {
+      result.push({ key: "Parry", name: "" + map.parry });
+    }
+    if (map.shield && map.shield != 0) {
+      result.push({ key: "Shield", name: "" + map.shield });
+    }
+    if (map['action-percent'] && map['action-percent'] != 0) {
+      result.push({ key: "Action percent", name: "" + map['action-percent'] });
+    }
+    if (map['target-status'] && map['target-status'] != 0) {
+      result.push({ key: "Target status", name: "" + map['target-status'] });
+    }
+    if (map.hp && map.hp != 0) {
+      result.push({ key: "Hp", name: "" + map.hp });
+    }
+    if (map['melee-facing'] && map['melee-facing'] != 0) {
+      result.push({ key: "Facing", name: "" + map['melee-facing'] });
+    }
+    if (map.exhaustion && map.exhaustion != 0) {
+      result.push({ key: "Exhaustion", name: "" + map.exhaustion });
+    }
+    if (map.distance && map.distance != 0) {
+      result.push({ key: "Distance", name: "" + map.distance });
+    }
+    if(map['off-hand'] && map['off-hand'] != 0) {
+      if (map.distance && map.distance != 0) {
+        result.push({ key: "Off-Hand", name: "" + map['off-hand'] });
+      } 
     }
     return result;
   }

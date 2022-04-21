@@ -16,10 +16,21 @@ export interface TacticalAction {
     meleeAttackMode: string;
     parry: number;
     roll: OpenRoll;
+    rolls: TacticalActionRolls;
     offensiveBonus: number;
-    offensiveBonusMap: OffensiveBonusMap;
+    offensiveBonusMap: TacticalActionOffensiveBonusMap;
     attackResults: AttackResult[];
     criticalResults: TacticalCriticalResult[];
+}
+
+export interface TacticalActionRolls {
+    ['main-hand']: OpenRoll;
+    ['off-hand']: OpenRoll;
+}
+
+export interface TacticalActionOffensiveBonusMap {
+    ['main-hand']: OffensiveBonusMap;
+    ['off-hand']: OffensiveBonusMap;
 }
 
 export interface OffensiveBonusMap {
@@ -33,6 +44,7 @@ export interface OffensiveBonusMap {
     'melee-facing': number;
     parry: number;
     'distance': number;
+    'off-hand': number;
 }
 
 export interface TacticalActionDeclaration {
@@ -47,6 +59,7 @@ export interface TacticalActionDeclaration {
 export interface TacticalActionExecution {
     type: string;
     roll: OpenRoll;
+    rolls: TacticalActionRolls,
     secondaryRoll: OpenRoll;
     target: string;
     secondaryTarget: string;
@@ -54,7 +67,8 @@ export interface TacticalActionExecution {
 }
 
 export interface AttackResult {
-    attackResult: number;
+    result: number;
+    totalBonus: number;
     weaponTableId: string;
     targetArmor: number;
     hp: number;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ignoreElements } from 'rxjs';
 
@@ -31,7 +31,8 @@ export class DialogActionExecutionComponent implements OnInit {
     private tacticalService: TacticalSessionService,
     private enumService: EnumService,
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<any>) { }
+    private dialogRef: MatDialogRef<any>) {
+    }
 
   ngOnInit(): void {
     this.dialogRef.updateSize('90%', '90%');
@@ -40,9 +41,9 @@ export class DialogActionExecutionComponent implements OnInit {
   load(action: TacticalAction, characters: TacticalCharacterContext[]) {
     this.action = action;
     this.characters = characters;
-    this.loadActionExecution();
   }
 
+  /*
   loadActionExecution() {
     this.actionExecution.type = this.action.type;
     this.actionExecution.roll = { result: 0, rolls: [0] }
@@ -83,5 +84,6 @@ export class DialogActionExecutionComponent implements OnInit {
       this.action = result;
     });
   }
+  */
 
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TacticalAction } from '../model/actions';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,28 @@ export class ActionDeclarationFormService {
     } else {
       actionForm.removeControl('targets');
     }
+  }
+
+  buildMeleeAttackExecution(fb: FormBuilder, form: FormGroup, action: TacticalAction){
+    console.log("Building form. Action: ", action);
+
+    form.addControl('rolls', fb.group({
+      'main-hand': fb.group({ result: ['', Validators.required]})
+    }));
+
+    
+    /*
+    var result = fb.group({
+      type: ['melee-attack'],
+      rolls: fb.group({
+        'main-hand': fb.group({
+          result: ['', Validators.required]
+        }),
+        //'off-hand': this.fb.control({
+        //  result: ['']})
+      })
+    });
+    */
   }
 
 }
