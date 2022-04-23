@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 import { Skill } from 'src/app/model/skill';
-import { TacticalCharacterContext } from 'src/app/model/character-context';
 import { CharacterInfo } from 'src/app/model/character-info';
 import { SkillService } from 'src/app/services/skill.service';
 import { CharacterService } from 'src/app/services/character-service';
@@ -17,31 +16,52 @@ import { CharacterService } from 'src/app/services/character-service';
 })
 export class DialogAddSkillComponent implements OnInit {
 
+  addSkillForm: FormGroup;
+
   character: CharacterInfo = {} as CharacterInfo;
 
-  selectedSkill: Skill | undefined;
-
   availableSkills: Skill[] = [];
-  myControl = new FormControl();
   filteredOptions?: Observable<Skill[]>;
 
   constructor(
     private characterService: CharacterService,
     private skillService: SkillService,
-    private dialogRef: MatDialogRef<any>) { }
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<any>) {
+
+    this.addSkillForm = this.fb.group({
+      skillId: ['', Validators.required],
+      customization01: [''],
+      customization02: [''],
+    });
+  }
 
   ngOnInit(): void {
     this.dialogRef.updateSize('50%', '50%');
     this.skillService.getSkills().subscribe(result => this.availableSkills = result);
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredOptions = this.addSkillForm.controls['skillId'].valueChanges.pipe(
       startWith(''),
       map(value => (typeof value === 'string' ? value : value.name)),
-      map(name => (name ? this._filter(name) : this.availableSkills.slice())),
+      map(name => (name ? this._filter(name) : this.availableSkills.slice()))
     );
   }
 
   load(character: CharacterInfo) {
     this.character = character;
+  }
+
+  addSkill() {
+    const skillId = this.addSkillForm.value["skillId"].id;
+    const customizations: string[] = [];
+    if(this.addSkillForm.value['skillId'].customizableOptions > 0) {
+      customizations.push(this.addSkillForm.value['customization01']);
+    }
+    if(this.addSkillForm.value['skillId'].customizableOptions > 1) {
+      customizations.push(this.addSkillForm.value['customization02']);
+    }
+    this.characterService.addSkill(this.character.id, skillId, customizations).subscribe(result => {
+      this.character = result;
+    })
   }
 
   displayFn(user: Skill): string {
@@ -53,13 +73,4 @@ export class DialogAddSkillComponent implements OnInit {
     return this.availableSkills.filter(option => option.name.toLowerCase().includes(filterValue));
   }
 
-  addSkill() {
-    const skillId = this.myControl.value.id;
-    console.log("Skill id: ", skillId);
-
-    this.characterService.addSkill(this.character.id, skillId, []).subscribe(result => {
-      this.character = result;
-      //TODO notify results to parent
-    })
-  }
 }

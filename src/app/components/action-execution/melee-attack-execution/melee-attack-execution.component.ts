@@ -15,17 +15,14 @@ import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
   templateUrl: './melee-attack-execution.component.html',
   styleUrls: ['./melee-attack-execution.component.scss']
 })
-export class MeleeAttackExecutionComponent implements OnInit, AfterViewInit, AfterContentInit {
+export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
 
   @Input() action: TacticalAction = {} as TacticalAction;
-
-  //@Input() actionExecution: TacticalActionExecution = {} as TacticalActionExecution;
   @Input() tacticalSession: TacticalSession = {} as TacticalSession;
   @Input() characters: TacticalCharacterContext[] = [];
-  //@Input() criticalExecution: AttackCriticalExecution = { roll: 0 };
-  //@Input() fumbleExecution: FumbleExecution = { roll: 0 };
 
   actionExecutionForm: FormGroup;
+  criticalExecutionForm: FormGroup | undefined;
 
   meleeAttackFacingValues: NamedKey[] = [];
   availableTargets: NamedKey[] = [];
@@ -36,38 +33,33 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterViewInit, Aft
     private enumService: EnumService,
     private fb: FormBuilder) {
 
-    this.actionExecutionForm = fb.group({
-      type: ['melee-attack'],
-      rolls: fb.group({
-        'main-hand': fb.group({ result: ['', Validators.required] }),
-        'off-hand': fb.group({ result: ['', Validators.required] }),
-      }),
-      facingMap: fb.group({
-        'main-hand': fb.control('normal'),
-        'off-hand': fb.control('normal'),
-      }),
-      targets: fb.group({
-        'main-hand': fb.control('', Validators.required),
-        'off-hand': fb.control('', Validators.required),
-      })
-    });
+    this.actionExecutionForm = this.createActionExecutionForm();
+    this.createActionExecutionForm();
   }
-
 
   ngOnInit(): void {
     this.enumService.findMeleeAttackFacingList().subscribe(result => this.meleeAttackFacingValues = result);
     this.loadAvailableTargets();
   }
 
-  ngAfterViewInit(): void {
-  }
-
   ngAfterContentInit(): void {
     this.actionDeclarationFormService.configureMeleeAttackExecution(this.fb, this.actionExecutionForm, this.action);
+    if (this.action.state === 'pending-critical-resolution') {
+      this.criticalExecutionForm = this.createCriticalExecutionForm();
+    }
   }
 
-  executeMeleeAttackAction() {
+  resolveMeleeAttackAction() {
     this.actionService.execute(this.action.id, this.actionExecutionForm!.value).subscribe(action => {
+      this.action = action;
+      if (this.action.state === 'pending-critical-resolution') {
+        this.criticalExecutionForm = this.createCriticalExecutionForm();
+      }
+    });
+  }
+
+  resolveCriticalAction() {
+    this.actionService.executeCritical(this.action.id, this.criticalExecutionForm!.value).subscribe(action => {
       this.action = action;
     });
   }
@@ -88,6 +80,46 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterViewInit, Aft
   displayOffHandTarget(): boolean {
     var x = (this.actionExecutionForm.get('targets') as FormGroup).get('off-hand') != null;
     return x;
+  }
+
+  getCriticalRollKeys(): string[] {
+    const count = this.action.criticalResults.length;
+    const result = [];
+    for (var i = 0; i < count; i++) {
+      result.push('Critical roll ' + (i + 1));
+    }
+    return result;
+  }
+
+  private createActionExecutionForm(): FormGroup {
+    return this.fb.group({
+      type: ['melee-attack'],
+      rolls: this.fb.group({
+        'main-hand': this.fb.group({ result: ['', Validators.required] }),
+        'off-hand': this.fb.group({ result: ['', Validators.required] }),
+      }),
+      facingMap: this.fb.group({
+        'main-hand': this.fb.control('normal'),
+        'off-hand': this.fb.control('normal'),
+      }),
+      targets: this.fb.group({
+        'main-hand': this.fb.control('', Validators.required),
+        'off-hand': this.fb.control('', Validators.required),
+      })
+    });
+  }
+
+  private createCriticalExecutionForm(): FormGroup {
+    const count = this.action.criticalResults.length;
+    const fgRolls: FormGroup = new FormGroup({});
+    const fgRoot: FormGroup = new FormGroup({});
+    const group: any = {};
+    for (var i = 0; i < count; i++) {
+      var fc: FormControl = new FormControl('', Validators.required);
+      fgRolls.addControl('Critical roll ' + (i + 1), fc);
+    }
+    fgRoot.addControl('rolls', fgRolls);
+    return fgRoot;
   }
 
 }

@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Action selection</h2>
+<h2 mat-dialog-title>{{source.name}}</h2>
 <mat-dialog-content>
 
     <div [formGroup]="actionForm">
@@ -54,14 +54,13 @@
                 </div>
 
             </mat-tab>
-            <!--
+
             <mat-tab label="Static M">
                 <div fxLayout="column" fxLayoutGap="15px">
                     <div>
                         <h4>Action percent</h4>
-                        <span>{{action.actionPercent}}&nbsp;</span>
-                        <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="0" max="{{maxActionPercent}}"
-                            step="5" aria-label="units">
+                        <span>{{actionForm.value.actionPercent}}&nbsp;</span>
+                        <mat-slider thumbLabel formControlName="actionPercent" min="0" max="{{maxActionPercent}}" step="5" aria-label="units">
                         </mat-slider>
                     </div>
                 </div>
@@ -71,9 +70,8 @@
                 <div fxLayout="column" fxLayoutGap="15px">
                     <div>
                         <h4>Action percent</h4>
-                        <span>{{action.actionPercent}}&nbsp;</span>
-                        <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="0" max="{{maxActionPercent}}"
-                            step="5" aria-label="units">
+                        <span>{{actionForm.value.actionPercent}}&nbsp;</span>
+                        <mat-slider thumbLabel formControlName="actionPercent" min="0" max="{{maxActionPercent}}" step="5" aria-label="units">
                         </mat-slider>
                     </div>
                 </div>
@@ -83,22 +81,20 @@
                 <div fxLayout="column" fxLayoutGap="15px">
                     <div>
                         <h4>Action percent</h4>
-                        <span>{{action.actionPercent}}&nbsp;</span>
-                        <mat-slider thumbLabel [(ngModel)]="action.actionPercent" min="0" max="{{maxActionPercent}}"
-                            step="5" aria-label="units">
+                        <span>{{actionForm.value.actionPercent}}&nbsp;</span>
+                        <mat-slider thumbLabel formControlName="actionPercent" min="0" max="{{maxActionPercent}}" step="5" aria-label="units">
                         </mat-slider>
                     </div>
                 </div>
             </mat-tab>
-        -->
-
+            
         </mat-tab-group>
 
     </div>
 
+    <!--
     <pre>{{this.actionForm.value | json}}</pre>
 
-    <!--
         <pre>{{action | json}}</pre>        
         Source:
         <pre>{{source | json}}</pre>

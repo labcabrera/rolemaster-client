@@ -49,6 +49,7 @@ export interface CombatStatus {
 
     totalBleeding: number;
     totalPenalty: number;
+    totalBonus: number;
 }
 
 export interface Debuffs {

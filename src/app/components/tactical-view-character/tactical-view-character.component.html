@@ -35,6 +35,10 @@
                 <mat-icon class="buff-icon" matTooltip="Cant parry">arrow_circle_down</mat-icon>
             </span>
             -->
+            <span *ngIf="character?.combatStatus!.totalBonus != 0">
+                +{{character?.combatStatus!.totalBonus}}
+                <mat-icon class="buff-icon" matTooltip="Cant parry">arrow_circle_up</mat-icon>
+            </span>
             <span *ngIf="character?.combatStatus!.totalPenalty < 0">
                 {{character?.combatStatus!.totalPenalty}}
                 <mat-icon class="buff-icon" matTooltip="Cant parry">arrow_circle_down</mat-icon>
@@ -55,6 +59,7 @@
                 {{character?.combatStatus?.debuffs?.['must-parry']}}
                 <mat-icon class="buff-icon" matTooltip="Must parry">close</mat-icon>
             </span>
+
         </ng-container>
 
         <!--

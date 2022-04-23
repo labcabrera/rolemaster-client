@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div formGroupName="facingMap" fxLayout="row" fxLayoutGap="5px">
-                <div  [fxFlex]="actionExecutionForm.value.facingMap['off-hand'] ? 50 : 100">
+                <div [fxFlex]="actionExecutionForm.value.facingMap['off-hand'] ? 50 : 100">
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Main hand facing</mat-label>
                         <mat-select formControlName="main-hand">
@@ -68,22 +68,23 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <!--
-                <div *ngIf="action.state == 'pending-critical-resolution'">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Critical roll</mat-label>
-                        <input matInput placeholder="Critical roll" value="" [(ngModel)]="criticalExecution.roll">
-                    </mat-form-field>
-                </div>
-                <div *ngIf="action.state == 'pending-fumble-resolution'">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Critical roll</mat-label>
-                        <input matInput placeholder="Critical roll" value="" [(ngModel)]="fumbleExecution.roll">
-                    </mat-form-field>
-                </div>
-            -->
             </div>
-            <button mat-button color="primary" (click)="executeMeleeAttackAction()" [disabled]="actionExecutionForm!.invalid || this.action.state !== 'pending'">Resolve attack</button>
+
+            <button mat-button color="primary" (click)="resolveMeleeAttackAction()"
+                [disabled]="actionExecutionForm!.invalid || this.action.state !== 'pending'">Resolve attack</button>
+
+            <div fxLayout="column" *ngIf="criticalExecutionForm" [formGroup]="criticalExecutionForm">
+                <div formGroupName="rolls">
+                    <div *ngFor="let rollKey of getCriticalRollKeys()">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>{{rollKey}}</mat-label>
+                            <input matInput type="number" formControlName="{{rollKey}}" placeholder="Critical roll">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <button mat-button color="primary" (click)="resolveCriticalAction()"
+                [disabled]="criticalExecutionForm!.invalid || this.action.state !== 'pending-critical-resolution'">Resolve critical</button>
+            </div>
 
         </div>
 
@@ -98,4 +99,7 @@
     </div>
 </div>
 
+<!--
 <pre>{{actionExecutionForm.value | json}}</pre>
+<pre *ngIf="criticalExecutionForm">{{criticalExecutionForm.value | json}}</pre>
+-->
