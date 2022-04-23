@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -9,6 +9,7 @@ import { CharacterItemService } from 'src/app/services/character-item.service';
 import { EnumService } from 'src/app/services/enum.service';
 import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { DialogAddCharacterItemComponent } from '../../dialogs/dialog-add-character-item/dialog-add-character-item.component';
+import { CharacterService } from 'src/app/services/character-service';
 
 @Component({
   selector: 'app-character-item-view',
@@ -19,6 +20,8 @@ export class CharacterItemViewComponent implements OnInit {
 
   @Input() character?: CharacterInfo;
 
+  @Output() onCharacterUpdated = new EventEmitter<CharacterInfo>();
+
   items: CharacterItem[] = [];
   itemPositions: NamedKey[] = [];
 
@@ -27,6 +30,7 @@ export class CharacterItemViewComponent implements OnInit {
 
   constructor(
     private characterItemService: CharacterItemService,
+    private characterService: CharacterService,
     private enumService: EnumService,
     private addItemDialog: MatDialog,
   ) { }
@@ -49,19 +53,29 @@ export class CharacterItemViewComponent implements OnInit {
     dialogRef.componentInstance.load(this.character!);
     dialogRef.afterClosed().subscribe(result => {
       this.loadCharacterItems();
+      this.loadCharacterAndNotifyChanges();
     });
   }
 
   deleteItem(characterItem: CharacterItem) {
     this.characterItemService.deleteCharacterItem(characterItem.id).subscribe(result => {
       this.loadCharacterItems();
+      this.loadCharacterAndNotifyChanges();
     });
   }
 
   updateItemPosition(item: CharacterItem, position: string) {
     this.characterItemService.updateItemPosition(item.id, position).subscribe(result => {
       this.loadCharacterItems();
+      this.loadCharacterAndNotifyChanges();
     });
+  }
+
+  loadCharacterAndNotifyChanges() {
+    this.characterService.getCharacter(this.character!.id).subscribe(result => {
+      this.character = result;
+      this.onCharacterUpdated.emit(result);
+    })
   }
 
   checkPositionEnabled(item: CharacterItem, position: string) {

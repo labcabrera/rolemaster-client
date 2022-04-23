@@ -1,6 +1,6 @@
-<div fxLayout="row">
+<div fxLayout="row" fxLayoutGap="20px">
 
-    <div fxFlex="80">
+    <div fxFlex="70">
 
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="name">
@@ -43,6 +43,10 @@
 
         <button mat-button (click)="openDialogAddCharacterItem()">Add item</button>
 
+    </div>
+
+    <div fxFlex="30">
+        Carried weight: {{character?.carriedWeight}}
     </div>
 </div>
 
