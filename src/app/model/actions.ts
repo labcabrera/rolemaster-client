@@ -1,5 +1,6 @@
 import { OpenRoll } from "./commons";
 import { Debuffs } from "./character-context";
+import { AttackResultComponent } from "../components/attack-result/attack-result.component";
 export interface TacticalAction {
     id: string;
     roundId: string;
@@ -19,8 +20,18 @@ export interface TacticalAction {
     rolls: TacticalActionRolls;
     offensiveBonus: number;
     offensiveBonusMap: TacticalActionOffensiveBonusMap;
-    attackResults: AttackResult[];
-    criticalResults: TacticalCriticalResult[];
+    attackResults: AttackResultMap;
+    criticalResults: TacticalCriticalResultMap;
+}
+
+export interface AttackResultMap {
+    ['main-hand']: AttackResult;
+    ['off-hand']: AttackResult;
+}
+
+export interface TacticalCriticalResultMap {
+    ['main-hand']: TacticalCriticalResult[];
+    ['off-hand']: TacticalCriticalResult[];
 }
 
 export interface Targets {

@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <button mat-button color="primary" (click)="resolveCriticalAction()"
-                [disabled]="criticalExecutionForm!.invalid || this.action.state !== 'pending-critical-resolution'">Resolve critical</button>
+                    [disabled]="criticalExecutionForm!.invalid || this.action.state !== 'pending-critical-resolution'">Resolve critical</button>
             </div>
 
         </div>
@@ -95,11 +95,13 @@
     </div>
 
     <div fxFlex="30">
-        <app-critical-result-view [action]="action"></app-critical-result-view>
+        <div *ngIf="action.criticalResults['main-hand']">
+            <h2>Main hand critical</h2>
+            <app-critical-result-view *ngFor="let critical of action.criticalResults['main-hand']" [critical]="critical"></app-critical-result-view>
+        </div>
+        <div *ngIf="action.criticalResults['off-hand']" style="margin-top: 20pt;">
+            <h2>Off-hand critical</h2>
+            <app-critical-result-view *ngFor="let critical of action.criticalResults['off-hand']" [critical]="critical"></app-critical-result-view>
+        </div>
     </div>
 </div>
-
-<!--
-<pre>{{actionExecutionForm.value | json}}</pre>
-<pre *ngIf="criticalExecutionForm">{{criticalExecutionForm.value | json}}</pre>
--->

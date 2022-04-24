@@ -8,11 +8,11 @@ export interface CharacterInfo {
     maxLevel: number;
     age: number;
     height: number;
-    weight: number;
     attributes: CharacterAttributes;
     maxHp: number;
     maxExhaustionPoints: number;
     xp: number;
+    weight: CharacterWeight;
     baseMovementRate: number;
     skillCategories:  CharacterSkillCategory[];
     skills: CharacterSkill[];
@@ -121,6 +121,13 @@ export interface CharacterCreationAttributes {
     pr: number;
     st: number;
     qu: number;
+}
+
+export interface CharacterWeight {
+    characterWeight: number;
+	weightPenalty: number;
+	itemWeight: number;
+	totalCarriedWeight: number;
 }
 
 export interface SkillUpgradeRequest {

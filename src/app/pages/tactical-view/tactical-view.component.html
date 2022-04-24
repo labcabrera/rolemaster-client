@@ -5,9 +5,9 @@
         
     </span>
     <div class="div-spacer"></div>
-    <button mat-button *ngIf="!tacticalRound.state || tacticalRound.state == 'closed' || tacticalRound.state == 'action-resolution'" (click)="startRound()">Start round</button>
-    <button mat-button *ngIf="tacticalRound.state == 'action-declaration'" (click)="startInitiativeDeclaration()" >Calculate initiatives</button>
-    <button mat-button *ngIf="tacticalRound.state == 'initiative-declaration'" (click)="startExecutionPhase()">Execute actions</button>
+    <button mat-button [disabled]="tacticalRound.state != 'action-declaration'" (click)="startInitiativeDeclaration()" >Calculate initiatives</button>
+    <button mat-button [disabled]="tacticalRound.state != 'initiative-declaration'" (click)="startExecutionPhase()">Execute actions</button>
+    <button mat-button [disabled]="!(!tacticalRound.state || tacticalRound.state == 'closed' || tacticalRound.state == 'action-resolution')" (click)="startRound()">Start round</button>
 </mat-toolbar>
 
 <div class="outerContainer">

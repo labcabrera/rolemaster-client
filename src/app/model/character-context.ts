@@ -36,6 +36,7 @@ export interface ExhaustionPoints {
 }
 
 export interface CombatStatus {
+    buffs: Buffs;
     debuffs: Debuffs;
 
     stunnedRounds: number;
@@ -52,6 +53,9 @@ export interface CombatStatus {
     totalBonus: number;
 }
 
+export interface Buffs {
+    'has-initiative': number;
+}
 export interface Debuffs {
     stunned: number;
     shock: number;

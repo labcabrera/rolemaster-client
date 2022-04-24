@@ -37,6 +37,7 @@ export class ActionDeclarationFormService {
   }
 
   configureMeleeAttackExecution(fb: FormBuilder, form: FormGroup, action: TacticalAction){
+
     if (action.rolls) {
       if (action.rolls['main-hand']) {
         form.patchValue({ rolls: { ['main-hand']: { result: action.rolls['main-hand'].result } } });

@@ -83,7 +83,7 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
   }
 
   getCriticalRollKeys(): string[] {
-    const count = this.action.criticalResults.length;
+    const count = this.getCriticalResultCount();
     const result = [];
     for (var i = 0; i < count; i++) {
       result.push('Critical roll ' + (i + 1));
@@ -110,7 +110,7 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
   }
 
   private createCriticalExecutionForm(): FormGroup {
-    const count = this.action.criticalResults.length;
+    const count = this.getCriticalResultCount();
     const fgRolls: FormGroup = new FormGroup({});
     const fgRoot: FormGroup = new FormGroup({});
     const group: any = {};
@@ -120,6 +120,17 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
     }
     fgRoot.addControl('rolls', fgRolls);
     return fgRoot;
+  }
+
+  private getCriticalResultCount(): number {
+    var count = 0;
+    if(this.action.criticalResults['main-hand']) {
+      count += this.action.criticalResults['main-hand'].length;
+    }
+    if(this.action.criticalResults['off-hand']) {
+      count += this.action.criticalResults['off-hand'].length;
+    }
+    return count;
   }
 
 }

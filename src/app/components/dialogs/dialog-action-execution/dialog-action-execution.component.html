@@ -5,28 +5,10 @@
         <app-melee-attack-execution [action]="action" [characters]="characters"></app-melee-attack-execution>
     </div>
 
-    <!--
-    <mat-accordion>
-        <mat-expansion-panel hideToggle>
-            <mat-expansion-panel-header>
-                <mat-panel-title>Debug</mat-panel-title>
-            </mat-expansion-panel-header>
-            Action:
-            <pre>{{action | json}}</pre>
-        </mat-expansion-panel>
-    </mat-accordion>
--->
+    <pre>{{action | json}}</pre>
 
 </mat-dialog-content>
 
 <mat-dialog-actions>
     <button mat-button mat-dialog-close>Close</button>
-    <!--
-    <button mat-button (click)="executeAction()" *ngIf="!action.roll">Execute</button>
-    <button mat-button (click)="executeCritical()" *ngIf="action.state == 'pending-critical-resolution'">Resolve
-        critical</button>
-    -->
-    <!--
-    <button mat-button [mat-dialog-close]="false">Accept</button>
-    -->
 </mat-dialog-actions>

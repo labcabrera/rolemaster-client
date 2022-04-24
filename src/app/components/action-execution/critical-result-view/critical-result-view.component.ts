@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TacticalAction } from 'src/app/model/actions';
+import { TacticalAction, TacticalCriticalResult } from 'src/app/model/actions';
 
 @Component({
   selector: 'app-critical-result-view',
@@ -8,7 +8,7 @@ import { TacticalAction } from 'src/app/model/actions';
 })
 export class CriticalResultViewComponent implements OnInit {
 
-  @Input() action: TacticalAction = {} as TacticalAction;
+  @Input() critical: TacticalCriticalResult = {} as TacticalCriticalResult;
   
   constructor() { }
 

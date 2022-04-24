@@ -29,19 +29,17 @@
 
 
         <ng-container *ngIf="!isDead()">
-            <!--
-            <span *ngIf="character?.combatStatus!.totalPenalty < 0">
-                {{character?.combatStatus!.totalBonus}}
-                <mat-icon class="buff-icon" matTooltip="Cant parry">arrow_circle_down</mat-icon>
-            </span>
-            -->
             <span *ngIf="character?.combatStatus!.totalBonus != 0">
                 +{{character?.combatStatus!.totalBonus}}
-                <mat-icon class="buff-icon" matTooltip="Cant parry">arrow_circle_up</mat-icon>
+                <mat-icon class="buff-icon" matTooltip="Bonus">arrow_circle_up</mat-icon>
+            </span>
+            <span *ngIf="character?.combatStatus!.buffs?.['has-initiative']">
+                +{{character?.combatStatus?.buffs?.['has-initiative']}}
+                <mat-icon class="buff-icon" matTooltip="Has initiative">flash_on</mat-icon>
             </span>
             <span *ngIf="character?.combatStatus!.totalPenalty < 0">
                 {{character?.combatStatus!.totalPenalty}}
-                <mat-icon class="buff-icon" matTooltip="Cant parry">arrow_circle_down</mat-icon>
+                <mat-icon class="buff-icon" matTooltip="Penalty">arrow_circle_down</mat-icon>
             </span>
             <span *ngIf="character?.combatStatus!.totalBleeding > 0">
                 {{character?.combatStatus!.totalBleeding}}

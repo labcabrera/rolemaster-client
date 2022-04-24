@@ -20,15 +20,15 @@ export class AttackResultComponent implements OnInit {
   }
 
   getMainHandResult() {
-    var attackResult = this.action.attackResults[0].result;
-    var bonus = this.action.attackResults[0].totalBonus;
+    var attackResult = this.action.attackResults['main-hand'].result;
+    var bonus = this.action.attackResults['main-hand'].totalBonus;
     var roll = this.action.rolls['main-hand'].result;
     return `${attackResult} (${roll} + ${bonus})`;
   }
 
   getOffHandResult() {
-    var attackResult = this.action.attackResults[1].result;
-    var bonus = this.action.attackResults[1].totalBonus;
+    var attackResult = this.action.attackResults['off-hand'].result;
+    var bonus = this.action.attackResults['off-hand'].totalBonus;
     var roll = this.action.rolls['off-hand'].result;
     return `${attackResult} (${roll} + ${bonus})`;
   }
