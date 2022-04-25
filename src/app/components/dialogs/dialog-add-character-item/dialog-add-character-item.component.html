@@ -8,7 +8,7 @@
                     <mat-label>Item type</mat-label>
                     <input type="text" placeholder="Select item" aria-label="Item" matInput formControlName="itemId" [matAutocomplete]="auto">
                     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFnItem">
-                        <mat-option *ngFor="let option of itemFilteredOptions | async" [value]="option.id">
+                        <mat-option *ngFor="let option of itemFilteredOptions | async" [value]="option">
                             {{option.name}}
                         </mat-option>
                     </mat-autocomplete>
