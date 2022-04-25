@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import { CharacterInfo } from '../../../model/character-info';
 import { CharacterService } from '../../../services/character-service';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-characters',
@@ -15,13 +16,14 @@ export class CharacterListComponent implements OnInit, AfterViewInit {
 
   characters: CharacterInfo[] = [];
 
-  displayedColumns: string[] = [ "name", "level", "race", "profession", "created" ];
+  displayedColumns: string[] = ["name", "level", "race", "profession", "created"];
   dataSource: MatTableDataSource<CharacterInfo> = new MatTableDataSource<CharacterInfo>(this.characters);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
 
-  constructor(private characterService: CharacterService) {
-  }
+  constructor(
+    private characterService: CharacterService,
+    private errorService: ErrorService) { }
 
   ngOnInit(): void {
     this.getCharacters();
@@ -33,10 +35,14 @@ export class CharacterListComponent implements OnInit, AfterViewInit {
   }
 
   getCharacters(): void {
-    this.characterService.getCharacters().subscribe(c => {
-      this.characters = c;
-      this.dataSource.data = this.characters;
-    });
+    this.characterService.getCharacters().subscribe(
+      (results) => {
+        this.characters = results;
+        this.dataSource.data = this.characters;
+      },
+      (error) => {
+        this.errorService.displayError(error);
+      });
   }
 
   applyFilter(event: Event) {

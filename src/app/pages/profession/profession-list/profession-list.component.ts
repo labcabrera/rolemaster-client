@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { Profession } from '../../model/profession';
-import { ProfessionService } from '../../services/profession.service';
+import { Profession } from '../../../model/profession';
+import { ProfessionService } from '../../../services/profession.service';
 
 @Component({
   selector: 'app-profession-list',

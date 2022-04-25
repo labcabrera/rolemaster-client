@@ -13,12 +13,12 @@ import { TacticalSessionComponent } from './pages/tactical/tactical-session/tact
 import { StrategicSessionsComponent } from './pages/strategic/strategic-sessions/strategic-sessions.component';
 import { StrategicSessionComponent } from './pages/strategic/strategic-session/strategic-session.component';
 
-import { SkillListComponent } from './pages/skill-list/skill-list.component';
-import { ProfessionListComponent } from './pages/profession-list/profession-list.component';
+import { SkillListComponent } from './pages/skill/skill-list/skill-list.component';
+import { ProfessionListComponent } from './pages/profession/profession-list/profession-list.component';
 import { RaceListComponent } from './pages/race-list/race-list.component';
 import { RaceDetailComponent } from './pages/race-detail/race-detail.component';
-import { ProfessionDetailComponent } from './pages/profession-detail/profession-detail.component';
-import { SkillCategoryListComponent } from './pages/skill-category-list/skill-category-list.component';
+import { ProfessionDetailComponent } from './pages/profession/profession-detail/profession-detail.component';
+import { SkillCategoryListComponent } from './pages/skill-category/skill-category-list/skill-category-list.component';
 import { SkillSelectComponent } from './components/character/skill-select/skill-select.component';
 
 import { CharacterListComponent } from './pages/character/character-list/characters.component';
@@ -33,12 +33,12 @@ import { CharacterViewComponent } from './pages/character/character-view/charact
 import { TacticalViewComponent } from './pages/tactical-view/tactical-view.component';
 import { SharedModule } from './components/shared/shared.module';
 
-import { NpcListComponent } from './pages/npc-list/npc-list.component';
-import { NpcDetailComponent } from './pages/npc-detail/npc-detail.component';
+import { NpcListComponent } from './pages/npc/npc-list/npc-list.component';
+import { NpcDetailComponent } from './pages/npc/npc-detail/npc-detail.component';
 import { StrategicSessionCreationComponent } from './pages/strategic/strategic-session-creation/strategic-session-creation.component';
 import { TacticalSessionCreationComponent } from './pages/tactical/tactical-session-creation/tactical-session-creation.component';
-import { SkillDetailComponent } from './pages/skill-detail/skill-detail.component';
-import { SkillCategoryDetailComponent } from './pages/skill-category-detail/skill-category-detail.component';
+import { SkillDetailComponent } from './pages/skill/skill-detail/skill-detail.component';
+import { SkillCategoryDetailComponent } from './pages/skill-category/skill-category-detail/skill-category-detail.component';
 import { SpellsComponent } from './pages/spells/spells.component';
 import { SpellDetailComponent } from './pages/spell-detail/spell-detail.component';
 import { SpellListDetailComponent } from './pages/spell-list-detail/spell-list-detail.component';
@@ -50,7 +50,6 @@ import { ItemsComponent } from './pages/items/items.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
 import { DialogSelectActionComponent } from './components/dialogs/dialog-select-action/dialog-select-action.component';
-import { MessagesComponent } from './components/messages/messages.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { TrainingPackagesComponent } from './pages/training-packages/training-packages.component';
 import { TrainingPackageComponent } from './pages/training-package/training-package.component';
@@ -74,6 +73,8 @@ import { MovingManeuverComponent } from './components/tactical/action-declaratio
 import { StaticManeuverComponent } from './components/tactical/action-declaration/static-maneuver/static-maneuver.component';
 import { MissileAttackComponent } from './components/tactical/action-declaration/missile-attack/missile-attack.component';
 import { SpellCastComponent } from './components/tactical/action-declaration/spell-cast/spell-cast.component';
+import { ErrorSnackBarComponent } from './components/common/error-snack-bar/error-snack-bar.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,6 @@ import { SpellCastComponent } from './components/tactical/action-declaration/spe
     NavBarComponent,
     ItemDetailComponent,
     DialogSelectActionComponent,
-    MessagesComponent,
     UserSettingsComponent,
     TrainingPackagesComponent,
     TrainingPackageComponent,
@@ -139,6 +139,8 @@ import { SpellCastComponent } from './components/tactical/action-declaration/spe
     StaticManeuverComponent,
     MissileAttackComponent,
     SpellCastComponent,
+    ErrorSnackBarComponent,
+    HomeComponent,
   ],
   imports: [
     FormsModule,

@@ -5,6 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import { StrategicSession } from '../../../model/session';
 import { StrategicSessionsService } from '../../../services/strategic-sessions.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-sessions',
@@ -15,13 +17,14 @@ export class StrategicSessionsComponent implements OnInit, AfterViewInit {
 
   sessions: StrategicSession[] = [];
 
-  displayedColumns: string[] = [ "name", "universe", "created", "updated" ];
+  displayedColumns: string[] = ["name", "universe", "created", "updated"];
   dataSource: MatTableDataSource<StrategicSession> = new MatTableDataSource<StrategicSession>(this.sessions);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
 
   constructor(
-    private sessionService: StrategicSessionsService) {}
+    private sessionService: StrategicSessionsService,
+    private errorService: ErrorService) { }
 
   ngOnInit(): void {
     this.getSessions();
@@ -33,10 +36,14 @@ export class StrategicSessionsComponent implements OnInit, AfterViewInit {
   }
 
   getSessions() {
-    this.sessionService.find().subscribe(c => {
-      this.sessions = c;
-      this.dataSource.data = this.sessions;
-    });
+    this.sessionService.find().subscribe(
+      (result) => {
+        this.sessions = result;
+        this.dataSource.data = this.sessions;
+      },
+      (error) => {
+        this.errorService.displayError(error);
+      });
   }
 
   applyFilter(event: Event) {
@@ -47,7 +54,7 @@ export class StrategicSessionsComponent implements OnInit, AfterViewInit {
   createSession(): void {
     console.log("Creating session");
     var name = 'Demo session ' + new Date().toISOString();
-    var request = {name:name};
+    var request = { name: name };
     this.sessionService.create(request)
       .subscribe(session => {
         this.sessions.push(session);

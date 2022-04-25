@@ -4,21 +4,21 @@ import { CharacterCreationComponent } from './pages/character/character-creation
 import { CharacterDetailComponent } from './components/character/character-detail/character-detail.component';
 import { CharacterListComponent } from './pages/character/character-list/characters.component';
 import { CharacterViewComponent } from './pages/character/character-view/character-view.component';
-import { ProfessionListComponent } from './pages/profession-list/profession-list.component';
+import { ProfessionListComponent } from './pages/profession/profession-list/profession-list.component';
 import { RaceListComponent } from './pages/race-list/race-list.component';
 import { StrategicSessionComponent } from './pages/strategic/strategic-session/strategic-session.component';
 import { StrategicSessionsComponent } from './pages/strategic/strategic-sessions/strategic-sessions.component';
-import { SkillCategoryListComponent } from './pages/skill-category-list/skill-category-list.component';
-import { SkillListComponent } from './pages/skill-list/skill-list.component';
+import { SkillCategoryListComponent } from './pages/skill-category/skill-category-list/skill-category-list.component';
+import { SkillListComponent } from './pages/skill/skill-list/skill-list.component';
 import { TacticalViewComponent } from './pages/tactical-view/tactical-view.component';
 import { TacticalSessionsComponent } from './pages/tactical/tactical-sessions/tactical-sessions.component';
 import { TacticalSessionComponent } from './pages/tactical/tactical-session/tactical-session.component';
-import { NpcListComponent } from './pages/npc-list/npc-list.component';
-import { NpcDetailComponent } from './pages/npc-detail/npc-detail.component';
+import { NpcListComponent } from './pages/npc/npc-list/npc-list.component';
+import { NpcDetailComponent } from './pages/npc/npc-detail/npc-detail.component';
 import { StrategicSessionCreationComponent } from './pages/strategic/strategic-session-creation/strategic-session-creation.component';
 import { TacticalSessionCreationComponent } from './pages/tactical/tactical-session-creation/tactical-session-creation.component';
-import { SkillDetailComponent } from './pages/skill-detail/skill-detail.component';
-import { SkillCategoryDetailComponent } from './pages/skill-category-detail/skill-category-detail.component';
+import { SkillDetailComponent } from './pages/skill/skill-detail/skill-detail.component';
+import { SkillCategoryDetailComponent } from './pages/skill-category/skill-category-detail/skill-category-detail.component';
 import { SpellsComponent } from './pages/spells/spells.component';
 import { SpellListDetailComponent } from './pages/spell-list-detail/spell-list-detail.component';
 import { SpellDetailComponent } from './pages/spell-detail/spell-detail.component';
@@ -28,14 +28,16 @@ import { ItemsComponent } from './pages/items/items.component';
 import { StaticManeuversComponent } from './pages/static-maneuvers/static-maneuvers.component';
 import { MovingManeuversComponent } from './pages/moving-maneuvers/moving-maneuvers.component';
 import { RaceDetailComponent } from './pages/race-detail/race-detail.component';
-import { ProfessionDetailComponent } from './pages/profession-detail/profession-detail.component';
+import { ProfessionDetailComponent } from './pages/profession/profession-detail/profession-detail.component';
 import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { TrainingPackageComponent } from './pages/training-package/training-package.component';
 import { TrainingPackagesComponent } from './pages/training-packages/training-packages.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/strategic-sessions', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'characters', component: CharacterListComponent },
   { path: 'characters/detail/:id', component: CharacterViewComponent },
   { path: 'strategic-sessions', component: StrategicSessionsComponent },

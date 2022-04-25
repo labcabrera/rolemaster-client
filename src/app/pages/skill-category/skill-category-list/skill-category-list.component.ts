@@ -3,8 +3,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { SkillCategory } from '../../model/skill-category';
-import { SkillCategoryService } from '../../services/skill-category.service';
+import { SkillCategory } from '../../../model/skill-category';
+import { SkillCategoryService } from '../../../services/skill-category.service';
 import { environment } from 'src/environments/environment';
 
 @Component({

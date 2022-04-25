@@ -8,6 +8,8 @@ import { StrategicSessionsService } from '../../../services/strategic-sessions.s
 import { Universe } from 'src/app/model/commons';
 import { UniverseService } from 'src/app/services/universe.service';
 import { TacticalSessionService as TacticalSessionService } from 'src/app/services/tactical-session.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-session-detail',
@@ -26,10 +28,10 @@ export class StrategicSessionComponent implements OnInit {
     private sessionService: StrategicSessionsService,
     private tacticalSessionService: TacticalSessionService,
     private universeService: UniverseService,
+    private errorService: ErrorService,
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder,
-    private location: Location) {
+    private fb: FormBuilder) {
 
     this.form = this.fb.group({
       id: [''],
@@ -47,16 +49,22 @@ export class StrategicSessionComponent implements OnInit {
 
   loadStrategicSession(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
-    this.sessionService.findById(id).subscribe(response => {
-      this.strategicSession = response;
-      this.loadTacticalSessions(this.strategicSession.id);
-      this.form.patchValue({
-        name: this.strategicSession.name,
-        description: this.strategicSession.description,
-        universeId: this.strategicSession.universeId
-      });
-    });
+    this.sessionService.findById(id).subscribe(
+      (response) => {
+        this.strategicSession = response;
+        this.loadTacticalSessions(this.strategicSession.id);
+        this.form.patchValue({
+          name: this.strategicSession.name,
+          description: this.strategicSession.description,
+          universeId: this.strategicSession.universeId
+        });
+      },
+      (error) => {
+        this.errorService.displayError(error);
+      }
+    );
   }
+
   loadTacticalSessions(strategicSessionId: string) {
     this.tacticalSessionService.findByStrategicSessionId(strategicSessionId).subscribe(response => this.tacticalSessions = response);
   }

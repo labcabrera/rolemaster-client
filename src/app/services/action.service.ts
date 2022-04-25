@@ -18,8 +18,7 @@ export class ActionService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(
-    private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   findActionsByRound(roundId: string): Observable<TacticalAction[]>  {
     const url = `${this.baseUrl}/tactical-actions/rounds/${roundId}`;

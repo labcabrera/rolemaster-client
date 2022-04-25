@@ -29,6 +29,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
+import { MatSnackBarModule } from '@angular/material/snack-bar'; 
 
 // Flex Layout
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -62,6 +63,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatBadgeModule,
     MatButtonToggleModule,
     MatSlideToggleModule,
+    MatSnackBarModule,
     FlexLayoutModule
   ],
   exports: [
@@ -92,6 +94,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatBadgeModule,
     MatButtonToggleModule,
     MatSlideToggleModule,
+    MatSnackBarModule,
     FlexLayoutModule
   ]
 })

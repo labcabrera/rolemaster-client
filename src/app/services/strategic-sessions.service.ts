@@ -18,14 +18,10 @@ export class StrategicSessionsService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(
-    private messageService: MessageService,
-    private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   find(): Observable<StrategicSession[]> {
-    return this.http.get<StrategicSession[]>(this.baseUrl).pipe(
-      catchError(this.handleError<StrategicSession[]>('Error reading strategic sessions', []))
-    );
+    return this.http.get<StrategicSession[]>(this.baseUrl).pipe();
   }
 
   findById(id: String): Observable<StrategicSession> {
@@ -34,35 +30,18 @@ export class StrategicSessionsService {
   }
 
   create(request: SessionCreationRequest): Observable<StrategicSession> {
-    return this.http.post<StrategicSession>(this.baseUrl, request, this.httpOptions).pipe(
-      catchError(this.handleError<StrategicSession>('Error creating strategic session', {} as StrategicSession))
-    );
+    return this.http.post<StrategicSession>(this.baseUrl, request, this.httpOptions).pipe();
   }
 
   update(id: string, request: any): Observable<StrategicSession> {
-    return this.http.patch<any>(this.baseUrl + "/" + id, request, this.httpOptions).pipe(
-      catchError(this.handleError<StrategicSession>('Error updating strategic session', {} as StrategicSession))
-    );
+    return this.http.patch<any>(this.baseUrl + "/" + id, request, this.httpOptions).pipe();
   }
 
   delete(id: String) {
     const url = `${this.baseUrl}/${id}`;
     return this.http.delete<StrategicSession>(url, { observe: 'response' }).pipe(
       switchMap(res => res.status === 204 ? of([]) : of(res))
-      //catchError(this.handleError<StrategicSession>('Error updating strategic session', {} as StrategicSession))
     );
-  }
-
-  private handleError<T>(message = 'message', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      this.log(`${message} (${error.message})`);
-      return of(result as T);
-    };
-  }
-
-  private log(message: string) {
-    this.messageService.add(message);
   }
 
 }

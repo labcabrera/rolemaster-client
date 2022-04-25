@@ -1,5 +1,6 @@
 import { AfterContentInit, AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { TacticalCharacter } from 'src/app/model/character-context';
 import { AttackCriticalExecution, FumbleExecution, TacticalAction, TacticalActionExecution } from 'src/app/model/actions';
@@ -8,7 +9,8 @@ import { TacticalSession } from 'src/app/model/session';
 import { EnumService } from 'src/app/services/enum.service';
 import { ActionService } from 'src/app/services/action.service';
 import { ActionDeclarationFormService } from 'src/app/services/action-declaration-form.service';
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
+import { ErrorSnackBarComponent } from 'src/app/components/common/error-snack-bar/error-snack-bar.component';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-melee-attack-execution',
@@ -31,6 +33,7 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
     private actionService: ActionService,
     private actionDeclarationFormService: ActionDeclarationFormService,
     private enumService: EnumService,
+    private errorService: ErrorService,
     private fb: FormBuilder) {
 
     this.actionExecutionForm = this.createActionExecutionForm();
@@ -50,12 +53,20 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
   }
 
   resolveMeleeAttackAction() {
-    this.actionService.execute(this.action.id, this.actionExecutionForm!.value).subscribe(action => {
-      this.action = action;
-      if (this.action.state === 'pending-critical-resolution') {
-        this.criticalExecutionForm = this.createCriticalExecutionForm();
-      }
-    });
+    if(this.action.meleeAttackType == 'full') {
+      this.actionExecutionForm.value['targets'] = {};
+    }
+
+    this.actionService.execute(this.action.id, this.actionExecutionForm!.value).subscribe(
+      (action) => {
+        this.action = action;
+        if (this.action.state === 'pending-critical-resolution') {
+          this.criticalExecutionForm = this.createCriticalExecutionForm();
+        }
+      },
+      (error) => {
+        this.errorService.displayError(error);
+      });
   }
 
   resolveCriticalAction() {
@@ -124,10 +135,10 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
 
   private getCriticalResultCount(): number {
     var count = 0;
-    if(this.action.criticalResults['main-hand']) {
+    if (this.action.criticalResults['main-hand']) {
       count += this.action.criticalResults['main-hand'].length;
     }
-    if(this.action.criticalResults['off-hand']) {
+    if (this.action.criticalResults['off-hand']) {
       count += this.action.criticalResults['off-hand'].length;
     }
     return count;
