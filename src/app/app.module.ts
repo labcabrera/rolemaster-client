@@ -74,6 +74,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { DialogItemCustomizationComponent } from './components/dialogs/dialog-item-customization/dialog-item-customization.component';
 import { ActionDeclarationMissileAttackComponent } from './components/tactical/action-declaration/action-declaration-missile-attack/action-declaration-missile-attack.component';
 import { ActionDeclarationMovementComponent } from './components/tactical/action-declaration/action-declaration-movement/action-declaration-movement.component';
+import { ActionDeclarationStaticManeuverComponent } from './components/tactical/action-declaration/action-declaration-static-maneuver/action-declaration-static-maneuver.component';
+import { ActionDeclarationMovingManeuverComponent } from './components/tactical/action-declaration/action-declaration-moving-maneuver/action-declaration-moving-maneuver.component';
+import { ActionDeclarationSpellCastComponent } from './components/tactical/action-declaration/action-declaration-spell-cast/action-declaration-spell-cast.component';
+import { ActionDeclarationChangeItemsComponent } from './components/tactical/action-declaration/action-declaration-change-items/action-declaration-change-items.component';
 
 @NgModule({
   declarations: [
@@ -139,6 +143,10 @@ import { ActionDeclarationMovementComponent } from './components/tactical/action
     DialogItemCustomizationComponent,
     ActionDeclarationMissileAttackComponent,
     ActionDeclarationMovementComponent,
+    ActionDeclarationStaticManeuverComponent,
+    ActionDeclarationMovingManeuverComponent,
+    ActionDeclarationSpellCastComponent,
+    ActionDeclarationChangeItemsComponent,
   ],
   imports: [
     FormsModule,
