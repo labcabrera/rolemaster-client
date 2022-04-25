@@ -22,6 +22,7 @@ export interface TacticalAction {
     offensiveBonusMap: TacticalActionOffensiveBonusMap;
     attackResults: AttackResultMap;
     criticalResults: TacticalCriticalResultMap;
+    breakageResults: BreakageResultMap;
 }
 
 export interface AttackResultMap {
@@ -132,3 +133,15 @@ export interface FumbleExecution {
     roll: number;
 }
 
+export interface BreakageResultMap {
+    'main-hand': BreakageResult;
+    'off-hand': BreakageResult;
+}
+export interface BreakageResult {
+    breakage: number;
+    strength: number;
+    roll: number;
+    result: number;
+    weaponBreakage: boolean
+    modifiers: Map<string,number>;
+}

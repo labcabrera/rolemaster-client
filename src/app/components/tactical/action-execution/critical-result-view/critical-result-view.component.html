@@ -10,11 +10,6 @@
         </div>
 
         <div *ngIf="critical.criticalTableResult" style="padding-top: 10pt;">
-
-            <div style="margin-bottom: 20pt;">
-                {{critical.criticalTableResult.text}}
-            </div>
-
             <div fxLayout="row" *ngIf="critical.criticalTableResult.instantDeath">
                 <div fxFlex="80">Instant death</div>
                 <div fxFlex="20"></div>
@@ -63,9 +58,12 @@
                     ({{critical.criticalTableResult.bonus.rounds}})
                 </div>
             </div>
-
+            
+            <div style="margin-top: 20pt;">
+                {{critical.criticalTableResult.text}}
+            </div>
         </div>
-
+        
     </div>
-
+    
 </div>

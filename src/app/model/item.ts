@@ -21,12 +21,16 @@ export interface CharacterItem {
     weight: number;
     count: number;
     broken: boolean;
-    //TODO
-    customization: any[];
+    features: ItemFeature[]
 }
 
 export interface AddCharacterItem {
     itemId: string;
     position: string;
     weight: number;
+}
+
+export interface ItemFeature {
+    type: string;
+    value: string;
 }

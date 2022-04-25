@@ -40,6 +40,11 @@ export class ActionService {
     return this.http.post<TacticalAction>(url, criticalExecution, this.httpOptions).pipe();
   }
 
+  executeBreakage(actionId: string, breakageExecution: any): Observable<TacticalAction> {
+    const url = `${this.baseUrl}/tactical-actions/${actionId}/execution/breakage`;
+    return this.http.post<TacticalAction>(url, breakageExecution, this.httpOptions).pipe();
+  }
+
   executeFumble(actionId: string, fumbleExecution: FumbleExecution): Observable<TacticalAction> {
     const url = `${this.baseUrl}/tactical-actions/${actionId}/execution/fumble`;
     return this.http.post<TacticalAction>(url, fumbleExecution, this.httpOptions).pipe();

@@ -57,20 +57,9 @@
                 {{character?.combatStatus?.debuffs?.['must-parry']}}
                 <mat-icon class="buff-icon" matTooltip="Must parry">close</mat-icon>
             </span>
-
+            <span *ngIf="isWeaponBroken()">
+                <mat-icon class="buff-icon" matTooltip="Weapon broken">hdr_off</mat-icon>
+            </span>
         </ng-container>
-
-        <!--
-        <mat-icon>water_drop</mat-icon>
-        <mat-icon>new_releases</mat-icon>
-        <mat-icon>heart_broken</mat-icon>
-        <mat-icon>egg</mat-icon>
-        <mat-icon>error_outline</mat-icon>
-        <mat-icon>new_releases</mat-icon>
-        <mat-icon>settings_suggest</mat-icon>
-        -->
-
     </div>
-
-
 </div>

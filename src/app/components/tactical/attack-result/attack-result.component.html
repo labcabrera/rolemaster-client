@@ -53,3 +53,26 @@
         </div>
     </div>
 </div>
+
+
+<div *ngIf="action.breakageResults">
+    <div *ngIf="action.breakageResults['main-hand']">
+        <div fxLayout="column">
+            <div fxLayout="row">
+                <div fxFlex="60">Main hand breakage</div>
+                <div fxFlexAuto>{{action.breakageResults['main-hand'].weaponBreakage}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="action.breakageResults">
+    <div *ngIf="action.breakageResults['off-hand']">
+        <div fxLayout="column">
+            <div fxLayout="row">
+                <div fxFlex="60">Main hand breakage</div>
+                <div fxFlexAuto>{{action.breakageResults['off-hand'].weaponBreakage}}</div>
+            </div>
+        </div>
+    </div>
+</div>

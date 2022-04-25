@@ -25,6 +25,7 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
 
   actionExecutionForm: FormGroup;
   criticalExecutionForm: FormGroup | undefined;
+  breakageExecutionForm: FormGroup | undefined;
 
   meleeAttackFacingValues: NamedKey[] = [];
   availableTargets: NamedKey[] = [];
@@ -50,6 +51,9 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
     if (this.action.state === 'pending-critical-resolution') {
       this.criticalExecutionForm = this.createCriticalExecutionForm();
     }
+    if (this.action.state === 'pending-breakage-resolution') {
+      this.breakageExecutionForm = this.createBreakageExecutionForm();
+    }
   }
 
   resolveMeleeAttackAction() {
@@ -62,6 +66,9 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
         if (this.action.state === 'pending-critical-resolution') {
           this.criticalExecutionForm = this.createCriticalExecutionForm();
         }
+        if(this.action.state === 'pending-breakage-resolution') {
+          this.breakageExecutionForm = this.createBreakageExecutionForm();
+        }
       },
       error: error => this.errorService.displayError(error)
     });
@@ -69,6 +76,15 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
 
   resolveCriticalAction() {
     this.actionService.executeCritical(this.action.id, this.criticalExecutionForm!.value).subscribe({
+      next: action => {
+        this.action = action;
+      },
+      error: error => this.errorService.displayError(error)
+    });
+  }
+
+  resolveBreakageAction() {
+    this.actionService.executeBreakage(this.action.id, this.breakageExecutionForm!.value).subscribe({
       next: action => {
         this.action = action;
       },
@@ -132,6 +148,15 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
     }
     fgRoot.addControl('rolls', fgRolls);
     return fgRoot;
+  }
+
+  private createBreakageExecutionForm(): FormGroup {
+    const result = this.fb.group({
+      rolls: this.fb.group({
+        'main-hand': ['1', Validators.required]
+      })
+    });
+    return result;
   }
 
   private getCriticalResultCount(): number {
