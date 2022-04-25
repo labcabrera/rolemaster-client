@@ -27,6 +27,8 @@ export class DialogSelectActionComponent implements OnInit {
   characters: TacticalCharacter[] = [];
   tacticalSessionId: string = "";
 
+  round: TacticalRound = {} as TacticalRound;
+  priority: string = "";
   maxActionPercent = 100;
 
   movementPaces: NamedKey[] = [];
@@ -70,6 +72,9 @@ export class DialogSelectActionComponent implements OnInit {
     priority: string,
     characters: TacticalCharacter[],
     actions: TacticalAction[]) {
+
+      this.round = tacticalRound;
+      this.priority = priority;
 
     //TODO read current used percent from character
     this.source = source;
@@ -172,6 +177,10 @@ export class DialogSelectActionComponent implements OnInit {
     }
     console.log("total: " + usedPercent);
     return usedPercent;
+  }
+
+  onActionCreation(event: any) {
+    this.dialogRef.close();
   }
 
 }

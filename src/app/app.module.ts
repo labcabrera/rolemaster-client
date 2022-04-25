@@ -69,13 +69,10 @@ import { CharacterItemViewComponent } from './components/character/character-ite
 import { DialogAddCharacterItemComponent } from './components/dialogs/dialog-add-character-item/dialog-add-character-item.component';
 import { CharacterBasicInfoComponent } from './components/character/character-basic-info/character-basic-info.component';
 import { ActionDeclarationMeleeAttackComponent } from './components/tactical/action-declaration/action-declaration-melee-attack/action-declaration-melee-attack.component';
-import { MovingManeuverComponent } from './components/tactical/action-declaration/moving-maneuver/moving-maneuver.component';
-import { StaticManeuverComponent } from './components/tactical/action-declaration/static-maneuver/static-maneuver.component';
-import { MissileAttackComponent } from './components/tactical/action-declaration/missile-attack/missile-attack.component';
-import { SpellCastComponent } from './components/tactical/action-declaration/spell-cast/spell-cast.component';
 import { ErrorSnackBarComponent } from './components/common/error-snack-bar/error-snack-bar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DialogItemCustomizationComponent } from './components/dialogs/dialog-item-customization/dialog-item-customization.component';
+import { ActionDeclarationMissileAttackComponent } from './components/tactical/action-declaration/action-declaration-missile-attack/action-declaration-missile-attack.component';
 
 @NgModule({
   declarations: [
@@ -136,13 +133,10 @@ import { DialogItemCustomizationComponent } from './components/dialogs/dialog-it
     DialogAddCharacterItemComponent,
     CharacterBasicInfoComponent,
     ActionDeclarationMeleeAttackComponent,
-    MovingManeuverComponent,
-    StaticManeuverComponent,
-    MissileAttackComponent,
-    SpellCastComponent,
     ErrorSnackBarComponent,
     HomeComponent,
     DialogItemCustomizationComponent,
+    ActionDeclarationMissileAttackComponent,
   ],
   imports: [
     FormsModule,

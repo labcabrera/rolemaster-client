@@ -25,34 +25,11 @@
                 <app-action-declaration-melee-attack [actionForm]="this.actionForm" [maxActionPercent]="maxActionPercent" [character]="source"
                     [characters]="characters">
                 </app-action-declaration-melee-attack>
-
             </mat-tab>
 
-            <mat-tab label="Ranged">
-
-                <div fxLayout="column" fxLayoutGap="15px" *ngIf="actionForm.value.type === 'missile-attack'">
-                    <div>
-                        <h4>Action percent</h4>
-                        <span>{{actionForm.value.actionPercent}}&nbsp;</span>
-                        <mat-slider thumbLabel formControlName="actionPercent" min="0" max="{{maxActionPercent}}" step="5" aria-label="units">
-                        </mat-slider>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Target</mat-label>
-                            <mat-select formControlName="target">
-                                <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Distance</mat-label>
-                            <input matInput formControlName="distance" placeholder="...">
-                        </mat-form-field>
-                    </div>
-                </div>
-
+            <mat-tab label="Missile">
+                <app-action-declaration-missile-attack [roundId]="round.id" [priority]="priority" [maxActionPercent]="maxActionPercent" [character]="source"
+                    [characters]="characters" (onActionCreation)="onActionCreation($event)"></app-action-declaration-missile-attack>
             </mat-tab>
 
             <mat-tab label="Static M">
@@ -87,7 +64,7 @@
                     </div>
                 </div>
             </mat-tab>
-            
+
         </mat-tab-group>
 
     </div>
