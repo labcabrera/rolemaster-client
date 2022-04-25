@@ -62,14 +62,18 @@ import { DialogSetInitiativeComponent } from './components/dialogs/dialog-set-in
 import { DialogActionExecutionComponent } from './components/dialogs/dialog-action-execution/dialog-action-execution.component';
 import { TacticalSessionLogTableComponent } from './components/tactical/tactical-session-log-table/tactical-session-log-table.component';
 import { DialogTacticalCharacterComponent } from './components/dialogs/dialog-tactical-character/dialog-tactical-character.component';
-import { AttackResultComponent } from './components/attack-result/attack-result.component';
-import { MeleeAttackExecutionComponent } from './components/action-execution/melee-attack-execution/melee-attack-execution.component';
-import { CriticalResultViewComponent } from './components/action-execution/critical-result-view/critical-result-view.component';
+import { AttackResultComponent } from './components/tactical/attack-result/attack-result.component';
+import { MeleeAttackExecutionComponent } from './components/tactical/action-execution/melee-attack-execution/melee-attack-execution.component';
+import { CriticalResultViewComponent } from './components/tactical/action-execution/critical-result-view/critical-result-view.component';
 import { DialogAddSkillComponent } from './components/dialogs/dialog-add-skill/dialog-add-skill.component';
 import { CharacterItemViewComponent } from './components/character/character-item-view/character-item-view.component';
 import { DialogAddCharacterItemComponent } from './components/dialogs/dialog-add-character-item/dialog-add-character-item.component';
 import { CharacterBasicInfoComponent } from './components/character/character-basic-info/character-basic-info.component';
 import { ActionDeclarationMeleeAttackComponent } from './components/tactical/action-declaration/action-declaration-melee-attack/action-declaration-melee-attack.component';
+import { MovingManeuverComponent } from './components/tactical/action-declaration/moving-maneuver/moving-maneuver.component';
+import { StaticManeuverComponent } from './components/tactical/action-declaration/static-maneuver/static-maneuver.component';
+import { MissileAttackComponent } from './components/tactical/action-declaration/missile-attack/missile-attack.component';
+import { SpellCastComponent } from './components/tactical/action-declaration/spell-cast/spell-cast.component';
 
 @NgModule({
   declarations: [
@@ -131,6 +135,10 @@ import { ActionDeclarationMeleeAttackComponent } from './components/tactical/act
     DialogAddCharacterItemComponent,
     CharacterBasicInfoComponent,
     ActionDeclarationMeleeAttackComponent,
+    MovingManeuverComponent,
+    StaticManeuverComponent,
+    MissileAttackComponent,
+    SpellCastComponent,
   ],
   imports: [
     FormsModule,
