@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutGap="20px">
+<div fxLayout="row" fxLayoutGap="20px" *ngIf="character">
 
     <div fxFlex="70">
 
@@ -55,14 +55,33 @@
 
     <div fxFlex="30">
         <div fxLayout="column">
-            <div>
-                Carried weight: {{character?.weight?.totalCarriedWeight}}
+            <div fxLayout="row">
+                <div fxFlex="50" class="character-info">Carried weight</div>
+                <div fxFlex="50" class="character-info">{{character.weight?.totalCarriedWeight}}</div>
             </div>
-            <div>
-                Item weight: {{character?.weight?.itemWeight}}
+            <div fxLayout="row">
+                <div fxFlex="50" class="character-info">Item weight</div>
+                <div fxFlex="50" class="character-info">{{character?.weight?.itemWeight}}</div>
             </div>
-            <div>
-                Weight penalty: {{character?.weight?.weightPenalty}}
+            <div fxLayout="row">
+                <div fxFlex="50" class="character-info">Weight penalty</div>
+                <div fxFlex="50" class="character-info">{{character?.weight?.weightPenalty}}</div>
+            </div>
+            <div fxLayout="row" class="character-info-separator">
+                <div fxFlex="50" class="character-info">Armor</div>
+                <div fxFlex="50" class="character-info">{{character.armor.armor}}</div>
+            </div>
+            <div fxLayout="row">
+                <div fxFlex="50" class="character-info">BD</div>
+                <div fxFlex="50" class="character-info">{{character.defensiveBonus}}</div>
+            </div>
+            <div fxLayout="row">
+                <div fxFlex="50" class="character-info">Armor penalty</div>
+                <div fxFlex="50" class="character-info">{{character.armor.armorPenalty}}</div>
+            </div>
+            <div fxLayout="row">
+                <div fxFlex="50" class="character-info">Armor Qu penalty</div>
+                <div fxFlex="50" class="character-info">{{character.armor.armorQuPenalty}}</div>
             </div>
         </div>
     </div>

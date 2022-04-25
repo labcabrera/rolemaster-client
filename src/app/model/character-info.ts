@@ -12,7 +12,8 @@ export interface CharacterInfo {
     maxHp: number;
     maxExhaustionPoints: number;
     xp: number;
-    armor: number;
+    armor: CharacterArmor;
+    defensiveBonus: number;
     weight: CharacterWeight;
     baseMovementRate: number;
     skillCategories:  CharacterSkillCategory[];
@@ -129,6 +130,13 @@ export interface CharacterWeight {
 	weightPenalty: number;
 	itemWeight: number;
 	totalCarriedWeight: number;
+}
+
+export interface CharacterArmor {
+	armor: number;
+	armorDefensiveBonus: number;
+	armorPenalty: number;
+	armorQuPenalty: number;
 }
 
 export interface SkillUpgradeRequest {

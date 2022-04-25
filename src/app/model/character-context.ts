@@ -11,13 +11,20 @@ export interface TacticalCharacter {
     hp: Hp;
     powerPoints: PowerPoints;
     exhaustionPoints: ExhaustionPoints;
-    defensiveBonus: number;
     combatStatus: CombatStatus;
     modifiers: ContextCharacterModifiers;
     items: CharacterItem[];
     armor: number;
+    defensiveBonus: number;
     state: string;
     metadata: Metadata
+}
+
+export interface CharacterArmor {
+	armor: number;
+	armorDefensiveBonus: number;
+	armorPenalty: number;
+	armorQuPenalty: number;
 }
 
 export interface Hp {
