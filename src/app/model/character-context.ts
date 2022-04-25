@@ -1,5 +1,5 @@
 import { Metadata } from "./metadata";
-export interface TacticalCharacterContext {
+export interface TacticalCharacter {
     id: string;
     tacticalSessionId: string;
     name: string;

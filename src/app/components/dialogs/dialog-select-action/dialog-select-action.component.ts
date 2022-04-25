@@ -8,7 +8,7 @@ import { TacticalAction } from 'src/app/model/actions';
 import { EnumService } from 'src/app/services/enum.service';
 import { ActionService } from 'src/app/services/action.service';
 import { TacticalRound } from 'src/app/model/round';
-import { TacticalCharacterContext } from 'src/app/model/character-context';
+import { TacticalCharacter } from 'src/app/model/character-context';
 import { ActionDeclarationFormService } from 'src/app/services/action-declaration-form.service';
 
 export interface Entry {
@@ -23,8 +23,8 @@ export interface Entry {
 })
 export class DialogSelectActionComponent implements OnInit {
 
-  source: TacticalCharacterContext = {} as TacticalCharacterContext;
-  characters: TacticalCharacterContext[] = [];
+  source: TacticalCharacter = {} as TacticalCharacter;
+  characters: TacticalCharacter[] = [];
   tacticalSessionId: string = "";
 
   maxActionPercent = 100;
@@ -66,9 +66,9 @@ export class DialogSelectActionComponent implements OnInit {
   }
 
   public load(tacticalRound: TacticalRound,
-    source: TacticalCharacterContext,
+    source: TacticalCharacter,
     priority: string,
-    characters: TacticalCharacterContext[],
+    characters: TacticalCharacter[],
     actions: TacticalAction[]) {
 
     //TODO read current used percent from character
@@ -161,7 +161,7 @@ export class DialogSelectActionComponent implements OnInit {
     actionForm.removeControl('parry');
   }
 
-  private getUsedActivityPercent(character: TacticalCharacterContext, actions: TacticalAction[]): number {
+  private getUsedActivityPercent(character: TacticalCharacter, actions: TacticalAction[]): number {
     var usedPercent = 0;
     if(actions) {
       var list = actions.filter(e => character.id === e.source);

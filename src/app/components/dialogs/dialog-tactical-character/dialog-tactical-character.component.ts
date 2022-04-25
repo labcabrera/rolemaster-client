@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TacticalCharacterContext } from 'src/app/model/character-context';
+import { TacticalCharacter } from 'src/app/model/character-context';
 
 @Component({
   selector: 'app-dialog-tactical-character',
@@ -8,14 +8,14 @@ import { TacticalCharacterContext } from 'src/app/model/character-context';
 })
 export class DialogTacticalCharacterComponent implements OnInit {
 
-  character: TacticalCharacterContext = {} as TacticalCharacterContext;
+  character: TacticalCharacter = {} as TacticalCharacter;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  load(character: TacticalCharacterContext) {
+  load(character: TacticalCharacter) {
     this.character = character;
   }
 

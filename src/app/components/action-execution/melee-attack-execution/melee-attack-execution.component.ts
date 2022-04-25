@@ -1,7 +1,7 @@
 import { AfterContentInit, AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { TacticalCharacterContext } from 'src/app/model/character-context';
+import { TacticalCharacter } from 'src/app/model/character-context';
 import { AttackCriticalExecution, FumbleExecution, TacticalAction, TacticalActionExecution } from 'src/app/model/actions';
 import { NamedKey } from 'src/app/model/commons';
 import { TacticalSession } from 'src/app/model/session';
@@ -19,7 +19,7 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
 
   @Input() action: TacticalAction = {} as TacticalAction;
   @Input() tacticalSession: TacticalSession = {} as TacticalSession;
-  @Input() characters: TacticalCharacterContext[] = [];
+  @Input() characters: TacticalCharacter[] = [];
 
   actionExecutionForm: FormGroup;
   criticalExecutionForm: FormGroup | undefined;

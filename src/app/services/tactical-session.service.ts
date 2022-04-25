@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, map, tap, switchMap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 
-import { TacticalCharacterContext } from '../model/character-context';
+import { TacticalCharacter } from '../model/character-context';
 import { TacticalSession, TacticalSessionCreation, TacticalSessionUpdate  } from '../model/session';
 import { TacticalRound } from '../model/round';
 import { environment } from 'src/environments/environment';
@@ -48,19 +48,19 @@ export class TacticalSessionService {
     return this.http.patch<TacticalSession>(url, request, this.httpOptions).pipe();
   }
 
-  findTacticalCharacterContexts(tacticalSessionId: string): Observable<TacticalCharacterContext[]> {
+  findTacticalCharacterContexts(tacticalSessionId: string): Observable<TacticalCharacter[]> {
     const url = `${this.baseUrlTacticalSessions}/${tacticalSessionId}/characters`;
-    return this.http.get<TacticalCharacterContext[]>(url, this.httpOptions).pipe();
+    return this.http.get<TacticalCharacter[]>(url, this.httpOptions).pipe();
   }
 
-  addNpc(tacticalSessionId: string, npcId: string): Observable<TacticalCharacterContext> {
+  addNpc(tacticalSessionId: string, npcId: string): Observable<TacticalCharacter> {
     const url = `${this.baseUrlTacticalSessions}/${tacticalSessionId}/characters/npc/${npcId}`;
-    return this.http.post<TacticalCharacterContext>(url, this.httpOptions).pipe();
+    return this.http.post<TacticalCharacter>(url, this.httpOptions).pipe();
   }
 
-  addCharacter(tacticalSessionId: string, characterId: string): Observable<TacticalCharacterContext> {
+  addCharacter(tacticalSessionId: string, characterId: string): Observable<TacticalCharacter> {
     const url = `${this.baseUrlTacticalSessions}/${tacticalSessionId}/characters/player/${characterId}`;
-    return this.http.post<TacticalCharacterContext>(url, this.httpOptions).pipe();
+    return this.http.post<TacticalCharacter>(url, this.httpOptions).pipe();
   }
 
   delete(id: String) {

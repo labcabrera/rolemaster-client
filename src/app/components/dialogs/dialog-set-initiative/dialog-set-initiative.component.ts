@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TacticalCharacterContext } from 'src/app/model/character-context';
+import { TacticalCharacter } from 'src/app/model/character-context';
 import { TacticalRound } from 'src/app/model/round';
 import { TacticalSession } from 'src/app/model/session';
 import { TacticalSessionService } from 'src/app/services/tactical-session.service';
@@ -13,7 +13,7 @@ export class DialogSetInitiativeComponent implements OnInit {
 
   tacticalSession: TacticalSession = {} as TacticalSession;
   round: TacticalRound = {} as TacticalRound;
-  character: TacticalCharacterContext = {} as TacticalCharacterContext;
+  character: TacticalCharacter = {} as TacticalCharacter;
   roll: number | undefined;
 
   constructor(
@@ -23,7 +23,7 @@ export class DialogSetInitiativeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  load(tacticalSession: TacticalSession, round: TacticalRound, character: TacticalCharacterContext) {
+  load(tacticalSession: TacticalSession, round: TacticalRound, character: TacticalCharacter) {
     this.tacticalSession = tacticalSession;
     this.round = round;
     this.character = character;

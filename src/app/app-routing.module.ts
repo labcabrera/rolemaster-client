@@ -1,22 +1,22 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CharacterCreationComponent } from './pages/character-creation/character-creation.component';
-import { CharacterDetailComponent } from './character/character-detail/character-detail.component';
-import { CharacterListComponent } from './pages/character-list/characters.component';
-import { CharacterViewComponent } from './pages/character-view/character-view.component';
+import { CharacterCreationComponent } from './pages/character/character-creation/character-creation.component';
+import { CharacterDetailComponent } from './components/character/character-detail/character-detail.component';
+import { CharacterListComponent } from './pages/character/character-list/characters.component';
+import { CharacterViewComponent } from './pages/character/character-view/character-view.component';
 import { ProfessionListComponent } from './pages/profession-list/profession-list.component';
 import { RaceListComponent } from './pages/race-list/race-list.component';
-import { StrategicSessionComponent } from './pages/strategic-session/strategic-session.component';
-import { StrategicSessionsComponent } from './pages/strategic-sessions/strategic-sessions.component';
+import { StrategicSessionComponent } from './pages/strategic/strategic-session/strategic-session.component';
+import { StrategicSessionsComponent } from './pages/strategic/strategic-sessions/strategic-sessions.component';
 import { SkillCategoryListComponent } from './pages/skill-category-list/skill-category-list.component';
 import { SkillListComponent } from './pages/skill-list/skill-list.component';
 import { TacticalViewComponent } from './pages/tactical-view/tactical-view.component';
-import { TacticalSessionsComponent } from './pages/tactical-sessions/tactical-sessions.component';
-import { TacticalSessionComponent } from './pages/tactical-session/tactical-session.component';
+import { TacticalSessionsComponent } from './pages/tactical/tactical-sessions/tactical-sessions.component';
+import { TacticalSessionComponent } from './pages/tactical/tactical-session/tactical-session.component';
 import { NpcListComponent } from './pages/npc-list/npc-list.component';
 import { NpcDetailComponent } from './pages/npc-detail/npc-detail.component';
-import { StrategicSessionCreationComponent } from './pages/strategic-session-creation/strategic-session-creation.component';
-import { TacticalSessionCreationComponent } from './pages/tactical-session-creation/tactical-session-creation.component';
+import { StrategicSessionCreationComponent } from './pages/strategic/strategic-session-creation/strategic-session-creation.component';
+import { TacticalSessionCreationComponent } from './pages/tactical/tactical-session-creation/tactical-session-creation.component';
 import { SkillDetailComponent } from './pages/skill-detail/skill-detail.component';
 import { SkillCategoryDetailComponent } from './pages/skill-category-detail/skill-category-detail.component';
 import { SpellsComponent } from './pages/spells/spells.component';
@@ -33,13 +33,11 @@ import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { TrainingPackageComponent } from './pages/training-package/training-package.component';
 import { TrainingPackagesComponent } from './pages/training-packages/training-packages.component';
-import { CharacterSkillUpgradeComponent } from './pages/character-skill-upgrade/character-skill-upgrade.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/strategic-sessions', pathMatch: 'full' },
   { path: 'characters', component: CharacterListComponent },
   { path: 'characters/detail/:id', component: CharacterViewComponent },
-  { path: 'characters/skill-upgrade/:id', component: CharacterSkillUpgradeComponent },
   { path: 'strategic-sessions', component: StrategicSessionsComponent },
   { path: 'strategic-sessions/detail/:id', component: StrategicSessionComponent },
   { path: 'strategic-sessions/creation', component: StrategicSessionCreationComponent },

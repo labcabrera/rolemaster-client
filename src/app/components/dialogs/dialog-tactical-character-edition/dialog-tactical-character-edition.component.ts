@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TacticalCharacterContext as TacticalCharacter } from 'src/app/model/character-context';
+import { TacticalCharacter as TacticalCharacter } from 'src/app/model/character-context';
 
 @Component({
   selector: 'app-dialog-tactical-character-edition',

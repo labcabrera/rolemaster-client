@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { ignoreElements } from 'rxjs';
 
 import { AttackCriticalExecution, FumbleExecution, TacticalAction, TacticalActionExecution } from 'src/app/model/actions';
-import { TacticalCharacterContext } from 'src/app/model/character-context';
+import { TacticalCharacter } from 'src/app/model/character-context';
 import { NamedKey } from 'src/app/model/commons';
 import { TacticalSession } from 'src/app/model/session';
 import { ActionService } from 'src/app/services/action.service';
@@ -20,7 +20,7 @@ export class DialogActionExecutionComponent implements OnInit {
 
   action: TacticalAction = {} as TacticalAction;
   tacticalSession: TacticalSession = {} as TacticalSession;
-  characters: TacticalCharacterContext[] = [];
+  characters: TacticalCharacter[] = [];
 
   constructor(
     private actionService: ActionService,
@@ -34,7 +34,7 @@ export class DialogActionExecutionComponent implements OnInit {
     this.dialogRef.updateSize('90%', '90%');
   }
 
-  load(action: TacticalAction, characters: TacticalCharacterContext[]) {
+  load(action: TacticalAction, characters: TacticalCharacter[]) {
     this.action = action;
     this.characters = characters;
   }

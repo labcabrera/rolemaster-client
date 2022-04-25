@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { TacticalCharacterContext } from 'src/app/model/character-context';
+import { TacticalCharacter } from 'src/app/model/character-context';
 import { TacticalRound } from 'src/app/model/round';
 import { TacticalSession } from 'src/app/model/session';
 import { TacticalSessionService } from 'src/app/services/tactical-session.service';
@@ -23,7 +23,7 @@ export class TacticalViewComponent implements OnInit {
   tacticalSession: TacticalSession = {} as TacticalSession;
   tacticalRound: TacticalRound = {} as TacticalRound;
   actions: TacticalAction[] = [];
-  characters: TacticalCharacterContext[] = [];
+  characters: TacticalCharacter[] = [];
 
   constructor(
     private tacticalSessionService: TacticalSessionService,
@@ -101,15 +101,15 @@ export class TacticalViewComponent implements OnInit {
     return check.length > 0 ? check[0] : undefined;
   }
 
-  getCharacterInitiativeBase(character: TacticalCharacterContext) {
+  getCharacterInitiativeBase(character: TacticalCharacter) {
     return 0;
   }
 
-  getCharacterInitiativeModifiers(character: TacticalCharacterContext) {
+  getCharacterInitiativeModifiers(character: TacticalCharacter) {
     return 0;
   }
 
-  getCharacterInitiativeRoll(character: TacticalCharacterContext) {
+  getCharacterInitiativeRoll(character: TacticalCharacter) {
     if(!this.tacticalRound || !this.tacticalRound.initiativeModifiersMap) {
       return 0;
     }
@@ -121,11 +121,11 @@ export class TacticalViewComponent implements OnInit {
     return 0;
   }
 
-  getCharacterInitiative(character: TacticalCharacterContext) {
+  getCharacterInitiative(character: TacticalCharacter) {
     return this.getCharacterInitiativeBase(character) + this.getCharacterInitiativeModifiers(character) + this.getCharacterInitiativeRoll(character);
   }
 
-  openInitiativeDialog(character: TacticalCharacterContext) {
+  openInitiativeDialog(character: TacticalCharacter) {
     var dialogRef = this.setInitiativeDialog.open(DialogSetInitiativeComponent);
     dialogRef.componentInstance.load(this.tacticalSession, this.tacticalRound, character);
     dialogRef.afterClosed().subscribe(result => {
