@@ -1,4 +1,5 @@
 import { Metadata } from "./metadata";
+import { CharacterItem } from "./item";
 export interface TacticalCharacter {
     id: string;
     tacticalSessionId: string;
@@ -79,6 +80,7 @@ export interface ContextCharacterModifiers {
     initiative: number;
 }
 
+/*
 export interface CharacterItem {
     id: string;
     itemId: string;
@@ -92,6 +94,7 @@ export interface CharacterItem {
     broken: boolean;
     description: string;
 }
+*/
 
 export enum Debuff {
     STUNNED = "stunned",

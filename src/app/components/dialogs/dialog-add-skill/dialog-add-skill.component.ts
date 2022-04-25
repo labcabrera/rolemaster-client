@@ -8,6 +8,7 @@ import { Skill } from 'src/app/model/skill';
 import { CharacterInfo } from 'src/app/model/character-info';
 import { SkillService } from 'src/app/services/skill.service';
 import { CharacterService } from 'src/app/services/character-service';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-dialog-add-skill',
@@ -26,6 +27,7 @@ export class DialogAddSkillComponent implements OnInit {
   constructor(
     private characterService: CharacterService,
     private skillService: SkillService,
+    private errorService: ErrorService,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<any>) {
 
@@ -53,14 +55,15 @@ export class DialogAddSkillComponent implements OnInit {
   addSkill() {
     const skillId = this.addSkillForm.value["skillId"].id;
     const customizations: string[] = [];
-    if(this.addSkillForm.value['skillId'].customizableOptions > 0) {
+    if (this.addSkillForm.value['skillId'].customizableOptions > 0) {
       customizations.push(this.addSkillForm.value['customization01']);
     }
-    if(this.addSkillForm.value['skillId'].customizableOptions > 1) {
+    if (this.addSkillForm.value['skillId'].customizableOptions > 1) {
       customizations.push(this.addSkillForm.value['customization02']);
     }
-    this.characterService.addSkill(this.character.id, skillId, customizations).subscribe(result => {
-      this.character = result;
+    this.characterService.addSkill(this.character.id, skillId, customizations).subscribe({
+      next: result => this.character = result,
+      error: error => this.errorService.displayError(error)
     })
   }
 

@@ -12,6 +12,7 @@ import { RandomUtilsService } from '../../../services/random-utils.service';
 import { ProfessionService } from 'src/app/services/profession.service';
 import { RaceService } from 'src/app/services/race.service';
 import { Router } from '@angular/router';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-character-creation',
@@ -23,7 +24,7 @@ export class CharacterCreationComponent implements OnInit {
   characterInfo: CharacterInfo;
   races: Race[] = [];
   professions: Profession[] = [];
-  
+
   characterCreationFormGroup: FormGroup;
   characterBasicData: FormGroup;
   characterDevelopment: FormGroup;
@@ -37,6 +38,7 @@ export class CharacterCreationComponent implements OnInit {
     private professionService: ProfessionService,
     private randomUtilsService: RandomUtilsService,
     private characterGenerationUtilsService: CharacterGenerationUtilsService,
+    private errorService: ErrorService,
     private router: Router,
     private fb: FormBuilder) {
 
@@ -53,7 +55,7 @@ export class CharacterCreationComponent implements OnInit {
       'weight': ['72', Validators.required],
       'attributesRoll': [660],
       'attributesRemaining': [0],
-      'weaponCategoryPriority': [ [
+      'weaponCategoryPriority': [[
         "weapon-1h-edged",
         "weapon-missile",
         "weapon-thrown",
@@ -61,7 +63,7 @@ export class CharacterCreationComponent implements OnInit {
         "weapon-2h",
         "weapon-1h-concussion",
         "weapon-missile-artillery"
-      ] ],
+      ]],
       'baseAttributes': fb.group({
         'ag': [100],
         'co': [44],
@@ -78,7 +80,7 @@ export class CharacterCreationComponent implements OnInit {
     this.characterDevelopment = fb.group({
       'secondCtrl': ['', Validators.required]
     })
-    
+
     this.trainingPackages = fb.group({});
 
     this.characterBasicData = this.fb.group({
@@ -87,8 +89,14 @@ export class CharacterCreationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.raceService.find().subscribe(result => this.races = result);
-    this.professionService.getProfessions().subscribe(result => this.professions = result);
+    this.raceService.find().subscribe({
+      next: results => this.races = results,
+      error: error => this.errorService.displayErrorWithPrefix("Error reading races", error)
+    });
+    this.professionService.getProfessions().subscribe({
+      next: results => this.professions = results,
+      error: error => this.errorService.displayErrorWithPrefix("Error reading professions", error)
+    });
   }
 
   get characterCreationFormGroupValue() {

@@ -36,14 +36,15 @@ export class StrategicSessionsComponent implements OnInit, AfterViewInit {
   }
 
   getSessions() {
-    this.sessionService.find().subscribe(
-      (result) => {
+    this.sessionService.find().subscribe({
+      next: (result) => {
         this.sessions = result;
         this.dataSource.data = this.sessions;
       },
-      (error) => {
+      error: (error) => {
         this.errorService.displayError(error);
-      });
+      }
+    });
   }
 
   applyFilter(event: Event) {

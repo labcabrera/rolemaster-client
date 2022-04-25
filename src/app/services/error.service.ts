@@ -8,6 +8,16 @@ export class ErrorService {
 
   constructor(private snackBar: MatSnackBar) { }
 
+  displayErrorWithPrefix(msg: string, error: any) {
+    console.log("Error: ", error);
+    const message = `${msg}: ${this.getErrorMessage(error)}`;
+    this.snackBar.open(message, "Close", {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      duration: 5000
+    });
+  }
+
   displayError(error: any) {
     console.log("Error: ", error);
     const message = this.getErrorMessage(error)

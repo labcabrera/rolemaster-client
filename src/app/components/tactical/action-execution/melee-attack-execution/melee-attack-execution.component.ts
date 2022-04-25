@@ -53,25 +53,26 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
   }
 
   resolveMeleeAttackAction() {
-    if(this.action.meleeAttackType == 'full') {
+    if (this.action.meleeAttackType == 'full') {
       this.actionExecutionForm.value['targets'] = {};
     }
-
-    this.actionService.execute(this.action.id, this.actionExecutionForm!.value).subscribe(
-      (action) => {
+    this.actionService.execute(this.action.id, this.actionExecutionForm!.value).subscribe({
+      next: action => {
         this.action = action;
         if (this.action.state === 'pending-critical-resolution') {
           this.criticalExecutionForm = this.createCriticalExecutionForm();
         }
       },
-      (error) => {
-        this.errorService.displayError(error);
-      });
+      error: error => this.errorService.displayError(error)
+    });
   }
 
   resolveCriticalAction() {
-    this.actionService.executeCritical(this.action.id, this.criticalExecutionForm!.value).subscribe(action => {
-      this.action = action;
+    this.actionService.executeCritical(this.action.id, this.criticalExecutionForm!.value).subscribe({
+      next: action => {
+        this.action = action;
+      },
+      error: error => this.errorService.displayError(error)
     });
   }
 

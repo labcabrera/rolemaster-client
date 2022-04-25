@@ -10,6 +10,7 @@ import { NamedKey } from 'src/app/model/commons';
 import { ItemService } from 'src/app/services/item.service';
 import { EnumService } from 'src/app/services/enum.service';
 import { CharacterItemService } from 'src/app/services/character-item.service';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-dialog-add-character-item',
@@ -30,6 +31,7 @@ export class DialogAddCharacterItemComponent implements OnInit {
     private characterItemService: CharacterItemService,
     private itemService: ItemService,
     private enumService: EnumService,
+    private errorService: ErrorService,
     private fb: FormBuilder
   ) {
     this.addItemForm = this.fb.group({
@@ -55,8 +57,9 @@ export class DialogAddCharacterItemComponent implements OnInit {
   }
 
   addCharacterItem() {
-    this.characterItemService.addItem(this.character!.id, this.addItemForm.value).subscribe(result => {
-      console.log("Added item ", result);
+    this.addItemForm.value['itemId'] = this.addItemForm.value['itemId'].id;
+    this.characterItemService.addItem(this.character!.id, this.addItemForm.value).subscribe({
+      error: error => this.errorService.displayError(error)
     });
   }
 
@@ -66,9 +69,7 @@ export class DialogAddCharacterItemComponent implements OnInit {
   }
 
   displayFnItem(item: any): string {
-    console.log("Item: ", item);
-    return item;
-    //return item && item.name ? item.name : '';
+    return item && item.name ? item.name : '';
   }
 
 }

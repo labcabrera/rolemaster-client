@@ -16,15 +16,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class TacticalSessionsComponent implements OnInit, AfterViewInit {
 
   tacticalSessions?: TacticalSession[];
-  displayedColumns: string[] = ["id", "name", "created", "modified" ];
+  displayedColumns: string[] = ["id", "name", "created", "modified"];
   dataSource: MatTableDataSource<TacticalSession> = new MatTableDataSource<TacticalSession>(this.tacticalSessions);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
 
   constructor(
     private tacticalSessionService: TacticalSessionService,
-    private errorService: ErrorService,
-    private snackBar: MatSnackBar) { }
+    private errorService: ErrorService) { }
 
   ngOnInit(): void {
     this.getTacticalSessions();
@@ -34,11 +33,16 @@ export class TacticalSessionsComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator!;
     this.dataSource.sort = this.sort!;
   }
-  
+
   getTacticalSessions() {
-    this.tacticalSessionService.find().subscribe(s => {
-      this.tacticalSessions = s;
-      this.dataSource.data = this.tacticalSessions;
+    this.tacticalSessionService.find().subscribe({
+      next: results => {
+        this.tacticalSessions = results;
+        this.dataSource.data = this.tacticalSessions;
+      },
+      error: error => {
+        this.errorService.displayError(error);
+      }
     });
   }
 

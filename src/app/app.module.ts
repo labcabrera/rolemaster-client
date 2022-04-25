@@ -54,7 +54,7 @@ import { UserSettingsComponent } from './pages/user-settings/user-settings.compo
 import { TrainingPackagesComponent } from './pages/training-packages/training-packages.component';
 import { TrainingPackageComponent } from './pages/training-package/training-package.component';
 import { TacticalViewCharacterActionComponent } from './components/tactical/tactical-view-character-action/tactical-view-character-action.component';
-import { CharacterGeneralDataComponent } from './components/character-general-data/character-general-data.component';
+import { CharacterGeneralDataComponent } from './components/character/character-general-data/character-general-data.component';
 import { TacticalViewCharacterComponent } from './components/tactical/tactical-view-character/tactical-view-character.component';
 import { DialogTacticalCharacterEditionComponent } from './components/dialogs/dialog-tactical-character-edition/dialog-tactical-character-edition.component';
 import { DialogSetInitiativeComponent } from './components/dialogs/dialog-set-initiative/dialog-set-initiative.component';
@@ -75,6 +75,7 @@ import { MissileAttackComponent } from './components/tactical/action-declaration
 import { SpellCastComponent } from './components/tactical/action-declaration/spell-cast/spell-cast.component';
 import { ErrorSnackBarComponent } from './components/common/error-snack-bar/error-snack-bar.component';
 import { HomeComponent } from './pages/home/home.component';
+import { DialogItemCustomizationComponent } from './components/dialogs/dialog-item-customization/dialog-item-customization.component';
 
 @NgModule({
   declarations: [
@@ -141,6 +142,7 @@ import { HomeComponent } from './pages/home/home.component';
     SpellCastComponent,
     ErrorSnackBarComponent,
     HomeComponent,
+    DialogItemCustomizationComponent,
   ],
   imports: [
     FormsModule,

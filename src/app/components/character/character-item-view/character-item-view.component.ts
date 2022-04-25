@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -7,9 +7,9 @@ import { CharacterItem } from 'src/app/model/item';
 import { NamedKey } from 'src/app/model/commons';
 import { CharacterItemService } from 'src/app/services/character-item.service';
 import { EnumService } from 'src/app/services/enum.service';
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { DialogAddCharacterItemComponent } from '../../dialogs/dialog-add-character-item/dialog-add-character-item.component';
 import { CharacterService } from 'src/app/services/character-service';
+import { DialogItemCustomizationComponent } from '../../dialogs/dialog-item-customization/dialog-item-customization.component';
 
 @Component({
   selector: 'app-character-item-view',
@@ -26,7 +26,7 @@ export class CharacterItemViewComponent implements OnInit {
   itemPositions: NamedKey[] = [];
 
   dataSource = new MatTableDataSource<CharacterItem>([]);
-  displayedColumns: string[] = ['name', 'count', 'weight', 'position', 'delete'];
+  displayedColumns: string[] = ['name', 'count', 'weight', 'position', 'customize', 'delete'];
 
   constructor(
     private characterItemService: CharacterItemService,
@@ -51,6 +51,15 @@ export class CharacterItemViewComponent implements OnInit {
   openDialogAddCharacterItem() {
     var dialogRef = this.addItemDialog.open(DialogAddCharacterItemComponent);
     dialogRef.componentInstance.load(this.character!);
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadCharacterItems();
+      this.loadCharacterAndNotifyChanges();
+    });
+  }
+
+  openDialogItemCustomization(characterItem: CharacterItem) {
+    var dialogRef = this.addItemDialog.open(DialogItemCustomizationComponent);
+    dialogRef.componentInstance.load(characterItem);
     dialogRef.afterClosed().subscribe(result => {
       this.loadCharacterItems();
       this.loadCharacterAndNotifyChanges();

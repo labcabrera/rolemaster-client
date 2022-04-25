@@ -12,6 +12,7 @@ export interface CharacterInfo {
     maxHp: number;
     maxExhaustionPoints: number;
     xp: number;
+    armor: number;
     weight: CharacterWeight;
     baseMovementRate: number;
     skillCategories:  CharacterSkillCategory[];
@@ -124,7 +125,7 @@ export interface CharacterCreationAttributes {
 }
 
 export interface CharacterWeight {
-    characterWeight: number;
+    weight: number;
 	weightPenalty: number;
 	itemWeight: number;
 	totalCarriedWeight: number;
