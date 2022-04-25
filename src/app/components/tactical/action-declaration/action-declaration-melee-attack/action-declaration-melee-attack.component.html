@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutGap="15px">
+<div fxLayout="row" fxLayoutGap="15px" *ngIf="actionForm">
 
     <div [formGroup]="actionForm" *ngIf="actionForm.value.type == 'melee-attack'">
         
@@ -49,5 +49,13 @@
                 </mat-button-toggle-group>
             </div>
         </div>
+        <!--
+        <pre>{{actionForm.value | json}}</pre>
+        -->
     </div>
 </div>
+
+<mat-dialog-actions *ngIf="actionForm">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="declareMeleeAttack()" [disabled]="actionForm.invalid">Declare</button>
+</mat-dialog-actions>

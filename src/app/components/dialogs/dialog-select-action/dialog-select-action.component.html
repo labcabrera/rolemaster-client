@@ -1,85 +1,27 @@
 <h2 mat-dialog-title>{{source.name}}</h2>
 <mat-dialog-content>
-
-    <div [formGroup]="actionForm">
-
-        <mat-tab-group #matTabGroup mat-align-tabs="start" (selectedTabChange)="configureActionType($event)">
-
+    <div>
+        <mat-tab-group #matTabGroup mat-align-tabs="start">
             <mat-tab label="Movement">
-                <div fxLayout="column" fxLayoutGap="15px" *ngIf="actionForm.value.type === 'movement'">
-                    <div>
-                        <h4>Action percent</h4>
-                        <span>{{actionForm.value.actionPercent}}&nbsp;</span>
-                        <mat-slider formControlName="actionPercent" min="0" max="{{maxActionPercent}}" step="5" thumbLabel></mat-slider>
-                    </div>
-                    <div>
-                        <h4>Pace</h4>
-                        <mat-button-toggle-group formControlName="pace">
-                            <mat-button-toggle *ngFor="let option of movementPaces" [value]="option.key">{{option.name}}</mat-button-toggle>
-                        </mat-button-toggle-group>
-                    </div>
-                </div>
+                <app-action-declaration-movement [roundId]="round.id" [priority]="priority" [maxActionPercent]="maxActionPercent" [character]="source"
+                    [characters]="characters" (onActionCreation)="onActionCreation($event)">
+                </app-action-declaration-movement>
             </mat-tab>
-
             <mat-tab label="Melee">
-                <app-action-declaration-melee-attack [actionForm]="this.actionForm" [maxActionPercent]="maxActionPercent" [character]="source"
-                    [characters]="characters">
+                <app-action-declaration-melee-attack [roundId]="round.id" [priority]="priority" [maxActionPercent]="maxActionPercent" [character]="source"
+                    [characters]="characters" (onActionCreation)="onActionCreation($event)">
                 </app-action-declaration-melee-attack>
             </mat-tab>
-
             <mat-tab label="Missile">
                 <app-action-declaration-missile-attack [roundId]="round.id" [priority]="priority" [maxActionPercent]="maxActionPercent" [character]="source"
                     [characters]="characters" (onActionCreation)="onActionCreation($event)"></app-action-declaration-missile-attack>
             </mat-tab>
-
             <mat-tab label="Static M">
-                <div fxLayout="column" fxLayoutGap="15px">
-                    <div>
-                        <h4>Action percent</h4>
-                        <span>{{actionForm.value.actionPercent}}&nbsp;</span>
-                        <mat-slider thumbLabel formControlName="actionPercent" min="0" max="{{maxActionPercent}}" step="5" aria-label="units">
-                        </mat-slider>
-                    </div>
-                </div>
             </mat-tab>
-
             <mat-tab label="Moving M">
-                <div fxLayout="column" fxLayoutGap="15px">
-                    <div>
-                        <h4>Action percent</h4>
-                        <span>{{actionForm.value.actionPercent}}&nbsp;</span>
-                        <mat-slider thumbLabel formControlName="actionPercent" min="0" max="{{maxActionPercent}}" step="5" aria-label="units">
-                        </mat-slider>
-                    </div>
-                </div>
             </mat-tab>
-
             <mat-tab label="Spell">
-                <div fxLayout="column" fxLayoutGap="15px">
-                    <div>
-                        <h4>Action percent</h4>
-                        <span>{{actionForm.value.actionPercent}}&nbsp;</span>
-                        <mat-slider thumbLabel formControlName="actionPercent" min="0" max="{{maxActionPercent}}" step="5" aria-label="units">
-                        </mat-slider>
-                    </div>
-                </div>
             </mat-tab>
-
         </mat-tab-group>
-
     </div>
-
-    <!--
-    <pre>{{this.actionForm.value | json}}</pre>
-
-        <pre>{{action | json}}</pre>        
-        Source:
-        <pre>{{source | json}}</pre>
-    -->
-
 </mat-dialog-content>
-
-<mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" (click)="declareAction()" [disabled]="actionForm.invalid">Add</button>
-</mat-dialog-actions>

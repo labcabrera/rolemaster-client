@@ -87,6 +87,9 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
     this.actionService.executeBreakage(this.action.id, this.breakageExecutionForm!.value).subscribe({
       next: action => {
         this.action = action;
+        if (this.action.state === 'pending-critical-resolution') {
+          this.criticalExecutionForm = this.createCriticalExecutionForm();
+        }
       },
       error: error => this.errorService.displayError(error)
     });

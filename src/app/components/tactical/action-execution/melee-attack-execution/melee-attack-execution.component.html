@@ -73,6 +73,19 @@
             <button mat-button color="primary" (click)="resolveMeleeAttackAction()"
                 [disabled]="actionExecutionForm!.invalid || this.action.state !== 'pending'">Resolve attack</button>
 
+            <div fxLayout="column" *ngIf="breakageExecutionForm" [formGroup]="breakageExecutionForm">
+                <div formGroupName="rolls">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Main breakage</mat-label>
+                        <input matInput formControlName="main-hand" placeholder="Breakage roll">
+                    </mat-form-field>
+                </div>
+                <button mat-button color="primary" (click)="resolveBreakageAction()"
+                    [disabled]="breakageExecutionForm!.invalid || this.action.state !== 'pending-breakage-resolution'">Resolve breakage</button>
+
+                <!--pre>{{this.breakageExecutionForm.value | json}}</pre -->
+            </div>
+
             <div fxLayout="column" *ngIf="criticalExecutionForm" [formGroup]="criticalExecutionForm">
                 <div formGroupName="rolls">
                     <div *ngFor="let rollKey of getCriticalRollKeys()">
@@ -86,19 +99,6 @@
                     [disabled]="criticalExecutionForm!.invalid || this.action.state !== 'pending-critical-resolution'">Resolve critical</button>
             </div>
 
-            <div fxLayout="column" *ngIf="breakageExecutionForm" [formGroup]="breakageExecutionForm">
-                <div formGroupName="rolls">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Main breakage</mat-label>
-                        <input matInput formControlName="main-hand" placeholder="Breakage roll">
-                    </mat-form-field>
-                </div>
-                <button mat-button color="primary" (click)="resolveBreakageAction()"
-                    [disabled]="breakageExecutionForm!.invalid || this.action.state !== 'pending-breakage-resolution'">Resolve breakage</button>
-
-
-                    <pre>{{this.breakageExecutionForm.value | json}}</pre>
-            </div>
 
         </div>
 

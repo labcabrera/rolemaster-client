@@ -73,6 +73,7 @@ import { ErrorSnackBarComponent } from './components/common/error-snack-bar/erro
 import { HomeComponent } from './pages/home/home.component';
 import { DialogItemCustomizationComponent } from './components/dialogs/dialog-item-customization/dialog-item-customization.component';
 import { ActionDeclarationMissileAttackComponent } from './components/tactical/action-declaration/action-declaration-missile-attack/action-declaration-missile-attack.component';
+import { ActionDeclarationMovementComponent } from './components/tactical/action-declaration/action-declaration-movement/action-declaration-movement.component';
 
 @NgModule({
   declarations: [
@@ -137,6 +138,7 @@ import { ActionDeclarationMissileAttackComponent } from './components/tactical/a
     HomeComponent,
     DialogItemCustomizationComponent,
     ActionDeclarationMissileAttackComponent,
+    ActionDeclarationMovementComponent,
   ],
   imports: [
     FormsModule,

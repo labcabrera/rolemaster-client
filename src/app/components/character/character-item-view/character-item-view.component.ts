@@ -10,6 +10,7 @@ import { EnumService } from 'src/app/services/enum.service';
 import { DialogAddCharacterItemComponent } from '../../dialogs/dialog-add-character-item/dialog-add-character-item.component';
 import { CharacterService } from 'src/app/services/character-service';
 import { DialogItemCustomizationComponent } from '../../dialogs/dialog-item-customization/dialog-item-customization.component';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-character-item-view',
@@ -32,6 +33,7 @@ export class CharacterItemViewComponent implements OnInit {
     private characterItemService: CharacterItemService,
     private characterService: CharacterService,
     private enumService: EnumService,
+    private errorService: ErrorService,
     private addItemDialog: MatDialog,
   ) { }
 
@@ -74,9 +76,12 @@ export class CharacterItemViewComponent implements OnInit {
   }
 
   updateItemPosition(item: CharacterItem, position: string) {
-    this.characterItemService.updateItemPosition(item.id, position).subscribe(result => {
-      this.loadCharacterItems();
-      this.loadCharacterAndNotifyChanges();
+    this.characterItemService.updateItemPosition(item.id, position).subscribe({
+      next: result => {
+        this.loadCharacterItems();
+        this.loadCharacterAndNotifyChanges();
+      },
+      error: error => this.errorService.displayError(error)
     });
   }
 

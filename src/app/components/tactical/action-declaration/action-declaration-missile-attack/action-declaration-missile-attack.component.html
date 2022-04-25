@@ -1,10 +1,6 @@
 <div fxLayout="column" fxLayoutGap="15px" *ngIf="missileDeclarationForm" class="outerContainer">
-    
-    
+
     <form [formGroup]="missileDeclarationForm">
-        <div>
-            <button mat-stroked-button (click)="declareMissileAttack()" [disabled]="missileDeclarationForm.invalid" >Declare missile attack</button>
-        </div>
         <div>
             <h4>Action percent</h4>
             <span>{{missileDeclarationForm.value.actionPercent}}&nbsp;</span>
@@ -19,8 +15,10 @@
                 </mat-select>
             </mat-form-field>
         </div>
-
-        <pre>{{this.missileDeclarationForm.value | json}}</pre>
-
     </form>
 </div>
+
+<mat-dialog-actions *ngIf="missileDeclarationForm">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="declareMissileAttack()" [disabled]="missileDeclarationForm.invalid">Declare</button>
+</mat-dialog-actions>
