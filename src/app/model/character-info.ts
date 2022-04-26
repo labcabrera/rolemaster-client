@@ -20,6 +20,7 @@ export interface CharacterInfo {
     skills: CharacterSkill[];
     developmentPoints: CharacterDevelopmentPoints;
     carriedWeight: number;
+    trainingPackages: any;
 }
 
 export interface CharacterAttributes {

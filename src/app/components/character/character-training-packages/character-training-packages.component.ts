@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { CharacterInfo } from 'src/app/model/character-info';
@@ -10,6 +10,7 @@ import { TrainingPackageService } from 'src/app/services/training-packages.servi
 import { ErrorService } from 'src/app/services/error.service';
 import { SkillService } from 'src/app/services/skill.service';
 import { CharacterService } from 'src/app/services/character-service';
+import { NamedKey } from 'src/app/model/commons';
 
 @Component({
   selector: 'app-character-training-packages',
@@ -23,10 +24,13 @@ export class CharacterTrainingPackagesComponent implements OnInit {
   addForm: FormGroup;
   selectedTrainingPackage: FormControl = new FormControl('');
 
+  acquiredTrainingPackages: string[] = [];
+
   trainingPackages: TrainingPackage[] = [];
+  availableTrainingPackages: any[] = [];
+
   skillCategories: SkillCategory[] = [];
   skills: Skill[] = [];
-  availableTrainingPackages: any[] = [];
   cost: number | undefined;
 
   constructor(
@@ -58,16 +62,13 @@ export class CharacterTrainingPackagesComponent implements OnInit {
       next: results => this.skills = results,
       error: error => this.errorService.displayError(error)
     });
+    this.loadAvailableTrainingPackages
+    this.acquiredTrainingPackages = Object.keys(this.character!['trainingPackages']).map(function (e) { return e; });
   }
 
   loadAvailableTrainingPackages() {
-    this.availableTrainingPackages = [];
-    this.trainingPackages.forEach(e => {
-      //TODO filter not acquired
-      var tp = {
-        id: e.id,
-        name: e.name
-      }
+    this.availableTrainingPackages = this.trainingPackages.filter(e => {
+      return  this.acquiredTrainingPackages.indexOf(e.id) < 0;
     });
   }
 
@@ -91,6 +92,7 @@ export class CharacterTrainingPackagesComponent implements OnInit {
 
   configureForm(trainingPackage: any) {
     this.addForm.removeControl("categorySelection");
+    this.addForm.removeControl("skillSelection");
     if (trainingPackage.selectableSkillCategoryList) {
       const categorySelection: FormArray = this.fb.array([]);
       const categoryList: any[] = trainingPackage.selectableSkillCategoryList;
@@ -126,6 +128,16 @@ export class CharacterTrainingPackagesComponent implements OnInit {
     }
   }
 
+  /*
+  getAcquiredTrainingPackages(character: CharacterInfo) {
+    return Object.keys(character!['trainingPackages']).map(function (e) {
+      const key = e;
+      const type = character!['trainingPackages'][e];
+      return `${key} (${type})`;
+    });
+  }
+  */
+
   get categorySelections(): FormArray {
     return this.addForm.get('categorySelection') as FormArray;
   }
@@ -139,18 +151,17 @@ export class CharacterTrainingPackagesComponent implements OnInit {
   }
 
   getSkillsByCategory(categories: string[]) {
-    console.log("Filtering categories: ", categories);
     return this.skills.filter(skill => {
       return categories.includes(skill.categoryId);
     });
   }
 
   getRankOptions(maxRanks: number): number[] {
-    if(maxRanks == 1) {
+    if (maxRanks == 1) {
       return [1];
     }
     var result = [];
-    for(var i = 0 ; i <= maxRanks; i++) {
+    for (var i = 0; i <= maxRanks; i++) {
       result.push(i)
     }
     return result;
@@ -159,8 +170,10 @@ export class CharacterTrainingPackagesComponent implements OnInit {
   addTrainingPackage() {
     this.characterService.upgradeTrainingPackage(this.character!.id, this.addForm.value).subscribe({
       next: result => {
-        this.character = result
-        this.addForm.reset();
+        this.character = result;
+        this.selectedTrainingPackage.setValue({});
+        this.addForm.removeControl("categorySelection");
+        this.addForm.removeControl("skillSelection");
       },
       error: error => this.errorService.displayError(error)
     });

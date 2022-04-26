@@ -1,11 +1,18 @@
 <div class="outerContainer">
+
+    <div fxLayout="row" *ngIf="acquiredTrainingPackages.length > 0" style="margin-bottom: 20px;">
+        <mat-chip-list aria-label="Training packages">
+            <mat-chip *ngFor="let tp of acquiredTrainingPackages">{{tp}}</mat-chip>
+        </mat-chip-list>
+    </div>
+
     <div fxLayout="row" fxLayoutGap="15px">
 
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Training package</mat-label>
                 <mat-select [formControl]="selectedTrainingPackage" required (selectionChange)="onTrainingPackageSelection()">
-                    <mat-option *ngFor="let trainingPackage of trainingPackages" [value]="trainingPackage">
+                    <mat-option *ngFor="let trainingPackage of availableTrainingPackages" [value]="trainingPackage">
                         {{getTrainingPackageOptionName(trainingPackage)}}
                     </mat-option>
                 </mat-select>
