@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Skill } from 'src/app/model/skill';
 import { SkillCategory } from 'src/app/model/skill-category';
+import { ErrorService } from 'src/app/services/error.service';
 import { SkillCategoryService } from 'src/app/services/skill-category.service';
 import { SkillService } from 'src/app/services/skill.service';
 import { environment } from 'src/environments/environment';
@@ -20,6 +21,7 @@ export class SkillDetailComponent implements OnInit {
   constructor(
     private skillService: SkillService,
     private skillCategoryService: SkillCategoryService,
+    private errorService: ErrorService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -30,17 +32,21 @@ export class SkillDetailComponent implements OnInit {
 
   loadSkill() {
     const id = String(this.route.snapshot.paramMap.get('id'));
-    console.log("Reading skill: ", id);
-    this.skillService.findById(id).subscribe(result => {
-      console.log("Readed skill: ", result);
-      this.skill = result;
-      this.loadSkillCategory(this.skill.categoryId);
+    this.skillService.findById(id).subscribe({
+      next: result => {
+        this.skill = result;
+        this.loadSkillCategory(this.skill.categoryId);
+      },
+      error: error => this.errorService.displayError(error)
     });
   }
 
   loadSkillCategory(id: string) {
-    this.skillCategoryService.findById(id).subscribe(result => {
-      this.skillCategory = result;
+    this.skillCategoryService.findById(id).subscribe({
+      next: result => {
+        this.skillCategory = result;
+      },
+      error: error => this.errorService.displayError(error)
     });
   }
 
