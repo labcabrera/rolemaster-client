@@ -1,15 +1,13 @@
-import { AfterContentInit, AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { TacticalCharacter } from 'src/app/model/character-context';
-import { AttackCriticalExecution, FumbleExecution, TacticalAction, TacticalActionExecution } from 'src/app/model/actions';
+import { TacticalAction } from 'src/app/model/actions';
 import { NamedKey } from 'src/app/model/commons';
 import { TacticalSession } from 'src/app/model/session';
 import { EnumService } from 'src/app/services/enum.service';
 import { ActionService } from 'src/app/services/action.service';
 import { ActionDeclarationFormService } from 'src/app/services/action-declaration-form.service';
-import { ErrorSnackBarComponent } from 'src/app/components/common/error-snack-bar/error-snack-bar.component';
 import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
