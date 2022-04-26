@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { DataSource } from '@angular/cdk/collections';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
@@ -13,15 +14,17 @@ import { CharacterService } from 'src/app/services/character-service';
   templateUrl: './character-skill-category-list.component.html',
   styleUrls: ['./character-skill-category-list.component.scss']
 })
-export class CharacterSkillCategoryListComponent implements OnInit {
+export class CharacterSkillCategoryListComponent implements OnInit, AfterViewInit {
 
   @Input() character?: CharacterInfo = {} as CharacterInfo;
   @Input() skillCategoryDataSource: MatTableDataSource<CharacterSkillCategory> | undefined;
 
   @Output() onCharacterUpdated = new EventEmitter<CharacterInfo>();
 
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+
   displayedColumns: string[] = ['categoryId', 'group', 'developmentCost',
-    'adolescenceRanks', 'developmentRanks', 'consolidatedRanks',
+    'adolescenceRanks', 'trainingPackageRanks', 'developmentRanks', 'consolidatedRanks',
     'bonusAttribute', 'bonusProfession', 'bonusRanks',
     'totalRanks', 'totalBonus', 'options'];
 
@@ -32,6 +35,11 @@ export class CharacterSkillCategoryListComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  ngAfterViewInit() {
+    this.skillCategoryDataSource!.paginator = this.paginator!;
+  }
+
 
   updateRank(categoryId: string, value: number): void {
     this.characterService.upgradeSkillCategory(this.character!.id, categoryId, value).subscribe(result => {

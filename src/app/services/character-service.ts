@@ -56,6 +56,11 @@ export class CharacterService {
     return this.http.post<CharacterInfo>(url, request, this.httpOptions).pipe();
   }
 
+  upgradeTrainingPackage(characterId: string, trainingPackageUpgrade: any): Observable<CharacterInfo> {
+    const url = `${this.baseUrl}/${characterId}/training-packages`;
+    return this.http.post<CharacterInfo>(url, trainingPackageUpgrade, this.httpOptions).pipe();
+  }
+
   deleteCharacter(id: string): Observable<null> {
     const url = `${this.baseUrl}/${id}`
     return this.http.delete<null>(url, this.httpOptions).pipe();

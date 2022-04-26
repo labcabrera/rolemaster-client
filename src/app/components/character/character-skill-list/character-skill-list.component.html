@@ -39,6 +39,10 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Ad Ranks</th>
     <td mat-cell *matCellDef="let element">{{element.ranks.adolescence && element.ranks.adolescence != 0 ? element.ranks.adolescence : ""}}</td>
   </ng-container>
+  <ng-container matColumnDef="trainingPackageRanks">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>TP Ranks</th>
+    <td mat-cell *matCellDef="let element">{{element.ranks['training-package'] && element.ranks['training-package'] != 0 ? element.ranks['training-package'] : ""}}</td>
+  </ng-container>
   <ng-container matColumnDef="developmentRanks">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Dev Ranks</th>
     <td mat-cell *matCellDef="let element">{{element.ranks.development && element.ranks.development != 0 ? element.ranks.development : ""}}</td>
@@ -94,6 +98,8 @@
     <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
   </tr>
 </table>
+
+<mat-paginator [pageSizeOptions]="[10, 15, 20, 50, 100]" aria-label="Select page of skills"></mat-paginator>
 
 <button mat-button (click)="openDialogAddSkill()">Add Skill
 </button>

@@ -1,14 +1,10 @@
 import { Component, OnInit, AfterViewInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
-import { ViewChildren } from '@angular/core';
-
-import { Skill } from 'src/app/model/skill';
 import { CharacterInfo, CharacterSkill } from '../../../model/character-info';
 import { CharacterService } from 'src/app/services/character-service';
-import { TrainingPackageService } from 'src/app/services/training-packages.service';
 import { DialogAddSkillComponent } from 'src/app/components/dialogs/dialog-add-skill/dialog-add-skill.component';
 
 @Component({
@@ -23,9 +19,11 @@ export class CharacterSkillListComponent implements OnInit, AfterViewInit {
 
   @Output() onCharacterUpdated = new EventEmitter<CharacterInfo>();
 
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+
   displayedColumns: string[] = [
     'skillId', 'categoryId', 'group', 'developmentCost',
-    'adolescenceRanks', 'developmentRanks', 'consolidatedRanks',
+    'adolescenceRanks', 'trainingPackageRanks', 'developmentRanks', 'consolidatedRanks',
     'bonusAttribute', 'bonusCategory', 'bonusRanks',
     'totalRanks', 'totalBonus', 'options'];
   includeUndevelopedSkills: boolean = true;
@@ -38,6 +36,7 @@ export class CharacterSkillListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.skillDataSource!.paginator = this.paginator!;
   }
 
   updateRank(skillId: string, value: number): void {

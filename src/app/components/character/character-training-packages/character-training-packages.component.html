@@ -59,7 +59,7 @@
                                 <mat-form-field appearance="outline">
                                     <mat-label>Ranks</mat-label>
                                     <mat-select formControlName="ranks">
-                                        <mat-option *ngFor="let i of [0,1,2,3,4,5]" [value]="i">{{i}}</mat-option>
+                                        <mat-option *ngFor="let i of getRankOptions(option.value['maxRanks'])" [value]="i">{{i}}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
@@ -90,7 +90,7 @@
                                 <mat-form-field appearance="outline">
                                     <mat-label>Ranks</mat-label>
                                     <mat-select formControlName="ranks">
-                                        <mat-option *ngFor="let i of [0,1,2,3,4,5]" [value]="i">{{i}}</mat-option>
+                                        <mat-option *ngFor="let i of getRankOptions(option.value['maxRanks'])" [value]="i">{{i}}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
@@ -102,8 +102,8 @@
     </div>
 </div>
 
+<!--
 <hr>
-
 <div fxLayout="row">
     <div fxFlex="50">
         <pre>{{selectedTrainingPackage.value | json}}</pre>
@@ -112,3 +112,4 @@
         <pre>{{addForm.value | json}}</pre>
     </div>
 </div>
+-->

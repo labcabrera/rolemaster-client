@@ -9,6 +9,7 @@ import { SkillCategoryService } from 'src/app/services/skill-category.service';
 import { TrainingPackageService } from 'src/app/services/training-packages.service';
 import { ErrorService } from 'src/app/services/error.service';
 import { SkillService } from 'src/app/services/skill.service';
+import { CharacterService } from 'src/app/services/character-service';
 
 @Component({
   selector: 'app-character-training-packages',
@@ -31,6 +32,7 @@ export class CharacterTrainingPackagesComponent implements OnInit {
   constructor(
     private trainingPackageService: TrainingPackageService,
     private skillCategoryService: SkillCategoryService,
+    private characterService: CharacterService,
     private skillService: SkillService,
     private errorService: ErrorService,
     private fb: FormBuilder
@@ -99,7 +101,7 @@ export class CharacterTrainingPackagesComponent implements OnInit {
           group: [e.group],
           maxRanks: [e.ranks],
           description: [e.description],
-          ranks: [0]
+          ranks: [e.ranks]
         });
         categorySelection.push(categorySelectionValue);
       });
@@ -115,8 +117,8 @@ export class CharacterTrainingPackagesComponent implements OnInit {
           maxRanks: [e.ranks],
           maxSkills: [e.skills],
           description: [e.description],
-          skillId: [],
-          ranks: [0]
+          skillId: ['', Validators.required],
+          ranks: [e.ranks]
         });
         skillSelection.push(skillSelectionValue);
       });
@@ -143,7 +145,25 @@ export class CharacterTrainingPackagesComponent implements OnInit {
     });
   }
 
+  getRankOptions(maxRanks: number): number[] {
+    if(maxRanks == 1) {
+      return [1];
+    }
+    var result = [];
+    for(var i = 0 ; i <= maxRanks; i++) {
+      result.push(i)
+    }
+    return result;
+  }
+
   addTrainingPackage() {
+    this.characterService.upgradeTrainingPackage(this.character!.id, this.addForm.value).subscribe({
+      next: result => {
+        this.character = result
+        this.addForm.reset();
+      },
+      error: error => this.errorService.displayError(error)
+    });
   }
 
 }
