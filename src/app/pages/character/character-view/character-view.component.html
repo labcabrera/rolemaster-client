@@ -49,7 +49,7 @@
         </mat-tab>
 
         <mat-tab label="Training packages">
-            Under development.
+            <app-character-training-packages [character]="character" *ngIf="character"></app-character-training-packages>
         </mat-tab>
 
         <mat-tab label="Background options">

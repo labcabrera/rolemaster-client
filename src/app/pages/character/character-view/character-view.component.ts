@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { CharacterInfo, CharacterSkillCategory, CharacterSkill } from '../../../model/character-info';
 import { CharacterService } from '../../../services/character-service';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-character-view',
@@ -19,6 +20,7 @@ export class CharacterViewComponent implements OnInit {
   constructor(
     private characterService: CharacterService,
     private route: ActivatedRoute,
+    private errorService: ErrorService,
     private router: Router) {
     this.skillCategoryDataSource = new MatTableDataSource([] as CharacterSkillCategory[]);
     this.skillDataSource = new MatTableDataSource([] as CharacterSkill[]);
@@ -26,10 +28,20 @@ export class CharacterViewComponent implements OnInit {
 
   ngOnInit(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
-    this.characterService.getCharacter(id).subscribe(result => {
-      this.character = result;
-      this.skillCategoryDataSource.data = this.character.skillCategories;
-      this.skillDataSource.data = this.character.skills;
+    this.characterService.getCharacter(id).subscribe({
+      next: result => {
+        this.character = result;
+        this.skillCategoryDataSource.data = this.character.skillCategories;
+        this.skillDataSource.data = this.character.skills;
+      },
+      error: error => {
+        if(error.status == 404) {
+          this.router.navigateByUrl("/characters");
+        } else {
+          this.errorService.displayError(error);
+        }
+
+      }
     });
   }
 
@@ -46,7 +58,7 @@ export class CharacterViewComponent implements OnInit {
   }
 
   availableDevelopmentPoints(): number {
-    if(!this.character || !this.character.developmentPoints) {
+    if (!this.character || !this.character.developmentPoints) {
       return 0;
     }
     return this.character.developmentPoints.totalPoints - this.character.developmentPoints.usedPoints;

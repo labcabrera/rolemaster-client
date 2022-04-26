@@ -62,7 +62,10 @@ export class DialogAddSkillComponent implements OnInit {
       customizations.push(this.addSkillForm.value['customization02']);
     }
     this.characterService.addSkill(this.character.id, skillId, customizations).subscribe({
-      next: result => this.character = result,
+      next: result =>  {
+        this.character = result;
+        this.dialogRef.close();
+      },
       error: error => this.errorService.displayError(error)
     })
   }

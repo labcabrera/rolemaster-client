@@ -40,7 +40,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/characters/detail/', row.id]"
       class="tr-data"></tr>
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No results found.</td>
+      <td class="mat-cell" colspan="5">No results found.</td>
     </tr>
   </table>
   <mat-paginator [pageSizeOptions]="[10, 25, 50]" aria-label="Select page of users"></mat-paginator>

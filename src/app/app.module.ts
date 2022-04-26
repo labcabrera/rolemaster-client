@@ -78,6 +78,7 @@ import { ActionDeclarationStaticManeuverComponent } from './components/tactical/
 import { ActionDeclarationMovingManeuverComponent } from './components/tactical/action-declaration/action-declaration-moving-maneuver/action-declaration-moving-maneuver.component';
 import { ActionDeclarationSpellCastComponent } from './components/tactical/action-declaration/action-declaration-spell-cast/action-declaration-spell-cast.component';
 import { ActionDeclarationChangeItemsComponent } from './components/tactical/action-declaration/action-declaration-change-items/action-declaration-change-items.component';
+import { CharacterTrainingPackagesComponent } from './components/character/character-training-packages/character-training-packages.component';
 
 @NgModule({
   declarations: [
@@ -147,6 +148,7 @@ import { ActionDeclarationChangeItemsComponent } from './components/tactical/act
     ActionDeclarationMovingManeuverComponent,
     ActionDeclarationSpellCastComponent,
     ActionDeclarationChangeItemsComponent,
+    CharacterTrainingPackagesComponent,
   ],
   imports: [
     FormsModule,

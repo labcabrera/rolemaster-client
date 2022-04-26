@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 import { TacticalCharacter } from 'src/app/model/character-context';
@@ -12,6 +12,7 @@ import { TacticalAction } from 'src/app/model/actions';
 import { MessageService } from 'src/app/services/message.service';
 import { DialogSetInitiativeComponent } from 'src/app/components/dialogs/dialog-set-initiative/dialog-set-initiative.component';
 import { DialogTacticalCharacterComponent } from 'src/app/components/dialogs/dialog-tactical-character/dialog-tactical-character.component';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-tactical-view',
@@ -28,22 +29,32 @@ export class TacticalViewComponent implements OnInit {
   constructor(
     private tacticalSessionService: TacticalSessionService,
     private actionService: ActionService,
-    private messageService: MessageService,
+    private errorService: ErrorService,
     private setInitiativeDialog: MatDialog,
+    private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const id = params['tacticalSessionId'];
       this.loadTacticalSession(id);
-      this.loadCharacters(id);
-      this.loadRound(id);
     });
   }
-
+  
   loadTacticalSession(tacticalSessionId: string) {
-    this.tacticalSessionService.findById(tacticalSessionId).subscribe(response => {
-      this.tacticalSession = response;
+    this.tacticalSessionService.findById(tacticalSessionId).subscribe({
+      next: response => {
+        this.tacticalSession = response;
+        this.loadCharacters(tacticalSessionId);
+        this.loadRound(tacticalSessionId);
+      },
+      error: error => {
+        if(error.status == 404) {
+          this.router.navigateByUrl("/tactical-sessions");
+        } else {
+          this.errorService.displayError(error);          
+        }
+      }
     });
   }
 
@@ -59,7 +70,6 @@ export class TacticalViewComponent implements OnInit {
         this.tacticalRound = response;
         this.loadActions(this.tacticalRound.id);
       } else {
-        this.messageService.add("Starting new round");
         this.startRound();
       }
     })

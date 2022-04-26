@@ -44,6 +44,7 @@ export class TacticalViewCharacterActionComponent implements OnInit {
   openAction(action: TacticalAction) {
     var dialogRef = this.actionSelectionDialog.open(DialogSelectActionComponent);
     dialogRef.componentInstance.load(this.tacticalRound!, this.source!, this.priority!, this.characters!, this.actions);
+    dialogRef.componentInstance.loadAction(action);
     dialogRef.afterClosed().subscribe(result => {
       this.actionsUpdated.emit("closed dialog");
     });
