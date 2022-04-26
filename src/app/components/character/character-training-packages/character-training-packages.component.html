@@ -34,55 +34,66 @@
         </div>
     </div>
 
-    <div fxLayout="row" [formGroup]="addForm" *ngIf="addForm.value.categorySelection">
-        <div fxFlex="50">
-            <div formArrayName="categorySelection">
-                <div *ngFor="let option of categorySelections.controls; let i = index">
-                    <div [formGroupName]="i">
-                        <span>
-                            {{option.value['description']}}
-                        </span>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Category</mat-label>
-                            <mat-select formControlName="categoryId">
-                                <mat-option *ngFor="let category of getSkillCategoriesByGroup(option.value['group'])" [value]="category.id">
-                                    {{category.name}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Ranks</mat-label>
-                            <mat-select formControlName="ranks">
-                                <mat-option *ngFor="let i of [0,1,2,3,4,5]" [value]="i">{{i}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
+    <div fxLayout="column" [formGroup]="addForm">
+
+        <div *ngIf="addForm.value.categorySelection">
+            <h3>Category selection</h3>
+            <div *ngIf="addForm.value.skillSelection">
+                <div formArrayName="categorySelection">
+                    <div *ngFor="let option of categorySelections.controls; let i = index">
+                        <div [formGroupName]="i" fxLayout="row">
+                            <div fxFlex="20">
+                                {{option.value['description']}}
+                            </div>
+                            <div fxFlex="15">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Category</mat-label>
+                                    <mat-select formControlName="categoryId">
+                                        <mat-option *ngFor="let category of getSkillCategoriesByGroup(option.value['group'])" [value]="category.id">
+                                            {{category.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="15">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Ranks</mat-label>
+                                    <mat-select formControlName="ranks">
+                                        <mat-option *ngFor="let i of [0,1,2,3,4,5]" [value]="i">{{i}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div fxFlex="50" *ngIf="addForm.value.skillSelection">
-            <div formArrayName="skillSelection">
-                <div *ngFor="let option of skillSelections.controls; let i = index">
-                    <div [formGroupName]="i" fxLayout="row">
-                        <div fxFlex="50">
-                            {{option.value['description']}}
-                        </div>
-                        <div fxFlex="25">
-                            <mat-form-field appearance="outline">
-                                <mat-label>Category</mat-label>
-                                <mat-select formControlName="skillId">
-                                    <mat-option *ngFor="let category of getSkillsByCategory(option.value['categories'])" [value]="category.id">{{category.name}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div fxFlex="25">
-                            <mat-form-field appearance="outline">
-                                <mat-label>Ranks</mat-label>
-                                <mat-select formControlName="ranks">
-                                    <mat-option *ngFor="let i of [0,1,2,3,4,5]" [value]="i">{{i}}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
+
+            <div *ngIf="addForm.value.skillSelection">
+                <h3>Skill selection</h3>
+                <div formArrayName="skillSelection">
+                    <div *ngFor="let option of skillSelections.controls; let i = index">
+                        <div [formGroupName]="i" fxLayout="row">
+                            <div fxFlex="20">
+                                {{option.value['description']}}
+                            </div>
+                            <div fxFlex="15">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Category</mat-label>
+                                    <mat-select formControlName="skillId">
+                                        <mat-option *ngFor="let category of getSkillsByCategory(option.value['categories'])" [value]="category.id">
+                                            {{category.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="15">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Ranks</mat-label>
+                                    <mat-select formControlName="ranks">
+                                        <mat-option *ngFor="let i of [0,1,2,3,4,5]" [value]="i">{{i}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
                         </div>
                     </div>
                 </div>
