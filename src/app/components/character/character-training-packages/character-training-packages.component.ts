@@ -1,13 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { TacticalCharacter } from 'src/app/model/character-context';
+
 import { CharacterInfo } from 'src/app/model/character-info';
-import { NamedKey } from 'src/app/model/commons';
 import { SkillCategory } from 'src/app/model/skill-category';
 import { TrainingPackage } from 'src/app/model/training-packages';
-import { ErrorService } from 'src/app/services/error.service';
+import { Skill } from 'src/app/model/skill';
 import { SkillCategoryService } from 'src/app/services/skill-category.service';
 import { TrainingPackageService } from 'src/app/services/training-packages.service';
+import { ErrorService } from 'src/app/services/error.service';
+import { SkillService } from 'src/app/services/skill.service';
 
 @Component({
   selector: 'app-character-training-packages',
@@ -23,12 +24,14 @@ export class CharacterTrainingPackagesComponent implements OnInit {
 
   trainingPackages: TrainingPackage[] = [];
   skillCategories: SkillCategory[] = [];
+  skills: Skill[] = [];
   availableTrainingPackages: any[] = [];
   cost: number | undefined;
 
   constructor(
     private trainingPackageService: TrainingPackageService,
     private skillCategoryService: SkillCategoryService,
+    private skillService: SkillService,
     private errorService: ErrorService,
     private fb: FormBuilder
   ) {
@@ -47,6 +50,10 @@ export class CharacterTrainingPackagesComponent implements OnInit {
     });
     this.skillCategoryService.getSkillCategories().subscribe({
       next: results => this.skillCategories = results,
+      error: error => this.errorService.displayError(error)
+    });
+    this.skillService.getSkills().subscribe({
+      next: results => this.skills = results,
       error: error => this.errorService.displayError(error)
     });
   }
@@ -89,6 +96,7 @@ export class CharacterTrainingPackagesComponent implements OnInit {
         const categorySelectionValue: FormGroup = this.fb.group({
           key: [e.key, Validators.required],
           categoryId: [e.categoryId, Validators.required],
+          group: [e.group],
           maxRanks: [e.ranks],
           description: [e.description],
           ranks: [0]
@@ -103,9 +111,10 @@ export class CharacterTrainingPackagesComponent implements OnInit {
       skillList.forEach(e => {
         const skillSelectionValue: FormGroup = this.fb.group({
           key: [e.key, Validators.required],
-          categoryId: [e.categoryId, Validators.required],
+          categories: [e.categories, Validators.required],
           maxRanks: [e.ranks],
           maxSkills: [e.skills],
+          description: [e.description],
           skillId: [],
           ranks: [0]
         });
@@ -121,6 +130,17 @@ export class CharacterTrainingPackagesComponent implements OnInit {
 
   get skillSelections(): FormArray {
     return this.addForm.get('skillSelection') as FormArray;
+  }
+
+  getSkillCategoriesByGroup(group: string) {
+    return this.skillCategories.filter(e => e.group === group);
+  }
+
+  getSkillsByCategory(categories: string[]) {
+    console.log("Filtering categories: ", categories);
+    return this.skills.filter(skill => {
+      return categories.includes(skill.categoryId);
+    });
   }
 
   addTrainingPackage() {
