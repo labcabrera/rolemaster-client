@@ -15,7 +15,7 @@ export class RaceListComponent implements OnInit, AfterViewInit {
 
   races?: Race[];
 
-  displayedColumns: string[] = ["id", "name"];
+  displayedColumns: string[] = [ "name", "universes" ];
   dataSource: MatTableDataSource<Race> = new MatTableDataSource<Race>(this.races);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
@@ -32,7 +32,7 @@ export class RaceListComponent implements OnInit, AfterViewInit {
   }
 
   getRaces(): void {
-    this.skillService.getRaces().subscribe(result => {
+    this.skillService.find().subscribe(result => {
       this.races = result;
       this.dataSource.data = this.races;
     });

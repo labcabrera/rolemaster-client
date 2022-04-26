@@ -13,9 +13,24 @@ export interface TacticalSession {
     strategicSessionId: string;
     name: string;
     description: string;
+    terrain: string;
+    temperature: string;
+    exhaustionMultiplier: number;
+    state: string;
     metadata: Metadata;
 }
 
 export interface SessionCreationRequest {
     name: string;
+}
+
+export interface TacticalSessionCreation {
+    strategicSessionId: string;
+    name: string;
+    description: string;
+}
+
+export interface TacticalSessionUpdate {
+    name: string;
+    description: string;
 }

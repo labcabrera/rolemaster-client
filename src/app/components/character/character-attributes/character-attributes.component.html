@@ -1,0 +1,175 @@
+<div class="row">
+
+    <div fxFlex="50">
+
+        <table class="mat-table cdk-table mat-elevation-z8">
+            <tr class="mat-header-row cdk-header-row ng-star-inserted">
+                <th class="mat-header-cell cdk-header-cell cdk-column-name mat-column-name ng-star-inserted">Attribute
+                </th>
+                <th class="mat-header-cell cdk-header-cell cdk-column-name mat-column-name ng-star-inserted">Current
+                </th>
+                <th class="mat-header-cell cdk-header-cell cdk-column-name mat-column-name ng-star-inserted">Potential
+                </th>
+                <th class="mat-header-cell cdk-header-cell cdk-column-name mat-column-name ng-star-inserted">Basic bonus
+                </th>
+                <th class="mat-header-cell cdk-header-cell cdk-column-name mat-column-name ng-star-inserted">Racial
+                    bonus</th>
+                <th class="mat-header-cell cdk-header-cell cdk-column-name mat-column-name ng-star-inserted">Special
+                    bonus</th>
+                <th class="mat-header-cell cdk-header-cell cdk-column-name mat-column-name ng-star-inserted">Bonus</th>
+            </tr>
+            <tr class="mat-header-row cdk-header-row ng-star-inserted">
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">Agility</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.ag?.currentValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.ag?.potentialValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.ag?.bonus?.attribute)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.ag?.bonus?.race)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.ag?.bonus?.special)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.ag?.totalBonus}}</td>
+            </tr>
+            <tr class="mat-header-row cdk-header-row ng-star-inserted">
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">Constitution</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.co?.currentValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.co?.potentialValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.co?.bonus?.attribute)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.co?.bonus?.race}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.co?.bonus?.special)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.co?.totalBonus)}}</td>
+            </tr>
+            <tr class="mat-header-row cdk-header-row ng-star-inserted">
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">Memory</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.me?.currentValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.me?.potentialValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.me?.bonus?.attribute)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.me?.bonus?.race)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.me?.bonus?.special)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.me?.totalBonus}}</td>
+            </tr>
+            <tr class="mat-header-row cdk-header-row ng-star-inserted">
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">Reasoning</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.re?.currentValue)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.re?.potentialValue)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.re?.bonus?.attribute)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.re?.bonus?.race)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.re?.bonus?.special)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.re?.totalBonus}}</td>
+            </tr>
+            <tr class="mat-header-row cdk-header-row ng-star-inserted">
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">Self discipline</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.sd?.currentValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.sd?.potentialValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.sd?.bonus?.attribute}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.sd?.bonus?.race}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.sd?.bonus?.special}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.sd?.totalBonus}}</td>
+            </tr>
+            <tr class="mat-header-row cdk-header-row ng-star-inserted">
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">Empathy</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.em?.currentValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.em?.potentialValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.em?.bonus?.attribute)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.em?.bonus?.race)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.em?.bonus?.special}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.em?.totalBonus}}</td>
+            </tr>
+            <tr class="mat-header-row cdk-header-row ng-star-inserted">
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">Intuition</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.in?.currentValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.in?.potentialValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.in?.bonus?.attribute)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.in?.bonus?.race)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.in?.bonus?.special}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.in?.totalBonus}}</td>
+            </tr>
+            <tr class="mat-header-row cdk-header-row ng-star-inserted">
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">Presence</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.pr?.currentValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.pr?.potentialValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.pr?.bonus?.attribute)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.pr?.bonus?.race)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.pr?.bonus?.special}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.pr?.totalBonus}}</td>
+            </tr>
+            <tr class="mat-header-row cdk-header-row ng-star-inserted">
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">Quickness</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.qu?.currentValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.qu?.potentialValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.qu?.bonus?.attribute)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.qu?.bonus?.race)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.qu?.bonus?.special}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.qu?.totalBonus}}</td>
+            </tr>
+            <tr class="mat-header-row cdk-header-row ng-star-inserted">
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">Strength</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.st?.currentValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.st?.potentialValue}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.st?.bonus?.attribute)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.st?.bonus?.race)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{displayBonus(this.characterInfo?.attributes?.st?.bonus?.special)}}</td>
+                <td class="mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+                    {{this.characterInfo?.attributes?.st?.totalBonus}}</td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>

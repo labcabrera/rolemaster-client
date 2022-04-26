@@ -4,13 +4,14 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 
 import { Skill } from '../model/skill';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkillService {
 
-  private charactersUrl = 'http://localhost:8080/skills';
+  private baseUrl = `${environment.apiURL}/skills`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,17 +20,17 @@ export class SkillService {
   constructor(private http: HttpClient) {}
 
   getSkills(): Observable<Skill[]> {
-    const url = this.charactersUrl + "/?page=0&size=1000";
+    const url = `${this.baseUrl}/?page=0&size=1000`;
     return this.http.get<Skill[]>(url).pipe();
   }
 
   findById(id: string): Observable<Skill> {
-    const url = this.charactersUrl + "/" + id;
+    const url = `${this.baseUrl}/${id}`;
     return this.http.get<Skill>(url).pipe();
   }
   
   getSkillsByCategoryId(categoryId: string): Observable<Skill[]> {
-    const url = this.charactersUrl + "?categoryId=" + categoryId + "&page=0&size=1000&sort=name,asc";
+    const url = `${this.baseUrl}/?categoryId=${categoryId}&page=0&size=1000&sort=name,asc`;
     return this.http.get<Skill[]>(url).pipe();
   }
 

@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>Skill selection</h1>
+
+<div>
+    <form [formGroup]="addSkillForm">
+        <div fxLayout="column">
+            <div>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Skill</mat-label>
+                    <input type="text" matInput formControlName="skillId" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{option.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <div *ngIf="addSkillForm.value.skillId.customizableOptions > 0">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Customization 1</mat-label>
+                    <input type="text" matInput formControlName="customization01">
+                </mat-form-field>
+            </div>
+            <div *ngIf="addSkillForm.value.skillId.customizableOptions > 1">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Customization 2</mat-label>
+                    <input type="text" matInput formControlName="customization02">
+                </mat-form-field>
+            </div>
+            <div *ngIf="addSkillForm.value.skillId.description">
+                {{addSkillForm.value.skillId.description}}
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--
+<pre>{{this.addSkillForm.value | json}}</pre>
+-->
+
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+    <button mat-button cdkFocusInitial (click)="addSkill()">Add</button>
+</div>

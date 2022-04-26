@@ -4,6 +4,8 @@ Angular based web application that integrates the Rolemaster Core API:
 
 https://github.com/labcabrera/rolemaster-core/
 
+A demo of the API can be consulted at https://rolemaster-client.herokuapp.com/ (be patient while starting the instance as it will usually be stopped).
+
 == Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

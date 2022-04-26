@@ -1,0 +1,60 @@
+<div fxLayout="row" fxLayoutGap="15px" *ngIf="actionForm" [formGroup]="actionForm">
+
+    <div fxFlex="50">
+        <div fxLayout="column" fxLayoutGap="15px">
+            <div>
+                <h4>Action percent</h4>
+                <span>{{actionForm.value.actionPercent}}&nbsp;</span>
+                <mat-slider thumbLabel formControlName="actionPercent" min="0" max="{{maxActionPercent}}" step="5"></mat-slider>
+            </div>
+            <div>
+                <h4>Parry percent</h4>
+                <span>{{actionForm.value.parry}}&nbsp;</span>
+                <mat-slider thumbLabel formControlName="parry" min="0" max="100" step="5" aria-label="percent"></mat-slider>
+            </div>
+            <div *ngIf="actionForm.value.targets" formGroupName="targets">
+                <div *ngIf="actionForm.value.meleeAttackType == 'full' && actionForm.value.meleeAttackMode != 'off-hand-weapon'">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Main hand target</mat-label>
+                        <mat-select formControlName="main-hand">
+                            <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="actionForm.value.meleeAttackType == 'full' && actionForm.value.meleeAttackMode != 'main-hand-weapon'">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Off-hand target</mat-label>
+                        <mat-select formControlName="off-hand">
+                            <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div fxFlex="50">
+        <div>
+            <h4>Attack type</h4>
+            <mat-button-toggle-group formControlName="meleeAttackType" (change)="onMeleeAttackTypeChange($event)">
+                <mat-button-toggle *ngFor="let option of meleeAttackTypes" [value]="option.key">{{option.name}}</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+        <div>
+            <h4>Attack mode</h4>
+            <mat-button-toggle-group formControlName="meleeAttackMode" (change)="onMeleeAttackModeChange($event)">
+                <mat-button-toggle *ngFor="let option of meleeAttackModes" [value]="option.key" [disabled]="isAttackModeDisabled(option.key)">{{option.name}}
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+    </div>
+    <!--
+        <pre>{{actionForm.value | json}}</pre>
+        -->
+</div>
+
+
+<mat-dialog-actions *ngIf="actionForm">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="declareMeleeAttack()" [disabled]="actionForm.invalid">Declare</button>
+</mat-dialog-actions>

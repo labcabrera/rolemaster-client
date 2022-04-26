@@ -1,0 +1,46 @@
+<div *ngIf="tacticalRound">
+<div *ngIf="!action">
+    <button mat-button *ngIf="tacticalRound.state == 'action-declaration'" (click)="openActionSelectionDialog()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<div *ngIf="action">
+    
+    <button mat-button *ngIf="action.initiative" matTooltip="Initiative">
+        <mat-icon>flash_on</mat-icon>
+        {{action.initiative}}
+    </button>
+
+    <button mat-button color="primary" (click)="openAction(action)">
+        <mat-icon *ngIf="action.type == 'movement'">directions_run</mat-icon>
+        <mat-icon *ngIf="action.type == 'melee-attack'">local_dining</mat-icon>
+        <mat-icon *ngIf="action.type == 'missile-attack'">u_turn_right</mat-icon>
+        {{action.actionPercent}}
+    </button>
+
+    <button mat-button
+        *ngIf="action.state == 'resolved'"
+        (click)="openActionExecutionDialog(action)">
+        <mat-icon>info</mat-icon>
+    </button>
+
+    <button mat-button color="primary" *ngIf="checkDisplayButtonActionExecution(action)" (click)="openActionExecutionDialog(action)" matTooltip="Action resolution">
+        <mat-icon>upload</mat-icon>
+    </button>
+
+    <button mat-button color="primary" *ngIf="checkDisplayButtonCriticalExecution(action)" (click)="openCriticalExecutionDialog(action)" matTooltip="Critical">
+        <mat-icon>apps_outage</mat-icon>
+    </button>
+
+    <button mat-button color="primary" *ngIf="checkDisplayButtonFumbleExecution(action)" (click)="openFumbleExecutionDialog(action)" matTooltip="Fumble">
+        <mat-icon>feedback</mat-icon>
+    </button>
+
+    <button mat-button
+        *ngIf="tacticalRound.state != 'closed' && action.state != 'resolved'"
+        (click)="deleteAction()">
+        <mat-icon>delete</mat-icon>
+    </button>
+
+</div>
+</div>

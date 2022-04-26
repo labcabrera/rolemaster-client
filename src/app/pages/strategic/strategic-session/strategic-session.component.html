@@ -1,0 +1,71 @@
+<mat-toolbar>
+  <div>Strategic session</div>
+  <div class="div-spacer"></div>
+  <button mat-button routerLink="/tactical-sessions/creation"
+    [queryParams]="{strategicSessionId: this.strategicSession?.id}" *ngIf="!isEditMode()">New tactical</button>
+  <button mat-button (click)="cancelEdit()" *ngIf="isEditMode()">Cancel</button>
+  <button mat-button (click)="startEdit()" *ngIf="!isEditMode()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-button (click)="saveSession()" *ngIf="isEditMode()">
+    <mat-icon>save_alt</mat-icon>
+  </button>
+  <button mat-button (click)="deleteSession()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="outerContainer">
+
+  <div fxLayout="row" fxLayoutGap="20px">
+
+    <div fxFlex="40" fxLayoutAlign="left top">
+      <mat-card class="full-width">
+        <mat-card-title>Information</mat-card-title>
+        <form [formGroup]="form">
+          <br>
+          <mat-form-field appearance="outline" class="common-form-field">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="outline" class="common-form-field">
+            <mat-label>Universe</mat-label>
+            <mat-select formControlName="universeId">
+              <mat-option *ngFor="let universe of universes" [value]="universe.id">
+                {{universe.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="outline" class="common-form-field">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+          </mat-form-field>
+          <br>
+        </form>
+      </mat-card>
+
+    </div>
+
+    <div fxFlex="40" fxLayoutAlign="left top">
+      <mat-card class="full-width">
+        <mat-card-title>Tactical sessions</mat-card-title>
+        <mat-list>
+          <mat-list-item *ngFor="let ts of tacticalSessions" routerLink="/tactical-sessions/detail/{{ts.id}}"
+            class="tactical-session-list">
+            {{ts.name}}
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+
+  </div>
+
+</div>
+
+<!--
+<pre>{{tacticalSessions | json}}</pre>
+<pre>{{this.strategicSession | json}}</pre>
+<pre>{{this.universes| json}}</pre>
+-->

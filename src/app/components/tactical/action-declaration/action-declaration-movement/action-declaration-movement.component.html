@@ -1,0 +1,26 @@
+<div fxLayout="column" fxLayoutGap="15px" [formGroup]="actionForm" class="outerContainer">
+    <div fxLayout="row">
+        <div fxFlex="15" class="form-label">
+            ActionPercent
+        </div>
+        <div fxFlex="80">
+            <span>{{actionForm.value.actionPercent}}&nbsp;</span>
+            <mat-slider formControlName="actionPercent" min="0" max="{{maxActionPercent}}" step="5" thumbLabel></mat-slider>
+        </div>
+    </div>
+    <div fxLayout="row">
+        <div fxFlex="15" class="form-label">
+            Pace
+        </div>
+        <div fxFlex="80">
+            <mat-button-toggle-group formControlName="pace">
+                <mat-button-toggle *ngFor="let option of movementPaces" [value]="option.key">{{option.name}}</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+    </div>
+</div>
+
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="declareMovement()" [disabled]="actionForm.invalid">Declare</button>
+</mat-dialog-actions>

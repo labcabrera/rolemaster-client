@@ -23,7 +23,13 @@ import { MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatPaginatorModule } from '@angular/material/paginator'; 
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
+import { MatSnackBarModule } from '@angular/material/snack-bar'; 
 
 // Flex Layout
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -51,6 +57,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatAutocompleteModule,
     MatDialogModule,
     MatPaginatorModule,
+    MatTabsModule,
+    MatMenuModule,
+    MatChipsModule,
+    MatBadgeModule,
+    MatButtonToggleModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
     FlexLayoutModule
   ],
   exports: [
@@ -75,6 +88,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatAutocompleteModule,
     MatDialogModule,
     MatPaginatorModule,
+    MatTabsModule,
+    MatMenuModule,
+    MatChipsModule,
+    MatBadgeModule,
+    MatButtonToggleModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
     FlexLayoutModule
   ]
 })

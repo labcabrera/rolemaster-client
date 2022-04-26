@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Action execution</h2>
+<mat-dialog-content>
+
+    <div *ngIf="action.type === 'melee-attack'">
+        <app-melee-attack-execution [action]="action" [characters]="characters"></app-melee-attack-execution>
+    </div>
+
+    <!--pre>{{action | json}}</pre -->
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

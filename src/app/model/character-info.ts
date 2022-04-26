@@ -5,17 +5,22 @@ export interface CharacterInfo {
     raceId: string;
     professionId: string;
     level: number;
+    maxLevel: number;
     age: number;
     height: number;
-    weight: number;
+    attributes: CharacterAttributes;
     maxHp: number;
     maxExhaustionPoints: number;
     xp: number;
+    armor: CharacterArmor;
+    defensiveBonus: number;
+    weight: CharacterWeight;
     baseMovementRate: number;
-    attributes: CharacterAttributes;
     skillCategories:  CharacterSkillCategory[];
     skills: CharacterSkill[];
     developmentPoints: CharacterDevelopmentPoints;
+    carriedWeight: number;
+    trainingPackages: any;
 }
 
 export interface CharacterAttributes {
@@ -34,39 +39,49 @@ export interface CharacterAttributes {
 export interface CharacterAttribute {
     currentValue: number;
     potentialValue: number;
-    baseBonus: number;
-    racialBonus: number;
-    specialBonus: number;
     totalBonus: number;
+    bonus: AttributeBonus;
+}
+
+export interface AttributeBonus {
+    race: number;
+    attribute: number;
+    special: number;
 }
 export interface CharacterSkillCategory {
     categoryId: string;
     attributes: string[];
     developmentCost: number[];
-    ranks: Map<RankType,number>;
-    bonus: Map<String,number>;
+    ranks: SkillRankMap;
+    bonus: SkillBonusMap;
     totalRanks: number;
     totalBonus: number;
-}
-
-export enum RankType {
-    adolescence,
-    lifestyle,
-    consolidated,
-    development
 }
 
 export interface CharacterSkill {
     skillId: number;
     categoryId: string;
     group: string;
-    bonus: CharacterSkillBonus;
     attributes: string[];
     developmentCost: number[];
-    ranks: CharacterSkillRanks;
+    bonus: SkillRankMap;
+    ranks: SkillBonusMap;
     totalBonus: number;
 }
 
+export interface SkillRankMap {
+    adolescence: number;
+    lifestyle: number;
+    consolidated: number;
+    development: number;
+}
+
+export interface SkillBonusMap {
+    rank: number;
+    attribute: number;
+    profession: number;
+    category: number;
+}
 export interface CharacterSkillBonus {
     rank: number;
     category: number;
@@ -109,6 +124,20 @@ export interface CharacterCreationAttributes {
     pr: number;
     st: number;
     qu: number;
+}
+
+export interface CharacterWeight {
+    weight: number;
+	weightPenalty: number;
+	itemWeight: number;
+	totalCarriedWeight: number;
+}
+
+export interface CharacterArmor {
+	armor: number;
+	armorDefensiveBonus: number;
+	armorPenalty: number;
+	armorQuPenalty: number;
 }
 
 export interface SkillUpgradeRequest {

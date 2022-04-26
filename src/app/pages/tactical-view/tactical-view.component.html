@@ -1,31 +1,92 @@
-<h3>Tactical view</h3>
+<mat-toolbar>
+    <span>
+        <a routerLink="/tactical-sessions/detail/{{tacticalSession.id}}">{{tacticalSession.name}}</a>
+        <span> - Round {{this.tacticalRound.round}} ({{this.tacticalRound.state}})</span>
+        
+    </span>
+    <div class="div-spacer"></div>
+    <button mat-button [disabled]="tacticalRound.state != 'action-declaration'" (click)="startInitiativeDeclaration()" >Calculate initiatives</button>
+    <button mat-button [disabled]="tacticalRound.state != 'initiative-declaration'" (click)="startExecutionPhase()">Execute actions</button>
+    <button mat-button [disabled]="!(!tacticalRound.state || tacticalRound.state == 'closed' || tacticalRound.state == 'action-resolution')" (click)="startRound()">Start round</button>
+</mat-toolbar>
 
 <div class="outerContainer">
-    <div fxLayout="row" fxLayoutGap="10px" class="container">
-        <div fxLayoutAlign="center center">
 
-            <mat-grid-list cols="2" rowHeight="2:1">
-                <mat-grid-tile>P1</mat-grid-tile>
-                <mat-grid-tile>P2</mat-grid-tile>
-                <mat-grid-tile>P3</mat-grid-tile>
-                <mat-grid-tile>P4</mat-grid-tile>
-              </mat-grid-list>
-              
+    <div fxLayout="row" fxLayoutGap="5px">
+        <div fxFlex="30" fxLayoutAlign="left center" class="div-tactical">Character</div>
+        <div fxFlex="20" fxLayoutAlign="center center" class="div-tactical">Swap</div>
+        <div fxFlex="20" fxLayoutAlign="center center" class="div-tactical">Normal</div>
+        <div fxFlex="20" fxLayoutAlign="center center" class="div-tactical">Deliberate</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">Initiative</div>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="5px" *ngFor="let character of characters" style="margin-top: 5px">
+        <div fxFlex="30" fxLayoutAlign="left center" class="div-tactical">
+
+            <app-tactical-view-character [character]="character" style="width: 100%;"></app-tactical-view-character>
 
         </div>
-        <div fxLayoutAlign="center center">2</div>
-        <div fxLayoutAlign="center center">3</div>
-        <div fxLayoutAlign="center center">4</div>
+        <div fxFlex="20" fxLayoutAlign="left center" class="action-declaration">
+            <app-tactical-view-character-action
+                [source]="character"
+                [priority]="'snap'"
+                [tacticalRound]="this.tacticalRound"
+                [characters]="this.characters"
+                [action]="getAction(character.id, 'snap')"
+                [actions]="actions"
+                (actionsUpdated)="this.loadActions(this.tacticalRound.id)">
+            </app-tactical-view-character-action>
+        </div>
+        <div fxFlex="20" fxLayoutAlign="left center" class="action-declaration">
+            <app-tactical-view-character-action
+                [source]="character"
+                [priority]="'normal'"
+                [tacticalRound]="this.tacticalRound"
+                [characters]="this.characters"
+                [action]="getAction(character.id, 'normal')"
+                [actions]="actions"
+                (actionsUpdated)="this.loadActions(this.tacticalRound.id)">
+            </app-tactical-view-character-action>
+        </div>
+        <div fxFlex="20" fxLayoutAlign="left center" class="action-declaration">
+            <app-tactical-view-character-action
+                [source]="character"
+                [priority]="'deliberate'"
+                [tacticalRound]="this.tacticalRound"
+                [characters]="this.characters"
+                [actions]="actions"
+                [action]="getAction(character.id, 'deliberate')"
+                (actionsUpdated)="this.loadActions(this.tacticalRound.id)">
+            </app-tactical-view-character-action>
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">
+            <div>+{{getCharacterInitiativeBase(character)}}&nbsp;</div>
+            <div>+{{getCharacterInitiativeModifiers(character)}}&nbsp;</div>
+            <div>+{{getCharacterInitiativeRoll(character)}} </div>
+            <button mat-button (click)="openInitiativeDialog(character)" *ngIf="this.tacticalRound.state == 'initiative-declaration'">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
     </div>
 </div>
 
-<div class="outerContainer">
-    <div fxLayout="row" fxLayoutGap="1px" fxLayout.sm="column" class="container">
-        <div fxLayoutAlign="center center">1</div>
-        <div fxFlex="2 1 auto" fxLayoutAlign="center center">
-            2
-        </div>
-        <div fxLayoutAlign="center center">3</div>
-        <div fxLayoutAlign="center center">4</div>
-    </div>
-</div>
+<br>
+<br>
+
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Debug
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        Context:
+        <pre>{{tacticalSession | json}}</pre>
+        Round:
+        <pre>{{tacticalRound | json}}</pre>
+        Actions:
+        <pre>{{actions | json}}</pre>
+        Characters:
+        <pre>{{characters | json}}</pre>
+    </mat-expansion-panel>
+</mat-accordion>

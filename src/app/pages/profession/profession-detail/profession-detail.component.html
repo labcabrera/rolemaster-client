@@ -1,0 +1,26 @@
+<mat-toolbar>
+    <span>Profession</span>
+    <div class="div-spacer"></div>
+    <button mat-button routerLink="/professions">
+        <mat-icon>arrow_upward</mat-icon>
+    </button>
+</mat-toolbar>
+
+<div class="outerContainer">
+
+    <div fxLayout="column" fxLayoutAlign="center" style="margin-top:100px">
+
+        <div fxLayoutAlign="left">
+            <mat-form-field style="width:50%" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input [(ngModel)]="profession.name" matInput>
+            </mat-form-field>
+        </div>
+        <div fxLayoutAlign="left">
+            TODO: realms {{profession.availableRealms}}
+        </div>
+    </div>
+
+</div>
+
+<pre>{{profession | json}}</pre>

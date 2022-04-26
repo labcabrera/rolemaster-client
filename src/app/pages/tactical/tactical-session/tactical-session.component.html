@@ -1,0 +1,123 @@
+<mat-toolbar>
+    <div>Tactical session</div>
+    <div class="div-spacer"></div>
+    <button mat-button *ngIf="!isEditMode()" (click)="navigateToTacticalView()">Open</button>
+    <button mat-button *ngIf="isEditMode()" (click)="cancelEdit()">Cancel</button>
+    <button mat-button *ngIf="isEditMode()" (click)="save()" [disabled]="form.invalid">
+        <mat-icon>save_alt</mat-icon>
+    </button>
+    <button mat-button *ngIf="!isEditMode()" (click)="startEdit()">
+        <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-button (click)="delete()">
+        <mat-icon>delete</mat-icon>
+    </button>
+</mat-toolbar>
+
+<div class="outerContainer">
+
+    <div fxLayout="row">
+
+        <div fxFlex="40">
+
+            <mat-card class="full-width">
+                <mat-card-title>Information</mat-card-title>
+                <form [formGroup]="form">
+
+                    <div fxLayout="column">
+                        <div>
+                            <mat-form-field appearance="outline" class="common-form-field">
+                                <mat-label>Strategic session</mat-label>
+                                <input matInput value="{{this.strategicSession.name}}" readonly>
+                                <mat-icon matSuffix (click)="navigateToStrategicSession()" class="u-mat-icon-button">
+                                    launch
+                                </mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline" class="common-form-field">
+                                <mat-label>Name</mat-label>
+                                <input matInput formControlName="name">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline" class="common-form-field">
+                                <mat-label>Terrain</mat-label>
+                                <mat-select formControlName="terrain">
+                                    <mat-option *ngFor="let terrain of terrains" [value]="terrain.key">
+                                        {{terrain.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline" class="common-form-field">
+                                <mat-label>Temperature</mat-label>
+                                <mat-select formControlName="temperature">
+                                    <mat-option *ngFor="let temperature of temperatures" [value]="temperature.key">
+                                        {{temperature.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline" class="common-form-field">
+                                <mat-label>Exhaustion multiplier</mat-label>
+                                <input matInput formControlName="exhaustionMultiplier">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline" class="common-form-field">
+                                <mat-label>Description</mat-label>
+                                <textarea matInput formControlName="description"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline" class="common-form-field">
+                                <mat-label>State</mat-label>
+                                <input matInput value="{{this.tacticalSession.state}}" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+            </mat-card>
+
+        </div>
+
+        <div fxFlex="40">
+            <mat-card class="full-width">
+                <mat-card-title>Characters</mat-card-title>
+
+                <form class="example-form">
+                    <mat-form-field class="common-form-field" appearance="outline">
+                        <mat-label>Add Characters</mat-label>
+                        <input matInput aria-label="Npc" [matAutocomplete]="autoCompleteNpc"
+                            [formControl]="addCharactersFormControl">
+                        <mat-autocomplete #autoCompleteNpc="matAutocomplete" [displayWith]="displayNpcOption">
+                            <mat-option *ngFor="let npc of addCharactersFiltered | async" [value]="npc">
+                                {{npc.name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <button mat-button (click)="addCharacter()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </form>
+                
+                <mat-grid-list cols="5" rowHeight="100px">
+                    <mat-grid-tile *ngFor="let ctx of tacticalCharacterContexts" [colspan]=1 [rowspan]=1>
+                        <mat-card class="character-context-card">
+                            <div>{{ctx.name}}</div>
+                            <div>{{ctx.shortDescription}}</div>
+                            <button mat-button (click)="deleteTacticalCharacterContext(ctx.id)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </mat-card>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+            </mat-card>
+
+        </div>
+    </div>
+</div>

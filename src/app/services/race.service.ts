@@ -4,13 +4,13 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 
 import { Race } from '../model/race';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class RaceService {
 
-  private racesUrl = 'http://localhost:8080/races';
+  private baseUrl = `${environment.apiURL}/races`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,8 +18,13 @@ export class RaceService {
 
   constructor(private http: HttpClient) {}
 
-  getRaces(): Observable<Race[]> {
-    return this.http.get<Race[]>(this.racesUrl).pipe();
+  find(): Observable<Race[]> {
+    return this.http.get<Race[]>(this.baseUrl).pipe();
+  }
+
+  findById(raceId: string): Observable<Race> {
+    const url = `${this.baseUrl}/${raceId}`;
+    return this.http.get<Race>(url).pipe();
   }
 
 }
