@@ -80,6 +80,7 @@ import { ActionDeclarationChangeItemsComponent } from './components/tactical/act
 import { CharacterTrainingPackagesComponent } from './components/character/character-training-packages/character-training-packages.component';
 import { TacticalSessionCharacterManagementComponent } from './components/tactical-session/tactical-session-character-management/tactical-session-character-management.component';
 import { CharacterCreationAttributeComponent } from './components/character/character-creation-attribute/character-creation-attribute.component';
+import { CombatComponent } from './pages/wiki/combat/combat.component';
 
 @NgModule({
   declarations: [
@@ -151,6 +152,7 @@ import { CharacterCreationAttributeComponent } from './components/character/char
     CharacterTrainingPackagesComponent,
     TacticalSessionCharacterManagementComponent,
     CharacterCreationAttributeComponent,
+    CombatComponent,
   ],
   imports: [
     FormsModule,

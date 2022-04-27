@@ -1,0 +1,19 @@
+<div fxLayout="row" fxLayoutAlign="start center" style="height: 60px">
+    <div style="width: 150px; font-size: 12pt;">{{attributeName}}</div>
+    <div style="width: 200px">
+        <mat-slider [(ngModel)]="value" [max]="100" [min]="1" thumbLabel=true (change)="updateAttribute()" class="full-width"></mat-slider>
+    </div>
+    <div>
+        <button mat-icon-button color="accent" (click)="incrementValue(-1)">
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+    </div>
+    <div>
+        <span>{{value}}</span>
+    </div>
+    <div>
+        <button mat-icon-button color="accent" (click)="incrementValue(1)">
+            <mat-icon>chevron_right</mat-icon>
+        </button>
+    </div>
+</div>

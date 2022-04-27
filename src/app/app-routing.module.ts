@@ -1,7 +1,6 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CharacterCreationComponent } from './pages/character/character-creation/character-creation.component';
-import { CharacterDetailComponent } from './components/character/character-detail/character-detail.component';
 import { CharacterListComponent } from './pages/character/character-list/characters.component';
 import { CharacterViewComponent } from './pages/character/character-view/character-view.component';
 import { ProfessionListComponent } from './pages/profession/profession-list/profession-list.component';
@@ -34,6 +33,7 @@ import { UserSettingsComponent } from './pages/user-settings/user-settings.compo
 import { TrainingPackageComponent } from './pages/training-package/training-package.component';
 import { TrainingPackagesComponent } from './pages/training-packages/training-packages.component';
 import { HomeComponent } from './pages/home/home.component';
+import { CombatComponent } from './pages/wiki/combat/combat.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -69,6 +69,7 @@ const routes: Routes = [
   { path: 'tactical', component: TacticalViewComponent },
   { path: 'items', component: ItemsComponent },
   { path: 'items/detail/:id', component: ItemDetailComponent },
+  { path: 'wiki/combat', component: CombatComponent },
   { path: 'settings', component: UserSettingsComponent },
 ];
 
