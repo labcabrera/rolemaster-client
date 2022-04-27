@@ -54,7 +54,7 @@ export class CharacterCreationComponent implements OnInit {
       'height': ['174', Validators.required],
       'weight': ['72', Validators.required],
       'attributesRoll': [660],
-      'attributesRemaining': [0],
+      'attributesRemaining': [650],
       'weaponCategoryPriority': [[
         "weapon-1h-edged",
         "weapon-missile",
@@ -65,16 +65,16 @@ export class CharacterCreationComponent implements OnInit {
         "weapon-missile-artillery"
       ]],
       'baseAttributes': fb.group({
-        'ag': [100],
-        'co': [44],
-        'em': [79],
-        'in': [81],
-        'me': [20],
-        'pr': [15],
-        'qu': [72],
-        're': [30],
-        'sd': [78],
-        'st': [51]
+        'ag': [1],
+        'co': [1],
+        'em': [1],
+        'in': [1],
+        'me': [1],
+        'pr': [1],
+        'qu': [1],
+        're': [1],
+        'sd': [1],
+        'st': [1]
       })
     });
     this.characterDevelopment = fb.group({
@@ -128,6 +128,13 @@ export class CharacterCreationComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.characterCreationFormGroupValue.weaponCategoryPriority, event.previousIndex, event.currentIndex);
+  }
+
+  updateAttribute(event: any) {
+    this.characterCreationFormGroup.patchValue({
+      baseAttributes: { [event.attribute]: event.value}
+    })
+    this.updateAttributeCost();
   }
 
 }

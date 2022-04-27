@@ -79,6 +79,7 @@ import { ActionDeclarationSpellCastComponent } from './components/tactical/actio
 import { ActionDeclarationChangeItemsComponent } from './components/tactical/action-declaration/action-declaration-change-items/action-declaration-change-items.component';
 import { CharacterTrainingPackagesComponent } from './components/character/character-training-packages/character-training-packages.component';
 import { TacticalSessionCharacterManagementComponent } from './components/tactical-session/tactical-session-character-management/tactical-session-character-management.component';
+import { CharacterCreationAttributeComponent } from './components/character/character-creation-attribute/character-creation-attribute.component';
 
 @NgModule({
   declarations: [
@@ -149,6 +150,7 @@ import { TacticalSessionCharacterManagementComponent } from './components/tactic
     ActionDeclarationChangeItemsComponent,
     CharacterTrainingPackagesComponent,
     TacticalSessionCharacterManagementComponent,
+    CharacterCreationAttributeComponent,
   ],
   imports: [
     FormsModule,
