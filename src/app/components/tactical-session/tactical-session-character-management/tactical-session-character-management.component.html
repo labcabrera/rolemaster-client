@@ -13,17 +13,33 @@
             <mat-icon>add</mat-icon>
         </button>
     </form>
-    <mat-grid-list cols="5" rowHeight="100px">
-        <mat-grid-tile *ngFor="let ctx of tacticalCharacters" [colspan]=1 [rowspan]=1>
-            <mat-card class="character-context-card">
-                <div>{{ctx.name}}</div>
-                <div>{{ctx.shortDescription}}</div>
-                <button mat-button (click)="deleteTacticalCharacterContext(ctx.id)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
-</div>
 
-<pre>{{this.tacticalCharacters | json}}</pre>
+    <table mat-table [dataSource]="characterDataSource" matSort _class="mat-elevation-z8" class="full-width">
+        <ng-container matColumnDef="level">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Lvl</th>
+            <td mat-cell *matCellDef="let element"> {{element.level}} </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.shortDescription}} </td>
+        </ng-container>
+        <ng-container matColumnDef="options" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="primary" (click)="this.deleteTacticalCharacterContext(element.id)">
+                    <mat-icon>remove</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No characters added</td>
+        </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 15, 20, 50, 100]" aria-label="Select page of skills"></mat-paginator>
+</div>
