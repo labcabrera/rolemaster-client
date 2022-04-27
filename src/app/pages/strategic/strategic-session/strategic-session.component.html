@@ -17,19 +17,17 @@
 
 <div class="outerContainer">
 
-  <div fxLayout="row" fxLayoutGap="20px">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
 
-    <div fxFlex="40" fxLayoutAlign="left top">
-      <mat-card class="full-width">
-        <mat-card-title>Information</mat-card-title>
-        <form [formGroup]="form">
+    <div fxFlex="40" fxFlex.lt-sm="100" fxLayoutAlign="left top">
+        <form [formGroup]="form" class="full-width">
           <br>
-          <mat-form-field appearance="outline" class="common-form-field">
+          <mat-form-field appearance="outline" class="full-width">
             <mat-label>Name</mat-label>
             <input matInput formControlName="name">
           </mat-form-field>
           <br>
-          <mat-form-field appearance="outline" class="common-form-field">
+          <mat-form-field appearance="outline" class="full-width">
             <mat-label>Universe</mat-label>
             <mat-select formControlName="universeId">
               <mat-option *ngFor="let universe of universes" [value]="universe.id">
@@ -38,14 +36,12 @@
             </mat-select>
           </mat-form-field>
           <br>
-          <mat-form-field appearance="outline" class="common-form-field">
+          <mat-form-field appearance="outline" class="full-width">
             <mat-label>Description</mat-label>
             <textarea matInput formControlName="description"></textarea>
           </mat-form-field>
           <br>
         </form>
-      </mat-card>
-
     </div>
 
     <div fxFlex="40" fxLayoutAlign="left top">

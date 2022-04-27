@@ -1,0 +1,29 @@
+<div>
+    <form class="example-form">
+        <mat-form-field class="common-form-field" appearance="outline">
+            <mat-label>Add Characters</mat-label>
+            <input matInput aria-label="Npc" [matAutocomplete]="autoCompleteNpc" [formControl]="addCharactersFormControl">
+            <mat-autocomplete #autoCompleteNpc="matAutocomplete" [displayWith]="displayNpcOption">
+                <mat-option *ngFor="let npc of addCharactersFiltered | async" [value]="npc">
+                    {{npc.name}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <button mat-button (click)="addCharacter()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </form>
+    <mat-grid-list cols="5" rowHeight="100px">
+        <mat-grid-tile *ngFor="let ctx of tacticalCharacters" [colspan]=1 [rowspan]=1>
+            <mat-card class="character-context-card">
+                <div>{{ctx.name}}</div>
+                <div>{{ctx.shortDescription}}</div>
+                <button mat-button (click)="deleteTacticalCharacterContext(ctx.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+<pre>{{this.tacticalCharacters | json}}</pre>

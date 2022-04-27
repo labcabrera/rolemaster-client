@@ -40,7 +40,7 @@ export class TacticalViewComponent implements OnInit {
       this.loadTacticalSession(id);
     });
   }
-  
+
   loadTacticalSession(tacticalSessionId: string) {
     this.tacticalSessionService.findById(tacticalSessionId).subscribe({
       next: response => {
@@ -49,10 +49,10 @@ export class TacticalViewComponent implements OnInit {
         this.loadRound(tacticalSessionId);
       },
       error: error => {
-        if(error.status == 404) {
+        if (error.status == 404) {
           this.router.navigateByUrl("/tactical-sessions");
         } else {
-          this.errorService.displayError(error);          
+          this.errorService.displayError(error);
         }
       }
     });
@@ -66,7 +66,7 @@ export class TacticalViewComponent implements OnInit {
 
   loadRound(tacticalSessionId: string) {
     this.tacticalSessionService.getCurrentRound(tacticalSessionId).subscribe(response => {
-      if(response != null) {
+      if (response != null) {
         this.tacticalRound = response;
         this.loadActions(this.tacticalRound.id);
       } else {
@@ -91,16 +91,20 @@ export class TacticalViewComponent implements OnInit {
   }
 
   startInitiativeDeclaration() {
-    this.tacticalSessionService.startInitiativeDeclaration(this.tacticalSession.id).subscribe(response => {
-      this.tacticalRound = response;
-    })
+    this.tacticalSessionService.startInitiativeDeclaration(this.tacticalSession.id).subscribe({
+      next: response => this.tacticalRound = response,
+      error: error => this.errorService.displayError(error)
+    });
   }
 
   startExecutionPhase() {
-    this.tacticalSessionService.startExecutionPhase(this.tacticalSession.id).subscribe(response => {
-      this.tacticalRound = response;
-      this.loadActions(this.tacticalRound.id);
-    })
+    this.tacticalSessionService.startExecutionPhase(this.tacticalSession.id).subscribe({
+      next: response => {
+        this.tacticalRound = response;
+        this.loadActions(this.tacticalRound.id);
+      },
+      error: error => this.errorService.displayError(error)
+    });
   }
 
   getAction(source: string, priority: string): TacticalAction | undefined {
@@ -120,11 +124,11 @@ export class TacticalViewComponent implements OnInit {
   }
 
   getCharacterInitiativeRoll(character: TacticalCharacter) {
-    if(!this.tacticalRound || !this.tacticalRound.initiativeModifiersMap) {
+    if (!this.tacticalRound || !this.tacticalRound.initiativeModifiersMap) {
       return 0;
     }
     const key = character.id;
-    if(this.tacticalRound.initiativeRollMap.hasOwnProperty(key)) {
+    if (this.tacticalRound.initiativeRollMap.hasOwnProperty(key)) {
       const tmp = new Map(Object.entries(this.tacticalRound.initiativeRollMap));
       return tmp.get(key);
     }

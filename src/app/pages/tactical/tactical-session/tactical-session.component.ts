@@ -14,13 +14,7 @@ import { NamedKey } from 'src/app/model/commons';
 import { NpcService } from 'src/app/services/npc.service';
 import { CharacterService } from 'src/app/services/character-service';
 import { EnumService } from 'src/app/services/enum.service';
-
-export interface AddCharacterOption {
-  id: string;
-  name: string;
-  isNpc: boolean;
-  unique: boolean;
-}
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-tactical-session',
@@ -29,15 +23,9 @@ export interface AddCharacterOption {
 })
 export class TacticalSessionComponent implements OnInit {
 
-  tacticalSession: TacticalSession = {} as TacticalSession;
+  tacticalSession?: TacticalSession;
   strategicSession: StrategicSession = {} as StrategicSession;
-  tacticalCharacterContexts: TacticalCharacter[] = [];
-
   form: FormGroup;
-
-  addCharacterOptions: AddCharacterOption[] = [];
-  addCharactersFormControl = new FormControl();
-  addCharactersFiltered: Observable<AddCharacterOption[]>;
 
   terrains: NamedKey[] = [];
   temperatures: NamedKey[] = [];
@@ -46,10 +34,9 @@ export class TacticalSessionComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private tacticalSessionService: TacticalSessionService,
-    private strategicSessionService: StrategicSessionsService,
-    private characterService: CharacterService,
-    private npcService: NpcService,
+    private strategicSessionService: StrategicSessionsService,   
     private enumService: EnumService,
+    private errorService: ErrorService,
     private fb: FormBuilder) {
     this.form = fb.group({
       name: ['', Validators.required],
@@ -58,19 +45,12 @@ export class TacticalSessionComponent implements OnInit {
       temperature: [''],
       exhaustionMultiplier: [1]
     });
-    this.addCharactersFiltered = this.addCharactersFormControl.valueChanges.pipe(
-      startWith(''),
-      map(value => (typeof value === 'string' ? value : value.name)),
-      map(name => (name ? this._filterStates(name) : this.addCharacterOptions.slice())),
-    );
     this.form.disable();
   }
 
   ngOnInit(): void {
     const tacticalSessionId = String(this.route.snapshot.paramMap.get('id'));
     this.loadTacticalSession(tacticalSessionId);
-    this.loadTacticalCharacterContexts(tacticalSessionId);
-    this.loadAddCharacterOptions();
     this.enumService.findTerrains().subscribe(result => this.terrains = result);
     this.enumService.findTemperatures().subscribe(result => this.temperatures = result);
   }
@@ -98,85 +78,26 @@ export class TacticalSessionComponent implements OnInit {
     });
   }
 
-  loadTacticalCharacterContexts(tacticalSessionId: string) {
-    this.tacticalSessionService.findTacticalCharacterContexts(tacticalSessionId).subscribe(result => {
-      this.tacticalCharacterContexts = result;
-    });
-  }
-
-  loadAddCharacterOptions() {
-    this.npcService.find().subscribe(result => {
-      for (let npc of result) {
-        const option: AddCharacterOption = {
-          id: npc.id,
-          name: npc.name,
-          isNpc: true,
-          unique: npc.unique
-        }
-        this.addCharacterOptions.push(option);
-      }
-    });
-    this.characterService.getCharacters().subscribe(result => {
-      for (let character of result) {
-        const option: AddCharacterOption = {
-          id: character.id,
-          name: character.name,
-          isNpc: false,
-          unique: true
-        }
-        this.addCharacterOptions.push(option);
-      }
-    });
-  }
-
   save() {
-    const id = this.tacticalSession.id;
+    const id = this.tacticalSession!.id;
     const update = this.form.value as TacticalSessionUpdate;
-    this.tacticalSessionService.update(id, update).subscribe(response => {
-      this.tacticalSession = response;
-      this.form.patchValue({
-        name: this.tacticalSession.name,
-        description: this.tacticalSession.description
-      });
-      this.form.disable();
+    this.tacticalSessionService.update(id, update).subscribe({
+      next: response => {
+        this.tacticalSession = response;
+        this.form.patchValue({
+          name: this.tacticalSession.name,
+          description: this.tacticalSession.description
+        });
+        this.form.disable();
+      },
+      error: error => this.errorService.displayError(error)
     });
   }
 
   delete() {
-    this.tacticalSessionService.delete(this.tacticalSession.id).subscribe(result => {
+    this.tacticalSessionService.delete(this.tacticalSession!.id).subscribe(result => {
       this.router.navigateByUrl("/strategic-sessions/detail/" + this.strategicSession.id);
     });
-  }
-
-  deleteTacticalCharacterContext(tacticalCharacterContextId: string) {
-    this.tacticalSessionService.deleteTacticalCharacterContext(tacticalCharacterContextId).subscribe(e => {
-      this.loadTacticalCharacterContexts(this.tacticalSession.id);
-    });
-  }
-
-  addCharacter() {
-    const opt = this.addCharactersFormControl.value as AddCharacterOption;
-    if (opt.isNpc) {
-      this.tacticalSessionService.addNpc(this.tacticalSession.id, opt.id).subscribe(result => {
-        this.tacticalCharacterContexts.push(result);
-      });
-    } else {
-      this.tacticalSessionService.addCharacter(this.tacticalSession.id, opt.id).subscribe(result => {
-        this.tacticalCharacterContexts.push(result);
-      });
-    }
-    if(opt.unique) {
-      this.addCharactersFormControl.setValue({} as AddCharacterOption);
-    }
-  }
-
-  displayNpcOption(npc: Npc) {
-    return npc && npc.name ? npc.name : '';
-  }
-
-  private _filterStates(value: string): AddCharacterOption[] {
-    const filterValue = value.toLowerCase();
-    return this.addCharacterOptions.filter(value => value.name.toLowerCase().includes(filterValue));
   }
 
   startEdit() {
@@ -184,8 +105,8 @@ export class TacticalSessionComponent implements OnInit {
   }
 
   cancelEdit() {
-    this.form.get('name')?.setValue(this.tacticalSession.name);
-    this.form.get('description')?.setValue(this.tacticalSession.description);
+    this.form.get('name')?.setValue(this.tacticalSession!.name);
+    this.form.get('description')?.setValue(this.tacticalSession!.description);
     this.form.disable();
   }
 
@@ -198,7 +119,7 @@ export class TacticalSessionComponent implements OnInit {
   }
 
   navigateToTacticalView() {
-    this.router.navigateByUrl("/tactical?tacticalSessionId=" + this.tacticalSession.id);
+    this.router.navigateByUrl("/tactical?tacticalSessionId=" + this.tacticalSession!.id);
   }
 
 }

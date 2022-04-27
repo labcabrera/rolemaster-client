@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
 
-  apiURL: 'https://rolemaster-core.herokuapp.com',
+  apiURL: 'http://rolemaster.labcabrera.com:8080'
 };
