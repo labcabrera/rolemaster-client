@@ -1,18 +1,11 @@
-import { TagCloseToken } from '@angular/compiler/src/ml_parser/tokens';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 
-import { Npc } from 'src/app/model/npc';
-import { TacticalCharacter } from 'src/app/model/character-context';
 import { StrategicSession, TacticalSession, TacticalSessionUpdate } from 'src/app/model/session';
 import { StrategicSessionsService } from 'src/app/services/strategic-sessions.service';
 import { TacticalSessionService } from 'src/app/services/tactical-session.service';
 import { NamedKey } from 'src/app/model/commons';
-import { NpcService } from 'src/app/services/npc.service';
-import { CharacterService } from 'src/app/services/character-service';
 import { EnumService } from 'src/app/services/enum.service';
 import { ErrorService } from 'src/app/services/error.service';
 

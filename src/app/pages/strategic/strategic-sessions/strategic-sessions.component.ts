@@ -5,7 +5,6 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import { StrategicSession } from '../../../model/session';
 import { StrategicSessionsService } from '../../../services/strategic-sessions.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
@@ -17,7 +16,7 @@ export class StrategicSessionsComponent implements OnInit, AfterViewInit {
 
   sessions: StrategicSession[] = [];
 
-  displayedColumns: string[] = ["name", "universe", "created", "updated"];
+  displayedColumns: string[] = ["name", "universe"];
   dataSource: MatTableDataSource<StrategicSession> = new MatTableDataSource<StrategicSession>(this.sessions);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;

@@ -16,7 +16,7 @@ export class CharacterListComponent implements OnInit, AfterViewInit {
 
   characters: CharacterInfo[] = [];
 
-  displayedColumns: string[] = ["name", "level", "race", "profession", "created"];
+  displayedColumns: string[] = ["name", "level", "race", "profession"];
   dataSource: MatTableDataSource<CharacterInfo> = new MatTableDataSource<CharacterInfo>(this.characters);
   
   @ViewChild(MatPaginator) paginator?: MatPaginator;

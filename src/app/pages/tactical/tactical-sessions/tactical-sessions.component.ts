@@ -6,7 +6,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { TacticalSession } from 'src/app/model/session';
 import { TacticalSessionService } from 'src/app/services/tactical-session.service';
 import { ErrorService } from 'src/app/services/error.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tactical-sessions',
@@ -16,7 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class TacticalSessionsComponent implements OnInit, AfterViewInit {
 
   tacticalSessions?: TacticalSession[];
-  displayedColumns: string[] = ["id", "name", "created", "modified"];
+  displayedColumns: string[] = ["name"];
   dataSource: MatTableDataSource<TacticalSession> = new MatTableDataSource<TacticalSession>(this.tacticalSessions);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;

@@ -1,12 +1,12 @@
 <div class="outerContainer">
 
-    <div fxLayout="row" *ngIf="acquiredTrainingPackages.length > 0" style="margin-bottom: 20px;">
+    <div fxLayout="row" *ngIf="acquiredTrainingPackages.length > 0">
         <mat-chip-list aria-label="Training packages">
             <mat-chip *ngFor="let tp of acquiredTrainingPackages">{{tp}}</mat-chip>
         </mat-chip-list>
     </div>
 
-    <div fxLayout="row" fxLayoutGap="15px">
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="15px">
 
         <div>
             <mat-form-field appearance="outline">
@@ -36,23 +36,24 @@
                 <input matInput [(ngModel)]="selectedTrainingPackage.value.timeAcquisition" disabled="true">
             </mat-form-field>
         </div>
-        <div>
-            <button mat-button (click)="addTrainingPackage()" [disabled]="addForm.invalid">Add</button>
-        </div>
+    </div>
+    
+    <div fxLayout="row" fxLayoutGap="15px">
+        <button mat-flat-button (click)="addTrainingPackage()" [disabled]="addForm.invalid">Add</button>
     </div>
 
-    <div fxLayout="column" [formGroup]="addForm">
+    <div fxLayout="column" fxLayout.lt-sm="row" fxLayoutGap="5px" [formGroup]="addForm">
 
         <div *ngIf="addForm.value.categorySelection">
             <h3>Category selection</h3>
             <div *ngIf="addForm.value.skillSelection">
                 <div formArrayName="categorySelection">
                     <div *ngFor="let option of categorySelections.controls; let i = index">
-                        <div [formGroupName]="i" fxLayout="row">
-                            <div fxFlex="20">
+                        <div [formGroupName]="i" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="5px">
+                            <div fxFlex="30" fxFlex.lt-sm="100">
                                 {{option.value['description']}}
                             </div>
-                            <div fxFlex="15">
+                            <div>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Category</mat-label>
                                     <mat-select formControlName="categoryId">
@@ -62,7 +63,7 @@
                                     </mat-select>
                                 </mat-form-field>
                             </div>
-                            <div fxFlex="15">
+                            <div>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Ranks</mat-label>
                                     <mat-select formControlName="ranks">
@@ -79,11 +80,11 @@
                 <h3>Skill selection</h3>
                 <div formArrayName="skillSelection">
                     <div *ngFor="let option of skillSelections.controls; let i = index">
-                        <div [formGroupName]="i" fxLayout="row">
-                            <div fxFlex="20">
+                        <div [formGroupName]="i" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="5px">
+                            <div fxFlex="30" fxFlex.lt-sm="100">
                                 {{option.value['description']}}
                             </div>
-                            <div fxFlex="15">
+                            <div>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Category</mat-label>
                                     <mat-select formControlName="skillId">
@@ -93,7 +94,7 @@
                                     </mat-select>
                                 </mat-form-field>
                             </div>
-                            <div fxFlex="15">
+                            <div>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Ranks</mat-label>
                                     <mat-select formControlName="ranks">

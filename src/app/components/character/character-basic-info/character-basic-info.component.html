@@ -1,6 +1,5 @@
-<mat-card>
+<div class="outerContainer">
     <div fxLayout="column" fxLayoutGap="5pt" *ngIf="character">
-
         <div fxLayout="row">
             <div fxFlex="50" class="character-info">Race</div>
             <div fxFlex="50" class="character-info">{{character.raceId}}</div>
@@ -13,8 +12,8 @@
             <div fxFlex="50" class="character-info">Realm</div>
             <div fxFlex="50" class="character-info">*</div>
         </div>
-
-        <div fxLayout="row" class="character-info-separator">
+        <mat-divider></mat-divider>
+        <div fxLayout="row" class="character-info">
             <div fxFlex="50" class="character-info">Level</div>
             <div fxFlex="50" class="character-info">{{character.level}}</div>
         </div>
@@ -26,8 +25,8 @@
             <div fxFlex="50" class="character-info">Experience</div>
             <div fxFlex="50" class="character-info">{{character.xp}}</div>
         </div>
-
-        <div fxLayout="row" class="character-info-separator">
+        <mat-divider></mat-divider>
+        <div fxLayout="row" class="character-info">
             <div fxFlex="50" class="character-info">Hit Points</div>
             <div fxFlex="50" class="character-info">{{character.maxHp}}</div>
         </div>
@@ -43,8 +42,8 @@
             <div fxFlex="50" class="character-info">Movement</div>
             <div fxFlex="50" class="character-info">{{character.baseMovementRate}}</div>
         </div>
-
-        <div fxLayout="row" class="character-info-separator">
+        <mat-divider></mat-divider>
+        <div fxLayout="row" class="character-info">
             <div fxFlex="50" class="character-info">Age</div>
             <div fxFlex="50" class="character-info">{{character.age}}</div>
         </div>
@@ -56,13 +55,8 @@
             <div fxFlex="50" class="character-info">Weight</div>
             <div fxFlex="50" class="character-info">{{character.weight?.weight}}</div>
         </div>
-
-        <div fxLayout="row" class="character-info-separator">
-            <div fxFlex="50" class="character-info">Development points</div>
-            <div fxFlex="50" class="character-info">{{character.developmentPoints?.totalPoints}}</div>
-        </div>
-
-        <div fxLayout="row" class="character-info-separator">
+        <mat-divider></mat-divider>
+        <div fxLayout="row" class="character-info">
             <div fxFlex="50" class="character-info">Armor</div>
             <div fxFlex="50" class="character-info">{{character.armor.armor}}</div>
         </div>
@@ -78,5 +72,10 @@
             <div fxFlex="50" class="character-info">Armor Qu penalty</div>
             <div fxFlex="50" class="character-info">{{character.armor.armorQuPenalty}}</div>
         </div>
+        <mat-divider></mat-divider>
+        <div fxLayout="row" class="character-info">
+            <div fxFlex="50" class="character-info">Development points</div>
+            <div fxFlex="50" class="character-info">{{character.developmentPoints?.totalPoints}}</div>
+        </div>
     </div>
-</mat-card>
+</div>

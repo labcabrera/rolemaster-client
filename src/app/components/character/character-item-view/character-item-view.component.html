@@ -1,6 +1,6 @@
-<div fxLayout="row" fxLayoutGap="20px" *ngIf="character">
+<div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="15px" *ngIf="character">
 
-    <div fxFlex="70">
+    <div fxFlex="70" fxFlex.lt-sm="100">
 
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="name">
@@ -53,7 +53,7 @@
 
     </div>
 
-    <div fxFlex="30">
+    <div fxFlex="30" fxFlex.lt-sm="100">
         <div fxLayout="column">
             <div fxLayout="row">
                 <div fxFlex="50" class="character-info">Carried weight</div>
@@ -67,8 +67,9 @@
                 <div fxFlex="50" class="character-info">Weight penalty</div>
                 <div fxFlex="50" class="character-info">{{character?.weight?.weightPenalty}}</div>
             </div>
-            <div fxLayout="row" class="character-info-separator">
-                <div fxFlex="50" class="character-info">Armor</div>
+            <mat-divider></mat-divider>
+            <div fxLayout="row" class="character-info">
+                <div fxFlex="50" class="character-info">AT</div>
                 <div fxFlex="50" class="character-info">{{character.armor.armor}}</div>
             </div>
             <div fxLayout="row">
