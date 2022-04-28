@@ -54,7 +54,7 @@ export class CharacterCreationComponent implements OnInit {
       'height': ['174', Validators.required],
       'weight': ['72', Validators.required],
       'attributesRoll': [660],
-      'attributesRemaining': [650],
+      'attributesRemaining': [0],
       'weaponCategoryPriority': [[
         "weapon-1h-edged",
         "weapon-missile",
@@ -65,16 +65,16 @@ export class CharacterCreationComponent implements OnInit {
         "weapon-missile-artillery"
       ]],
       'baseAttributes': fb.group({
-        'ag': [1],
-        'co': [1],
-        'em': [1],
-        'in': [1],
-        'me': [1],
-        'pr': [1],
-        'qu': [1],
-        're': [1],
-        'sd': [1],
-        'st': [1]
+        'ag': [66],
+        'co': [66],
+        'em': [66],
+        'in': [66],
+        'me': [66],
+        'pr': [66],
+        'qu': [66],
+        're': [66],
+        'sd': [66],
+        'st': [66]
       })
     });
     this.characterDevelopment = fb.group({

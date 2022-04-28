@@ -11,7 +11,7 @@ export class CharacterCreationAttributeComponent implements OnInit {
   @Input() attributeName: string = "";
   @Output() onChange = new EventEmitter<any>();
 
-  value: number = 1;
+  value: number = 66;
   bonus: number = 0;
 
   constructor() { }

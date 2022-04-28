@@ -23,10 +23,10 @@ export class CharacterSkillCategoryListComponent implements OnInit, AfterViewIni
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
-  displayedColumns: string[] = ['categoryId', 'group', 'developmentCost',
+  displayedColumns: string[] = ['categoryId', 'group',
     'adolescenceRanks', 'trainingPackageRanks', 'developmentRanks', 'consolidatedRanks',
     'bonusAttribute', 'bonusProfession', 'bonusRanks',
-    'totalRanks', 'totalBonus', 'options'];
+    'totalRanks', 'developmentCost', 'totalBonus', 'options'];
 
   allowModifications = true;
 

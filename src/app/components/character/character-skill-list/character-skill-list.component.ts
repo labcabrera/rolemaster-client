@@ -22,10 +22,10 @@ export class CharacterSkillListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   displayedColumns: string[] = [
-    'skillId', 'categoryId', 'group', 'developmentCost',
+    'skillId', 'categoryId', 'group',
     'adolescenceRanks', 'trainingPackageRanks', 'developmentRanks', 'consolidatedRanks',
     'bonusAttribute', 'bonusCategory', 'bonusRanks',
-    'totalRanks', 'totalBonus', 'options'];
+    'totalRanks', 'developmentCost', 'totalBonus', 'options'];
   includeUndevelopedSkills: boolean = true;
 
   constructor(
