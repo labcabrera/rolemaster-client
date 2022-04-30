@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { StrategicSession, TacticalSession } from '../../../model/session';
@@ -8,7 +7,6 @@ import { StrategicSessionsService } from '../../../services/strategic-sessions.s
 import { Universe } from 'src/app/model/commons';
 import { UniverseService } from 'src/app/services/universe.service';
 import { TacticalSessionService as TacticalSessionService } from 'src/app/services/tactical-session.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorService } from 'src/app/services/error.service';
 
 @Component({

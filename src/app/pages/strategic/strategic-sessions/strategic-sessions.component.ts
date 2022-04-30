@@ -52,7 +52,6 @@ export class StrategicSessionsComponent implements OnInit, AfterViewInit {
   }
 
   createSession(): void {
-    console.log("Creating session");
     var name = 'Demo session ' + new Date().toISOString();
     var request = { name: name };
     this.sessionService.create(request)

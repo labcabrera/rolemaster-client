@@ -10,7 +10,6 @@ export class ActionDeclarationFormService {
   constructor() { }
 
   configureMeleeAttackTargets(fb: FormBuilder, actionForm: FormGroup, meleeAttackType: string, meleeAttackMode: string) {
-    console.log("Configuring targets. Type: ", meleeAttackType, ", Mode: ", meleeAttackMode);
     actionForm.removeControl('targets');
     if (meleeAttackType === 'full') {
       switch (meleeAttackMode) {

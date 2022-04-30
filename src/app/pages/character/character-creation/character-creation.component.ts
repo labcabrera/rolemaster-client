@@ -104,7 +104,6 @@ export class CharacterCreationComponent implements OnInit {
   }
 
   updateAttributeCost(): void {
-    console.log("Updating attributes cost");
     var attributes = this.characterCreationFormGroupValue.baseAttributes;
     this.characterGenerationUtilsService.calculateAttributeCost(attributes).subscribe(cost => {
       var remaining = this.characterCreationFormGroupValue.attributesRoll - cost;
@@ -132,7 +131,7 @@ export class CharacterCreationComponent implements OnInit {
 
   updateAttribute(event: any) {
     this.characterCreationFormGroup.patchValue({
-      baseAttributes: { [event.attribute]: event.value}
+      baseAttributes: { [event.attribute]: event.value }
     })
     this.updateAttributeCost();
   }

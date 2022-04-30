@@ -44,7 +44,6 @@ export class StrategicSessionCreationComponent implements OnInit {
   }
 
   loadUniverse(event: any) {
-    console.log(event);
     this.form.value['universe'] = event.id;
   }
 

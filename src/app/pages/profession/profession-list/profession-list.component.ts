@@ -29,8 +29,6 @@ export class ProfessionListComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator!;
     this.dataSource.sort = this.sort!;
-    console.log("p: " , this.paginator);
-    console.log("s: ", this.sort);
   }
 
   getProfessions(): void {
@@ -41,7 +39,6 @@ export class ProfessionListComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter(event: Event) {
-    console.log("filtering: ", event);
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }

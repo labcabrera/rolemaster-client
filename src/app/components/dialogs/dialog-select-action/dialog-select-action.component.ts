@@ -59,12 +59,10 @@ export class DialogSelectActionComponent implements OnInit {
     var usedPercent = 0;
     if (actions) {
       var list = actions.filter(e => character.id === e.source);
-      console.log("actions: ", list);
       list.forEach(e => {
         usedPercent += e.actionPercent;
       });
     }
-    console.log("total: " + usedPercent);
     return usedPercent;
   }
 

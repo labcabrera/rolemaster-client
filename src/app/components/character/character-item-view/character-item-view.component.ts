@@ -27,7 +27,7 @@ export class CharacterItemViewComponent implements OnInit {
   itemPositions: NamedKey[] = [];
 
   dataSource = new MatTableDataSource<CharacterItem>([]);
-  displayedColumns: string[] = ['name', 'count', 'weight', 'position', 'customize', 'delete'];
+  displayedColumns: string[] = ['name', 'count', 'weight', 'position', 'options'];
 
   constructor(
     private characterItemService: CharacterItemService,
@@ -120,7 +120,6 @@ export class CharacterItemViewComponent implements OnInit {
       switch (b.position) {
       }
       if (xa > xb) {
-        console.log("-1: ", a, ", ", b);
         return -1;
       } else if (xa < xb) {
         return -0;
