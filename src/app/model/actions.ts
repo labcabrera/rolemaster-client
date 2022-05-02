@@ -25,6 +25,8 @@ export interface TacticalAction {
     breakageResults: BreakageResultMap;
     distance: number;
     cover: string;
+    customBonus: number;
+    preparationRounds: number;
 }
 
 export interface AttackResultMap {

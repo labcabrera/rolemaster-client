@@ -1,3 +1,4 @@
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { TacticalAction } from 'src/app/model/actions';
@@ -28,15 +29,16 @@ export class MissileAttackExecutionComponent implements OnInit {
     private enumService: EnumService,
     private errorService: ErrorService,
     private fb: FormBuilder) {
-    
+
     this.actionExecutionForm = this.fb.group({
       type: ['missile-attack'],
       roll: this.fb.group({
         result: ['', Validators.required]
       }),
-      customBonus: [''],
+      customBonus: ['0'],
       distance: ['', Validators.required],
-      cover: ['none', Validators.required]
+      cover: ['none', Validators.required],
+      preparationRounds: ['0', Validators.required]
     });
   }
 
@@ -49,21 +51,31 @@ export class MissileAttackExecutionComponent implements OnInit {
   }
 
   loadAction(action: TacticalAction): void {
-    var result = this.action?.rolls && this.action?.rolls['main-hand'] ? this.action?.rolls['main-hand'].result : 0;
-    this.actionExecutionForm.patchValue({
-      roll: {
-        result: result
-      },
-      distance: this.action!.distance,
-      cover: this.action!.cover
-    });
-    if(this.action?.state != 'pending') {
+    if (this.action?.rolls && this.action?.rolls['main-hand'].result) {
+      this.actionExecutionForm.patchValue({
+        roll: {
+          result: this.action?.rolls && this.action?.rolls['main-hand'].result
+        }
+      })
+    }
+    if (this.action?.distance) { this.actionExecutionForm.patchValue({ distance: this.action?.distance }); }
+    if (this.action?.cover) { this.actionExecutionForm.patchValue({ cover: this.action.cover }); }
+    if (this.action?.customBonus) { this.actionExecutionForm.patchValue({ customBonus: this.action.customBonus }); }
+    if (this.action?.preparationRounds) { this.actionExecutionForm.patchValue({ preparationRounds: this.action.preparationRounds }); }
+
+    if (this.action?.state != 'pending') {
       this.actionExecutionForm.disable();
     }
-    if(this.action?.state === 'pending-breakage-resolution') {
+    if (this.action?.state === 'pending-breakage-resolution' || (this.action?.breakageResults['main-hand'])) {
       this.breakageForm = this.createBreakageExecutionForm();
+      if (this.action.state != 'pending-breakage-resolution') {
+        this.breakageForm.disable();
+      }
+      if (this.action.breakageResults['main-hand'].roll) {
+        this.breakageForm.patchValue({ rolls: { 'main-hand': this.action.breakageResults['main-hand'].roll } });
+      }
     }
-    if(this.action?.state === 'pending-critical-resolution') {
+    if (this.action?.state === 'pending-critical-resolution') {
       this.criticalExecutionForm = this.createCriticalExecutionForm();
     }
   }
@@ -86,9 +98,7 @@ export class MissileAttackExecutionComponent implements OnInit {
     this.actionService.executeBreakage(this.action!.id, this.breakageForm!.value).subscribe({
       next: action => {
         this.action = action;
-        if (this.action.state === 'pending-critical-resolution') {
-          //this.criticalExecutionForm = this.createCriticalExecutionForm();
-        }
+        this.loadAction(this.action);
       },
       error: error => this.errorService.displayError(error)
     });
@@ -106,7 +116,7 @@ export class MissileAttackExecutionComponent implements OnInit {
   private createBreakageExecutionForm(): FormGroup {
     const result = this.fb.group({
       rolls: this.fb.group({
-        'main-hand': ['1', Validators.required]
+        'main-hand': ['0', Validators.required]
       })
     });
     return result;
