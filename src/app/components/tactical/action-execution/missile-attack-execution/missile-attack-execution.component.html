@@ -1,5 +1,16 @@
 <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="15px">
 
+    <div fxFlex="25" *ngIf="action">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>State</mat-label>
+            <input matInput [value]="action.state" [disabled]="true">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Target</mat-label>
+            <input matInput [value]="getTargetName()" [disabled]="true">
+        </mat-form-field>
+    </div>
+
     <div fxFlex="25" *ngIf="actionExecutionForm">
 
         <div fxLayout="column" [formGroup]="actionExecutionForm">
@@ -25,7 +36,58 @@
                 </mat-form-field>
             </div>
         </div>
+
+        <div fxLayout="column" [formGroup]="breakageForm" *ngIf="breakageForm">
+            <div formGroupName="rolls" fxLayout="row" fxLayoutGap="5px">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Breakage roll</mat-label>
+                    <input matInput formControlName="main-hand" placeholder="Breakage roll" value="">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="column" *ngIf="criticalExecutionForm && action" [formGroup]="criticalExecutionForm">
+            <div formGroupName="rolls">
+                <div *ngFor="let rollKey of getCriticalRollKeys()">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>{{rollKey}}</mat-label>
+                        <input matInput formControlName="{{rollKey}}" placeholder="Critical roll">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <div fxFlex="25" *ngIf="action">
+        <app-attack-result [action]="action"></app-attack-result>
+    </div>
+
+    <div fxFlex="25" *ngIf="action">
+        <div *ngIf="action.criticalResults['main-hand']">
+            <h2>Main hand critical</h2>
+            <app-critical-result-view *ngFor="let critical of action.criticalResults['main-hand']" [critical]="critical"></app-critical-result-view>
+        </div>
+        <div *ngIf="action.criticalResults['off-hand']" style="margin-top: 20pt;">
+            <h2>Off-hand critical</h2>
+            <app-critical-result-view *ngFor="let critical of action.criticalResults['off-hand']" [critical]="critical"></app-critical-result-view>
+        </div>
+    </div>
+
 </div>
 
+<mat-dialog-actions *ngIf="actionExecutionForm">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="executeMissileAttack()"
+        [disabled]="actionExecutionForm.invalid || actionExecutionForm.disabled">Execute attack</button>
+    <button mat-button (click)="executeBreakage()" *ngIf="breakageForm"
+        [disabled]="breakageForm.invalid || breakageForm.disabled">Check breakage</button>
+    <button mat-button (click)="resolveCriticalAction()" *ngIf="action && criticalExecutionForm"
+        [disabled]="criticalExecutionForm!.invalid || this.action.state !== 'pending-critical-resolution'">Resolve critical</button>
+</mat-dialog-actions>
+
 <pre>{{this.actionExecutionForm.value | json}}</pre>
+<pre>{{this.action | json}}</pre>
+<pre>{{this.breakageForm?.value | json}}</pre>
+<!--
+-->

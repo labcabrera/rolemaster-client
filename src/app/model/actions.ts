@@ -23,6 +23,8 @@ export interface TacticalAction {
     attackResults: AttackResultMap;
     criticalResults: TacticalCriticalResultMap;
     breakageResults: BreakageResultMap;
+    distance: number;
+    cover: string;
 }
 
 export interface AttackResultMap {
