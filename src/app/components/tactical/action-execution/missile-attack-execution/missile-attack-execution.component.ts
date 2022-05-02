@@ -34,6 +34,7 @@ export class MissileAttackExecutionComponent implements OnInit {
       roll: this.fb.group({
         result: ['', Validators.required]
       }),
+      customBonus: [''],
       distance: ['', Validators.required],
       cover: ['none', Validators.required]
     });
@@ -44,10 +45,10 @@ export class MissileAttackExecutionComponent implements OnInit {
       next: results => this.coverTypes = results,
       error: error => this.errorService.displayError(error)
     });
-    this.loadActionForm();
+    this.loadAction(this.action!);
   }
 
-  loadActionForm(): void {
+  loadAction(action: TacticalAction): void {
     var result = this.action?.rolls && this.action?.rolls['main-hand'] ? this.action?.rolls['main-hand'].result : 0;
     this.actionExecutionForm.patchValue({
       roll: {
@@ -74,7 +75,8 @@ export class MissileAttackExecutionComponent implements OnInit {
   executeMissileAttack() {
     this.actionService.execute(this.action!.id, this.actionExecutionForm.value).subscribe({
       next: result => {
-
+        this.action = result;
+        this.loadAction(this.action);
       },
       error: error => this.errorService.displayError(error)
     });

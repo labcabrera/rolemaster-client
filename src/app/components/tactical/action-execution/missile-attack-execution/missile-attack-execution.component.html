@@ -22,6 +22,12 @@
             </div>
             <div>
                 <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Custom bonus</mat-label>
+                    <input matInput formControlName="customBonus" placeholder="Custom bonus" value="">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Distance</mat-label>
                     <input matInput formControlName="distance" placeholder="Distance" value="">
                 </mat-form-field>
@@ -77,11 +83,9 @@
 </div>
 
 <mat-dialog-actions *ngIf="actionExecutionForm">
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" (click)="executeMissileAttack()"
-        [disabled]="actionExecutionForm.invalid || actionExecutionForm.disabled">Execute attack</button>
-    <button mat-button (click)="executeBreakage()" *ngIf="breakageForm"
-        [disabled]="breakageForm.invalid || breakageForm.disabled">Check breakage</button>
+    <button mat-button mat-dialog-close>Close</button>
+    <button mat-button (click)="executeMissileAttack()" [disabled]="actionExecutionForm.invalid || actionExecutionForm.disabled">Execute attack</button>
+    <button mat-button (click)="executeBreakage()" *ngIf="breakageForm" [disabled]="breakageForm.invalid || breakageForm.disabled">Check breakage</button>
     <button mat-button (click)="resolveCriticalAction()" *ngIf="action && criticalExecutionForm"
         [disabled]="criticalExecutionForm!.invalid || this.action.state !== 'pending-critical-resolution'">Resolve critical</button>
 </mat-dialog-actions>
