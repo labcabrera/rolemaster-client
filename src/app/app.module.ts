@@ -81,6 +81,7 @@ import { CharacterTrainingPackagesComponent } from './components/character/chara
 import { TacticalSessionCharacterManagementComponent } from './components/tactical-session/tactical-session-character-management/tactical-session-character-management.component';
 import { CharacterCreationAttributeComponent } from './components/character/character-creation-attribute/character-creation-attribute.component';
 import { CombatComponent } from './pages/wiki/combat/combat.component';
+import { MissileAttackExecutionComponent } from './components/tactical/action-execution/missile-attack-execution/missile-attack-execution.component';
 
 @NgModule({
   declarations: [
@@ -153,6 +154,7 @@ import { CombatComponent } from './pages/wiki/combat/combat.component';
     TacticalSessionCharacterManagementComponent,
     CharacterCreationAttributeComponent,
     CombatComponent,
+    MissileAttackExecutionComponent,
   ],
   imports: [
     FormsModule,

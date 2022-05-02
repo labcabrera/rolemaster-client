@@ -49,7 +49,7 @@ export class CharacterCreationComponent implements OnInit {
       'level': ['1', Validators.required],
       'raceId': ['common-men', Validators.required],
       'professionId': ['thief', Validators.required],
-      'realmId': ['essence', Validators.required],
+      'realm': ['essence', Validators.required],
       'age': ['25', Validators.required],
       'height': ['174', Validators.required],
       'weight': ['72', Validators.required],
@@ -119,9 +119,12 @@ export class CharacterCreationComponent implements OnInit {
   }
 
   createCharacter(): void {
-    this.characterService.createCharacter(this.characterCreationFormGroupValue).subscribe(character => {
-      const url = `characters/detail/${character.id}`
-      this.router.navigateByUrl(url);
+    this.characterService.createCharacter(this.characterCreationFormGroupValue).subscribe({
+      next: character => {
+        const url = `characters/detail/${character.id}`
+        this.router.navigateByUrl(url);
+      },
+      error: error => this.errorService.displayError(error)
     });
   }
 

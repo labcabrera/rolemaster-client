@@ -1,0 +1,31 @@
+<div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="15px">
+
+    <div fxFlex="25" *ngIf="actionExecutionForm">
+
+        <div fxLayout="column" [formGroup]="actionExecutionForm">
+            <div formGroupName="roll" fxLayout="row" fxLayoutGap="5px">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Roll</mat-label>
+                    <input matInput formControlName="result" placeholder="Roll" value="">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Distance</mat-label>
+                    <input matInput formControlName="distance" placeholder="Distance" value="">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Off-hand facing</mat-label>
+                    <mat-select formControlName="cover">
+                        <mat-option *ngFor="let option of coverTypes" [value]="option.key">{{option.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</div>
+
+<pre>{{this.actionExecutionForm.value | json}}</pre>

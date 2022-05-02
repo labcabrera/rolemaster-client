@@ -26,13 +26,9 @@
             <th mat-header-cell *matHeaderCellDef>Attributes</th>
             <td mat-cell *matCellDef="let element">{{element.attributeBonus}}</td>
         </ng-container>
-        <ng-container matColumnDef="skillCategoryBonusProgression">
-            <th mat-header-cell *matHeaderCellDef>Category Progression</th>
-            <td mat-cell *matCellDef="let element">{{element.skillCategoryBonusProgression}}</td>
-        </ng-container>
-        <ng-container matColumnDef="skillBonusProgression">
-            <th mat-header-cell *matHeaderCellDef>Skill Progression</th>
-            <td mat-cell *matCellDef="let element">{{element.skillBonusProgression}}</td>
+        <ng-container matColumnDef="progressionType">
+            <th mat-header-cell *matHeaderCellDef>Progression Type</th>
+            <td mat-cell *matCellDef="let element">{{element.progressionType}}</td>
         </ng-container>
         <ng-container matColumnDef="description">
             <th mat-header-cell *matHeaderCellDef>Attributes</th>

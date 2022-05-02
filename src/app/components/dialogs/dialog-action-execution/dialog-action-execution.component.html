@@ -5,7 +5,9 @@
         <app-melee-attack-execution [action]="action" [characters]="characters"></app-melee-attack-execution>
     </div>
 
-    <!--pre>{{action | json}}</pre -->
+    <div *ngIf="action.type === 'missile-attack'">
+        <app-missile-attack-execution [action]="action" [characters]="characters"></app-missile-attack-execution>
+    </div>
 
 </mat-dialog-content>
 

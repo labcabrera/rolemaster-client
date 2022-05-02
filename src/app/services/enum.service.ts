@@ -45,13 +45,18 @@ export class EnumService {
     return this.http.get<NamedKey[]>(url).pipe();
   }
 
-  findTerrains() : Observable<NamedKey[]> {
+  findTerrains(): Observable<NamedKey[]> {
     var url = `${this.baseUrl}/terrain`
     return this.http.get<NamedKey[]>(url).pipe();
   }
 
-  findTemperatures() : Observable<NamedKey[]> {
+  findTemperatures(): Observable<NamedKey[]> {
     var url = `${this.baseUrl}/temperature-multiplier`
+    return this.http.get<NamedKey[]>(url).pipe();
+  }
+
+  findCoverTypes(): Observable<NamedKey[]> {
+    var url = `${this.baseUrl}/cover-types`
     return this.http.get<NamedKey[]>(url).pipe();
   }
 
