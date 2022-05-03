@@ -15,7 +15,7 @@ export class RaceListComponent implements OnInit, AfterViewInit {
 
   races?: Race[];
 
-  displayedColumns: string[] = [ "name", "universes" ];
+  displayedColumns: string[] = [ "name", "keywords", "universes" ];
   dataSource: MatTableDataSource<Race> = new MatTableDataSource<Race>(this.races);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;

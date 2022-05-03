@@ -9,6 +9,7 @@ import { Skill } from 'src/app/model/skill';
 import { SkillCategoryService } from 'src/app/services/skill-category.service';
 import { SkillService } from 'src/app/services/skill.service';
 import { environment } from 'src/environments/environment';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-skill-category-detail',
@@ -19,8 +20,8 @@ export class SkillCategoryDetailComponent implements OnInit {
 
   skillCategory: SkillCategory = {} as SkillCategory;
   skills: Skill[] = [];
-  
-  displayedColumns: string[] = [ "name", "type", "progressionType", "description" ];
+
+  displayedColumns: string[] = ["name", "type", "progressionType", "description"];
   dataSource: MatTableDataSource<Skill> = new MatTableDataSource<Skill>(this.skills);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
@@ -28,6 +29,7 @@ export class SkillCategoryDetailComponent implements OnInit {
   constructor(
     private skillCategoryService: SkillCategoryService,
     private skillService: SkillService,
+    private errorService: ErrorService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -41,11 +43,14 @@ export class SkillCategoryDetailComponent implements OnInit {
     this.skillCategoryService.findById(id).subscribe(result => {
       this.skillCategory = result;
     });
-    this.skillService.getSkillsByCategoryId(id).subscribe(result => {
-      this.skills = result;
-      this.dataSource.data = this.skills;
+    this.skillService.getSkillsByCategoryId(id).subscribe({
+      next: result => {
+        this.skills = result;
+        this.dataSource.data = this.skills;
+      },
+      error: error => this.errorService.displayError(error)
     })
-    
+
   }
 
 }

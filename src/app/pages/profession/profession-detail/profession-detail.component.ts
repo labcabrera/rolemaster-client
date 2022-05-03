@@ -19,7 +19,7 @@ export class ProfessionDetailComponent implements OnInit {
 
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
-  profession: Profession = {} as Profession;
+  profession?: Profession;
 
   realms: string[] = ["essence", "channeling", "mentalism", "arcane"];
 

@@ -8,12 +8,14 @@
 
 <div class="outerContainer" *ngIf="race">
 
-    <div fxLayout fxLayout="row" fxLayout.lt-sm="column">
+    <div fxLayout fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="15">
         <div fxFlex="25">
             <app-race-basic-info [race]="race"></app-race-basic-info>
         </div>
         <div fxFlex="25">
             <app-race-attributes [race]="race"></app-race-attributes>
+            <br>
+            <app-race-resistances [race]="race"></app-race-resistances>
         </div>
         <div fxFlex="25">
             <app-race-adolescence-skill-categories [race]="race"></app-race-adolescence-skill-categories>
@@ -27,7 +29,6 @@
         <div>
         </div>
         <div>
-            <app-race-resistances [race]="race"></app-race-resistances>
         </div>
         <div>
             <app-race-skill-bonus></app-race-skill-bonus>

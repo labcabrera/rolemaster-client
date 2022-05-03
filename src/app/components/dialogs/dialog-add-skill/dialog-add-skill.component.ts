@@ -9,6 +9,8 @@ import { CharacterInfo } from 'src/app/model/character-info';
 import { SkillService } from 'src/app/services/skill.service';
 import { CharacterService } from 'src/app/services/character-service';
 import { ErrorService } from 'src/app/services/error.service';
+import { NamedKey } from 'src/app/model/commons';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-dialog-add-skill',
@@ -20,13 +22,15 @@ export class DialogAddSkillComponent implements OnInit {
   addSkillForm: FormGroup;
 
   character: CharacterInfo = {} as CharacterInfo;
-
   availableSkills: Skill[] = [];
   filteredOptions?: Observable<Skill[]>;
+
+  customizationOptions: NamedKey[] = [];
 
   constructor(
     private characterService: CharacterService,
     private skillService: SkillService,
+    private languageService: LanguageService,
     private errorService: ErrorService,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<any>) {
@@ -39,13 +43,16 @@ export class DialogAddSkillComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dialogRef.updateSize('50%', '50%');
+    this.dialogRef.updateSize('70%', '50%');
     this.skillService.getSkills().subscribe(result => this.availableSkills = result);
     this.filteredOptions = this.addSkillForm.controls['skillId'].valueChanges.pipe(
       startWith(''),
       map(value => (typeof value === 'string' ? value : value.name)),
       map(name => (name ? this._filter(name) : this.availableSkills.slice()))
     );
+    this.addSkillForm.controls['skillId'].valueChanges.subscribe(e => {
+      this.loadCustomizationOptions(e)
+    });
   }
 
   load(character: CharacterInfo) {
@@ -62,12 +69,35 @@ export class DialogAddSkillComponent implements OnInit {
       customizations.push(this.addSkillForm.value['customization02']);
     }
     this.characterService.addSkill(this.character.id, skillId, customizations).subscribe({
-      next: result =>  {
+      next: result => {
         this.character = result;
         this.dialogRef.close();
       },
       error: error => this.errorService.displayError(error)
     })
+  }
+
+  loadCustomizationOptions(event: any) {
+    console.log("Loading customization options: ", event);
+    this.customizationOptions = [];
+    if (!event.customizableOptions || event.customizableOptions < 1) {
+      return;
+    }
+    const restriction = event.customizationRestriction;
+    if (restriction === 'weapon-skill') {
+      this.availableSkills.filter(e => e.type === "weapon").forEach(e => {
+        this.customizationOptions.push({ key: e.id, name: e.name });
+      });
+    } else if(restriction === 'language') {
+      this.languageService.find().subscribe({
+        next: results => {
+          results.forEach(e => {
+            this.customizationOptions.push({ key: e.id, name: e.name });
+          })
+        },
+        error: error => this.errorService.displayError(error)
+      });
+    }
   }
 
   displayFn(user: Skill): string {

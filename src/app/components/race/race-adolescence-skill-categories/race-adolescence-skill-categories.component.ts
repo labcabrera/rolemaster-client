@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NamedKey } from 'src/app/model/commons';
+import { MatTableDataSource } from '@angular/material/table';
+
 import { Race } from 'src/app/model/race';
+import { NamedKey } from 'src/app/model/commons';
 
 @Component({
   selector: 'app-race-adolescence-skill-categories',
@@ -10,8 +12,9 @@ import { Race } from 'src/app/model/race';
 export class RaceAdolescenceSkillCategoriesComponent implements OnInit {
 
   @Input() race?: Race;
-
+  dataSource = new MatTableDataSource<NamedKey>();
   categories: NamedKey[] = [];
+  displayedColumns = ["category", "ranks"];
 
   constructor() { }
 
@@ -19,9 +22,10 @@ export class RaceAdolescenceSkillCategoriesComponent implements OnInit {
     if (this.race && this.race.adolescenceSkillCategoryRanks) {
       const tmp = this.race.adolescenceSkillCategoryRanks;
       Object.keys(tmp).map(key => {
-        const value = "todo";
+        const value = "" + tmp[key];
         this.categories.push({ key: key, name: value });
       });
+      this.dataSource.data = this.categories;
     }
   }
 

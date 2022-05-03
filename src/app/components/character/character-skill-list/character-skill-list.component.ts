@@ -25,7 +25,7 @@ export class CharacterSkillListComponent implements OnInit, AfterViewInit {
     'skillId', 'categoryId', 'group',
     'adolescenceRanks', 'trainingPackageRanks', 'developmentRanks', 'consolidatedRanks',
     'bonusAttribute', 'bonusCategory', 'bonusRanks',
-    'totalRanks', 'developmentCost', 'totalBonus', 'options'];
+    'developmentCost', 'totalRanks', 'totalBonus', 'options'];
   includeUndevelopedSkills: boolean = true;
 
   constructor(

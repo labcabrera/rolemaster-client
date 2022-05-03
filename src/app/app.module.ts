@@ -89,6 +89,9 @@ import { RaceAdolescenceSkillsComponent } from './components/race/race-adolescen
 import { RaceSkillBonusComponent } from './components/race/race-skill-bonus/race-skill-bonus.component';
 import { RaceLanguagesComponent } from './components/race/race-languages/race-languages.component';
 import { RaceBasicInfoComponent } from './components/race/race-basic-info/race-basic-info.component';
+import { ProfessionSkillCategoryBonusComponent } from './components/profession/profession-skill-category-bonus/profession-skill-category-bonus.component';
+import { ProfessionSkillCostComponent } from './components/profession/profession-skill-cost/profession-skill-cost.component';
+import { ProfessionWeaponCostComponent } from './components/profession/profession-weapon-cost/profession-weapon-cost.component';
 
 @NgModule({
   declarations: [
@@ -169,6 +172,9 @@ import { RaceBasicInfoComponent } from './components/race/race-basic-info/race-b
     RaceSkillBonusComponent,
     RaceLanguagesComponent,
     RaceBasicInfoComponent,
+    ProfessionSkillCategoryBonusComponent,
+    ProfessionSkillCostComponent,
+    ProfessionWeaponCostComponent,
   ],
   imports: [
     FormsModule,

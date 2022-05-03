@@ -6,21 +6,41 @@
     </button>
 </mat-toolbar>
 
-<div class="outerContainer">
+<div class="outerContainer" *ngIf="profession">
 
-    <div fxLayout="column" fxLayoutAlign="center" style="margin-top:100px">
-
-        <div fxLayoutAlign="left">
-            <mat-form-field style="width:50%" appearance="fill">
+    <div fxLayout="row" fxLayoutGap="15">
+        <div>
+            <mat-form-field appearance="outline">
                 <mat-label>Name</mat-label>
                 <input [(ngModel)]="profession.name" matInput>
             </mat-form-field>
+            <mat-chip-list>
+                <mat-chip *ngFor="let realm of profession.availableRealms">
+                    {{realm}}
+                </mat-chip>
+            </mat-chip-list>
         </div>
-        <div fxLayoutAlign="left">
-            TODO: realms {{profession.availableRealms}}
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="15" style="margin-top: 30px;">
+        
+        <div fxFlex="30">
+            <app-profession-skill-category-bonus [profession]="profession"></app-profession-skill-category-bonus>
         </div>
+
+        <div fxFlex="30">
+            <app-profession-skill-cost [profession]="profession"></app-profession-skill-cost>
+        </div>
+
+        <div fxFlex="30">
+            <app-profession-weapon-cost [profession]="profession"></app-profession-weapon-cost>
+        </div>
+
+
     </div>
 
 </div>
 
-<pre>{{profession | json}}</pre>
+<!--
+    <pre>{{profession | json}}</pre>
+-->
