@@ -15,8 +15,7 @@ import { StrategicSessionComponent } from './pages/strategic/strategic-session/s
 
 import { SkillListComponent } from './pages/skill/skill-list/skill-list.component';
 import { ProfessionListComponent } from './pages/profession/profession-list/profession-list.component';
-import { RaceListComponent } from './pages/race-list/race-list.component';
-import { RaceDetailComponent } from './pages/race-detail/race-detail.component';
+import { RaceDetailComponent } from './pages/race/race-detail/race-detail.component';
 import { ProfessionDetailComponent } from './pages/profession/profession-detail/profession-detail.component';
 import { SkillCategoryListComponent } from './pages/skill-category/skill-category-list/skill-category-list.component';
 import { SkillSelectComponent } from './components/character/skill-select/skill-select.component';
@@ -82,6 +81,14 @@ import { TacticalSessionCharacterManagementComponent } from './components/tactic
 import { CharacterCreationAttributeComponent } from './components/character/character-creation-attribute/character-creation-attribute.component';
 import { CombatComponent } from './pages/wiki/combat/combat.component';
 import { MissileAttackExecutionComponent } from './components/tactical/action-execution/missile-attack-execution/missile-attack-execution.component';
+import { RaceListComponent } from './pages/race/race-list/race-list.component';
+import { RaceAttributesComponent } from './components/race/race-attributes/race-attributes.component';
+import { RaceResistancesComponent } from './components/race/race-resistances/race-resistances.component';
+import { RaceAdolescenceSkillCategoriesComponent } from './components/race/race-adolescence-skill-categories/race-adolescence-skill-categories.component';
+import { RaceAdolescenceSkillsComponent } from './components/race/race-adolescence-skills/race-adolescence-skills.component';
+import { RaceSkillBonusComponent } from './components/race/race-skill-bonus/race-skill-bonus.component';
+import { RaceLanguagesComponent } from './components/race/race-languages/race-languages.component';
+import { RaceBasicInfoComponent } from './components/race/race-basic-info/race-basic-info.component';
 
 @NgModule({
   declarations: [
@@ -155,6 +162,13 @@ import { MissileAttackExecutionComponent } from './components/tactical/action-ex
     CharacterCreationAttributeComponent,
     CombatComponent,
     MissileAttackExecutionComponent,
+    RaceAttributesComponent,
+    RaceResistancesComponent,
+    RaceAdolescenceSkillCategoriesComponent,
+    RaceAdolescenceSkillsComponent,
+    RaceSkillBonusComponent,
+    RaceLanguagesComponent,
+    RaceBasicInfoComponent,
   ],
   imports: [
     FormsModule,

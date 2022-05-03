@@ -3,8 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 
-import { Race } from '../../model/race';
-import { RaceService } from '../../services/race.service';
+import { Race } from '../../../model/race';
+import { RaceService } from '../../../services/race.service';
 
 @Component({
   selector: 'app-race-list',

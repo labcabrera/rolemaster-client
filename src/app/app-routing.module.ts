@@ -4,7 +4,7 @@ import { CharacterCreationComponent } from './pages/character/character-creation
 import { CharacterListComponent } from './pages/character/character-list/characters.component';
 import { CharacterViewComponent } from './pages/character/character-view/character-view.component';
 import { ProfessionListComponent } from './pages/profession/profession-list/profession-list.component';
-import { RaceListComponent } from './pages/race-list/race-list.component';
+import { RaceListComponent } from './pages/race/race-list/race-list.component';
 import { StrategicSessionComponent } from './pages/strategic/strategic-session/strategic-session.component';
 import { StrategicSessionsComponent } from './pages/strategic/strategic-sessions/strategic-sessions.component';
 import { SkillCategoryListComponent } from './pages/skill-category/skill-category-list/skill-category-list.component';
@@ -26,7 +26,7 @@ import { MovementComponent } from './pages/movement/movement.component';
 import { ItemsComponent } from './pages/items/items.component';
 import { StaticManeuversComponent } from './pages/static-maneuvers/static-maneuvers.component';
 import { MovingManeuversComponent } from './pages/moving-maneuvers/moving-maneuvers.component';
-import { RaceDetailComponent } from './pages/race-detail/race-detail.component';
+import { RaceDetailComponent } from './pages/race/race-detail/race-detail.component';
 import { ProfessionDetailComponent } from './pages/profession/profession-detail/profession-detail.component';
 import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
