@@ -23,12 +23,12 @@ import { SpellListDetailComponent } from './pages/spell-list-detail/spell-list-d
 import { SpellDetailComponent } from './pages/spell-detail/spell-detail.component';
 import { SpellListComponent } from './pages/spell-list/spell-list.component';
 import { MovementComponent } from './pages/movement/movement.component';
-import { ItemsComponent } from './pages/items/items.component';
+import { ItemsComponent } from './pages/item/items/items.component';
 import { StaticManeuversComponent } from './pages/static-maneuvers/static-maneuvers.component';
 import { MovingManeuversComponent } from './pages/moving-maneuvers/moving-maneuvers.component';
 import { RaceDetailComponent } from './pages/race/race-detail/race-detail.component';
 import { ProfessionDetailComponent } from './pages/profession/profession-detail/profession-detail.component';
-import { ItemDetailComponent } from './pages/item-detail/item-detail.component';
+import { ItemDetailComponent } from './pages/item/item-detail/item-detail.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { TrainingPackageComponent } from './pages/training-package/training-package.component';
 import { TrainingPackagesComponent } from './pages/training-packages/training-packages.component';
