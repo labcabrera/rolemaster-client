@@ -39,8 +39,13 @@
             <div fxFlex="50" class="character-info">{{character.maxExhaustionPoints}}</div>
         </div>
         <div fxLayout="row">
-            <div fxFlex="50" class="character-info">Movement</div>
-            <div fxFlex="50" class="character-info">{{character.baseMovementRate}}</div>
+            <div fxFlex="50" class="character-info">
+                <!--a routerLink="/wiki/glossary#base-movement-rate">Movement</a-->
+                <a routerLink="/wiki/glossary">Movement</a>
+            </div>
+            <div fxFlex="50" class="character-info">
+                {{character.baseMovementRate}} m/round
+           </div>
         </div>
         <mat-divider></mat-divider>
         <div fxLayout="row" class="character-info">

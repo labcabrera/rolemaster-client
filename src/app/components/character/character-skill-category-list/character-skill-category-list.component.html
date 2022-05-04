@@ -34,7 +34,11 @@
   </ng-container>
   <ng-container matColumnDef="bonusAttribute">
     <th mat-header-cell *matHeaderCellDef matTooltip="Attribute bonus">B/Attr</th>
-    <td mat-cell *matCellDef="let element">{{element.bonus.attribute && element.bonus.attribute != 0 ? element.bonus.attribute : ""}}</td>
+    <td mat-cell *matCellDef="let element">
+      <span matTooltip="{{element.attributes}}">
+        {{element.bonus.attribute && element.bonus.attribute != 0 ? element.bonus.attribute : ""}}
+      </span>
+    </td>
   </ng-container>
   <ng-container matColumnDef="bonusProfession">
     <th mat-header-cell *matHeaderCellDef matTooltip="Profession bonus">B/Prof</th>

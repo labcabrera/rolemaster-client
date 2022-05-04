@@ -1,0 +1,36 @@
+<div>
+    <div fxLayout="column">
+        <mat-form-field appearance="outline">
+            <mat-label>Flaw</mat-label>
+            <input type="text" matInput [formControl]="flawControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option.name}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field appearance="outline" *ngIf="flawControl.value">
+            <mat-label>Category</mat-label>
+            <input matInput type="text" [(ngModel)]="flawControl.value.type" [disabled]="true">
+        </mat-form-field>
+        <mat-form-field appearance="outline" *ngIf="flawControl.value">
+            <mat-label>Cost type</mat-label>
+            <input matInput type="text" [(ngModel)]="flawControl.value.costType" [disabled]="true">
+        </mat-form-field>
+        <mat-form-field appearance="outline" *ngIf="flawControl.value">
+            <mat-label>Cost</mat-label>
+            <input matInput type="text" [(ngModel)]="flawControl.value.cost" [disabled]="true">
+        </mat-form-field>
+        <mat-form-field appearance="outline" *ngIf="flawControl.value">
+            <mat-label>Description</mat-label>
+            <input matInput type="text" [(ngModel)]="flawControl.value.description" [disabled]="true">
+        </mat-form-field>
+
+        <button mat-button (click)="addCustomization()">Add</button>
+    </div>
+</div>
+
+<!--
+<pre>{{talentControl.value| json}}</pre>
+<pre>{{talents | json}}</pre>
+-->

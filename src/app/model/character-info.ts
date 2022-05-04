@@ -144,3 +144,8 @@ export interface SkillUpgradeRequest {
     categoryRanks: Map<String,number>;
     skillRanks: Map<String,number>;
 }
+
+export interface CharacterCustomization {
+    id: string;
+    name: string;
+}

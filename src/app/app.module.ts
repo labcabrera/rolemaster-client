@@ -92,6 +92,9 @@ import { RaceBasicInfoComponent } from './components/race/race-basic-info/race-b
 import { ProfessionSkillCategoryBonusComponent } from './components/profession/profession-skill-category-bonus/profession-skill-category-bonus.component';
 import { ProfessionSkillCostComponent } from './components/profession/profession-skill-cost/profession-skill-cost.component';
 import { ProfessionWeaponCostComponent } from './components/profession/profession-weapon-cost/profession-weapon-cost.component';
+import { WikiGlossaryComponent } from './pages/wiki/wiki-glossary/wiki-glossary.component';
+import { CharacterTalentsComponent } from './components/character/character-talents/character-talents.component';
+import { CharacterFlawsComponent } from './components/character/character-flaws/character-flaws.component';
 
 @NgModule({
   declarations: [
@@ -175,6 +178,9 @@ import { ProfessionWeaponCostComponent } from './components/profession/professio
     ProfessionSkillCategoryBonusComponent,
     ProfessionSkillCostComponent,
     ProfessionWeaponCostComponent,
+    WikiGlossaryComponent,
+    CharacterTalentsComponent,
+    CharacterFlawsComponent,
   ],
   imports: [
     FormsModule,

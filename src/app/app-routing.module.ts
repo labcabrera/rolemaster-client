@@ -34,6 +34,7 @@ import { TrainingPackageComponent } from './pages/training-package/training-pack
 import { TrainingPackagesComponent } from './pages/training-packages/training-packages.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CombatComponent } from './pages/wiki/combat/combat.component';
+import { WikiGlossaryComponent } from './pages/wiki/wiki-glossary/wiki-glossary.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -70,6 +71,7 @@ const routes: Routes = [
   { path: 'items', component: ItemsComponent },
   { path: 'items/detail/:id', component: ItemDetailComponent },
   { path: 'wiki/combat', component: CombatComponent },
+  { path: 'wiki/glossary', component: WikiGlossaryComponent },
   { path: 'settings', component: UserSettingsComponent },
 ];
 
