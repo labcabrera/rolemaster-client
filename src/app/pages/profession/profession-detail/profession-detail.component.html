@@ -9,21 +9,16 @@
 <div class="outerContainer" *ngIf="profession">
 
     <mat-tab-group>
-        <mat-tab label="Info">
-            <div fxLayout="column" fxLayoutGap="15">
-                <div>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Name</mat-label>
-                        <input [(ngModel)]="profession.name" matInput>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-chip-list class="mat-chip-list-stacked">
-                        <mat-chip *ngFor="let realm of profession.availableRealms">
-                            {{realm}}
-                        </mat-chip>
-                    </mat-chip-list>
-                </div>
+        <mat-tab label="Info" class="full-width">
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input [(ngModel)]="profession.name" matInput disabled="true">
+                </mat-form-field>
+                <h3>Available realms</h3>
+                <mat-list role="list">
+                    <mat-list-item role="listitem" *ngFor="let realm of profession.availableRealms">{{realm}}</mat-list-item>
+                  </mat-list>
             </div>
         </mat-tab>
         <mat-tab label="Costs">

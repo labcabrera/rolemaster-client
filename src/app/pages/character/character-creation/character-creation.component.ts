@@ -13,8 +13,9 @@ import { ProfessionService } from 'src/app/services/profession.service';
 import { RaceService } from 'src/app/services/race.service';
 import { Router } from '@angular/router';
 import { ErrorService } from 'src/app/services/error.service';
-import { Universe } from 'src/app/model/commons';
+import { NamedKey, Universe } from 'src/app/model/commons';
 import { UniverseService } from 'src/app/services/universe.service';
+import { EnumService } from 'src/app/services/enum.service';
 
 @Component({
   selector: 'app-character-creation',
@@ -26,6 +27,7 @@ export class CharacterCreationComponent implements OnInit {
   characterInfo: CharacterInfo;
   universes: Universe[] = [];
   races: Race[] = [];
+  realms: NamedKey[] = [];
   professions: Profession[] = [];
 
   characterCreationFormGroup: FormGroup;
@@ -42,6 +44,7 @@ export class CharacterCreationComponent implements OnInit {
     private professionService: ProfessionService,
     private randomUtilsService: RandomUtilsService,
     private characterGenerationUtilsService: CharacterGenerationUtilsService,
+    private enumService: EnumService,
     private errorService: ErrorService,
     private router: Router,
     private fb: FormBuilder) {
@@ -52,9 +55,9 @@ export class CharacterCreationComponent implements OnInit {
       'name': ['', Validators.required],
       'universeId': ['', Validators.required],
       'level': ['1', Validators.required],
-      'raceId': ['common-men', Validators.required],
-      'professionId': ['thief', Validators.required],
-      'realm': ['essence', Validators.required],
+      'raceId': ['', Validators.required],
+      'professionId': ['', Validators.required],
+      'realm': ['', Validators.required],
       'age': ['25', Validators.required],
       'height': ['174', Validators.required],
       'weight': ['72', Validators.required],
@@ -82,9 +85,8 @@ export class CharacterCreationComponent implements OnInit {
         'st': [66]
       })
     });
-    this.characterCreationFormGroup.controls['universeId'].valueChanges.subscribe(universeId => {
-      this.loadRaces(universeId);
-    });
+    this.characterCreationFormGroup.controls['universeId'].valueChanges.subscribe(universeId => this.loadRaces(universeId));
+    this.characterCreationFormGroup.controls['professionId'].valueChanges.subscribe(professionId => this.loadRealms(professionId));
     this.characterDevelopment = fb.group({
       'secondCtrl': ['', Validators.required]
     })
@@ -110,6 +112,17 @@ export class CharacterCreationComponent implements OnInit {
       next: results => this.races = results,
       error: error => this.errorService.displayErrorWithPrefix("Error reading races", error)
     });
+  }
+
+  loadRealms(professionId: string) {
+    const profession: Profession = this.professions.filter(e => e.id == professionId)[0];
+    this.realms = [];
+    profession.availableRealms.forEach(e => {
+      this.realms.push({key: e, name: this.capitalize(e)});
+    });
+    if(this.realms.length == 1) {
+      this.characterCreationFormGroup.patchValue({realm: this.realms[0].key});
+    }
   }
 
   get characterCreationFormGroupValue() {
@@ -150,6 +163,11 @@ export class CharacterCreationComponent implements OnInit {
       baseAttributes: { [event.attribute]: event.value }
     })
     this.updateAttributeCost();
+  }
+
+  private capitalize(word: string): string {
+    if (!word) return word;
+    return word[0].toUpperCase() + word.substring(1).toLowerCase();
   }
 
 }

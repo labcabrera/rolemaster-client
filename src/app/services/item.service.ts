@@ -20,6 +20,7 @@ export class ItemService {
   constructor(private http: HttpClient) {}
 
   find(): Observable<Item[]> {
+    var url = `${this.baseUrl}?page=0&size=1000&sort=name,ASC`;
     return this.http.get<Item[]>(this.baseUrl).pipe();
   }
 

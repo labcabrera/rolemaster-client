@@ -1,122 +1,119 @@
 <mat-toolbar>
     <span>Character creation</span>
     <div class="div-spacer"></div>
-    <button mat-button (click)="createCharacter()">
+    <button mat-button (click)="createCharacter()" [disabled]="characterCreationFormGroup.invalid">
         <mat-icon>save_alt</mat-icon>
     </button>
 </mat-toolbar>
 
 <div class="outerContainer">
 
-
     <form [formGroup]="characterCreationFormGroup">
 
-        <div fxLayout="row">
-            <mat-form-field class="example-form-field" appearance="outline">
-                <mat-label>Name</mat-label>
-                <input name="name" matInput type="text" formControlName="name">
-            </mat-form-field>
-        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20">
 
-        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="5pt">
-            <mat-form-field appearance="outline">
-                <mat-label>Universe</mat-label>
-                <mat-select formControlName="universeId">
-                    <mat-option *ngFor="let universe of universes" [value]="universe.id">{{universe.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Race</mat-label>
-                <mat-select formControlName="raceId">
-                    <mat-option *ngFor="let race of races" [value]="race.id">{{race.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Profession</mat-label>
-                <mat-select formControlName="professionId">
-                    <mat-option *ngFor="let profession of professions" [value]="profession.id">{{profession.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Realm</mat-label>
-                <mat-select formControlName="realm">
-                    <mat-option value="channeling">Channeling</mat-option>
-                    <mat-option value="essence">Essence</mat-option>
-                    <mat-option value="mentalism">Mentalism</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="5pt">
-            <mat-form-field class="example-form-field" appearance="outline">
-                <mat-label>Level</mat-label>
-                <input name="level" matInput type="text" formControlName="level">
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Age</mat-label>
-                <input name="age" matInput type="text" formControlName="age">
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Height</mat-label>
-                <input name="height" matInput type="text" formControlName="height">
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Weight</mat-label>
-                <input name="weight" matInput type="text" formControlName="weight">
-            </mat-form-field>
-        </div>
-
-
-        <div fxLayout="row" fxLayout.lt-md="column">
-            <div formGroupName="baseAttributes" fxLayout="column">
-                <app-character-creation-attribute attribute="ag" attributeName="Agility *" (onChange)="updateAttribute($event)">
-                </app-character-creation-attribute>
-                <app-character-creation-attribute attribute="co" attributeName="Constitution *" (onChange)="updateAttribute($event)">
-                </app-character-creation-attribute>
-                <app-character-creation-attribute attribute="me" attributeName="Memory *" (onChange)="updateAttribute($event)">
-                </app-character-creation-attribute>
-                <app-character-creation-attribute attribute="re" attributeName="Reasoning *" (onChange)="updateAttribute($event)">
-                </app-character-creation-attribute>
-                <app-character-creation-attribute attribute="sd" attributeName="Self discipline *" (onChange)="updateAttribute($event)">
-                </app-character-creation-attribute>
+            <div fxFlex="30" fxLayout="column">
+                <h2>Basic info</h2>
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input name="name" matInput type="text" formControlName="name">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Universe</mat-label>
+                    <mat-select formControlName="universeId">
+                        <mat-option *ngFor="let universe of universes" [value]="universe.id">{{universe.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Race</mat-label>
+                    <mat-select formControlName="raceId">
+                        <mat-option *ngFor="let race of races" [value]="race.id">{{race.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Profession</mat-label>
+                    <mat-select formControlName="professionId">
+                        <mat-option *ngFor="let profession of professions" [value]="profession.id">{{profession.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Realm</mat-label>
+                    <mat-select formControlName="realm">
+                        <mat-option *ngFor="let option of realms" [value]="option.key">{{option.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="example-form-field" appearance="outline">
+                    <mat-label>Level</mat-label>
+                    <input name="level" matInput type="text" formControlName="level">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Age</mat-label>
+                    <input name="age" matInput type="text" formControlName="age">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Height</mat-label>
+                    <input name="height" matInput type="text" formControlName="height">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Weight</mat-label>
+                    <input name="weight" matInput type="text" formControlName="weight">
+                </mat-form-field>
             </div>
-            <div formGroupName="baseAttributes" fxLayout="column" fxFlexOffset.gt-md="50px">
-                <app-character-creation-attribute attribute="em" attributeName="Empathy" (onChange)="updateAttribute($event)">
-                </app-character-creation-attribute>
-                <app-character-creation-attribute attribute="in" attributeName="Intuition" (onChange)="updateAttribute($event)">
-                </app-character-creation-attribute>
-                <app-character-creation-attribute attribute="pr" attributeName="Presence" (onChange)="updateAttribute($event)">
-                </app-character-creation-attribute>
-                <app-character-creation-attribute attribute="qu" attributeName="Quickness" (onChange)="updateAttribute($event)">
-                </app-character-creation-attribute>
-                <app-character-creation-attribute attribute="st" attributeName="Strength" (onChange)="updateAttribute($event)">
-                </app-character-creation-attribute>
+
+            <div fxFlex="30" fxLayout="column">
+                <h2>Attributes</h2>
+                <div formGroupName="baseAttributes" fxLayout="column">
+                    <app-character-creation-attribute attribute="ag" attributeName="Agility *" (onChange)="updateAttribute($event)">
+                    </app-character-creation-attribute>
+                    <app-character-creation-attribute attribute="co" attributeName="Constitution *" (onChange)="updateAttribute($event)">
+                    </app-character-creation-attribute>
+                    <app-character-creation-attribute attribute="me" attributeName="Memory *" (onChange)="updateAttribute($event)">
+                    </app-character-creation-attribute>
+                    <app-character-creation-attribute attribute="re" attributeName="Reasoning *" (onChange)="updateAttribute($event)">
+                    </app-character-creation-attribute>
+                    <app-character-creation-attribute attribute="sd" attributeName="Self discipline *" (onChange)="updateAttribute($event)">
+                    </app-character-creation-attribute>
+                    <app-character-creation-attribute attribute="em" attributeName="Empathy" (onChange)="updateAttribute($event)">
+                    </app-character-creation-attribute>
+                    <app-character-creation-attribute attribute="in" attributeName="Intuition" (onChange)="updateAttribute($event)">
+                    </app-character-creation-attribute>
+                    <app-character-creation-attribute attribute="pr" attributeName="Presence" (onChange)="updateAttribute($event)">
+                    </app-character-creation-attribute>
+                    <app-character-creation-attribute attribute="qu" attributeName="Quickness" (onChange)="updateAttribute($event)">
+                    </app-character-creation-attribute>
+                    <app-character-creation-attribute attribute="st" attributeName="Strength" (onChange)="updateAttribute($event)">
+                    </app-character-creation-attribute>
+                </div>
+                <div fxLayout="row">
+                    <div fxFlex="30">
+                        <mat-form-field appearance="outline" class="w-120">
+                            <mat-label>Available</mat-label>
+                            <input name="attributesRoll" matInput type="text" formControlName="attributesRoll" (change)="updateAttributeCost()">
+                            <mat-icon matSuffix (click)="createRandomAttributesRoll()">cached</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="30">
+                        <mat-form-field appearance="outline" class="w-120">
+                            <mat-label>Remaining</mat-label>
+                            <input name="attributesRemaining" matInput type="text" formControlName="attributesRemaining" readonly="true">
+                        </mat-form-field>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
-            <mat-form-field appearance="outline" style="width: 90px;">
-                <mat-label>Available</mat-label>
-                <input name="attributesRoll" matInput type="text" formControlName="attributesRoll" (change)="updateAttributeCost()">
-                <mat-icon matSuffix (click)="createRandomAttributesRoll()">cached</mat-icon>
-            </mat-form-field>
-            <mat-form-field appearance="outline" style="width: 90px;">
-                <mat-label>Remaining</mat-label>
-                <input name="attributesRemaining" matInput type="text" formControlName="attributesRemaining" readonly="true">
-            </mat-form-field>
-        </div>
-
-        <div>
-            <mat-card-title>Weapon category priority</mat-card-title>
-            <mat-card-subtitle>Drag and drop </mat-card-subtitle>
-            <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-                <mat-list role="list">
-                    <mat-list-item role="listitem" *ngFor="let wCat of this.characterCreationFormGroupValue.weaponCategoryPriority" cdkDrag>
-                        <mat-icon> drag_handle</mat-icon>
-                        <span>{{wCat}}</span>
-                    </mat-list-item>
-                </mat-list>
+            <div fxFlex="30">
+                <h2>Weapon priority</h2>
+                <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                    <mat-list role="list">
+                        <mat-list-item role="listitem" *ngFor="let wCat of this.characterCreationFormGroupValue.weaponCategoryPriority" cdkDrag>
+                            <mat-icon> drag_handle</mat-icon>
+                            <span>{{wCat}}</span>
+                        </mat-list-item>
+                    </mat-list>
+                </div>
             </div>
         </div>
+
     </form>
 </div>
