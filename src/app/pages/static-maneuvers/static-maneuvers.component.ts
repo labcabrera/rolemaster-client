@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { ManeuverService } from 'src/app/services/maneuver.service';
+import { EnumService } from 'src/app/services/enum.service';
+import { ErrorService } from 'src/app/services/error.service';
+import { NamedKey } from 'src/app/model/commons';
 
 @Component({
   selector: 'app-static-maneuvers',
@@ -7,9 +13,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StaticManeuversComponent implements OnInit {
 
-  constructor() { }
+  maneuverForm: FormGroup;
+  maneuverResult: any;
+
+  constructor(
+    private maneuverService: ManeuverService,
+    private enumService: EnumService,
+    private errorService: ErrorService,
+    private fb: FormBuilder) {
+      this.maneuverForm = this.fb.group({
+        roll: ['', Validators.required]
+      });
+  }
 
   ngOnInit(): void {
+  }
+
+  execute() {
+    this.maneuverService.executeStaticManeuver(this.maneuverForm.value).subscribe({
+      next: result => this.maneuverResult = result,
+      error: error => this.errorService.displayError(error)
+    });
   }
 
 }

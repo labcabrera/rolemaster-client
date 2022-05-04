@@ -20,6 +20,11 @@ export class EnumService {
     return this.http.get<NamedKey[]>(url).pipe();
   }
 
+  findManeuverDifficulties(): Observable<NamedKey[]> {
+    var url = `${this.baseUrl}/maneuver-difficulties`
+    return this.http.get<NamedKey[]>(url).pipe();
+  }
+
   findMovementPaces(): Observable<NamedKey[]> {
     var url = `${this.baseUrl}/movement-pace`
     return this.http.get<NamedKey[]>(url).pipe();

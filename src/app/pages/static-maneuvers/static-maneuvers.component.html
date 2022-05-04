@@ -3,4 +3,18 @@
     <div class="div-spacer"></div>
 </mat-toolbar>
 
-UNDER DEVELOPMENT
+<div class="outerContainer">
+
+    <div [formGroup]="maneuverForm" fxLayout="column">
+        <mat-form-field appearance="outline">
+            <mat-label>Roll</mat-label>
+            <input matInput type="text" formControlName="roll">
+        </mat-form-field>
+        <div>
+            <button mat-button (click)="execute()" [disabled]="maneuverForm.invalid">Execute</button>
+        </div>
+    </div>
+
+    <pre>{{maneuverResult | json}}</pre>
+
+</div>
