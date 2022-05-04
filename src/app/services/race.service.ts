@@ -16,10 +16,15 @@ export class RaceService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   find(): Observable<Race[]> {
     return this.http.get<Race[]>(this.baseUrl).pipe();
+  }
+
+  findByUniverseId(universeId: string): Observable<Race[]> {
+    const url = `${this.baseUrl}?universeId=${universeId}`;
+    return this.http.get<Race[]>(url).pipe();
   }
 
   findById(raceId: string): Observable<Race> {

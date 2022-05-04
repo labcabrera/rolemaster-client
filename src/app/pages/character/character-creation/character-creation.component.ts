@@ -13,6 +13,8 @@ import { ProfessionService } from 'src/app/services/profession.service';
 import { RaceService } from 'src/app/services/race.service';
 import { Router } from '@angular/router';
 import { ErrorService } from 'src/app/services/error.service';
+import { Universe } from 'src/app/model/commons';
+import { UniverseService } from 'src/app/services/universe.service';
 
 @Component({
   selector: 'app-character-creation',
@@ -22,6 +24,7 @@ import { ErrorService } from 'src/app/services/error.service';
 export class CharacterCreationComponent implements OnInit {
 
   characterInfo: CharacterInfo;
+  universes: Universe[] = [];
   races: Race[] = [];
   professions: Profession[] = [];
 
@@ -34,6 +37,7 @@ export class CharacterCreationComponent implements OnInit {
 
   constructor(
     private characterService: CharacterService,
+    private universeService: UniverseService,
     private raceService: RaceService,
     private professionService: ProfessionService,
     private randomUtilsService: RandomUtilsService,
@@ -46,6 +50,7 @@ export class CharacterCreationComponent implements OnInit {
 
     this.characterCreationFormGroup = fb.group({
       'name': ['', Validators.required],
+      'universeId': ['', Validators.required],
       'level': ['1', Validators.required],
       'raceId': ['common-men', Validators.required],
       'professionId': ['thief', Validators.required],
@@ -77,25 +82,33 @@ export class CharacterCreationComponent implements OnInit {
         'st': [66]
       })
     });
+    this.characterCreationFormGroup.controls['universeId'].valueChanges.subscribe(universeId => {
+      this.loadRaces(universeId);
+    });
     this.characterDevelopment = fb.group({
       'secondCtrl': ['', Validators.required]
     })
-
     this.trainingPackages = fb.group({});
-
     this.characterBasicData = this.fb.group({
       firstCtrl: ['Development', Validators.required],
     });
   }
 
   ngOnInit() {
-    this.raceService.find().subscribe({
-      next: results => this.races = results,
-      error: error => this.errorService.displayErrorWithPrefix("Error reading races", error)
+    this.universeService.find().subscribe({
+      next: results => this.universes = results,
+      error: error => this.errorService.displayError(error)
     });
     this.professionService.getProfessions().subscribe({
       next: results => this.professions = results,
       error: error => this.errorService.displayErrorWithPrefix("Error reading professions", error)
+    });
+  }
+  
+  loadRaces(universeId: string) {
+    this.raceService.findByUniverseId(universeId).subscribe({
+      next: results => this.races = results,
+      error: error => this.errorService.displayErrorWithPrefix("Error reading races", error)
     });
   }
 

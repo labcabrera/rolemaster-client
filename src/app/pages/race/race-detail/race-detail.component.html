@@ -8,36 +8,43 @@
 
 <div class="outerContainer" *ngIf="race">
 
-    <div fxLayout fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="15">
-        <div fxFlex="25">
-            <app-race-basic-info [race]="race"></app-race-basic-info>
-        </div>
-        <div fxFlex="25">
-            <app-race-attributes [race]="race"></app-race-attributes>
-            <br>
-            <app-race-resistances [race]="race"></app-race-resistances>
-        </div>
-        <div fxFlex="25">
-            <app-race-adolescence-skill-categories [race]="race"></app-race-adolescence-skill-categories>
-        </div>
-        <div fxFlex="25">
-            <app-race-adolescence-skills [race]="race"></app-race-adolescence-skills>
-        </div>
-    </div>
-    
-    <div fxLayout="column" fxLayoutGap="15">
-        <div>
-        </div>
-        <div>
-        </div>
-        <div>
-            <app-race-skill-bonus></app-race-skill-bonus>
-        </div>
-        <div>
-            <app-race-languages></app-race-languages>
-        </div>
-    </div>
+    <mat-tab-group>
+        <mat-tab label="Info">
+            <div fxLayout="row" fxLayoutGap="15">
+                <div fxFlex="30">
+                    <app-race-basic-info [race]="race"></app-race-basic-info>
+                </div>
+                <div fxFlex="30">
+                    <app-race-attributes [race]="race"></app-race-attributes>
+                </div>
+                <div fxFlex="30">
+                    <app-race-resistances [race]="race"></app-race-resistances>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Adolescence">
+            <div fxLayout="row" fxLayoutGap="15">
+                <div fxFlex="50">
+                    <app-race-adolescence-skill-categories [race]="race"></app-race-adolescence-skill-categories>
+                </div>
+                <div fxFlex="50">
+                    <app-race-adolescence-skills [race]="race"></app-race-adolescence-skills>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Skill bonus">
+            <div fxLayout="row">
+                <div>
+                    <app-race-skill-bonus></app-race-skill-bonus>
+                </div>
+                <div>
+                    <app-race-languages></app-race-languages>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Debug">
+            <pre>{{race | json}}</pre>
+        </mat-tab>
+    </mat-tab-group>
 
 </div>
-
-<pre>{{race | json}}</pre>
