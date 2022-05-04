@@ -32,7 +32,10 @@ export class SkillDetailComponent implements OnInit {
 
   loadSkill() {
     const id = String(this.route.snapshot.paramMap.get('id'));
-    this.skillService.findById(id).subscribe({
+    const index = id.indexOf(":");
+    const skillId = index < 0 ? id : id.substring(0, index);
+    console.log("index:", index);
+    this.skillService.findById(skillId).subscribe({
       next: result => {
         this.skill = result;
         this.loadSkillCategory(this.skill.categoryId);

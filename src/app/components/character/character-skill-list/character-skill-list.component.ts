@@ -23,8 +23,8 @@ export class CharacterSkillListComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = [
     'skillId', 'categoryId', 'group',
-    'adolescenceRanks', 'trainingPackageRanks', 'developmentRanks', 'consolidatedRanks',
-    'bonusAttribute', 'bonusCategory', 'bonusRanks',
+    'raceRanks', 'adolescenceRanks', 'trainingPackageRanks', 'developmentRanks', 'consolidatedRanks',
+    'bonusCategory', 'bonusRanks',
     'developmentCost', 'totalRanks', 'totalBonus', 'options'];
   includeUndevelopedSkills: boolean = true;
 

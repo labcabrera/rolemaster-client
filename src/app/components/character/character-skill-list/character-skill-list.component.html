@@ -1,10 +1,6 @@
 <section class="example-section">
-  <mat-slide-toggle
-      [(ngModel)]="includeUndevelopedSkills"
-      class="example-margin"
-      color="primary"
-      checked="true">
-      Include undeveloped skills.
+  <mat-slide-toggle [(ngModel)]="includeUndevelopedSkills" class="example-margin" color="primary" checked="true">
+    Include undeveloped skills.
   </mat-slide-toggle>
 </section>
 
@@ -14,18 +10,13 @@
 </mat-form-field>
 
 <table mat-table [dataSource]="skillDataSource!" matSort class="mat-elevation-z8">
-
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-  </ng-container>
   <ng-container matColumnDef="skillId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Skill</th>
-    <td mat-cell *matCellDef="let element"> {{element.skillId}} </td>
+    <td mat-cell *matCellDef="let element"><a routerLink="/skills/detail/{{element.skillId}}">{{element.skillId}}</a></td>
   </ng-container>
   <ng-container matColumnDef="categoryId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
-    <td mat-cell *matCellDef="let element"> {{element.categoryId}} </td>
+    <td mat-cell *matCellDef="let element"><a routerLink="/skill-categories/detail/{{element.categoryId}}">{{element.categoryId}}</a></td>
   </ng-container>
   <ng-container matColumnDef="group">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Group</th>
@@ -35,13 +26,18 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Dev</th>
     <td mat-cell *matCellDef="let element">{{element.developmentCost}}</td>
   </ng-container>
+  <ng-container matColumnDef="raceRanks">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Rc Ranks</th>
+    <td mat-cell *matCellDef="let element">{{element.ranks.race && element.ranks.race != 0 ? element.ranks.race : ""}}</td>
+  </ng-container>
   <ng-container matColumnDef="adolescenceRanks">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Ad Ranks</th>
     <td mat-cell *matCellDef="let element">{{element.ranks.adolescence && element.ranks.adolescence != 0 ? element.ranks.adolescence : ""}}</td>
   </ng-container>
   <ng-container matColumnDef="trainingPackageRanks">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>TP Ranks</th>
-    <td mat-cell *matCellDef="let element">{{element.ranks['training-package'] && element.ranks['training-package'] != 0 ? element.ranks['training-package'] : ""}}</td>
+    <td mat-cell *matCellDef="let element">{{element.ranks['training-package'] && element.ranks['training-package'] != 0 ? element.ranks['training-package'] :
+      ""}}</td>
   </ng-container>
   <ng-container matColumnDef="developmentRanks">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Dev Ranks</th>
@@ -54,10 +50,6 @@
   <ng-container matColumnDef="ranks">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Ranks</th>
     <td mat-cell *matCellDef="let element">{{element.ranks | json}}</td>
-  </ng-container>
-  <ng-container matColumnDef="bonusAttribute">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>B Attr</th>
-    <td mat-cell *matCellDef="let element">{{element.bonus.attribute && element.bonus.attribute != 0 ? element.bonus.attribute : ""}}</td>
   </ng-container>
   <ng-container matColumnDef="bonusCategory">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>B Cat</th>
