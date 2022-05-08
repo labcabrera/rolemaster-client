@@ -16,7 +16,7 @@ export class SpellListComponent implements OnInit {
 
   spellLists: SpellList[] = [];
 
-  displayedColumns: string[] = [ "name", "realm", "type" ];
+  displayedColumns: string[] = [ "name", "realm", "type", "profession" ];
   dataSource: MatTableDataSource<SpellList> = new MatTableDataSource<SpellList>(this.spellLists);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
