@@ -29,7 +29,6 @@ export class TrainingPackageFixedSkillsComponent implements OnInit {
   }
   
   private loadDataSources() {
-    console.log("Data: ", this.trainingPackage);
     if(this.trainingPackage) {
       if(this.trainingPackage.fixedSkillCategories) {
         this.categories = [];
