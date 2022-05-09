@@ -30,9 +30,9 @@ import { RaceDetailComponent } from './pages/race/race-detail/race-detail.compon
 import { ProfessionDetailComponent } from './pages/profession/profession-detail/profession-detail.component';
 import { ItemDetailComponent } from './pages/item/item-detail/item-detail.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
-import { TrainingPackageComponent } from './pages/training-package/training-package.component';
-import { TrainingPackagesComponent } from './pages/training-packages/training-packages.component';
 import { HomeComponent } from './pages/home/home.component';
+import { TrainingPackageComponent } from './pages/training-package/training-package-detail/training-package.component';
+import { TrainingPackagesComponent } from './pages/training-package/training-packages/training-packages.component';
 import { CombatComponent } from './pages/wiki/combat/combat.component';
 import { WikiGlossaryComponent } from './pages/wiki/wiki-glossary/wiki-glossary.component';
 

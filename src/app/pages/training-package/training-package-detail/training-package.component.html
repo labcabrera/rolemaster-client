@@ -1,0 +1,53 @@
+<mat-toolbar>
+    <div><mat-icon>scatter_plot</mat-icon> Training package</div>
+    <div class="div-spacer"></div>
+    <button mat-button routerLink="/training-packages"><mat-icon>arrow_upward</mat-icon></button>
+</mat-toolbar>
+
+<div class="outerContainer" *ngIf="trainingPackage">
+
+    <mat-tab-group>
+        <mat-tab label="Info" class="full-width">
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input [(ngModel)]="trainingPackage.name" matInput disabled="true">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Type</mat-label>
+                    <input [(ngModel)]="trainingPackage.type" matInput disabled="true">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Time acquisition</mat-label>
+                    <input [(ngModel)]="trainingPackage.timeAcquisition" matInput disabled="true">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Starting money</mat-label>
+                    <input [(ngModel)]="trainingPackage.startingMoney" matInput disabled="true">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Stat gains</mat-label>
+                    <input [(ngModel)]="trainingPackage.statGains" matInput disabled="true">
+                </mat-form-field>
+            </div>
+        </mat-tab>
+        <mat-tab label="Fixed skills">
+        </mat-tab>
+        <mat-tab label="Selectable skills">
+        </mat-tab>
+        <mat-tab label="Items">
+        </mat-tab>
+        <mat-tab label="Debug">
+            <pre>{{trainingPackage | json}}</pre>
+        </mat-tab>
+    </mat-tab-group>
+
+</div>
