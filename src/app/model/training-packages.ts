@@ -5,8 +5,9 @@ export interface TrainingPackage {
     timeAcquisition: number;
     fixedSkillCategories: any;
     fixedSkills: any;
-    selectableSkillCategoryList: any;
-    selectableSkillList: any;
+    selectableSkillCategoryList: any[];
+    selectableSkillList: any[];
+    selectableSkillCustomizations: any[]
     statGains: string[];
     startingMoney: string;
     costByProfession: any;

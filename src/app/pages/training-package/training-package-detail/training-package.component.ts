@@ -11,7 +11,7 @@ import { TrainingPackageService } from 'src/app/services/training-packages.servi
 })
 export class TrainingPackageComponent implements OnInit {
 
-  trainingPackage: TrainingPackage = {} as TrainingPackage;
+  trainingPackage?: TrainingPackage;
 
   constructor(
     private trainingPackageService: TrainingPackageService,

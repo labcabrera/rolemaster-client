@@ -1,0 +1,15 @@
+<div *ngIf="trainingPackage">
+
+    <h2>Skill categories</h2>
+
+    <pre>{{trainingPackage.selectableSkillCategoryList | json}}</pre>
+
+    <h2>Skills</h2>
+
+    <pre>{{trainingPackage.selectableSkillList | json}}</pre>
+
+    <h2>Skill customizations</h2>
+
+    <pre>{{trainingPackage.selectableSkillCustomizations | json}}</pre>
+
+</div>

@@ -95,6 +95,8 @@ import { ProfessionWeaponCostComponent } from './components/profession/professio
 import { WikiGlossaryComponent } from './pages/wiki/wiki-glossary/wiki-glossary.component';
 import { CharacterTalentsComponent } from './components/character/character-talents/character-talents.component';
 import { CharacterFlawsComponent } from './components/character/character-flaws/character-flaws.component';
+import { TrainingPackageFixedSkillsComponent } from './components/training-packages/training-package-fixed-skills/training-package-fixed-skills.component';
+import { TrainingPackageSelectableSkillsComponent } from './components/training-packages/training-package-selectable-skills/training-package-selectable-skills.component';
 
 @NgModule({
   declarations: [
@@ -181,6 +183,8 @@ import { CharacterFlawsComponent } from './components/character/character-flaws/
     WikiGlossaryComponent,
     CharacterTalentsComponent,
     CharacterFlawsComponent,
+    TrainingPackageFixedSkillsComponent,
+    TrainingPackageSelectableSkillsComponent,
   ],
   imports: [
     FormsModule,
