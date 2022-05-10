@@ -39,6 +39,7 @@ export class ErrorService {
     if(error.statusText && error.url) {
       return `${error.statusText}: ${error.url}`; 
     }
+    console.log("Error: " , error);
     return "Unknown error."
   }
 

@@ -21,10 +21,12 @@ export class LoginService {
   }
 
   public getUsername(): string {
-    const claims = this.oauthService.getIdentityClaims();
-    console.log("claims: ", claims);
-    //return this.oauthService.getIdentityClaims()[`preferred_username`] as string;
-    return "todo";
+    const claims = this.oauthService.getIdentityClaims() as any;
+    console.log("LoginService: claims: ", claims);
+    if(claims && claims['preferred_username']) {
+      return claims['preferred_username'];
+    }
+    return "";
   }
 
   public getIsAdmin(): boolean {

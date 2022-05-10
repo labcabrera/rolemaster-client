@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { OAuthModule } from 'angular-oauth2-oidc';
 
@@ -201,7 +201,7 @@ import { environment } from 'src/environments/environment';
     BrowserAnimationsModule,
     OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: [environment.apiURL],
+        allowedUrls: ['http://localhost:8080'],
         sendAccessToken: true
       }
     }),

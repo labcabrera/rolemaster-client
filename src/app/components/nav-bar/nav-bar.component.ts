@@ -37,7 +37,6 @@ export class NavBarComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private userService: UserService,
     private oauthService: OAuthService,
     private router: Router) { }
 
@@ -57,8 +56,12 @@ export class NavBarComponent implements OnInit {
     this.oauthService.logOut();
   }
 
-  getIsLogged() {
+  get isLogged() {
     return this.loginService.getIsLogged();
+  }
+
+  getUsername() {
+    return this.loginService.getUsername();
   }
 
 }

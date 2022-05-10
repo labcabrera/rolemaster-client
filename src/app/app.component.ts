@@ -33,7 +33,7 @@ export class AppComponent {
 
   authConfig: AuthConfig = {
     issuer: environment.oauthIssuer,
-    redirectUri: window.location.origin,
+    redirectUri: window.location.origin + '/home',
     clientId: 'rolemaster-client',
     responseType: 'code',
     scope: 'openid profile email offline_access',
@@ -41,17 +41,24 @@ export class AppComponent {
   };
 
   configure(): void {
+    this.oauthService.oidc = true;
+    this.oauthService.setStorage(sessionStorage);
+    this.oauthService.requireHttps = false;
     this.oauthService.configure(this.authConfig);
     this.oauthService.tokenValidationHandler = new NullValidationHandler();
     this.oauthService.setupAutomaticSilentRefresh();
     this.oauthService.loadDiscoveryDocument().then(() => this.oauthService.tryLogin())
       .then(() => {
+        console.log("AppComponent: load discovery document: ", this.oauthService.getIdentityClaims());
+        //this.oauthService.tryLogin();
         if (this.oauthService.getIdentityClaims()) {
           this.isLogged = this.loginService.getIsLogged();
           this.isAdmin = this.loginService.getIsAdmin();
           this.username = this.loginService.getUsername();
-          this.errorService.displayError(this.loginService.getUsername());
         }
+      })
+      .catch(() => {
+        console.log("Error!!!");
       });
   }
 
