@@ -33,6 +33,7 @@ export class ErrorService {
       return error.error.message;
     }
     if(error.status == 0) {
+      console.log(error);
       return `Unable to connect to the backend.`;
     }
     if(error.statusText && error.url) {

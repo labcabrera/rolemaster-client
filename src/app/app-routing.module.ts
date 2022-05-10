@@ -35,10 +35,12 @@ import { TrainingPackageComponent } from './pages/training-package/training-pack
 import { TrainingPackagesComponent } from './pages/training-package/training-packages/training-packages.component';
 import { CombatComponent } from './pages/wiki/combat/combat.component';
 import { WikiGlossaryComponent } from './pages/wiki/wiki-glossary/wiki-glossary.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'characters', component: CharacterListComponent },
   { path: 'characters/detail/:id', component: CharacterViewComponent },
   { path: 'strategic-sessions', component: StrategicSessionsComponent },

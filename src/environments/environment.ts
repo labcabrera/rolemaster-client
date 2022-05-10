@@ -2,6 +2,6 @@ export const environment = {
   production: false,
   
   apiURL: 'http://localhost:8080',
-  //apiURL: 'https://rolemaster-core.herokuapp.com',
+  oauthIssuer: 'http://localhost:8090/auth/realms/rolemaster'
 
 };

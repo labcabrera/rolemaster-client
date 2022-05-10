@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+import { OAuthModule } from 'angular-oauth2-oidc';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -97,6 +99,9 @@ import { CharacterTalentsComponent } from './components/character/character-tale
 import { CharacterFlawsComponent } from './components/character/character-flaws/character-flaws.component';
 import { TrainingPackageFixedSkillsComponent } from './components/training-packages/training-package-fixed-skills/training-package-fixed-skills.component';
 import { TrainingPackageSelectableSkillsComponent } from './components/training-packages/training-package-selectable-skills/training-package-selectable-skills.component';
+import { SignupComponent } from './pages/signup/signup.component';
+
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -185,6 +190,7 @@ import { TrainingPackageSelectableSkillsComponent } from './components/training-
     CharacterFlawsComponent,
     TrainingPackageFixedSkillsComponent,
     TrainingPackageSelectableSkillsComponent,
+    SignupComponent,
   ],
   imports: [
     FormsModule,
@@ -193,6 +199,12 @@ import { TrainingPackageSelectableSkillsComponent } from './components/training-
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: [environment.apiURL],
+        sendAccessToken: true
+      }
+    }),
     SharedModule
   ],
   providers: [],

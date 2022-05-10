@@ -5,8 +5,14 @@
     </button>
     <span routerLink="/" style="cursor: pointer;">Rolemaster Client</span>
     <div class="div-spacer"></div>
+    <button mat-button (click)="login()" *ngIf="this">Login</button>
+    <button mat-button (click)="logout()" *ngIf="this">Logout</button>
     <button mat-button routerLink="/settings"><mat-icon>settings</mat-icon></button>
 </mat-toolbar>
+
+<pre>
+{{getIsLogged()}}
+</pre>
 
 <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
