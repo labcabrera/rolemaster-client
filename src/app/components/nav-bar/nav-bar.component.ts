@@ -18,7 +18,7 @@ export class NavBarComponent implements OnInit {
     { link: '/tactical-sessions', name: 'Tactical', icon: 'list'},
     { link: '/characters', name: 'Characters', icon: 'person'},
     { link: '/characters/creation', name: 'New character', icon: 'create'},
-    { link: '/movement', name: 'Movement', icon: 'scatter_plot'},
+    //{ link: '/movement', name: 'Movement', icon: 'scatter_plot'},
     { link: '/moving-maneuvers', name: 'Static-M', icon: 'scatter_plot'},
     { link: '/static-maneuvers', name: 'Moving-M', icon: 'scatter_plot'},
     { link: '/races', name: 'Races', icon: 'scatter_plot'},
