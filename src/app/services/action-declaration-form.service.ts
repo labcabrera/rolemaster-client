@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+
 import { TacticalAction } from '../model/actions';
 
 @Injectable({
@@ -11,6 +12,9 @@ export class ActionDeclarationFormService {
 
   configureMeleeAttackTargets(fb: FormBuilder, actionForm: FormGroup, meleeAttackType: string, meleeAttackMode: string) {
     actionForm.removeControl('targets');
+
+    console.log(meleeAttackType + " - " + meleeAttackMode)
+
     if (meleeAttackType === 'full') {
       switch (meleeAttackMode) {
         case 'two-weapons':
@@ -29,13 +33,25 @@ export class ActionDeclarationFormService {
             'off-hand': ['', Validators.required]
           }));
           break;
+        case 'special-attack':
+          actionForm.addControl('targets', fb.group({
+            'main-hand': ['', Validators.required]
+          }));
+          break;
       }
     } else {
       actionForm.removeControl('targets');
     }
+
+    if (meleeAttackMode === 'special-attack') {
+      actionForm.addControl('specialAttack', new FormControl('', Validators.required));
+    } else {
+      actionForm.removeControl('specialAttack');
+    }
+
   }
 
-  configureMeleeAttackExecution(fb: FormBuilder, form: FormGroup, action: TacticalAction){
+  configureMeleeAttackExecution(fb: FormBuilder, form: FormGroup, action: TacticalAction) {
 
     if (action.rolls) {
       if (action.rolls['main-hand']) {
@@ -53,7 +69,7 @@ export class ActionDeclarationFormService {
         form.patchValue({ targets: { ['off-hand']: action.targets['off-hand'] } })
       }
     }
-    if(action.meleeAttackType === 'full') {
+    if (action.meleeAttackType === 'full') {
       var t0 = (form.get('targets') as FormGroup).get("main-hand");
       //TODO disable
       //t0?.reset({value: this.action.targets['main-hand'], disabled: true});

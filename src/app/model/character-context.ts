@@ -1,5 +1,6 @@
 import { Metadata } from "./metadata";
 import { CharacterItem } from "./item";
+
 export interface TacticalCharacter {
     id: string;
     tacticalSessionId: string;
@@ -17,6 +18,7 @@ export interface TacticalCharacter {
     armor: number;
     defensiveBonus: number;
     state: string;
+    specialAttacks: SpecialAttack[];
     metadata: Metadata
 }
 
@@ -87,21 +89,12 @@ export interface ContextCharacterModifiers {
     initiative: number;
 }
 
-/*
-export interface CharacterItem {
-    id: string;
-    itemId: string;
-    type: string;
-    armorType: string;
-    position: string;
+export interface SpecialAttack {
     name: string;
-    bonus: number;
-    count: number;
-    features: string[];
-    broken: boolean;
-    description: string;
+	weaponTableId: string;
+	size: string;
+	skillId: string;
 }
-*/
 
 export enum Debuff {
     STUNNED = "stunned",

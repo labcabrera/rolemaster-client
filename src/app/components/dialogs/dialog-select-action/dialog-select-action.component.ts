@@ -34,7 +34,7 @@ export class DialogSelectActionComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<any>) { }
 
   ngOnInit(): void {
-    //this.dialogRef.updateSize('60%', '80%');
+    this.dialogRef.updateSize('90%', '90%');
   }
 
   load(tacticalRound: TacticalRound, source: TacticalCharacter, priority: string, characters: TacticalCharacter[], actions: TacticalAction[]) {
