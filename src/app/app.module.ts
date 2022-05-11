@@ -108,6 +108,10 @@ import { TrainingPackageSelectableSkillComponent } from './components/training-p
 import { TrainingPackageCustomizableSkillComponent } from './components/training-packages/training-package-customizable-skill/training-package-customizable-skill.component';
 import { TrainingPackageCostsComponent } from './components/training-packages/training-package-costs/training-package-costs.component';
 import { TrainingPackageBasicInfoComponent } from './components/training-packages/training-package-basic-info/training-package-basic-info.component';
+import { TalentListComponent } from './pages/talents/talent-list/talent-list.component';
+import { TalentDetailComponent } from './pages/talents/talent-detail/talent-detail.component';
+import { FlawsDetailComponent } from './pages/flaws/flaws-detail/flaws-detail.component';
+import { FlawsListComponent } from './pages/flaws/flaws-list/flaws-list.component';
 
 @NgModule({
   declarations: [
@@ -203,6 +207,10 @@ import { TrainingPackageBasicInfoComponent } from './components/training-package
     TrainingPackageCustomizableSkillComponent,
     TrainingPackageCostsComponent,
     TrainingPackageBasicInfoComponent,
+    TalentListComponent,
+    TalentDetailComponent,
+    FlawsDetailComponent,
+    FlawsListComponent,
   ],
   imports: [
     FormsModule,

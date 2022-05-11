@@ -36,6 +36,10 @@ import { TrainingPackagesComponent } from './pages/training-package/training-pac
 import { CombatComponent } from './pages/wiki/combat/combat.component';
 import { WikiGlossaryComponent } from './pages/wiki/wiki-glossary/wiki-glossary.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { FlawsListComponent } from './pages/flaws/flaws-list/flaws-list.component';
+import { FlawsDetailComponent } from './pages/flaws/flaws-detail/flaws-detail.component';
+import { TalentListComponent } from './pages/talents/talent-list/talent-list.component';
+import { TalentDetailComponent } from './pages/talents/talent-detail/talent-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -48,9 +52,9 @@ const routes: Routes = [
   { path: 'strategic-sessions/creation', component: StrategicSessionCreationComponent },
   { path: 'tactical-sessions', component: TacticalSessionsComponent },
   { path: 'tactical-sessions/detail/:id', component: TacticalSessionComponent },
-  { path: 'tactical-sessions/creation', component: TacticalSessionCreationComponent},
+  { path: 'tactical-sessions/creation', component: TacticalSessionCreationComponent },
   { path: 'characters/creation', component: CharacterCreationComponent },
-  { path: 'movement', component: MovementComponent},
+  { path: 'movement', component: MovementComponent },
   { path: 'static-maneuvers', component: StaticManeuversComponent },
   { path: 'moving-maneuvers', component: MovingManeuversComponent },
   { path: 'races', component: RaceListComponent },
@@ -65,6 +69,10 @@ const routes: Routes = [
   { path: 'skills/detail/:id', component: SkillDetailComponent },
   { path: 'training-packages', component: TrainingPackagesComponent },
   { path: 'training-packages/detail/:id', component: TrainingPackageComponent },
+  { path: 'talents', component: TalentListComponent },
+  { path: 'talents/detail/:id', component: TalentDetailComponent },
+  { path: 'flaws', component: FlawsListComponent },
+  { path: 'flaws/detail/:id', component: FlawsDetailComponent },
   { path: 'spell-lists', component: SpellListComponent },
   { path: 'spell-lists/detail/:id', component: SpellListDetailComponent },
   { path: 'spells', component: SpellsComponent },

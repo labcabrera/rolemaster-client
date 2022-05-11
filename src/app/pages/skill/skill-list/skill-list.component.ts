@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 import { Skill } from '../../../model/skill';
 import { SkillService } from '../../../services/skill.service';
-import { environment } from 'src/environments/environment';
 import { ErrorService } from 'src/app/services/error.service';
 
 @Component({

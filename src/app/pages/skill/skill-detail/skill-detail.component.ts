@@ -22,7 +22,6 @@ export class SkillDetailComponent implements OnInit {
     private skillService: SkillService,
     private skillCategoryService: SkillCategoryService,
     private errorService: ErrorService,
-    private router: Router,
     private route: ActivatedRoute
   ) { }
 
