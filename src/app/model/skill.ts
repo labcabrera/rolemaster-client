@@ -9,6 +9,8 @@ export interface Skill {
     progressionType: string;
     modifiers: SkillModifier[];
     skillBonus: number;
+    customizableOptions: number;
+    customizationRestriction: string;
     //attributeBonus: string[];
     //rankBonusProgression: string;
     //categoryBonusProgression: string;
