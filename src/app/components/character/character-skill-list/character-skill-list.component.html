@@ -9,7 +9,7 @@
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
 </mat-form-field>
 
-<table mat-table [dataSource]="skillDataSource!" matSort class="mat-elevation-z8">
+<table mat-table [dataSource]="skillDataSource!" matSort>
   <ng-container matColumnDef="skillId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Skill</th>
     <td mat-cell *matCellDef="let element"><a routerLink="/skills/detail/{{element.skillId}}">{{element.skillId}}</a></td>
@@ -17,10 +17,6 @@
   <ng-container matColumnDef="categoryId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
     <td mat-cell *matCellDef="let element"><a routerLink="/skill-categories/detail/{{element.categoryId}}">{{element.categoryId}}</a></td>
-  </ng-container>
-  <ng-container matColumnDef="group">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Group</th>
-    <td mat-cell *matCellDef="let element"> {{element.group}} </td>
   </ng-container>
   <ng-container matColumnDef="developmentCost">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Dev</th>
@@ -80,6 +76,12 @@
       <button mat-icon-button color="primary" (click)="updateRank(element.skillId, -1)">
         <mat-icon>remove</mat-icon>
       </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openDialogCustomization(element)">
+          <mat-icon>edit</mat-icon>
+          <span>Customize</span>
+        </button>
+      </mat-menu>
     </td>
   </ng-container>
 

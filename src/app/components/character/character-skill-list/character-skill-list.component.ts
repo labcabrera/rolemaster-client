@@ -23,7 +23,7 @@ export class CharacterSkillListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   displayedColumns: string[] = [
-    'skillId', 'categoryId', 'group',
+    'skillId', 'categoryId',
     'raceRanks', 'adolescenceRanks', 'trainingPackageRanks', 'developmentRanks', 'consolidatedRanks',
     'bonusCategory', 'bonusRanks',
     'developmentCost', 'totalRanks', 'totalBonus', 'options'];
@@ -63,6 +63,10 @@ export class CharacterSkillListComponent implements OnInit, AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.skillDataSource!.filter = filterValue.trim().toLowerCase();
+  }
+
+  openDialogCustomization(category: CharacterSkill) {
+    this.errorService.displayError({error:{message:"Not implemented."}});
   }
 
 }

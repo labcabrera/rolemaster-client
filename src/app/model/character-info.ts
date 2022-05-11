@@ -149,5 +149,9 @@ export interface SkillUpgradeRequest {
 export interface CharacterCustomization {
     id: string;
     name: string;
+    type: string;
+    category: string;
+    costType: string;
+    cost: number;
     description: string;
 }

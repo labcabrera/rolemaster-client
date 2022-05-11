@@ -1,6 +1,6 @@
 <mat-toolbar>
     <div>
-        <mat-icon>build</mat-icon> Flaw
+        <mat-icon>scatter_plot</mat-icon> Flaw
     </div>
     <div class="div-spacer"></div>
     <button mat-button routerLink="/flaws">
@@ -12,20 +12,39 @@
 
     <div fxLayout="row" fxLayout.lt-md="column">
 
-        <div fxFlex="30" fxLayout="column">
+        <div fxFlex="20" fxLayout="column">
             <div>
                 <mat-form-field appearance="outline" class="custom-form-field">
                     <mat-label>Name</mat-label>
                     <input matInput placeholder="Placeholder" value="{{flaw.name}}" readonly="true">
                 </mat-form-field>
             </div>
+            <div>
+                <mat-form-field appearance="outline" class="custom-form-field">
+                    <mat-label>Category</mat-label>
+                    <input matInput placeholder="Placeholder" value="{{flaw.category}}" readonly="true">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="custom-form-field">
+                    <mat-label>Cost type</mat-label>
+                    <input matInput placeholder="Placeholder" value="{{flaw.costType}}" readonly="true">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="custom-form-field">
+                    <mat-label>Cost</mat-label>
+                    <input matInput placeholder="Placeholder" value="{{flaw.cost}}" readonly="true">
+                </mat-form-field>
+            </div>
     </div>
 
-    <div>
-        <span>{{flaw.description}}</span>
+    <div fxFlex="40">
+        <span style="font-size: 12pt;">{{flaw.description}}</span>
     </div>
 
 </div>
 
-
+<!--
 <pre>{{flaw | json}}</pre>
+-->

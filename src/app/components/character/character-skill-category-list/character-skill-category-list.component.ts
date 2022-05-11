@@ -1,12 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { DataSource } from '@angular/cdk/collections';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { CharacterInfo, CharacterSkillCategory } from '../../../model/character-info';
-import { SkillUpgradeRequest } from '../../../model/character-info';
-import { SkillCategory } from '../../../model/skill-category';
 import { CharacterService } from 'src/app/services/character-service';
 import { ErrorService } from 'src/app/services/error.service';
 
@@ -24,10 +20,10 @@ export class CharacterSkillCategoryListComponent implements OnInit, AfterViewIni
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
-  displayedColumns: string[] = ['categoryId', 'group', 'progressionType',
-    'adolescenceRanks', 'trainingPackageRanks', 'consolidatedRanks', 'developmentRanks',
-    'bonusAttribute', 'bonusProfession', 'bonusRanks',
-    'developmentCost', 'totalRanks', 'totalBonus', 'options'];
+  displayedColumns: string[] = ['category-id', 'group', 'progression-type',
+    'adolescence-ranks', 'training-package-ranks', 'consolidated-ranks', 'development-ranks',
+    'bonus-attribute', 'bonus-profession', 'bonus-ranks',
+    'development-cost', 'total-ranks', 'total-bonus', 'options'];
 
   allowModifications = true;
 
@@ -66,6 +62,10 @@ export class CharacterSkillCategoryListComponent implements OnInit, AfterViewIni
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.skillCategoryDataSource!.filter = filterValue.trim().toLowerCase();
+  }
+
+  openDialogCustomization(category: CharacterSkillCategory) {
+    this.errorService.displayError({error:{message:"Not implemented."}});
   }
 
 }
