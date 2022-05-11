@@ -64,6 +64,10 @@ export class CharacterSkillCategoryListComponent implements OnInit, AfterViewIni
     this.skillCategoryDataSource!.filter = filterValue.trim().toLowerCase();
   }
 
+  openDialogDetail(category: CharacterSkillCategory) {
+    this.errorService.displayError({error:{message:"Not implemented."}});
+  }
+
   openDialogCustomization(category: CharacterSkillCategory) {
     this.errorService.displayError({error:{message:"Not implemented."}});
   }

@@ -23,10 +23,10 @@ export class CharacterSkillListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   displayedColumns: string[] = [
-    'skillId', 'categoryId',
-    'raceRanks', 'adolescenceRanks', 'trainingPackageRanks', 'developmentRanks', 'consolidatedRanks',
-    'bonusCategory', 'bonusRanks',
-    'developmentCost', 'totalRanks', 'totalBonus', 'options'];
+    'skill-id', 'category-id', 'progression-type',
+    'race-ranks', 'adolescence-ranks', 'training-package-ranks', 'consolidated-ranks', 'development-ranks',
+    'bonus-category', 'bonus-ranks',
+    'development-cost', 'total-ranks', 'total-bonus', 'options'];
   includeUndevelopedSkills: boolean = true;
 
   constructor(
@@ -66,7 +66,7 @@ export class CharacterSkillListComponent implements OnInit, AfterViewInit {
   }
 
   openDialogCustomization(category: CharacterSkill) {
-    this.errorService.displayError({error:{message:"Not implemented."}});
+    this.errorService.displayError({ error: { message: "Not implemented." } });
   }
 
 }

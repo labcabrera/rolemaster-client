@@ -18,8 +18,8 @@
       <th mat-header-cell *matHeaderCellDef matTooltip="Progression type">Prg</th>
       <td mat-cell *matCellDef="let element">
         <container-element [ngSwitch]="element.progressionType">
-          <mat-icon *ngSwitchCase="'category'">trending_up</mat-icon>
-          <mat-icon *ngSwitchCase="'none'" class="grey">close</mat-icon>
+          <mat-icon *ngSwitchCase="'category'" matTooltip="Category standard">trending_up</mat-icon>
+          <mat-icon *ngSwitchCase="'none'" matTooltip="None" class="grey">close</mat-icon>
           <span *ngSwitchDefault>{{element.progressionType}}</span>
        </container-element>
       </td>
@@ -29,7 +29,7 @@
       <td mat-cell *matCellDef="let element">{{element.ranks.adolescence > 0 ? element.ranks.adolescence : ""}}</td>
     </ng-container>
     <ng-container matColumnDef="training-package-ranks">
-      <th mat-header-cell *matHeaderCellDef matTooltip="Training package ranks">R/TPac</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="Training package ranks">R/TP</th>
       <td mat-cell *matCellDef="let element">{{element.ranks['training-package'] > 0 ? element.ranks['training-package'] : ""}}</td>
     </ng-container>
     <ng-container matColumnDef="consolidated-ranks">
@@ -86,6 +86,10 @@
         </div>
         <div>
           <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openDialogDetail(element)">
+              <mat-icon>edit</mat-icon>
+              <span>Detail</span>
+            </button>
             <button mat-menu-item (click)="openDialogCustomization(element)">
               <mat-icon>edit</mat-icon>
               <span>Customize</span>

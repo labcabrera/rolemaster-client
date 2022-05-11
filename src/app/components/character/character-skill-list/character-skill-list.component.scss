@@ -1,9 +1,70 @@
 table {
-    width: 100%;
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-column-skill-id {
+  width: 200px;
+}
+
+.mat-column-skill-id a:link, a:visited, a:active {
+  text-decoration: none;
+}
+
+.mat-column-category-id {
+  width: 200px;
+}
+
+.mat-column-category-id a:link, a:visited, a:active {
+  text-decoration: none;
+}
+
+.mat-column-group {
+  width: 130px;
+}
+
+.mat-column-progression-type {
+  width: 60px;
+}
+
+.mat-column-race-ranks,
+.mat-column-adolescence-ranks,
+.mat-column-training-package-ranks,
+.mat-column-consolidated-ranks,
+.mat-column-development-ranks,
+.mat-column-bonus-category,
+.mat-column-bonus-ranks {
+  width: 50px;
+  color: #999;
+  text-align: left;
+}
+
+.mat-column-development-cost {
+  width: 80px;
+  color: #999;
+  text-align: left;
+}
+
+.mat-column-total-ranks,
+.mat-column-total-bonus {
+  width: 80px;
+  //font-weight: bold;
+  text-align: left;
+}
+
+.mat-column-options {
+  width: 120px;
+}
+
+.mat-header-cell {
+  text-align: left;
+  color: #fff;
+}
+
+.grey {
+  color: #999;
+}
