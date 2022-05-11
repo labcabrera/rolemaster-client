@@ -16,7 +16,7 @@ export class TrainingPackagesComponent implements OnInit {
 
   races?: TrainingPackage[];
 
-  displayedColumns: string[] = [ "id", "name", "type" ];
+  displayedColumns: string[] = [ "name", "type" ];
   dataSource: MatTableDataSource<TrainingPackage> = new MatTableDataSource<TrainingPackage>(this.races);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;

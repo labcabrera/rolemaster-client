@@ -19,7 +19,6 @@ export class RaceResistancesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("RB: ", this.race?.resistanceBonus);
     if (this.race && this.race.resistanceBonus) {
       const tmp = this.race.resistanceBonus;
       Object.keys(tmp).map(key => {

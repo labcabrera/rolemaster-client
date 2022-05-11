@@ -12,9 +12,6 @@ export class ActionDeclarationFormService {
 
   configureMeleeAttackTargets(fb: FormBuilder, actionForm: FormGroup, meleeAttackType: string, meleeAttackMode: string) {
     actionForm.removeControl('targets');
-
-    console.log(meleeAttackType + " - " + meleeAttackMode)
-
     if (meleeAttackType === 'full') {
       switch (meleeAttackMode) {
         case 'two-weapons':

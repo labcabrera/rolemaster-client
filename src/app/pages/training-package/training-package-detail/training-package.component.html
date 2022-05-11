@@ -8,36 +8,7 @@
 
     <mat-tab-group>
         <mat-tab label="Info" class="full-width">
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Name</mat-label>
-                    <input [(ngModel)]="trainingPackage.name" matInput disabled="true">
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Type</mat-label>
-                    <input [(ngModel)]="trainingPackage.type" matInput disabled="true">
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Time acquisition</mat-label>
-                    <input [(ngModel)]="trainingPackage.timeAcquisition" matInput disabled="true">
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Starting money</mat-label>
-                    <input [(ngModel)]="trainingPackage.startingMoney" matInput disabled="true">
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Stat gains</mat-label>
-                    <input [(ngModel)]="trainingPackage.statGains" matInput disabled="true">
-                </mat-form-field>
-            </div>
+            <app-training-package-basic-info [trainingPackage]="trainingPackage"></app-training-package-basic-info>
         </mat-tab>
         <mat-tab label="Fixed skills">
             <app-training-package-fixed-skills [trainingPackage]="trainingPackage"></app-training-package-fixed-skills>

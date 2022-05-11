@@ -78,7 +78,6 @@ export class DialogAddSkillComponent implements OnInit {
   }
 
   loadCustomizationOptions(event: any) {
-    console.log("Loading customization options: ", event);
     this.customizationOptions = [];
     if (!event.customizableOptions || event.customizableOptions < 1) {
       return;

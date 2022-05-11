@@ -11,4 +11,5 @@ export interface TrainingPackage {
     statGains: string[];
     startingMoney: string;
     costByProfession: any;
+    description: string;
 }

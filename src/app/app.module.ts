@@ -107,6 +107,7 @@ import { TrainingPackageSelectableCategoryComponent } from './components/trainin
 import { TrainingPackageSelectableSkillComponent } from './components/training-packages/training-package-selectable-skill/training-package-selectable-skill.component';
 import { TrainingPackageCustomizableSkillComponent } from './components/training-packages/training-package-customizable-skill/training-package-customizable-skill.component';
 import { TrainingPackageCostsComponent } from './components/training-packages/training-package-costs/training-package-costs.component';
+import { TrainingPackageBasicInfoComponent } from './components/training-packages/training-package-basic-info/training-package-basic-info.component';
 
 @NgModule({
   declarations: [
@@ -201,6 +202,7 @@ import { TrainingPackageCostsComponent } from './components/training-packages/tr
     TrainingPackageSelectableSkillComponent,
     TrainingPackageCustomizableSkillComponent,
     TrainingPackageCostsComponent,
+    TrainingPackageBasicInfoComponent,
   ],
   imports: [
     FormsModule,

@@ -49,16 +49,11 @@ export class AppComponent {
     this.oauthService.setupAutomaticSilentRefresh();
     this.oauthService.loadDiscoveryDocument().then(() => this.oauthService.tryLogin())
       .then(() => {
-        console.log("AppComponent: load discovery document: ", this.oauthService.getIdentityClaims());
-        //this.oauthService.tryLogin();
         if (this.oauthService.getIdentityClaims()) {
           this.isLogged = this.loginService.getIsLogged();
           this.isAdmin = this.loginService.getIsAdmin();
           this.username = this.loginService.getUsername();
         }
-      })
-      .catch(() => {
-        console.log("Error!!!");
       });
   }
 

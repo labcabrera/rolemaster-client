@@ -1,12 +1,18 @@
 <div *ngIf="trainingPackage">
 
-    <h2>Skill categories</h2>
-    <app-training-package-selectable-category [trainingPackage]="trainingPackage"></app-training-package-selectable-category>
+    <div *ngIf="trainingPackage.selectableSkillCategoryList.length > 0">
+        <h2>Skill categories</h2>
+        <app-training-package-selectable-category [trainingPackage]="trainingPackage"></app-training-package-selectable-category>
+    </div>
 
-    <h2>Skills</h2>
-    <app-training-package-selectable-skill [trainingPackage]="trainingPackage"></app-training-package-selectable-skill>
+    <div *ngIf="trainingPackage.selectableSkillList.length > 0">
+        <h2>Skills</h2>
+        <app-training-package-selectable-skill [trainingPackage]="trainingPackage"></app-training-package-selectable-skill>
+    </div>
 
-    <h2>Skill customizations</h2>
-    <app-training-package-customizable-skill [trainingPackage]="trainingPackage"></app-training-package-customizable-skill>
+    <div *ngIf="trainingPackage.selectableSkillCustomizations && trainingPackage.selectableSkillCustomizations.length > 0">
+        <h2>Skill customizations</h2>
+        <app-training-package-customizable-skill [trainingPackage]="trainingPackage"></app-training-package-customizable-skill>
+    </div>
 
 </div>
