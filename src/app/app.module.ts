@@ -103,6 +103,10 @@ import { SignupComponent } from './pages/signup/signup.component';
 
 import { environment } from 'src/environments/environment';
 import { TacticalSessionTableComponent } from './components/tactical-session/tactical-session-table/tactical-session-table.component';
+import { TrainingPackageSelectableCategoryComponent } from './components/training-packages/training-package-selectable-category/training-package-selectable-category.component';
+import { TrainingPackageSelectableSkillComponent } from './components/training-packages/training-package-selectable-skill/training-package-selectable-skill.component';
+import { TrainingPackageCustomizableSkillComponent } from './components/training-packages/training-package-customizable-skill/training-package-customizable-skill.component';
+import { TrainingPackageCostsComponent } from './components/training-packages/training-package-costs/training-package-costs.component';
 
 @NgModule({
   declarations: [
@@ -193,6 +197,10 @@ import { TacticalSessionTableComponent } from './components/tactical-session/tac
     TrainingPackageSelectableSkillsComponent,
     SignupComponent,
     TacticalSessionTableComponent,
+    TrainingPackageSelectableCategoryComponent,
+    TrainingPackageSelectableSkillComponent,
+    TrainingPackageCustomizableSkillComponent,
+    TrainingPackageCostsComponent,
   ],
   imports: [
     FormsModule,

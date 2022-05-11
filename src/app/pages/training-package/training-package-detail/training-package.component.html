@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <div><mat-icon>scatter_plot</mat-icon> Training package</div>
+    <div><mat-icon>scatter_plot</mat-icon> {{trainingPackage?.name}}</div>
     <div class="div-spacer"></div>
     <button mat-button routerLink="/training-packages"><mat-icon>arrow_upward</mat-icon></button>
 </mat-toolbar>
@@ -46,6 +46,9 @@
             <app-training-package-selectable-skills [trainingPackage]="trainingPackage"></app-training-package-selectable-skills>
         </mat-tab>
         <mat-tab label="Items">
+        </mat-tab>
+        <mat-tab label="Cost">
+            <app-training-package-costs [trainingPackage]="trainingPackage"></app-training-package-costs>
         </mat-tab>
         <mat-tab label="Debug">
             <pre>{{trainingPackage | json}}</pre>

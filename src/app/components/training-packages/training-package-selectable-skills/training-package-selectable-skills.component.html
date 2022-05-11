@@ -1,15 +1,12 @@
 <div *ngIf="trainingPackage">
 
     <h2>Skill categories</h2>
-
-    <pre>{{trainingPackage.selectableSkillCategoryList | json}}</pre>
+    <app-training-package-selectable-category [trainingPackage]="trainingPackage"></app-training-package-selectable-category>
 
     <h2>Skills</h2>
-
-    <pre>{{trainingPackage.selectableSkillList | json}}</pre>
+    <app-training-package-selectable-skill [trainingPackage]="trainingPackage"></app-training-package-selectable-skill>
 
     <h2>Skill customizations</h2>
-
-    <pre>{{trainingPackage.selectableSkillCustomizations | json}}</pre>
+    <app-training-package-customizable-skill [trainingPackage]="trainingPackage"></app-training-package-customizable-skill>
 
 </div>
