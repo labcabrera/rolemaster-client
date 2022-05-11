@@ -22,7 +22,6 @@ export class LoginService {
 
   public getUsername(): string {
     const claims = this.oauthService.getIdentityClaims() as any;
-    console.log("LoginService: claims: ", claims);
     if(claims && claims['preferred_username']) {
       return claims['preferred_username'];
     }
@@ -34,7 +33,6 @@ export class LoginService {
     const payload = token.split('.')[1];
     const payloadDecodedJson = atob(payload);
     const payloadDecoded = JSON.parse(payloadDecodedJson);
-    // console.log(payloadDecoded.realm_access.roles);
     return payloadDecoded.realm_access.roles.indexOf('realm-admin') !== -1;
   }
 

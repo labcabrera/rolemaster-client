@@ -21,6 +21,7 @@ export interface CharacterInfo {
     developmentPoints: CharacterDevelopmentPoints;
     carriedWeight: number;
     trainingPackages: any;
+    owner: string;
 }
 
 export interface CharacterAttributes {

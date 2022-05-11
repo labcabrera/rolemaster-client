@@ -102,6 +102,7 @@ import { TrainingPackageSelectableSkillsComponent } from './components/training-
 import { SignupComponent } from './pages/signup/signup.component';
 
 import { environment } from 'src/environments/environment';
+import { TacticalSessionTableComponent } from './components/tactical-session/tactical-session-table/tactical-session-table.component';
 
 @NgModule({
   declarations: [
@@ -191,6 +192,7 @@ import { environment } from 'src/environments/environment';
     TrainingPackageFixedSkillsComponent,
     TrainingPackageSelectableSkillsComponent,
     SignupComponent,
+    TacticalSessionTableComponent,
   ],
   imports: [
     FormsModule,

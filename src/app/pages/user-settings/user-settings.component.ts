@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/model/user';
+import { ErrorService } from 'src/app/services/error.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-settings',
@@ -7,9 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserSettingsComponent implements OnInit {
 
-  constructor() { }
+  user?: User;
+  userClaims?: any;
+
+  constructor(
+    private userService: UserService,
+    private errorService: ErrorService
+  ) { }
 
   ngOnInit(): void {
+    this.readUser();
+    this.readUserClaims();
+  }
+
+  readUser() {
+    this.userService.findUser().subscribe({
+      next: result => this.user = result,
+      error: error => this.errorService.displayError(error)
+    });
+  }
+
+  readUserClaims() {
+    this.userService.findUserClaims().subscribe({
+      next: result => this.userClaims = result,
+      error: error => this.errorService.displayError(error)
+    });
   }
 
 }

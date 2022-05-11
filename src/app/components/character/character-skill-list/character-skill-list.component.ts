@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { CharacterInfo, CharacterSkill } from '../../../model/character-info';
 import { CharacterService } from 'src/app/services/character-service';
 import { DialogAddSkillComponent } from 'src/app/components/dialogs/dialog-add-skill/dialog-add-skill.component';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-character-skill-list',
@@ -30,6 +31,7 @@ export class CharacterSkillListComponent implements OnInit, AfterViewInit {
 
   constructor(
     private characterService: CharacterService,
+    private errorService: ErrorService,
     private addSkillDialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -40,9 +42,12 @@ export class CharacterSkillListComponent implements OnInit, AfterViewInit {
   }
 
   updateRank(skillId: string, value: number): void {
-    this.characterService.upgradeSkill(this.character!.id, skillId, value).subscribe(result => {
-      this.character = result;
-      this.onCharacterUpdated.emit(result);
+    this.characterService.upgradeSkill(this.character!.id, skillId, value).subscribe({
+      next: result => {
+        this.character = result;
+        this.onCharacterUpdated.emit(result);
+      },
+      error: error => this.errorService.displayError(error)
     });
   }
 

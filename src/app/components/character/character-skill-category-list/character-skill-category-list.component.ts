@@ -8,6 +8,7 @@ import { CharacterInfo, CharacterSkillCategory } from '../../../model/character-
 import { SkillUpgradeRequest } from '../../../model/character-info';
 import { SkillCategory } from '../../../model/skill-category';
 import { CharacterService } from 'src/app/services/character-service';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-character-skill-category-list',
@@ -30,7 +31,9 @@ export class CharacterSkillCategoryListComponent implements OnInit, AfterViewIni
 
   allowModifications = true;
 
-  constructor(private characterService: CharacterService) {
+  constructor(
+    private characterService: CharacterService,
+    private errorService: ErrorService) {
   }
 
   ngOnInit(): void {
@@ -42,9 +45,12 @@ export class CharacterSkillCategoryListComponent implements OnInit, AfterViewIni
 
 
   updateRank(categoryId: string, value: number): void {
-    this.characterService.upgradeSkillCategory(this.character!.id, categoryId, value).subscribe(result => {
-      this.character = result;
-      this.onCharacterUpdated.emit(result);
+    this.characterService.upgradeSkillCategory(this.character!.id, categoryId, value).subscribe({
+      next: result => {
+        this.character = result;
+        this.onCharacterUpdated.emit(result);
+      },
+      error: error => this.errorService.displayError(error)
     });
   }
 

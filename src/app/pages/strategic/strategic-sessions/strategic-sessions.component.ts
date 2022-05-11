@@ -16,7 +16,7 @@ export class StrategicSessionsComponent implements OnInit, AfterViewInit {
 
   sessions: StrategicSession[] = [];
 
-  displayedColumns: string[] = ["name", "universe"];
+  displayedColumns: string[] = ["name", "universe", "owner"];
   dataSource: MatTableDataSource<StrategicSession> = new MatTableDataSource<StrategicSession>(this.sessions);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;

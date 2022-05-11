@@ -4,8 +4,10 @@
     <button mat-button matTooltip="Save settings"><mat-icon>save_alt</mat-icon></button>
 </mat-toolbar>
 
-<div class="outerContainer">
+<div class="outerContainer" *ngIf="user">
 
-    Under development
+    <pre>{{user | json}}</pre>
+
+    <pre>{{userClaims | json}}</pre>
 
 </div>

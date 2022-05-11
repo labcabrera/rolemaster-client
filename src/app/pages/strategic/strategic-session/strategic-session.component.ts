@@ -8,6 +8,7 @@ import { Universe } from 'src/app/model/commons';
 import { UniverseService } from 'src/app/services/universe.service';
 import { TacticalSessionService as TacticalSessionService } from 'src/app/services/tactical-session.service';
 import { ErrorService } from 'src/app/services/error.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-session-detail',
@@ -21,6 +22,8 @@ export class StrategicSessionComponent implements OnInit {
   form: FormGroup;
 
   universes: Universe[] = [];
+
+  tacticalSessionDataSource = new MatTableDataSource<TacticalSession>();
 
   constructor(
     private sessionService: StrategicSessionsService,
@@ -47,24 +50,29 @@ export class StrategicSessionComponent implements OnInit {
 
   loadStrategicSession(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
-    this.sessionService.findById(id).subscribe(
-      (response) => {
+    this.sessionService.findById(id).subscribe({
+      next: response => {
         this.strategicSession = response;
         this.loadTacticalSessions(this.strategicSession.id);
         this.form.patchValue({
           name: this.strategicSession.name,
           description: this.strategicSession.description,
           universeId: this.strategicSession.universeId
-        });
+        })
       },
-      (error) => {
-        this.errorService.displayError(error);
-      }
+      error: error => this.errorService.displayError(error)
+    }
     );
   }
 
   loadTacticalSessions(strategicSessionId: string) {
-    this.tacticalSessionService.findByStrategicSessionId(strategicSessionId).subscribe(response => this.tacticalSessions = response);
+    this.tacticalSessionService.findByStrategicSessionId(strategicSessionId).subscribe({
+      next: response => {
+        this.tacticalSessions = response;
+        this.tacticalSessionDataSource.data = this.tacticalSessions;
+      },
+      error: error => this.errorService.displayError(error)
+    });
   }
 
   saveSession() {

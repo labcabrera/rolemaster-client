@@ -5,7 +5,8 @@ export interface StrategicSession {
     name: string;
     description: string;
     universeId: string;
-    metadata: Metadata
+    metadata: Metadata;
+    owner: string;
 }
 
 export interface TacticalSession {
