@@ -28,9 +28,10 @@
         </div>
         <div fxFlex="20" fxLayoutAlign="left center" class="action-declaration">
             <app-tactical-view-character-action
+                [tacticalSession]="this.tacticalSession"
+                [tacticalRound]="this.tacticalRound"
                 [source]="character"
                 [priority]="'snap'"
-                [tacticalRound]="this.tacticalRound"
                 [characters]="this.characters"
                 [action]="getAction(character.id, 'snap')"
                 [actions]="actions"
@@ -39,9 +40,10 @@
         </div>
         <div fxFlex="20" fxLayoutAlign="left center" class="action-declaration">
             <app-tactical-view-character-action
+                [tacticalSession]="this.tacticalSession"
+                [tacticalRound]="this.tacticalRound"
                 [source]="character"
                 [priority]="'normal'"
-                [tacticalRound]="this.tacticalRound"
                 [characters]="this.characters"
                 [action]="getAction(character.id, 'normal')"
                 [actions]="actions"
@@ -50,9 +52,10 @@
         </div>
         <div fxFlex="20" fxLayoutAlign="left center" class="action-declaration">
             <app-tactical-view-character-action
+                [tacticalSession]="this.tacticalSession"
+                [tacticalRound]="this.tacticalRound"
                 [source]="character"
                 [priority]="'deliberate'"
-                [tacticalRound]="this.tacticalRound"
                 [characters]="this.characters"
                 [actions]="actions"
                 [action]="getAction(character.id, 'deliberate')"

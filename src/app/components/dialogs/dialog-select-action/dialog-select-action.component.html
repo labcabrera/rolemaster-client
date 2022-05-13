@@ -4,7 +4,7 @@
         <mat-tab-group #matTabGroup mat-align-tabs="start">
             <mat-tab label="Movement">
                 <app-action-declaration-movement [roundId]="round.id" [priority]="priority" [maxActionPercent]="maxActionPercent" [character]="source"
-                    [characters]="characters" (onActionCreation)="onActionCreation($event)">
+                    [characters]="characters" [scale]="this.tacticalSession!.scale" (onActionCreation)="onActionCreation($event)">
                 </app-action-declaration-movement>
             </mat-tab>
             <mat-tab label="Melee">

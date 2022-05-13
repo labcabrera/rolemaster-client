@@ -33,10 +33,11 @@ export class TacticalSessionCreationComponent implements OnInit {
     this.form = this.fb.group({
       strategicSessionId: [''],
       name: ['', Validators.required],
-      description: [''],
+      scale: [1.0],
       terrain: ['normal'],
       temperature: ['normal'],
-      exhaustionMultiplier: [1]
+      exhaustionMultiplier: [1],
+      description: ['']
     });
     this.route.queryParams.subscribe(params => {
       const id = params['strategicSessionId'];

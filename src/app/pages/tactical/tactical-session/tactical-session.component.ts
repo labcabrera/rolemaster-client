@@ -8,6 +8,7 @@ import { TacticalSessionService } from 'src/app/services/tactical-session.servic
 import { NamedKey } from 'src/app/model/commons';
 import { EnumService } from 'src/app/services/enum.service';
 import { ErrorService } from 'src/app/services/error.service';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-tactical-session',
@@ -27,16 +28,17 @@ export class TacticalSessionComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private tacticalSessionService: TacticalSessionService,
-    private strategicSessionService: StrategicSessionsService,   
+    private strategicSessionService: StrategicSessionsService,
     private enumService: EnumService,
     private errorService: ErrorService,
     private fb: FormBuilder) {
     this.form = fb.group({
       name: ['', Validators.required],
-      description: [''],
+      scale: [''],
       terrain: [''],
       temperature: [''],
-      exhaustionMultiplier: [1]
+      exhaustionMultiplier: [1],
+      description: ['']
     });
     this.form.disable();
   }
@@ -49,16 +51,13 @@ export class TacticalSessionComponent implements OnInit {
   }
 
   loadTacticalSession(tacticalSessionId: string) {
-    this.tacticalSessionService.findById(tacticalSessionId).subscribe(result => {
-      this.tacticalSession = result;
-      this.form.patchValue({
-        name: this.tacticalSession.name,
-        description: this.tacticalSession.description,
-        terrain: this.tacticalSession.terrain,
-        temperature: this.tacticalSession.temperature,
-        exhaustionMultiplier: this.tacticalSession.exhaustionMultiplier
-      });
-      this.loadStrategicSession(this.tacticalSession.strategicSessionId);
+    this.tacticalSessionService.findById(tacticalSessionId).subscribe({
+      next: result => {
+        this.tacticalSession = result;
+        this.updateForm(this.tacticalSession);
+        this.loadStrategicSession(this.tacticalSession.strategicSessionId);
+      },
+      error: error => this.errorService.displayError(error)
     });
   }
 
@@ -77,13 +76,21 @@ export class TacticalSessionComponent implements OnInit {
     this.tacticalSessionService.update(id, update).subscribe({
       next: response => {
         this.tacticalSession = response;
-        this.form.patchValue({
-          name: this.tacticalSession.name,
-          description: this.tacticalSession.description
-        });
+        this.updateForm(this.tacticalSession);
         this.form.disable();
       },
       error: error => this.errorService.displayError(error)
+    });
+  }
+
+  updateForm(tacticalSession: TacticalSession) {
+    this.form.patchValue({
+      name: tacticalSession.name,
+      scale: tacticalSession.scale,
+      terrain: tacticalSession.terrain,
+      temperature: tacticalSession.temperature,
+      exhaustionMultiplier: tacticalSession.exhaustionMultiplier,
+      description: tacticalSession.description
     });
   }
 

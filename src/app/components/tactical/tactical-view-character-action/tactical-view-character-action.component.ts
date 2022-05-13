@@ -8,6 +8,7 @@ import { DialogSelectActionComponent } from 'src/app/components/dialogs/dialog-s
 import { TacticalCharacter } from 'src/app/model/character-context';
 import { ActionService } from 'src/app/services/action.service';
 import { DialogActionExecutionComponent } from '../../dialogs/dialog-action-execution/dialog-action-execution.component';
+import { TacticalSession } from 'src/app/model/session';
 
 @Component({
   selector: 'app-tactical-view-character-action',
@@ -16,10 +17,11 @@ import { DialogActionExecutionComponent } from '../../dialogs/dialog-action-exec
 })
 export class TacticalViewCharacterActionComponent implements OnInit {
 
-  @Input() source: TacticalCharacter = {} as TacticalCharacter;
-  @Input() priority: string | undefined;
-  @Input() action: TacticalAction | undefined;
-  @Input() tacticalRound: TacticalRound | undefined;
+  @Input() source?: TacticalCharacter;
+  @Input() priority?: string;
+  @Input() action?: TacticalAction;
+  @Input() tacticalSession?: TacticalSession;
+  @Input() tacticalRound?: TacticalRound;
   @Input() characters: TacticalCharacter[] | undefined;
   @Input() actions: TacticalAction[] = [];
 
@@ -35,7 +37,7 @@ export class TacticalViewCharacterActionComponent implements OnInit {
 
   openActionSelectionDialog() {
     var dialogRef = this.actionSelectionDialog.open(DialogSelectActionComponent);
-    dialogRef.componentInstance.load(this.tacticalRound!, this.source!, this.priority!, this.characters!, this.actions);
+    dialogRef.componentInstance.load(this.tacticalSession!, this.tacticalRound!, this.source!, this.priority!, this.characters!, this.actions);
     dialogRef.afterClosed().subscribe(result => {
       this.actionsUpdated.emit("closed dialog");
     });
@@ -43,7 +45,7 @@ export class TacticalViewCharacterActionComponent implements OnInit {
 
   openAction(action: TacticalAction) {
     var dialogRef = this.actionSelectionDialog.open(DialogSelectActionComponent);
-    dialogRef.componentInstance.load(this.tacticalRound!, this.source!, this.priority!, this.characters!, this.actions);
+    dialogRef.componentInstance.load(this.tacticalSession!, this.tacticalRound!, this.source!, this.priority!, this.characters!, this.actions);
     dialogRef.componentInstance.loadAction(action);
     dialogRef.afterClosed().subscribe(result => {
       this.actionsUpdated.emit("closed dialog");

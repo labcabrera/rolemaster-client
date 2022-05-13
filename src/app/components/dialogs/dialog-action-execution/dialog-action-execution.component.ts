@@ -18,8 +18,8 @@ import { TacticalSessionService } from 'src/app/services/tactical-session.servic
 })
 export class DialogActionExecutionComponent implements OnInit {
 
-  action: TacticalAction = {} as TacticalAction;
-  tacticalSession: TacticalSession = {} as TacticalSession;
+  action?: TacticalAction;
+  tacticalSession?: TacticalSession;
   characters: TacticalCharacter[] = [];
 
   constructor(

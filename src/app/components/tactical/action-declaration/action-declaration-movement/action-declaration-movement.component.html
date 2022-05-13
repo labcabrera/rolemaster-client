@@ -5,7 +5,7 @@
         </div>
         <div fxFlex="80">
             <span>{{actionForm.value.actionPercent}}&nbsp;</span>
-            <mat-slider formControlName="actionPercent" min="0" max="{{maxActionPercent}}" step="5" thumbLabel></mat-slider>
+            <mat-slider formControlName="actionPercent" min="0" max="{{maxActionPercent}}" step="5" thumbLabel (change)="calculateBaseDistance()"></mat-slider>
         </div>
     </div>
     <div fxLayout="row">
@@ -13,14 +13,59 @@
             Pace
         </div>
         <div fxFlex="80">
-            <mat-button-toggle-group formControlName="pace">
+            <mat-button-toggle-group formControlName="pace" (change)="onPaceChange($event)">
                 <mat-button-toggle *ngFor="let option of movementPaces" [value]="option.key">{{option.name}}</mat-button-toggle>
             </mat-button-toggle-group>
+        </div>
+    </div>
+    <div fxLayout="row">
+        <div fxFlex="15" class="form-label">
+            Scale
+        </div>
+        <div fxFlex="80">
+            <span>{{scale}}</span>
+        </div>
+    </div>
+    <div fxLayout="row">
+        <div fxFlex="15" class="form-label">
+            Pace multiplier
+        </div>
+        <div fxFlex="80">
+            <span>{{paceMultiplier}}x</span>
+        </div>
+    </div>
+    <div fxLayout="row">
+        <div fxFlex="15" class="form-label">
+            Base difficulty
+        </div>
+        <div fxFlex="80">
+            <span>{{paceBaseDifficulty}}</span>
+        </div>
+    </div>
+    <div fxLayout="row">
+        <div fxFlex="15" class="form-label">
+            Base distance
+        </div>
+        <div fxFlex="80">
+            <span>{{baseDistance}}m</span>
+        </div>
+    </div>
+    <div fxLayout="row">
+        <div fxFlex="15" class="form-label">
+            Base distance (scale)
+        </div>
+        <div fxFlex="80">
+            <span>{{baseDistanceScaled}}</span>
         </div>
     </div>
 </div>
 
 <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" (click)="declareMovement()" [disabled]="actionForm.invalid">Declare</button>
+    <button mat-stroked-button mat-dialog-close>Cancel</button>
+    <button mat-stroked-button [mat-dialog-close]="true" (click)="declareMovement()" [disabled]="actionForm.invalid">Declare</button>
 </mat-dialog-actions>
+
+<br>
+<!--
+<pre>{{character|json}}</pre>
+-->

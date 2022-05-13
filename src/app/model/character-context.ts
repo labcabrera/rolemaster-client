@@ -17,6 +17,7 @@ export interface TacticalCharacter {
     items: CharacterItem[];
     armor: number;
     defensiveBonus: number;
+    baseMovementRate: number;
     state: string;
     specialAttacks: SpecialAttack[];
     metadata: Metadata

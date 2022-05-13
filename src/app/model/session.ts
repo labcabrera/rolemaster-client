@@ -13,11 +13,12 @@ export interface TacticalSession {
     id: string;
     strategicSessionId: string;
     name: string;
-    description: string;
+    scale: number;
     terrain: string;
     temperature: string;
     exhaustionMultiplier: number;
     state: string;
+    description: string;
     metadata: Metadata;
 }
 

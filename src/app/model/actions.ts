@@ -15,6 +15,7 @@ export interface TacticalAction {
     pace: string;
     meleeAttackType: string;
     meleeAttackMode: string;
+    bonusMap: any;
     parry: number;
     roll: OpenRoll;
     rolls: TacticalActionRolls;
@@ -23,10 +24,13 @@ export interface TacticalAction {
     attackResults: AttackResultMap;
     criticalResults: TacticalCriticalResultMap;
     breakageResults: BreakageResultMap;
-    distance: number;
     cover: string;
     customBonus: number;
     preparationRounds: number;
+    distance: number;
+    distanceScaled: number;
+    difficulty: string;
+    maneuverResult: any;
 }
 
 export interface AttackResultMap {

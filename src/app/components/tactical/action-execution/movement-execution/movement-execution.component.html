@@ -1,0 +1,64 @@
+<div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="15px" *ngIf="action">
+
+  <div fxFlex="25" fxLayout="column" [formGroup]="actionExecutionForm">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Difficulty</mat-label>
+        <mat-select formControlName="difficulty">
+          <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty.key">
+            {{difficulty.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div *ngIf="actionExecutionForm.controls['customBonus']">
+      <mat-form-field appearance="outline">
+        <mat-label>Custom bonus</mat-label>
+        <input matInput formControlName="customBonus">
+      </mat-form-field>
+    </div>
+    <div *ngIf="actionExecutionForm.controls['roll']">
+      <mat-form-field appearance="outline">
+        <mat-label>Roll</mat-label>
+        <input matInput formControlName="roll">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div fxFlex="25" fxLayout="column">
+    <div fxLayout="row">
+      <div fxFlex="40">Distance</div>
+      <div fxFlex="60">{{this.action.distance}}m</div>
+    </div>
+    <div fxLayout="row">
+      <div fxFlex="40">Distance scaled</div>
+      <div fxFlex="60">{{this.action.distanceScaled}}</div>
+    </div>
+    <div fxLayout="row">
+      <div fxFlex="40">Pace</div>
+      <div fxFlex="60">{{this.action.pace}}</div>
+    </div>
+    <div fxLayout="row">
+      <div fxFlex="40">Action percent</div>
+      <div fxFlex="60">{{this.action.actionPercent}}%</div>
+    </div>
+    <div fxLayout="row">
+      <div fxFlex="40">Maneuver result</div>
+      <div fxFlex="60">{{this.action.maneuverResult?.result}}</div>
+    </div>
+    
+  </div>
+
+</div>
+
+<mat-dialog-actions *ngIf="actionExecutionForm">
+  <button mat-stroked-button mat-dialog-close>Close</button>
+  <button mat-stroked-button (click)="executeMovement()" [disabled]="actionExecutionForm.invalid || actionExecutionForm.disabled">Execute movement</button>
+</mat-dialog-actions>
+
+<br>
+
+<!--
+<pre>{{this.actionExecutionForm.value | json}}</pre>
+<pre>{{this.action | json}}</pre>
+-->

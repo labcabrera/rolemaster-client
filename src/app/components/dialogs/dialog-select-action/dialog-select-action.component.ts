@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 import { TacticalAction } from 'src/app/model/actions';
 import { TacticalRound } from 'src/app/model/round';
+import { TacticalSession } from 'src/app/model/session';
 import { TacticalCharacter } from 'src/app/model/character-context';
 
 export interface Entry {
@@ -17,6 +18,7 @@ export interface Entry {
 })
 export class DialogSelectActionComponent implements OnInit {
 
+  tacticalSession?: TacticalSession;
   source: TacticalCharacter = {} as TacticalCharacter;
   characters: TacticalCharacter[] = [];
   round: TacticalRound = {} as TacticalRound;
@@ -37,7 +39,8 @@ export class DialogSelectActionComponent implements OnInit {
     this.dialogRef.updateSize('90%', '90%');
   }
 
-  load(tacticalRound: TacticalRound, source: TacticalCharacter, priority: string, characters: TacticalCharacter[], actions: TacticalAction[]) {
+  load(tacticalSession: TacticalSession, tacticalRound: TacticalRound, source: TacticalCharacter, priority: string, characters: TacticalCharacter[], actions: TacticalAction[]) {
+    this.tacticalSession = tacticalSession;
     var maxPriorityPercent = this.actionPercentMap.get(priority)![1];
     var availablePercent = 100 - this.getUsedActivityPercent(source, actions);
     this.round = tacticalRound;

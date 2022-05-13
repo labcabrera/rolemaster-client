@@ -15,6 +15,7 @@ import { NamedKey } from 'src/app/model/commons';
 export class ActionDeclarationMovementComponent implements OnInit, AfterContentInit {
 
   @Input() character: TacticalCharacter = {} as TacticalCharacter;
+  @Input() scale = 1;
   @Input() roundId: string = "";
   @Input() priority: string = "";
   @Input() maxActionPercent: number = 0;
@@ -23,8 +24,29 @@ export class ActionDeclarationMovementComponent implements OnInit, AfterContentI
   @Output() onActionCreation = new EventEmitter<string>();
 
   actionForm: FormGroup;
-
   movementPaces: NamedKey[] = [];
+  paceMultiplier = 1;
+  paceBaseDifficulty = "none";
+  baseDistance?: number;
+  baseDistanceScaled?: number;
+
+  paceMultiplierMap = new Map<string, number>([
+    ["walk", 1.0],
+    ["fast-walk", 1.5],
+    ["run", 2.0],
+    ["sprint", 3.0],
+    ["fast-sprint", 4.0],
+    ["dash", 5.0],
+  ]);
+
+  paceBaseDifficultyMap = new Map<string, string>([
+    ["walk", "none"],
+    ["fast-walk", "none"],
+    ["run", "none"],
+    ["sprint", "easy"],
+    ["fast-sprint", "light"],
+    ["dash", "medium"],
+  ]);
 
   constructor(
     private actionService: ActionService,
@@ -48,7 +70,7 @@ export class ActionDeclarationMovementComponent implements OnInit, AfterContentI
       error: error => this.errorService.displayError(error)
     });
   }
-
+  
   ngAfterContentInit(): void {
     this.actionForm.patchValue({
       priority: this.priority,
@@ -56,13 +78,27 @@ export class ActionDeclarationMovementComponent implements OnInit, AfterContentI
       actionPercent: this.maxActionPercent,
       source: this.character.id
     });
+    this.calculateBaseDistance();
   }
 
-  declareMovement() {
+  declareMovement(): void {
     this.actionService.declare(this.actionForm.value).subscribe({
       next: result => this.onActionCreation.emit("Declared movement."),
       error: error => this.errorService.displayError(error)
     });
+  }
+
+  onPaceChange(option: any): void {
+    const value = option.value;
+    this.paceMultiplier = this.paceMultiplierMap.get(value)!;
+    this.paceBaseDifficulty = this.paceBaseDifficultyMap.get(value)!;
+    this.calculateBaseDistance();
+  }
+
+  calculateBaseDistance(): void {
+    const percent: number = this.actionForm.value['actionPercent'];
+    this.baseDistance = this.character.baseMovementRate * percent * this.paceMultiplier / 100;
+    this.baseDistanceScaled = this.baseDistance * this.scale;
   }
 
 }
