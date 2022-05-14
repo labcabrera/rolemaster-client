@@ -1,5 +1,26 @@
 <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="15px" *ngIf="action">
 
+  <div fxFlex="25" fxLayout="column">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Action state</mat-label>
+        <input matInput [(ngModel)]="action.state" disabled="true">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Action percent</mat-label>
+        <input matInput [(ngModel)]="action.actionPercent" disabled="true">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Pace</mat-label>
+        <input matInput [(ngModel)]="action.pace" disabled="true">
+      </mat-form-field>
+    </div>
+  </div>
+
   <div fxFlex="25" fxLayout="column" [formGroup]="actionExecutionForm">
     <div>
       <mat-form-field appearance="outline">
@@ -7,6 +28,16 @@
         <mat-select formControlName="difficulty">
           <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty.key">
             {{difficulty.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Combat situation</mat-label>
+        <mat-select formControlName="combatSituation">
+          <mat-option *ngFor="let combatSituation of combatSituations" [value]="combatSituation.key">
+            {{combatSituation.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -26,27 +57,47 @@
   </div>
 
   <div fxFlex="25" fxLayout="column">
-    <div fxLayout="row">
-      <div fxFlex="40">Distance</div>
-      <div fxFlex="60">{{this.action.distance}}m</div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Distance (m)</mat-label>
+        <input matInput [(ngModel)]="action.distance" disabled="true">
+      </mat-form-field>
     </div>
-    <div fxLayout="row">
-      <div fxFlex="40">Distance scaled</div>
-      <div fxFlex="60">{{this.action.distanceScaled}}</div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Distance (scaled)</mat-label>
+        <input matInput [(ngModel)]="action.distanceScaled" disabled="true">
+      </mat-form-field>
     </div>
-    <div fxLayout="row">
-      <div fxFlex="40">Pace</div>
-      <div fxFlex="60">{{this.action.pace}}</div>
+  </div>
+
+  <div fxFlex="25" fxLayout="column">
+    <div *ngIf="action.maneuverResult">
+      <mat-form-field appearance="outline">
+        <mat-label>Maneuver result</mat-label>
+        <input matInput [(ngModel)]="action.maneuverResult.result" disabled="true">
+      </mat-form-field>
     </div>
-    <div fxLayout="row">
-      <div fxFlex="40">Action percent</div>
-      <div fxFlex="60">{{this.action.actionPercent}}%</div>
+    <div *ngIf="action.maneuverResult">
+      <mat-form-field appearance="outline">
+        <mat-label>HP</mat-label>
+        <input matInput [(ngModel)]="action.maneuverResult.hp" disabled="true">
+      </mat-form-field>
     </div>
-    <div fxLayout="row">
-      <div fxFlex="40">Maneuver result</div>
-      <div fxFlex="60">{{this.action.maneuverResult?.result}}</div>
+    <div *ngIf="action.maneuverResult && action.maneuverResult.text">
+      {{action.maneuverResult.text}}
     </div>
-    
+    <div *ngIf="action.maneuverResult && action.maneuverResult.debuffs">
+      Debuffs:
+      {{action.maneuverResult.debuffs | json}}
+    </div>
+    <div *ngIf="action.maneuverResult && action.maneuverResult.injuries">
+      Injuries:
+      {{action.maneuverResult.injuries | json}}
+    </div>
+    <!--
+    <pre>{{action.maneuverResult  | json}}</pre>
+    -->
   </div>
 
 </div>
@@ -59,6 +110,6 @@
 <br>
 
 <!--
-<pre>{{this.actionExecutionForm.value | json}}</pre>
-<pre>{{this.action | json}}</pre>
+  <pre>{{this.actionExecutionForm.value | json}}</pre>
+  <pre>{{this.action | json}}</pre>
 -->

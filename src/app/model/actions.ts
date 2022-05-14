@@ -31,6 +31,7 @@ export interface TacticalAction {
     distanceScaled: number;
     difficulty: string;
     maneuverResult: any;
+    combatSituation: string;
 }
 
 export interface AttackResultMap {

@@ -21,7 +21,7 @@ export class EnumService {
   }
 
   findManeuverDifficulties(): Observable<NamedKey[]> {
-    var url = `${this.baseUrl}/maneuver-difficulties`
+    var url = `${this.baseUrl}/maneuver-difficulty`
     return this.http.get<NamedKey[]>(url).pipe();
   }
 
@@ -61,7 +61,12 @@ export class EnumService {
   }
 
   findCoverTypes(): Observable<NamedKey[]> {
-    var url = `${this.baseUrl}/cover-types`
+    var url = `${this.baseUrl}/cover`
+    return this.http.get<NamedKey[]>(url).pipe();
+  }
+
+  findMovingManeuverCombatSituations(): Observable<NamedKey[]> {
+    var url = `${this.baseUrl}/moving-maneuver-combat-situation`
     return this.http.get<NamedKey[]>(url).pipe();
   }
 

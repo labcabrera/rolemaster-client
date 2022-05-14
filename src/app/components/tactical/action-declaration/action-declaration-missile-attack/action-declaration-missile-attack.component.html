@@ -19,6 +19,8 @@
 </div>
 
 <mat-dialog-actions *ngIf="missileDeclarationForm">
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" (click)="declareMissileAttack()" [disabled]="missileDeclarationForm.invalid">Declare</button>
+    <button mat-stroked-button mat-dialog-close>Cancel</button>
+    <button mat-stroked-button [mat-dialog-close]="true" (click)="declareMissileAttack()" [disabled]="missileDeclarationForm.invalid">Declare</button>
 </mat-dialog-actions>
+
+<br>

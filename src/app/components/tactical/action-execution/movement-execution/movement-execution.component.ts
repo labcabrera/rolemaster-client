@@ -23,6 +23,7 @@ export class MovementExecutionComponent implements OnInit {
   actionExecutionForm: FormGroup;
 
   difficulties: NamedKey[] = [];
+  combatSituations: NamedKey[] = [];
 
   constructor(
     private actionService: ActionService,
@@ -34,6 +35,7 @@ export class MovementExecutionComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadDifficulties();
+    this.loadCombatSituations();
     this.loadActionExecutionFormData();
   }
 
@@ -50,6 +52,7 @@ export class MovementExecutionComponent implements OnInit {
   private buildActionExecutionForm(): FormGroup {
     const actionExecutionForm = this.fb.group({
       type: ['movement', Validators.required],
+      combatSituation: ['melee-environment', Validators.required],
       difficulty: ['', Validators.required]
     });
     actionExecutionForm.get("difficulty")!.valueChanges.subscribe(selectedValue => {
@@ -68,9 +71,16 @@ export class MovementExecutionComponent implements OnInit {
     if(!this.action) {
       return;
     }
-    this.actionExecutionForm.patchValue({difficulty: this.action.difficulty});
+    if(this.action.state === "pending") {
+      this.actionExecutionForm.patchValue({difficulty: this.getDefaultDifficulty(this.action.pace)});
+    } else if(this.action.difficulty) {
+      this.actionExecutionForm.patchValue({difficulty: this.action.difficulty});
+    }
     if(this.action.roll) {
       this.actionExecutionForm.patchValue({roll: this.action.roll});
+    }
+    if(this.action.combatSituation) {
+      this.actionExecutionForm.patchValue({combatSituation: this.action.combatSituation});
     }
     if(this.action.bonusMap && this.action.bonusMap['custom']) {
       this.actionExecutionForm.patchValue({customBonus: this.action.bonusMap['custom']});
@@ -85,6 +95,26 @@ export class MovementExecutionComponent implements OnInit {
       next: results => this.difficulties = results,
       error: error => this.errorService.displayError(error)
     });
+  }
+
+  private loadCombatSituations(): void {
+    this.enumService.findMovingManeuverCombatSituations().subscribe({
+      next: results => this.combatSituations = results,
+      error: error => this.errorService.displayError(error)
+    });
+  }
+
+  private getDefaultDifficulty(pace: string): string {
+    var difficulty = "none";
+    if(pace === "sprint") {
+      difficulty = "easy";
+    } else if(pace === "fast-spring") {
+      difficulty = "light"
+    } else if(pace === "dash") {
+      difficulty = "medium";
+    }
+    console.log("dd: ", pace, " -> ", difficulty);
+    return difficulty;
   }
 
 }

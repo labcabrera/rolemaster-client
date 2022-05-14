@@ -1,13 +1,8 @@
 <h2 mat-dialog-title>Action execution</h2>
 <mat-dialog-content *ngIf="action">
-
     <container-element [ngSwitch]="action.type">
         <app-movement-execution *ngSwitchCase="'movement'" [action]="action" [characters]="characters"></app-movement-execution>
         <app-melee-attack-execution *ngSwitchCase="'melee-attack'" [action]="action" [characters]="characters"></app-melee-attack-execution>
         <app-missile-attack-execution *ngSwitchCase="'missile-attack'" [action]="action" [characters]="characters"></app-missile-attack-execution>
     </container-element>
 </mat-dialog-content>
-
-<mat-dialog-actions>
-    <button mat-button mat-dialog-close>Close</button>
-</mat-dialog-actions>
