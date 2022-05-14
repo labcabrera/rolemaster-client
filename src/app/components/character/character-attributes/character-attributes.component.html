@@ -1,43 +1,43 @@
 <div>
     <table mat-table #skillTable [dataSource]="dataSource">
         <ng-container matColumnDef="attribute">
-            <th mat-header-cell *matHeaderCellDef>Attribute</th>
+            <th scope="col" mat-header-cell *matHeaderCellDef>Attribute</th>
             <td mat-cell *matCellDef="let element">{{element.attribute}}</td>
         </ng-container>
         <ng-container matColumnDef="currentValue">
-            <th mat-header-cell *matHeaderCellDef>Current</th>
+            <th scope="col" mat-header-cell *matHeaderCellDef>Current</th>
             <td mat-cell *matCellDef="let element">{{element.currentValue}}</td>
         </ng-container>
         <ng-container matColumnDef="potentialValue">
-            <th mat-header-cell *matHeaderCellDef>Potential</th>
+            <th scope="col" mat-header-cell *matHeaderCellDef>Potential</th>
             <td mat-cell *matCellDef="let element">{{element.potentialValue}}</td>
         </ng-container>
         <ng-container matColumnDef="bonusAttribute">
-            <th mat-header-cell *matHeaderCellDef>Bonus At</th>
+            <th scope="col" mat-header-cell *matHeaderCellDef>Bonus At</th>
             <td mat-cell *matCellDef="let element">
                 <span *ngIf="element.bonusAttribute != 0">{{element.bonusAttribute}}</span>
             </td>
         </ng-container>
         <ng-container matColumnDef="bonusRace">
-            <th mat-header-cell *matHeaderCellDef>Bonus Race</th>
+            <th scope="col" mat-header-cell *matHeaderCellDef>Bonus Race</th>
             <td mat-cell *matCellDef="let element">
                 <span *ngIf="element.bonusRace != 0">{{element.bonusRace}}</span>
             </td>
         </ng-container>
         <ng-container matColumnDef="bonusSpecial">
-            <th mat-header-cell *matHeaderCellDef>Bonus Special</th>
+            <th scope="col" mat-header-cell *matHeaderCellDef>Bonus Special</th>
             <td mat-cell *matCellDef="let element">
                 <span *ngIf="element.bonusSpecial != 0">{{element.bonusSpecial}}</span>
             </td>
         </ng-container>
         <ng-container matColumnDef="totalBonus">
-            <th mat-header-cell *matHeaderCellDef>Total bonus</th>
+            <th scope="col" mat-header-cell *matHeaderCellDef>Total bonus</th>
             <td mat-cell *matCellDef="let element">
                 <span *ngIf="element.totalBonus != 0">{{element.totalBonus}}</span>
             </td>
         </ng-container>
         <ng-container matColumnDef="options">
-            <th mat-header-cell *matHeaderCellDef></th>
+            <th scope="col" mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                     <mat-icon>more_vert</mat-icon>

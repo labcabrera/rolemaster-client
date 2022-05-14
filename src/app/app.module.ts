@@ -101,7 +101,6 @@ import { TrainingPackageFixedSkillsComponent } from './components/training-packa
 import { TrainingPackageSelectableSkillsComponent } from './components/training-packages/training-package-selectable-skills/training-package-selectable-skills.component';
 import { SignupComponent } from './pages/signup/signup.component';
 
-import { environment } from 'src/environments/environment';
 import { TacticalSessionTableComponent } from './components/tactical-session/tactical-session-table/tactical-session-table.component';
 import { TrainingPackageSelectableCategoryComponent } from './components/training-packages/training-package-selectable-category/training-package-selectable-category.component';
 import { TrainingPackageSelectableSkillComponent } from './components/training-packages/training-package-selectable-skill/training-package-selectable-skill.component';
