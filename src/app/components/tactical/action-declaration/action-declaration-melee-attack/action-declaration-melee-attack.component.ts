@@ -16,7 +16,8 @@ import { ErrorService } from 'src/app/services/error.service';
 })
 export class ActionDeclarationMeleeAttackComponent implements OnInit, AfterContentInit {
 
-  //@Input() actionForm: FormGroup = {} as FormGroup;
+  actionForm: FormGroup | undefined;
+
   @Input() roundId: string = "";
   @Input() priority: string = "";
   @Input() character: TacticalCharacter = {} as TacticalCharacter;
@@ -25,7 +26,6 @@ export class ActionDeclarationMeleeAttackComponent implements OnInit, AfterConte
 
   @Output() onActionCreation = new EventEmitter<string>();
 
-  actionForm: FormGroup | undefined;
   meleeAttackTypes: NamedKey[] = [];
   meleeAttackModes: NamedKey[] = [];
 
@@ -97,9 +97,21 @@ export class ActionDeclarationMeleeAttackComponent implements OnInit, AfterConte
     return this.hasTwoWeapons() ? "two-weapons" : "main-hand-weapon";
   }
 
+  getTargets() {
+    return this.characters.filter(e => e.id != this.character.id);
+  }
+
   hasTwoWeapons() {
     var offHand = this.character.items.filter(e => e.position === 'off-hand');
     return offHand.length > 0 && offHand[0].type === 'weapon';
+  }
+
+  enabledOffHandAttack(): boolean {
+    if(!this.actionForm) {
+      return false;
+    }
+    const targets = this.actionForm.controls['targets'] as FormGroup;
+    return targets.controls['off-hand'] != null;
   }
 
 }

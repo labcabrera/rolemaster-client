@@ -113,7 +113,6 @@ export class MovementExecutionComponent implements OnInit {
     } else if(pace === "dash") {
       difficulty = "medium";
     }
-    console.log("dd: ", pace, " -> ", difficulty);
     return difficulty;
   }
 

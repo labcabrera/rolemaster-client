@@ -8,28 +8,29 @@
                 <mat-slider thumbLabel formControlName="actionPercent" min="0" max="{{maxActionPercent}}" step="5"></mat-slider>
             </div>
             <div>
-                <h4>Parry percent</h4>
-                <span>{{actionForm.value.parry}}&nbsp;</span>
-                <mat-slider thumbLabel formControlName="parry" min="0" max="100" step="5" aria-label="percent"></mat-slider>
+                <mat-form-field appearance="outline">
+                    <mat-label>Parry</mat-label>
+                    <input matInput formControlName="parry">
+                </mat-form-field>
             </div>
-            <div *ngIf="actionForm.value.targets" formGroupName="targets">
+            <ng-container *ngIf="actionForm.value.targets" formGroupName="targets">
                 <div *ngIf="actionForm.value.meleeAttackType == 'full' && actionForm.value.meleeAttackMode != 'off-hand-weapon'">
                     <mat-form-field appearance="outline">
                         <mat-label>Main hand target</mat-label>
                         <mat-select formControlName="main-hand">
-                            <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}</mat-option>
+                            <mat-option *ngFor="let character of getTargets()" [value]="character.id">{{character.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
-            </div>
-        </div>
-        <div *ngIf="actionForm.controls['off-hand']">
-            <mat-form-field appearance="outline">
-                <mat-label>Off-hand target</mat-label>
-                <mat-select formControlName="off-hand">
-                    <mat-option *ngFor="let character of characters" [value]="character.id">{{character.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
+                <div *ngIf="enabledOffHandAttack()">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Off-hand target</mat-label>
+                        <mat-select formControlName="off-hand">
+                            <mat-option *ngFor="let character of getTargets()" [value]="character.id">{{character.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </ng-container>
         </div>
     </div>
 
@@ -42,7 +43,7 @@
                 </mat-button-toggle-group>
             </div>
             <div>
-                <span>{{this.meleeAttackTypeDescriptions.get(actionForm.value.meleeAttackType)}}</span>
+                <span style="font-size: 12pt;">{{this.meleeAttackTypeDescriptions.get(actionForm.value.meleeAttackType)}}</span>
             </div>
         </div>
     </div>
@@ -78,5 +79,5 @@
 <br>
 
 <!--
-<pre>{{actionForm?.value | json}}</pre>
 -->
+<pre>{{actionForm?.value | json}}</pre>
