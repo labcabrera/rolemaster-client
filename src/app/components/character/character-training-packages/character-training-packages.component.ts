@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { CharacterInfo } from 'src/app/model/character-info';
@@ -10,7 +10,6 @@ import { TrainingPackageService } from 'src/app/services/training-packages.servi
 import { ErrorService } from 'src/app/services/error.service';
 import { SkillService } from 'src/app/services/skill.service';
 import { CharacterService } from 'src/app/services/character-service';
-import { NamedKey } from 'src/app/model/commons';
 
 @Component({
   selector: 'app-character-training-packages',
@@ -62,7 +61,6 @@ export class CharacterTrainingPackagesComponent implements OnInit {
       next: results => this.skills = results,
       error: error => this.errorService.displayError(error)
     });
-    this.loadAvailableTrainingPackages
     this.acquiredTrainingPackages = Object.keys(this.character!['trainingPackages']).map(function (e) { return e; });
   }
 

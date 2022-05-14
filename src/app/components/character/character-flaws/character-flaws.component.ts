@@ -1,10 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs';
+import { Observable, startWith, map } from 'rxjs';
 
-import { CharacterCustomization } from 'src/app/model/character-info';
-import { CharacterInfo } from 'src/app/model/character-info';
+import { CharacterInfo, CharacterCustomization } from 'src/app/model/character-info';
 import { CharacterCustomizationService } from 'src/app/services/character-customization.service';
 import { ErrorService } from 'src/app/services/error.service';
 

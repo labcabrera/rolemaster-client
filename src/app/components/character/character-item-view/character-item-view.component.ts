@@ -112,12 +112,8 @@ export class CharacterItemViewComponent implements OnInit {
     this.items.sort(function (a, b) {
       var xa = 0;
       var xb = 0;
-      switch (a.position) {
-        case "main-hand":
-          xa = 3;
-          break;
-      }
-      switch (b.position) {
+      if (a.position == "main-hand") {
+        xa = 3;
       }
       if (xa > xb) {
         return -1;

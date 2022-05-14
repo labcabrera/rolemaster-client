@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ErrorService } from 'src/app/services/error.service';
 
-import { CharacterAttribute, CharacterAttributes, CharacterInfo } from '../../../model/character-info';
+import { CharacterAttribute, CharacterInfo } from '../../../model/character-info';
 
 interface AttributeRecord {
   attribute: string;
