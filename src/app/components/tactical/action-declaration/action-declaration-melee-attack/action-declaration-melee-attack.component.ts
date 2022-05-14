@@ -106,12 +106,12 @@ export class ActionDeclarationMeleeAttackComponent implements OnInit, AfterConte
     return offHand.length > 0 && offHand[0].type === 'weapon';
   }
 
-  enabledOffHandAttack(): boolean {
+  enabledAttackTarget(type: string): boolean {
     if(!this.actionForm) {
       return false;
     }
     const targets = this.actionForm.controls['targets'] as FormGroup;
-    return targets.controls['off-hand'] != null;
+    return targets.controls[type] != null;
   }
 
 }

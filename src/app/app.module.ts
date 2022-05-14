@@ -113,6 +113,7 @@ import { TalentDetailComponent } from './pages/talents/talent-detail/talent-deta
 import { FlawsDetailComponent } from './pages/flaws/flaws-detail/flaws-detail.component';
 import { FlawsListComponent } from './pages/flaws/flaws-list/flaws-list.component';
 import { MovementExecutionComponent } from './components/tactical/action-execution/movement-execution/movement-execution.component';
+import { AttackResultDetailComponent } from './components/tactical/attack-result-detail/attack-result-detail.component';
 
 @NgModule({
   declarations: [
@@ -213,6 +214,7 @@ import { MovementExecutionComponent } from './components/tactical/action-executi
     FlawsDetailComponent,
     FlawsListComponent,
     MovementExecutionComponent,
+    AttackResultDetailComponent,
   ],
   imports: [
     FormsModule,

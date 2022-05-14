@@ -1,0 +1,34 @@
+<div *ngIf="attackResult">
+    <div fxLayout="column">
+        <div fxLayout="row">
+            <div fxFlex="60">Attack</div>
+            <div fxFlexAuto>{{attackName}}</div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex="60">Attack result</div>
+            <div fxFlexAuto>{{attackResult.result}}</div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex="60">Weapon table</div>
+            <div fxFlexAuto>{{attackResult.weaponTableId}}</div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex="60">AT</div>
+            <div fxFlexAuto>{{attackResult.targetArmor}}</div>
+        </div>
+        <div fxLayout="row" style="_padding-top: 20pt;">
+            <div fxFlex="60">HP</div>
+            <div fxFlexAuto>{{attackResult.hp}}</div>
+        </div>
+        <div fxLayout="column" style="_padding-top: 20pt; _padding-bottom: 20pt;">
+            <div fxLayout="row">
+                <div fxFlex="60">Offensive modifiers</div>
+                <div fxFlexAuto>{{attackResult.totalBonus}}</div>
+            </div>
+            <div fxLayout="row" *ngFor="let option of this.getOffensiveModifiers()">
+                <div fxFlex="60" class="offensive-bonus-modifier">{{option.key}}</div>
+                <div fxFlexAuto class="offensive-bonus-modifier">{{option.name}}</div>
+            </div>
+        </div>
+    </div>
+</div>

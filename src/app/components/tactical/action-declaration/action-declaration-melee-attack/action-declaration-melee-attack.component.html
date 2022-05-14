@@ -14,7 +14,7 @@
                 </mat-form-field>
             </div>
             <ng-container *ngIf="actionForm.value.targets" formGroupName="targets">
-                <div *ngIf="actionForm.value.meleeAttackType == 'full' && actionForm.value.meleeAttackMode != 'off-hand-weapon'">
+                <div *ngIf="enabledAttackTarget('main-hand')">
                     <mat-form-field appearance="outline">
                         <mat-label>Main hand target</mat-label>
                         <mat-select formControlName="main-hand">
@@ -22,7 +22,7 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div *ngIf="enabledOffHandAttack()">
+                <div *ngIf="enabledAttackTarget('off-hand')">
                     <mat-form-field appearance="outline">
                         <mat-label>Off-hand target</mat-label>
                         <mat-select formControlName="off-hand">
@@ -79,5 +79,5 @@
 <br>
 
 <!--
--->
 <pre>{{actionForm?.value | json}}</pre>
+-->

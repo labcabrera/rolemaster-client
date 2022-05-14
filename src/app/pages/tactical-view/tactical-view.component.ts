@@ -83,10 +83,13 @@ export class TacticalViewComponent implements OnInit {
   }
 
   startRound() {
-    this.tacticalSessionService.startRound(this.tacticalSession.id).subscribe(response => {
-      this.tacticalRound = response;
-      this.loadCharacters(this.tacticalSession.id);
-      this.actions = [];
+    this.tacticalSessionService.startRound(this.tacticalSession.id).subscribe({
+      next: response => {
+        this.tacticalRound = response;
+        this.loadCharacters(this.tacticalSession.id);
+        this.actions = [];
+      },
+      error: error => this.errorService.displayError(error)
     });
   }
 
