@@ -20,7 +20,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Version</mat-label>
-                    <mat-select formControlName="version">
+                    <mat-select formControlName="version" (valueChange)="onVersionChange($event)">
                         <mat-option *ngFor="let version of versions" [value]="version.key">{{version.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -32,7 +32,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Race</mat-label>
-                    <mat-select formControlName="raceId">
+                    <mat-select formControlName="raceId" (valueChange)="onRaceChange($event)">
                         <mat-option *ngFor="let race of races" [value]="race.id">{{race.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -69,6 +69,9 @@
 
             <div fxFlex="30" fxLayout="column">
                 <h2>Attributes</h2>
+                <app-character-creation-attributes [version]="characterCreationFormGroup.controls['version'].value"
+                    (onChangeAttribute)="onAttributeChanged($event)"></app-character-creation-attributes>
+                <!--
                 <div formGroupName="baseAttributes" fxLayout="column">
                     <app-character-creation-attribute attribute="ag" attributeName="Agility *" (onChange)="updateAttribute($event)">
                     </app-character-creation-attribute>
@@ -106,6 +109,7 @@
                         </mat-form-field>
                     </div>
                 </div>
+                -->
             </div>
 
             <div fxFlex="30">
@@ -123,3 +127,5 @@
 
     </form>
 </div>
+
+<pre>{{characterCreationFormGroup.value | json}}</pre>

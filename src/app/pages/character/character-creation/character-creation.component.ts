@@ -5,7 +5,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { Race } from 'src/app/model/race';
 import { Profession } from 'src/app/model/profession';
-import { CharacterCreationRequest, CharacterInfo } from '../../../model/character-info';
+import { CharacterCreationAttributes, CharacterCreationRequest, CharacterInfo } from '../../../model/character-info';
 import { CharacterService } from '../../../services/character-service';
 import { CharacterGenerationUtilsService } from '../../../services/character-generation-utils.service';
 import { RandomUtilsService } from '../../../services/random-utils.service';
@@ -16,6 +16,7 @@ import { ErrorService } from 'src/app/services/error.service';
 import { NamedKey, Universe } from 'src/app/model/commons';
 import { UniverseService } from 'src/app/services/universe.service';
 import { EnumService } from 'src/app/services/enum.service';
+import { CharacterCreationAttributesComponent } from 'src/app/components/character/character-creation-attributes/character-creation-attributes.component';
 
 @Component({
   selector: 'app-character-creation',
@@ -38,6 +39,8 @@ export class CharacterCreationComponent implements OnInit {
   trainingPackages: FormGroup;
 
   basicDataDisabled = false;
+
+  @ViewChild(CharacterCreationAttributesComponent) attributesComponent?: CharacterCreationAttributesComponent;
 
   constructor(
     private characterService: CharacterService,
@@ -117,22 +120,22 @@ export class CharacterCreationComponent implements OnInit {
       error: error => this.errorService.displayError(error)
     });
   }
-  
-  loadRaces(universeId: string) {
+
+  private loadRaces(universeId: string): void {
     this.raceService.findByUniverseId(universeId).subscribe({
       next: results => this.races = results,
       error: error => this.errorService.displayErrorWithPrefix("Error reading races", error)
     });
   }
 
-  loadRealms(professionId: string) {
+  private loadRealms(professionId: string): void {
     const profession: Profession = this.professions.filter(e => e.id == professionId)[0];
     this.realms = [];
     profession.availableRealms.forEach(e => {
-      this.realms.push({key: e, name: this.capitalize(e)});
+      this.realms.push({ key: e, name: this.capitalize(e) });
     });
-    if(this.realms.length == 1) {
-      this.characterCreationFormGroup.patchValue({realm: this.realms[0].key});
+    if (this.realms.length == 1) {
+      this.characterCreationFormGroup.patchValue({ realm: this.realms[0].key });
     }
   }
 
@@ -179,6 +182,56 @@ export class CharacterCreationComponent implements OnInit {
   private capitalize(word: string): string {
     if (!word) return word;
     return word[0].toUpperCase() + word.substring(1).toLowerCase();
+  }
+
+  onVersionChange(version: any): void {
+    if (version === 'rmss') {
+      this.characterCreationFormGroup.patchValue({
+        baseAttributes: {
+          'ag': 66,
+          'co': 66,
+          'em': 66,
+          'in': 66,
+          'me': 66,
+          'pr': 66,
+          'qu': 66,
+          're': 66,
+          'sd': 66,
+          'st': 66
+        }
+      });
+    } else if(version === 'rmu') {
+      this.characterCreationFormGroup.patchValue({
+        baseAttributes: {
+          'ag': 50,
+          'co': 50,
+          'em': 50,
+          'in': 50,
+          'me': 50,
+          'pr': 50,
+          'qu': 50,
+          're': 50,
+          'sd': 50,
+          'st': 50
+        }
+      });
+    }
+    this.attributesComponent?.loadVersion(version);
+  }
+
+  onRaceChange(raceId: string) {
+    this.attributesComponent?.loadRace(raceId);
+  }
+
+  onAttributeChanged(attribute: any) {
+    const att = attribute.attribute;
+    const value = attribute.currentValue;
+    const patch = {
+      baseAttributes: {
+        [att]: value
+      }
+    };
+    this.characterCreationFormGroup.patchValue(patch);
   }
 
 }
