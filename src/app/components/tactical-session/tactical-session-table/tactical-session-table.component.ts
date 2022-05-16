@@ -12,7 +12,7 @@ export class TacticalSessionTableComponent implements OnInit {
 
   @Input() dataSource?: MatTableDataSource<TacticalSession>;
 
-  displayedColumns = ["name"];
+  displayedColumns = ["name", "state"];
 
   constructor() { }
 

@@ -44,7 +44,10 @@ export class StrategicSessionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.universeService.find().subscribe(response => this.universes = response);
+    this.universeService.find().subscribe({
+      next: response => this.universes = response,
+      error: error => this.errorService.displayError(error)
+    });
     this.loadStrategicSession();
   }
 

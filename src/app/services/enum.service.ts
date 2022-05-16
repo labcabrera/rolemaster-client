@@ -15,6 +15,11 @@ export class EnumService {
 
   constructor(private http: HttpClient) { }
 
+  findRolemasterVersions(): Observable<NamedKey[]> {
+    var url = `${this.baseUrl}/rolemaster-version`
+    return this.http.get<NamedKey[]>(url).pipe();
+  }
+
   findRealms() {
     var url = `${this.baseUrl}/realm`
     return this.http.get<NamedKey[]>(url).pipe();

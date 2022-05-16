@@ -25,6 +25,8 @@ import { EnumService } from 'src/app/services/enum.service';
 export class CharacterCreationComponent implements OnInit {
 
   characterInfo: CharacterInfo;
+
+  versions: NamedKey[] = [];
   universes: Universe[] = [];
   races: Race[] = [];
   realms: NamedKey[] = [];
@@ -53,6 +55,7 @@ export class CharacterCreationComponent implements OnInit {
 
     this.characterCreationFormGroup = fb.group({
       'name': ['', Validators.required],
+      'version': ['', Validators.required],
       'universeId': ['', Validators.required],
       'level': ['1', Validators.required],
       'raceId': ['', Validators.required],
@@ -97,6 +100,7 @@ export class CharacterCreationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadRolemasterVersions();
     this.universeService.find().subscribe({
       next: results => this.universes = results,
       error: error => this.errorService.displayError(error)
@@ -104,6 +108,13 @@ export class CharacterCreationComponent implements OnInit {
     this.professionService.getProfessions().subscribe({
       next: results => this.professions = results,
       error: error => this.errorService.displayErrorWithPrefix("Error reading professions", error)
+    });
+  }
+
+  private loadRolemasterVersions(): void {
+    this.enumService.findRolemasterVersions().subscribe({
+      next: result => this.versions = result,
+      error: error => this.errorService.displayError(error)
     });
   }
   

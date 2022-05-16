@@ -15,11 +15,11 @@
   </button>
 </mat-toolbar>
 
-<div class="outerContainer">
+<div class="outerContainer" *ngIf="strategicSession">
 
   <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
 
-    <div fxFlex="40" fxFlex.lt-sm="100" fxLayoutAlign="left top">
+    <div fxFlex="50" fxFlex.lt-sm="100" fxLayoutAlign="left top">
       <form [formGroup]="form" class="full-width">
         <br>
         <mat-form-field appearance="outline" class="full-width">
@@ -44,7 +44,7 @@
       </form>
     </div>
 
-    <div fxFlex="40" fxLayoutAlign="left top">
+    <div fxFlex="50">
       <app-tactical-session-table [dataSource]="tacticalSessionDataSource"></app-tactical-session-table>
     </div>
 

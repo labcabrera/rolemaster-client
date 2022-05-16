@@ -19,6 +19,12 @@
                     <input name="name" matInput type="text" formControlName="name">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
+                    <mat-label>Version</mat-label>
+                    <mat-select formControlName="version">
+                        <mat-option *ngFor="let version of versions" [value]="version.key">{{version.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
                     <mat-label>Universe</mat-label>
                     <mat-select formControlName="universeId">
                         <mat-option *ngFor="let universe of universes" [value]="universe.id">{{universe.name}}</mat-option>
