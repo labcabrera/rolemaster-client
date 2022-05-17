@@ -2,6 +2,7 @@
 export interface Skill {
     id: string;
     name: string;
+    version: string;
     description: string;
     categoryId: string;
     type: string;

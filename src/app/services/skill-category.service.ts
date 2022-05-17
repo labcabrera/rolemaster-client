@@ -17,8 +17,9 @@ export class SkillCategoryService {
 
   constructor(private http: HttpClient) {}
 
-  getSkillCategories(): Observable<SkillCategory[]> {
-    return this.http.get<SkillCategory[]>(this.baseUrl).pipe();
+  getSkillCategories(version: string): Observable<SkillCategory[]> {
+    var url = `${this.baseUrl}?version=${version}&page=0&size=1000&sort=name,asc`;
+    return this.http.get<SkillCategory[]>(url).pipe();
   }
 
   findById(id: string): Observable<SkillCategory> {

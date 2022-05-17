@@ -21,7 +21,7 @@ export class SkillSelectComponent implements OnInit {
   filteredOptions: Observable<Skill[]>;
 
   constructor(private skillService: SkillService) {
-    skillService.getSkills().subscribe(skills => this.options = skills);
+    skillService.getSkills('rmss').subscribe(skills => this.options = skills);
 
     this.filteredOptions = this.skillControl.valueChanges.pipe(
       startWith(''),

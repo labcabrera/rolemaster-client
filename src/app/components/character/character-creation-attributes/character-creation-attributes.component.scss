@@ -1,3 +1,28 @@
 table {
     width: 100%;
 }
+
+.mat-column-current-attribute {
+    width: 50px;
+    text-align: left;
+}
+
+.mat-column-current-value {
+    width: 50px;
+}
+
+.mat-column-potential-value,
+.mat-column-bonus-attribute,
+.mat-column-bonus-race,
+.mat-column-cost {
+    width: 50px;
+    color: #999;
+}
+
+.text {
+    color: #999;
+}
+
+.text-warning {
+    color: #ff5722;
+}

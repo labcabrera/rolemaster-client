@@ -68,48 +68,8 @@
             </div>
 
             <div fxFlex="30" fxLayout="column">
-                <h2>Attributes</h2>
                 <app-character-creation-attributes [version]="characterCreationFormGroup.controls['version'].value"
                     (onChangeAttribute)="onAttributeChanged($event)"></app-character-creation-attributes>
-                <!--
-                <div formGroupName="baseAttributes" fxLayout="column">
-                    <app-character-creation-attribute attribute="ag" attributeName="Agility *" (onChange)="updateAttribute($event)">
-                    </app-character-creation-attribute>
-                    <app-character-creation-attribute attribute="co" attributeName="Constitution *" (onChange)="updateAttribute($event)">
-                    </app-character-creation-attribute>
-                    <app-character-creation-attribute attribute="me" attributeName="Memory *" (onChange)="updateAttribute($event)">
-                    </app-character-creation-attribute>
-                    <app-character-creation-attribute attribute="re" attributeName="Reasoning *" (onChange)="updateAttribute($event)">
-                    </app-character-creation-attribute>
-                    <app-character-creation-attribute attribute="sd" attributeName="Self discipline *" (onChange)="updateAttribute($event)">
-                    </app-character-creation-attribute>
-                    <app-character-creation-attribute attribute="em" attributeName="Empathy" (onChange)="updateAttribute($event)">
-                    </app-character-creation-attribute>
-                    <app-character-creation-attribute attribute="in" attributeName="Intuition" (onChange)="updateAttribute($event)">
-                    </app-character-creation-attribute>
-                    <app-character-creation-attribute attribute="pr" attributeName="Presence" (onChange)="updateAttribute($event)">
-                    </app-character-creation-attribute>
-                    <app-character-creation-attribute attribute="qu" attributeName="Quickness" (onChange)="updateAttribute($event)">
-                    </app-character-creation-attribute>
-                    <app-character-creation-attribute attribute="st" attributeName="Strength" (onChange)="updateAttribute($event)">
-                    </app-character-creation-attribute>
-                </div>
-                <div fxLayout="row">
-                    <div fxFlex="30">
-                        <mat-form-field appearance="outline" class="w-120">
-                            <mat-label>Available</mat-label>
-                            <input name="attributesRoll" matInput type="text" formControlName="attributesRoll" (change)="updateAttributeCost()">
-                            <mat-icon matSuffix (click)="createRandomAttributesRoll()">cached</mat-icon>
-                        </mat-form-field>
-                    </div>
-                    <div fxFlex="30">
-                        <mat-form-field appearance="outline" class="w-120">
-                            <mat-label>Remaining</mat-label>
-                            <input name="attributesRemaining" matInput type="text" formControlName="attributesRemaining" readonly="true">
-                        </mat-form-field>
-                    </div>
-                </div>
-                -->
             </div>
 
             <div fxFlex="30">

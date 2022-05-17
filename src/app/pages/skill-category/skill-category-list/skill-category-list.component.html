@@ -1,8 +1,19 @@
 <mat-toolbar>
-    <span><mat-icon>build</mat-icon> Skill categories</span>
+    <span>
+        <mat-icon>build</mat-icon> Skill categories
+    </span>
 </mat-toolbar>
 
 <div class="outerContainer">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Version</mat-label>
+        <mat-select [formControl]="versionControl" (valueChange)="onVersionChange($event)">
+            <mat-option value="">All</mat-option>
+            <mat-option value="rmss">RMSS</mat-option>
+            <mat-option value="rmu">RMU</mat-option>
+        </mat-select>
+    </mat-form-field>
 
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
@@ -18,25 +29,21 @@
             <th mat-header-cell *matHeaderCellDef>Name</th>
             <td mat-cell *matCellDef="let element">{{element.name}}</td>
         </ng-container>
+        <ng-container matColumnDef="version">
+            <th mat-header-cell *matHeaderCellDef>Version</th>
+            <td mat-cell *matCellDef="let element">{{element.version}}</td>
+        </ng-container>
         <ng-container matColumnDef="group">
             <th mat-header-cell *matHeaderCellDef>Group</th>
             <td mat-cell *matCellDef="let element">{{element.group}}</td>
         </ng-container>
-        <ng-container matColumnDef="attributeBonus">
+        <ng-container matColumnDef="attributes">
             <th mat-header-cell *matHeaderCellDef>Attributes</th>
             <td mat-cell *matCellDef="let element">{{element.attributeBonus}}</td>
         </ng-container>
-        <ng-container matColumnDef="progressionType">
+        <ng-container matColumnDef="progression-type">
             <th mat-header-cell *matHeaderCellDef>Progression Type</th>
             <td mat-cell *matCellDef="let element">{{element.progressionType}}</td>
-        </ng-container>
-        <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef>Attributes</th>
-            <td mat-cell *matCellDef="let element">
-                <div matTooltip="{{element.description}}">
-                {{element.description | slice:0:30}}...
-                </div>
-            </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/skill-categories/detail/', row.id]" class="tr-link"></tr>

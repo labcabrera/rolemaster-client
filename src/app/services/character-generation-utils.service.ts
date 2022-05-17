@@ -25,4 +25,9 @@ export class CharacterGenerationUtilsService {
     return this.http.post<number>(url, attributes, this.httpOptions).pipe();
   }
 
+  calculateAttributeModifiers(request: any): Observable<any> {
+    const url = `${this.baseUrl}/attributes`;
+    return this.http.post<any>(url, request, this.httpOptions).pipe();
+  }
+
 }

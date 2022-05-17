@@ -53,11 +53,11 @@ export class CharacterTrainingPackagesComponent implements OnInit {
       },
       error: error => this.errorService.displayError(error)
     });
-    this.skillCategoryService.getSkillCategories().subscribe({
+    this.skillCategoryService.getSkillCategories('rmss').subscribe({
       next: results => this.skillCategories = results,
       error: error => this.errorService.displayError(error)
     });
-    this.skillService.getSkills().subscribe({
+    this.skillService.getSkills('rmss').subscribe({
       next: results => this.skills = results,
       error: error => this.errorService.displayError(error)
     });

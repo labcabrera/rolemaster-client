@@ -24,9 +24,12 @@ export class UserService {
     const url = `${this.baseUrl}/claims`;
     return this.httpClient.get<User>(url);
   }
-
-  public create(user: User): Observable<any> {
+    public create(user: User): Observable<any> {
     return this.httpClient.post<any>(this.baseUrl, user, this.httpOptions);
   }
 
+  public savePreferences(userPreferences: any): Observable<User> {
+    const url = `${this.baseUrl}/preferences`;
+    return this.httpClient.patch<User>(url, userPreferences, this.httpOptions).pipe();
+  }
 }

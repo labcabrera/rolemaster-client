@@ -19,8 +19,8 @@ export class SkillService {
 
   constructor(private http: HttpClient) {}
 
-  getSkills(): Observable<Skill[]> {
-    const url = `${this.baseUrl}/?page=0&size=1000`;
+  getSkills(version: string): Observable<Skill[]> {
+    const url = `${this.baseUrl}/?version=${version}&page=0&size=1000&sort=name,asc`;
     return this.http.get<Skill[]>(url).pipe();
   }
 

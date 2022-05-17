@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { FormControl } from '@angular/forms';
 
 import { Skill } from '../../../model/skill';
 import { SkillService } from '../../../services/skill.service';
@@ -16,7 +17,9 @@ export class SkillListComponent implements OnInit, AfterViewInit {
 
   skills: Skill[] = [];
 
-  displayedColumns: string[] = ["name", "categoryId", "type", "progressionType", "description"];
+  versionControl = new FormControl('');
+
+  displayedColumns: string[] = ["name", "version", "categoryId", "type", "progressionType"];
   dataSource: MatTableDataSource<Skill> = new MatTableDataSource<Skill>(this.skills);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
@@ -27,7 +30,7 @@ export class SkillListComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.getSkills();
+    this.loadSkills('');
   }
 
   ngAfterViewInit() {
@@ -35,19 +38,24 @@ export class SkillListComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort!;
   }
 
-  getSkills(): void {
-    this.skillService.getSkills().subscribe({
+  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  onVersionChange(version: string) {
+    this.loadSkills(version);
+  }
+
+  private loadSkills(version: string): void {
+    this.skillService.getSkills(version).subscribe({
       next: result => {
         this.skills = result;
         this.dataSource.data = this.skills;
       },
       error: error => this.errorService.displayError(error)
     });
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

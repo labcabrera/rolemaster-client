@@ -75,4 +75,9 @@ export class EnumService {
     return this.http.get<NamedKey[]>(url).pipe();
   }
 
+  findUnitSystems(): Observable<NamedKey[]> {
+    var url = `${this.baseUrl}/unit-system`
+    return this.http.get<NamedKey[]>(url).pipe();
+  }
+
 }

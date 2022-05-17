@@ -44,7 +44,7 @@ export class DialogAddSkillComponent implements OnInit {
 
   ngOnInit(): void {
     this.dialogRef.updateSize('70%', '50%');
-    this.skillService.getSkills().subscribe(result => this.availableSkills = result);
+    this.skillService.getSkills('rmss').subscribe(result => this.availableSkills = result);
     this.filteredOptions = this.addSkillForm.controls['skillId'].valueChanges.pipe(
       startWith(''),
       map(value => (typeof value === 'string' ? value : value.name)),

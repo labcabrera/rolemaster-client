@@ -48,7 +48,6 @@ export class CharacterCreationComponent implements OnInit {
     private raceService: RaceService,
     private professionService: ProfessionService,
     private randomUtilsService: RandomUtilsService,
-    private characterGenerationUtilsService: CharacterGenerationUtilsService,
     private enumService: EnumService,
     private errorService: ErrorService,
     private router: Router,
@@ -143,21 +142,6 @@ export class CharacterCreationComponent implements OnInit {
     return this.characterCreationFormGroup.value as CharacterCreationRequest;
   }
 
-  updateAttributeCost(): void {
-    var attributes = this.characterCreationFormGroupValue.baseAttributes;
-    this.characterGenerationUtilsService.calculateAttributeCost(attributes).subscribe(cost => {
-      var remaining = this.characterCreationFormGroupValue.attributesRoll - cost;
-      this.characterCreationFormGroup.get("attributesRemaining")?.setValue(remaining);
-    });
-  }
-
-  createRandomAttributesRoll(): void {
-    this.randomUtilsService.randomRollSum(10, 10).subscribe(roll => {
-      this.characterCreationFormGroup.get("attributesRoll")?.setValue(600 + roll);
-      this.updateAttributeCost();
-    })
-  }
-
   createCharacter(): void {
     this.characterService.createCharacter(this.characterCreationFormGroupValue).subscribe({
       next: character => {
@@ -172,13 +156,6 @@ export class CharacterCreationComponent implements OnInit {
     moveItemInArray(this.characterCreationFormGroupValue.weaponCategoryPriority, event.previousIndex, event.currentIndex);
   }
 
-  updateAttribute(event: any) {
-    this.characterCreationFormGroup.patchValue({
-      baseAttributes: { [event.attribute]: event.value }
-    })
-    this.updateAttributeCost();
-  }
-
   private capitalize(word: string): string {
     if (!word) return word;
     return word[0].toUpperCase() + word.substring(1).toLowerCase();
@@ -188,31 +165,13 @@ export class CharacterCreationComponent implements OnInit {
     if (version === 'rmss') {
       this.characterCreationFormGroup.patchValue({
         baseAttributes: {
-          'ag': 66,
-          'co': 66,
-          'em': 66,
-          'in': 66,
-          'me': 66,
-          'pr': 66,
-          'qu': 66,
-          're': 66,
-          'sd': 66,
-          'st': 66
+          'ag': 66, 'co': 66, 'em': 66, 'in': 66, 'me': 66, 'pr': 66, 'qu': 66, 're': 66, 'sd': 66, 'st': 66
         }
       });
-    } else if(version === 'rmu') {
+    } else if (version === 'rmu') {
       this.characterCreationFormGroup.patchValue({
         baseAttributes: {
-          'ag': 50,
-          'co': 50,
-          'em': 50,
-          'in': 50,
-          'me': 50,
-          'pr': 50,
-          'qu': 50,
-          're': 50,
-          'sd': 50,
-          'st': 50
+          'ag': 59, 'co': 59, 'em': 59, 'in': 59, 'me': 59, 'pr': 59, 'qu': 59, 're': 59, 'sd': 59, 'st': 59
         }
       });
     }
