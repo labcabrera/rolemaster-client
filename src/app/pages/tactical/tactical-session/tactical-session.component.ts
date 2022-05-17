@@ -34,6 +34,7 @@ export class TacticalSessionComponent implements OnInit {
     private fb: FormBuilder) {
     this.form = fb.group({
       name: ['', Validators.required],
+      version: [''],
       scale: [''],
       terrain: [''],
       temperature: [''],
@@ -54,7 +55,7 @@ export class TacticalSessionComponent implements OnInit {
     this.tacticalSessionService.findById(tacticalSessionId).subscribe({
       next: result => {
         this.tacticalSession = result;
-        this.updateForm(this.tacticalSession);
+        this.updateFormData(this.tacticalSession);
         this.loadStrategicSession(this.tacticalSession.strategicSessionId);
       },
       error: error => this.errorService.displayError(error)
@@ -76,16 +77,17 @@ export class TacticalSessionComponent implements OnInit {
     this.tacticalSessionService.update(id, update).subscribe({
       next: response => {
         this.tacticalSession = response;
-        this.updateForm(this.tacticalSession);
+        this.updateFormData(this.tacticalSession);
         this.form.disable();
       },
       error: error => this.errorService.displayError(error)
     });
   }
 
-  updateForm(tacticalSession: TacticalSession) {
+  private updateFormData(tacticalSession: TacticalSession) {
     this.form.patchValue({
       name: tacticalSession.name,
+      version: tacticalSession.version,
       scale: tacticalSession.scale,
       terrain: tacticalSession.terrain,
       temperature: tacticalSession.temperature,
@@ -102,6 +104,7 @@ export class TacticalSessionComponent implements OnInit {
 
   startEdit() {
     this.form.enable();
+    this.form.get("version")?.disable();
   }
 
   cancelEdit() {

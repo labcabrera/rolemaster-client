@@ -12,6 +12,7 @@ export interface StrategicSession {
 
 export interface TacticalSession {
     id: string;
+    version: string;
     strategicSessionId: string;
     name: string;
     scale: number;

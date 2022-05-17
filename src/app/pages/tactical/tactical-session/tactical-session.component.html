@@ -27,9 +27,13 @@
                         <mat-form-field appearance="outline" class="common-form-field">
                             <mat-label>Strategic session</mat-label>
                             <input matInput value="{{this.strategicSession.name}}" readonly>
-                            <mat-icon matSuffix (click)="navigateToStrategicSession()" class="u-mat-icon-button">
-                                launch
-                            </mat-icon>
+                            <mat-icon matSuffix (click)="navigateToStrategicSession()" class="u-mat-icon-button">launch</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline" class="common-form-field">
+                            <mat-label>Version</mat-label>
+                            <input matInput formControlName="version">
                         </mat-form-field>
                     </div>
                     <div>
@@ -79,7 +83,7 @@
                     <div>
                         <mat-form-field appearance="outline" class="common-form-field">
                             <mat-label>State</mat-label>
-                            <input matInput value="{{this.tacticalSession.state}}" readonly>
+                            <input matInput value="{{this.tacticalSession.state}}" disabled>
                         </mat-form-field>
                     </div>
                 </div>
