@@ -1,5 +1,8 @@
-<mat-toolbar>
-    <span>{{character?.name}}</span>
+<mat-toolbar *ngIf="character">
+    <span>{{character.name}}</span>
+    <mat-chip-list style="padding-left: 20px;">
+        <mat-chip color="accent">{{character.version}}</mat-chip>
+    </mat-chip-list>
     <div class="div-spacer"></div>
     <div *ngIf="availableDevelopmentPoints() > 0">
         <span>&nbsp;</span>
@@ -38,14 +41,14 @@
         </mat-tab>
 
         <mat-tab label="Skill category development">
-            <app-character-skill-category-list [character]="character"
-                [skillCategoryDataSource]="skillCategoryDataSource" (onCharacterUpdated)="reloadCharacterInfo($event)">
+            <app-character-skill-category-list [character]="character" [skillCategoryDataSource]="skillCategoryDataSource"
+                (onCharacterUpdated)="reloadCharacterInfo($event)">
             </app-character-skill-category-list>
         </mat-tab>
 
         <mat-tab label="Skill development">
-            <app-character-skill-list [character]="character" [skillDataSource]="skillDataSource"
-                (onCharacterUpdated)="reloadCharacterInfo($event)"></app-character-skill-list>
+            <app-character-skill-list [character]="character" [skillDataSource]="skillDataSource" (onCharacterUpdated)="reloadCharacterInfo($event)">
+            </app-character-skill-list>
         </mat-tab>
 
         <mat-tab label="Training packages">

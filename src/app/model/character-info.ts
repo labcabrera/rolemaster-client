@@ -2,6 +2,7 @@
 export interface CharacterInfo {
     id: string;
     name: string;
+    version: string;
     raceId: string;
     professionId: string;
     level: number;
