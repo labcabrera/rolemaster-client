@@ -7,25 +7,26 @@
 </mat-toolbar>
 
 <div class="outerContainer">
-  <form [formGroup]="form">
-    <br>
+  <div [formGroup]="form" fxLayout="column">
     <mat-form-field appearance="outline" class="common-form-field">
       <mat-label>Name</mat-label>
       <input matInput formControlName="name">
     </mat-form-field>
-    <br>
+    <mat-form-field appearance="outline" class="common-form-field">
+      <mat-label>Version</mat-label>
+      <mat-select formControlName="version">
+        <mat-option *ngFor="let version of versions" [value]="version.key">{{version.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
     <mat-form-field appearance="outline" class="common-form-field">
       <mat-label>Universe</mat-label>
       <mat-select formControlName="universeId">
-        <mat-option *ngFor="let universe of universes" [value]="universe.id">
-          {{universe.name}}
-        </mat-option>
+        <mat-option *ngFor="let universe of universes" [value]="universe.id">{{universe.name}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <br>
     <mat-form-field appearance="outline" class="common-form-field">
       <mat-label>Description</mat-label>
       <textarea matInput formControlName="description"></textarea>
     </mat-form-field>
-  </form>
+  </div>
 </div>

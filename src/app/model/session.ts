@@ -3,6 +3,7 @@ import { Metadata } from "./metadata";
 export interface StrategicSession {
     id: string;
     name: string;
+    version: string;
     description: string;
     universeId: string;
     metadata: Metadata;
