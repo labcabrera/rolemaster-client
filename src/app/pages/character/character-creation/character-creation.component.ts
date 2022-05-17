@@ -17,6 +17,8 @@ import { NamedKey, Universe } from 'src/app/model/commons';
 import { UniverseService } from 'src/app/services/universe.service';
 import { EnumService } from 'src/app/services/enum.service';
 import { CharacterCreationAttributesComponent } from 'src/app/components/character/character-creation-attributes/character-creation-attributes.component';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-character-creation',
@@ -24,6 +26,8 @@ import { CharacterCreationAttributesComponent } from 'src/app/components/charact
   styleUrls: ['./character-creation.component.css']
 })
 export class CharacterCreationComponent implements OnInit {
+
+  user?: User;
 
   characterInfo: CharacterInfo;
 
@@ -47,8 +51,8 @@ export class CharacterCreationComponent implements OnInit {
     private universeService: UniverseService,
     private raceService: RaceService,
     private professionService: ProfessionService,
-    private randomUtilsService: RandomUtilsService,
     private enumService: EnumService,
+    private userService: UserService,
     private errorService: ErrorService,
     private router: Router,
     private fb: FormBuilder) {
@@ -104,12 +108,30 @@ export class CharacterCreationComponent implements OnInit {
   ngOnInit() {
     this.loadRolemasterVersions();
     this.universeService.find().subscribe({
-      next: results => this.universes = results,
+      next: results => {
+        this.universes = results;
+        this.readUser();
+      },
       error: error => this.errorService.displayError(error)
     });
     this.professionService.getProfessions().subscribe({
       next: results => this.professions = results,
       error: error => this.errorService.displayErrorWithPrefix("Error reading professions", error)
+    });
+  }
+
+  private readUser(): void {
+    this.userService.findUser().subscribe({
+      next: result => {
+        this.user = result;
+        const version = this.user.defaultVersion ? this.user.defaultVersion : 'rmss';
+        this.characterCreationFormGroup.patchValue({
+          version: version,
+          universeId: this.user.defaultUniverseId
+        });
+        this.onVersionChange(version);
+      },
+      error: error => this.errorService.displayError(error)
     });
   }
 

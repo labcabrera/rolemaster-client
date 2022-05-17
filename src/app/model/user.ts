@@ -6,6 +6,8 @@ export class User {
     firstName: string;
     lastName: string;
     password: string;
+    defaultVersion?: string;
+    defaultUniverseId?: string;
 
     constructor(username: string, email: string, firstName: string, lastName: string, password: string) {
         this.id = username;
