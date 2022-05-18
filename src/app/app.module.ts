@@ -36,7 +36,6 @@ import { SpellsComponent } from './pages/spells/spells.component';
 import { SpellDetailComponent } from './pages/spell-detail/spell-detail.component';
 import { SpellListDetailComponent } from './pages/spell-list-detail/spell-list-detail.component';
 import { SpellListComponent } from './pages/spell-list/spell-list.component';
-import { MovementComponent } from './pages/movement/movement.component';
 import { StaticManeuversComponent } from './pages/static-maneuvers/static-maneuvers.component';
 import { MovingManeuversComponent } from './pages/moving-maneuvers/moving-maneuvers.component';
 import { ItemsComponent } from './pages/item/items/items.component';
@@ -138,7 +137,6 @@ import { TacticalViewRmuComponent } from './pages/tactical-view-rmu/tactical-vie
     SpellDetailComponent,
     SpellListDetailComponent,
     SpellListComponent,
-    MovementComponent,
     StaticManeuversComponent,
     MovingManeuversComponent,
     ItemsComponent,

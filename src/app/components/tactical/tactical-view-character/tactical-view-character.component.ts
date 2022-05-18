@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { TacticalCharacter } from 'src/app/model/character-context';
@@ -11,18 +11,14 @@ import { DialogEditHpComponent } from '../../dialogs/dialog-edit-hp/dialog-edit-
   templateUrl: './tactical-view-character.component.html',
   styleUrls: ['./tactical-view-character.component.scss']
 })
-export class TacticalViewCharacterComponent implements OnInit {
+export class TacticalViewCharacterComponent {
 
   @Input() character: TacticalCharacter | undefined;
 
   constructor(
     private manualEditionDialog: MatDialog,
-    private dialogEditHp: MatDialog,
     private characterDialog: MatDialog
   ) { }
-
-  ngOnInit(): void {
-  }
 
   openDialogSetHitPoints() {
     var dialogEditHpRef = this.characterDialog.open(DialogEditHpComponent);
@@ -32,17 +28,11 @@ export class TacticalViewCharacterComponent implements OnInit {
   openTacticalCharacterDialog() {
     var dialogRef = this.characterDialog.open(DialogTacticalCharacterComponent);
     dialogRef.componentInstance.load(this.character!);
-    dialogRef.afterClosed().subscribe(result => {
-      //this.tacticalRound = dialogRef.componentInstance.round;
-    });
   }
 
   openManualEditionDialog() {
     var dialogRef = this.manualEditionDialog.open(DialogTacticalCharacterEditionComponent);
     dialogRef.componentInstance.loadCharacter(this.character!);
-    dialogRef.afterClosed().subscribe(result => {
-      //this.actionsUpdated.emit("closed dialog");
-    });
   }
 
   getHpStyle() {

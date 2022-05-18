@@ -99,9 +99,3 @@
     <button mat-stroked-button (click)="resolveCriticalAction()" *ngIf="action && criticalExecutionForm"
         [disabled]="criticalExecutionForm!.invalid || this.action.state !== 'pending-critical-resolution'">Resolve critical</button>
 </mat-dialog-actions>
-
-<pre>{{this.actionExecutionForm.value | json}}</pre>
-<pre>{{this.action | json}}</pre>
-<pre>{{this.breakageForm?.value | json}}</pre>
-<!--
--->
