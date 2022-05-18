@@ -10,39 +10,47 @@
 
 <div class="outerContainer">
 
-    <div fxLayout="column" [formGroup]="itemForm">
-        <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
-            <input matInput formControlName="name">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Type</mat-label>
-            <input matInput formControlName="type">
-        </mat-form-field>
-        <ng-container formGroupName="commonWeight">
-            <mat-form-field appearance="outline">
-                <mat-label>Common weight min</mat-label>
-                <input matInput formControlName="min">
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Common weight max</mat-label>
-                <input matInput formControlName="max">
-            </mat-form-field>
-        </ng-container>
-        <mat-form-field appearance="outline">
-            <mat-label>Multiple</mat-label>
-            <input matInput formControlName="multipleItem">
-        </mat-form-field>
-        <mat-form-field appearance="outline" *ngIf="itemForm.controls['type'].value === 'weapon'">
-            <mat-label>Fumble</mat-label>
-            <input matInput formControlName="fumble">
-        </mat-form-field>
-        <mat-form-field appearance="outline" *ngIf="itemForm.controls['type'].value === 'weapon'">
-            <mat-label>Breakage</mat-label>
-            <input matInput formControlName="breakage">
-        </mat-form-field>
-    </div>
+    <mat-tab-group mat-align-tabs="start" >
+        <mat-tab label="Info">
+            <div fxLayout="column" [formGroup]="itemForm" class="margin-top">
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Type</mat-label>
+                    <input matInput formControlName="type">
+                </mat-form-field>
+                <ng-container formGroupName="commonWeight">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Common weight min</mat-label>
+                        <input matInput formControlName="min">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Common weight max</mat-label>
+                        <input matInput formControlName="max">
+                    </mat-form-field>
+                </ng-container>
+                <mat-form-field appearance="outline">
+                    <mat-label>Multiple</mat-label>
+                    <input matInput formControlName="multipleItem">
+                </mat-form-field>
+                <mat-form-field appearance="outline" *ngIf="itemForm.controls['type'].value === 'weapon'">
+                    <mat-label>Fumble</mat-label>
+                    <input matInput formControlName="fumble">
+                </mat-form-field>
+                <mat-form-field appearance="outline" *ngIf="itemForm.controls['type'].value === 'weapon'">
+                    <mat-label>Breakage</mat-label>
+                    <input matInput formControlName="breakage">
+                </mat-form-field>
+            </div>
+        </mat-tab>
+        <mat-tab label="Weapon"></mat-tab>
+        <mat-tab label="Armor"></mat-tab>
+        <mat-tab label="Herb"></mat-tab>
+        <mat-tab label="Debug">
+            <pre>{{item | json}}</pre>
+        </mat-tab>
+    </mat-tab-group>
 
 </div>
-
-<pre>{{item | json}}</pre>

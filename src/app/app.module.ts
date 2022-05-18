@@ -58,7 +58,6 @@ import { TacticalViewCharacterActionComponent } from './components/tactical/tact
 import { CharacterGeneralDataComponent } from './components/character/character-general-data/character-general-data.component';
 import { TacticalViewCharacterComponent } from './components/tactical/tactical-view-character/tactical-view-character.component';
 import { DialogTacticalCharacterEditionComponent } from './components/dialogs/dialog-tactical-character-edition/dialog-tactical-character-edition.component';
-import { DialogSetInitiativeComponent } from './components/dialogs/dialog-set-initiative/dialog-set-initiative.component';
 import { DialogActionExecutionComponent } from './components/dialogs/dialog-action-execution/dialog-action-execution.component';
 import { TacticalSessionLogTableComponent } from './components/tactical/tactical-session-log-table/tactical-session-log-table.component';
 import { DialogTacticalCharacterComponent } from './components/dialogs/dialog-tactical-character/dialog-tactical-character.component';
@@ -116,6 +115,7 @@ import { AttackResultDetailComponent } from './components/tactical/attack-result
 import { CharacterCreationAttributesComponent } from './components/character/character-creation-attributes/character-creation-attributes.component';
 import { CombatStatusIconsComponent } from './components/tactical/combat-status-icons/combat-status-icons.component';
 import { DialogEditHpComponent } from './components/dialogs/dialog-edit-hp/dialog-edit-hp.component';
+import { DialogInitiativeDeclarationComponent } from './components/dialogs/dialog-initiative-declaration/dialog-initiative-declaration.component';
 
 @NgModule({
   declarations: [
@@ -164,7 +164,6 @@ import { DialogEditHpComponent } from './components/dialogs/dialog-edit-hp/dialo
     CharacterGeneralDataComponent,
     TacticalViewCharacterComponent,
     DialogTacticalCharacterEditionComponent,
-    DialogSetInitiativeComponent,
     DialogActionExecutionComponent,
     TacticalSessionLogTableComponent,
     DialogTacticalCharacterComponent,
@@ -219,7 +218,8 @@ import { DialogEditHpComponent } from './components/dialogs/dialog-edit-hp/dialo
     AttackResultDetailComponent,
     CharacterCreationAttributesComponent,
     CombatStatusIconsComponent,
-    DialogEditHpComponent
+    DialogEditHpComponent,
+    DialogInitiativeDeclarationComponent
   ],
   imports: [
     FormsModule,

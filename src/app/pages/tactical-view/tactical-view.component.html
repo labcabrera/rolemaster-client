@@ -1,13 +1,11 @@
 <mat-toolbar>
     <span>
         <a routerLink="/tactical-sessions/detail/{{tacticalSession.id}}">{{tacticalSession.name}}</a>
-        <span> - Round {{this.tacticalRound.round}} ({{this.tacticalRound.state}})</span>
-        
+        <span> - Round {{this.tacticalRound.round}}</span>
+
     </span>
     <div class="div-spacer"></div>
-    <button mat-button [disabled]="tacticalRound.state != 'action-declaration'" (click)="startInitiativeDeclaration()" >Calculate initiatives</button>
-    <button mat-button [disabled]="tacticalRound.state != 'initiative-declaration'" (click)="startExecutionPhase()">Execute actions</button>
-    <button mat-button [disabled]="!(!tacticalRound.state || tacticalRound.state == 'closed' || tacticalRound.state == 'action-resolution')" (click)="startRound()">Start round</button>
+    <button mat-button (click)="startRound()">Start round</button>
 </mat-toolbar>
 
 <div class="outerContainer">
@@ -19,54 +17,24 @@
         </div>
 
         <div fxFlex="18" fxLayoutAlign="left center" class="action-declaration">
-            <app-tactical-view-character-action
-                [tacticalSession]="this.tacticalSession"
-                [tacticalRound]="this.tacticalRound"
-                [source]="character"
-                [priority]="'snap'"
-                [characters]="this.characters"
-                [action]="getAction(character.id, 'snap')"
-                [actions]="actions"
-                (actionsUpdated)="this.loadActions(this.tacticalRound.id)"
-                class="full-width">
+            <app-tactical-view-character-action [tacticalSession]="this.tacticalSession" [tacticalRound]="this.tacticalRound" [source]="character"
+                [priority]="'snap'" [characters]="this.characters" [action]="getAction(character.id, 'snap')" [actions]="actions"
+                (actionsUpdated)="this.loadActions(this.tacticalRound.id)" class="full-width">
             </app-tactical-view-character-action>
         </div>
 
         <div fxFlex="18" fxLayoutAlign="left center" class="action-declaration">
-            <app-tactical-view-character-action
-                [tacticalSession]="this.tacticalSession"
-                [tacticalRound]="this.tacticalRound"
-                [source]="character"
-                [priority]="'normal'"
-                [characters]="this.characters"
-                [action]="getAction(character.id, 'normal')"
-                [actions]="actions"
-                (actionsUpdated)="this.loadActions(this.tacticalRound.id)"
-                class="full-width">
+            <app-tactical-view-character-action [tacticalSession]="this.tacticalSession" [tacticalRound]="this.tacticalRound" [source]="character"
+                [priority]="'normal'" [characters]="this.characters" [action]="getAction(character.id, 'normal')" [actions]="actions"
+                (actionsUpdated)="this.loadActions(this.tacticalRound.id)" class="full-width">
             </app-tactical-view-character-action>
         </div>
 
         <div fxFlex="18" fxLayoutAlign="left center" class="action-declaration">
-            <app-tactical-view-character-action
-                [tacticalSession]="this.tacticalSession"
-                [tacticalRound]="this.tacticalRound"
-                [source]="character"
-                [priority]="'deliberate'"
-                [characters]="this.characters"
-                [actions]="actions"
-                [action]="getAction(character.id, 'deliberate')"
-                (actionsUpdated)="this.loadActions(this.tacticalRound.id)"
-                class="full-width">
+            <app-tactical-view-character-action [tacticalSession]="this.tacticalSession" [tacticalRound]="this.tacticalRound" [source]="character"
+                [priority]="'deliberate'" [characters]="this.characters" [actions]="actions" [action]="getAction(character.id, 'deliberate')"
+                (actionsUpdated)="this.loadActions(this.tacticalRound.id)" class="full-width">
             </app-tactical-view-character-action>
-        </div>
-        
-        <div fxFlex="10" fxLayoutAlign="center center" class="div-tactical">
-            <div>+{{getCharacterInitiativeBase(character)}}&nbsp;</div>
-            <div>+{{getCharacterInitiativeModifiers(character)}}&nbsp;</div>
-            <div>+{{getCharacterInitiativeRoll(character)}} </div>
-            <button mat-button (click)="openInitiativeDialog(character)" *ngIf="this.tacticalRound.state == 'initiative-declaration'">
-                <mat-icon>add</mat-icon>
-            </button>
         </div>
 
     </div>

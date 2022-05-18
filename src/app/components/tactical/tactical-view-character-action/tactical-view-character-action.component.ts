@@ -9,6 +9,7 @@ import { TacticalCharacter } from 'src/app/model/character-context';
 import { ActionService } from 'src/app/services/action.service';
 import { DialogActionExecutionComponent } from '../../dialogs/dialog-action-execution/dialog-action-execution.component';
 import { TacticalSession } from 'src/app/model/session';
+import { DialogInitiativeDeclarationComponent } from '../../dialogs/dialog-initiative-declaration/dialog-initiative-declaration.component';
 
 @Component({
   selector: 'app-tactical-view-character-action',
@@ -30,7 +31,8 @@ export class TacticalViewCharacterActionComponent implements OnInit {
   constructor(
     private actionService: ActionService,
     private actionSelectionDialog: MatDialog,
-    private actionExecutionDialog: MatDialog) { }
+    private actionExecutionDialog: MatDialog,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -52,6 +54,15 @@ export class TacticalViewCharacterActionComponent implements OnInit {
     });
   }
 
+  openInitiativeDeclarationDialog(action: TacticalAction) {
+    const character = this.characters!.filter(e => e.id === action.source)[0];
+    var dialogRef = this.dialog.open(DialogInitiativeDeclarationComponent);
+    dialogRef.componentInstance.load(this.tacticalSession!, character, action);
+    dialogRef.afterClosed().subscribe(result => {
+      this.actionsUpdated.emit("updated");
+    });
+  }
+
   openActionExecutionDialog(action: TacticalAction) {
     var dialogRef = this.actionExecutionDialog.open(DialogActionExecutionComponent);
     dialogRef.componentInstance.load(action, this.characters!);
@@ -67,9 +78,6 @@ export class TacticalViewCharacterActionComponent implements OnInit {
   }
 
   checkDisplayButtonActionExecution(action: TacticalAction) {
-    if(this.tacticalRound?.state != 'action-resolution') {
-      return false;
-    }
     if(action.state == 'resolved' || action.state == 'pending-critical-resolution' || action.state == 'pending-fumble-resolution') {
       return false;
     }
@@ -77,9 +85,6 @@ export class TacticalViewCharacterActionComponent implements OnInit {
   }
 
   checkDisplayButtonCriticalExecution(action: TacticalAction) {
-    if(this.tacticalRound?.state != 'action-resolution') {
-      return false;
-    }
     if(action.state != "pending-critical-resolution") {
       return false;
     }
@@ -87,9 +92,6 @@ export class TacticalViewCharacterActionComponent implements OnInit {
   }
 
   checkDisplayButtonFumbleExecution(action: TacticalAction) {
-    if(this.tacticalRound?.state != 'action-resolution') {
-      return false;
-    }
     if(action.state != "pending-fumble-resolution") {
       return false;
     }

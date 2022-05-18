@@ -87,19 +87,9 @@ export class TacticalSessionService {
     return this.http.post<TacticalRound>(url, this.httpOptions).pipe();
   }
 
-  startInitiativeDeclaration(tacticalSessionId: string): Observable<TacticalRound> {
-    const url = `${this.baseUrlTacticalSessions}/${tacticalSessionId}/round/initiative-declaration`;
-    return this.http.post<TacticalRound>(url, this.httpOptions).pipe();
-  }
-
-  startExecutionPhase(tacticalSessionId: string): Observable<TacticalRound> {
-    const url = `${this.baseUrlTacticalSessions}/${tacticalSessionId}/round/start-execution`;
-    return this.http.post<TacticalRound>(url, this.httpOptions).pipe();
-  }
-
-  declareInitiative(tacticalSessionId: string, characterId: string, roll: number) {
-    const url = `${this.baseUrlTacticalSessions}/${tacticalSessionId}/round/initiative-declaration/${characterId}/${roll}`;
-    return this.http.post<TacticalRound>(url, this.httpOptions).pipe();
+  declareInitiative(tacticalSessionId: string, request: any): Observable<TacticalRound> {
+    const url = `${this.baseUrlTacticalSessions}/${tacticalSessionId}/initiative`;
+    return this.http.post<TacticalRound>(url, request, this.httpOptions).pipe();
   }
 
 }

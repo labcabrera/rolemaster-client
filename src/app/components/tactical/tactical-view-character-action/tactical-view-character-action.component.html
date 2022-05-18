@@ -1,7 +1,7 @@
 <div *ngIf="tacticalRound" fxLayout="row">
 
     <div *ngIf="!action">
-        <button mat-button *ngIf="tacticalRound.state == 'action-declaration'" (click)="openActionSelectionDialog()">
+        <button mat-button (click)="openActionSelectionDialog()">
             <mat-icon>add</mat-icon>
         </button>
     </div>
@@ -9,7 +9,7 @@
     <ng-container *ngIf="action">
         
         <div fxFlex="30" class="{{action.initiative ? 'active' : 'inactive'}}" [fxHide.lt-sm]="true">
-            <button mat-button matTooltip="Initiative">
+            <button mat-button matTooltip="Initiative" (click)="openInitiativeDeclarationDialog(action)">
                 <mat-icon>flash_on</mat-icon>
                 <span *ngIf="action.initiative">{{action.initiative}}</span>
             </button>
