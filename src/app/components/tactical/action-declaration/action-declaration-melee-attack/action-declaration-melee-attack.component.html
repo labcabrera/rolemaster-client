@@ -39,7 +39,14 @@
             <div>
                 <h4>Attack type</h4>
                 <mat-button-toggle-group formControlName="meleeAttackType" (change)="onMeleeAttackTypeChange($event)">
-                    <mat-button-toggle *ngFor="let option of meleeAttackTypes" [value]="option.key">{{option.name}}</mat-button-toggle>
+                    <mat-button-toggle *ngFor="let option of meleeAttackTypes" [value]="option.key">
+                        <ng-container [ngSwitch]="option.key">
+                            <span *ngSwitchCase="'full'">Full</span>
+                            <span *ngSwitchCase="'press-and-melee'">Press</span>
+                            <span *ngSwitchCase="'react-and-melee'">React</span>
+                            <span *ngSwitchDefault>{{option.name}}</span>
+                        </ng-container>
+                    </mat-button-toggle>
                 </mat-button-toggle-group>
             </div>
             <div>
@@ -54,7 +61,14 @@
                 <h4>Attack mode</h4>
                 <mat-button-toggle-group formControlName="meleeAttackMode" (change)="onMeleeAttackModeChange($event)">
                     <mat-button-toggle *ngFor="let option of meleeAttackModes" [value]="option.key" [disabled]="isAttackModeDisabled(option.key)">
-                        {{option.name}}
+                        <ng-container [ngSwitch]="option.key">
+                            <span *ngSwitchCase="'main-hand-weapon'">Main</span>
+                            <span *ngSwitchCase="'off-hand-weapon'">Off-hand</span>
+                            <span *ngSwitchCase="'two-weapons'">2W</span>
+                            <span *ngSwitchCase="'special-attack'">Special</span>
+                            <span *ngSwitchCase="'parry'">Parry</span>
+                            <span *ngSwitchDefault>{{option.key}}</span>
+                        </ng-container>
                     </mat-button-toggle>
                 </mat-button-toggle-group>
             </div>

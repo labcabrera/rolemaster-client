@@ -60,14 +60,6 @@ export class TacticalViewCharacterActionComponent implements OnInit {
     });
   }
 
-  openCriticalExecutionDialog(action: TacticalAction) {
-    this.openActionExecutionDialog(action);
-  }
-
-  openFumbleExecutionDialog(action: TacticalAction) {
-    this.openActionExecutionDialog(action);
-  }
-
   deleteAction() {
     this.actionService.delete(this.action!.id).subscribe(result => {
       this.actionsUpdated.emit("deleted action");

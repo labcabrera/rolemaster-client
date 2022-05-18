@@ -1,46 +1,57 @@
-<div *ngIf="tacticalRound">
-<div *ngIf="!action">
-    <button mat-button *ngIf="tacticalRound.state == 'action-declaration'" (click)="openActionSelectionDialog()">
-        <mat-icon>add</mat-icon>
-    </button>
-</div>
-<div *ngIf="action">
+<div *ngIf="tacticalRound" class="box">
+
+    <div *ngIf="!action">
+        <button mat-button *ngIf="tacticalRound.state == 'action-declaration'" (click)="openActionSelectionDialog()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+
+    <ng-container *ngIf="action">
+        
+        <div class="{{action.initiative ? 'active' : 'inactive'}}">
+            <button mat-button matTooltip="Initiative">
+                <mat-icon>flash_on</mat-icon>
+                <span *ngIf="action.initiative">{{action.initiative}}</span>
+            </button>
+        </div>
+        
+        <div>
+            <button mat-button color="primary" (click)="openActionExecutionDialog(action)">
+                <mat-icon *ngIf="action.type == 'movement'">directions_run</mat-icon>
+                <mat-icon *ngIf="action.type == 'melee-attack'">local_dining</mat-icon>
+                <mat-icon *ngIf="action.type == 'missile-attack'">u_turn_right</mat-icon>
+                {{action.actionPercent}}%
+            </button>
+        </div>
+        
+        <div class="push">
+        </div>
+        
+        <div>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Action menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="deleteAction()">
+                    <mat-icon>delete_forever</mat-icon>
+                    <span>Delete</span>
+                </button>
+                <button mat-menu-item>
+                    <mat-icon>dialpad</mat-icon>
+                    <span>Redial</span>
+                </button>
+                <button mat-menu-item disabled>
+                    <mat-icon>voicemail</mat-icon>
+                    <span>Check voice mail</span>
+                </button>
+                <button mat-menu-item>
+                    <mat-icon>notifications_off</mat-icon>
+                    <span>Disable alerts</span>
+                </button>
+            </mat-menu>
+            
+        </div>
+        
+    </ng-container>
     
-    <button mat-button *ngIf="action.initiative" matTooltip="Initiative">
-        <mat-icon>flash_on</mat-icon>
-        {{action.initiative}}
-    </button>
-
-    <button mat-button color="primary" (click)="openAction(action)">
-        <mat-icon *ngIf="action.type == 'movement'">directions_run</mat-icon>
-        <mat-icon *ngIf="action.type == 'melee-attack'">local_dining</mat-icon>
-        <mat-icon *ngIf="action.type == 'missile-attack'">u_turn_right</mat-icon>
-        {{action.actionPercent}}
-    </button>
-
-    <button mat-button
-        *ngIf="action.state == 'resolved'"
-        (click)="openActionExecutionDialog(action)">
-        <mat-icon>info</mat-icon>
-    </button>
-
-    <button mat-button color="primary" *ngIf="checkDisplayButtonActionExecution(action)" (click)="openActionExecutionDialog(action)" matTooltip="Action resolution">
-        <mat-icon>upload</mat-icon>
-    </button>
-
-    <button mat-button color="primary" *ngIf="checkDisplayButtonCriticalExecution(action)" (click)="openCriticalExecutionDialog(action)" matTooltip="Critical">
-        <mat-icon>apps_outage</mat-icon>
-    </button>
-
-    <button mat-button color="primary" *ngIf="checkDisplayButtonFumbleExecution(action)" (click)="openFumbleExecutionDialog(action)" matTooltip="Fumble">
-        <mat-icon>feedback</mat-icon>
-    </button>
-
-    <button mat-button
-        *ngIf="tacticalRound.state != 'closed' && action.state != 'resolved'"
-        (click)="deleteAction()">
-        <mat-icon>delete</mat-icon>
-    </button>
-
-</div>
 </div>

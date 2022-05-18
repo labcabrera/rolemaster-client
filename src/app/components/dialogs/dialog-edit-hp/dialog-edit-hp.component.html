@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Hit points</h1>
+
+<mat-form-field _class="example-full-width" appearance="outline">
+    <mat-label>Hit points</mat-label>
+    <input matInput placeholder="Hit points" [formControl]="currentHpControl">
+</mat-form-field>
+
+<div mat-dialog-actions>
+    <button mat-stroked-button mat-dialog-close>Close</button>
+    <button mat-stroked-button mat-dialog-close (click)="updateHP()">Update</button>
+</div>

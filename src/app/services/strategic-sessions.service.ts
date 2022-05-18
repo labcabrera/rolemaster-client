@@ -34,7 +34,8 @@ export class StrategicSessionsService {
   }
 
   update(id: string, request: any): Observable<StrategicSession> {
-    return this.http.patch<any>(this.baseUrl + "/" + id, request, this.httpOptions).pipe();
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.patch<any>(url, request, this.httpOptions).pipe();
   }
 
   delete(id: String) {

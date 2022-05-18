@@ -1,3 +1,21 @@
-.buff-icon {
-    font-size: 12pt;
+.row {
+    height: 50px;
+    background-color: #333;
 }
+
+.row-cell-hp {
+    height: 50px;
+    border: 1px solid #5b4040;
+}
+
+.row-cell-name {
+    padding-left: 5pt;
+}
+
+.character-description {
+    color: #777;
+    font-style: italic;
+    padding-right: 20px;
+}
+
+

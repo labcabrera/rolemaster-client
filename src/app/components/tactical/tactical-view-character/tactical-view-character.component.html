@@ -1,65 +1,54 @@
-<div fxLayout="row" fxLayoutAlign="left start">
+<div fxLayout="row" fxLayoutAlign="left start" *ngIf="character" class="row">
 
-    <div fxFlex="20" style="background-color: #222;">
-        <button mat-button (click)="openManualEditionDialog()">
-            {{character?.hp?.current}}/{{character?.hp?.max}}
-            <mat-icon>upgrade</mat-icon>
-        </button>
-        <div *ngIf="this.character?.hp?.percent != 100" fxFlex="{{100 - character!.hp.percent}}" style="background-color: rgba(110, 15, 15, 0.808);"></div>
+    <div fxFlex="20" fxLayoutAlign="center center" [style]="getHpStyle()" class="row-cell-hp">
+        {{character?.hp?.current}}/{{character?.hp?.max}}
     </div>
 
-    <div fxFlex="80" style="background-color: #333;">
-        <button mat-button (click)="openTacticalCharacterDialog()">
-            {{character?.name}}
+    <div fxFlex="70" fxLayoutAlign="left center" class="row-cell-name">
+        <div fxLayout="column">
+            <div>
+                {{character?.name}}
+            </div>
+            <div fxLayout="row">
+                <span class="character-description">{{character?.shortDescription}}</span>
+                <app-combat-status-icons [character]="character"></app-combat-status-icons>
+            </div>
+        </div>
+    </div>
+    <div fxFlex="10" fxLayoutAlign="center center">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
         </button>
-        <span style="color: #777;">({{character?.shortDescription}})</span>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openTacticalCharacterDialog()">
+                <mat-icon>person</mat-icon>
+                <span>Open</span>
+            </button>
+            <button mat-menu-item (click)="openDialogSetHitPoints()">
+                <mat-icon>edit</mat-icon>
+                <span>Set hit points</span>
+            </button>
+            <button mat-menu-item (click)="openDialogSetHitPoints()">
+                <mat-icon>edit</mat-icon>
+                <span>Set exhaustion points</span>
+            </button>
+            <button mat-menu-item (click)="openDialogSetHitPoints()">
+                <mat-icon>edit</mat-icon>
+                <span>Set buffs and debuffs</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>dialpad</mat-icon>
+                <span>Redial</span>
+            </button>
+            <button mat-menu-item disabled>
+                <mat-icon>voicemail</mat-icon>
+                <span>Check voice mail</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>notifications_off</mat-icon>
+                <span>Disable alerts</span>
+            </button>
+        </mat-menu>
 
-
-        <container-element [ngSwitch]="character!.state">
-            <span *ngSwitchCase="'massive-shock'">
-                <mat-icon class="buff-icon" color="warn" matTooltip="Massive shock">error_outline</mat-icon>
-            </span>
-            <span *ngSwitchCase="'massive-shock-dying'">
-                <mat-icon class="buff-icon" color="warn" matTooltip="Massive shock dying">error_outline</mat-icon>
-            </span>
-            <span *ngSwitchCase="'dead'">
-                <mat-icon class="buff-icon" color="warn" matTooltip="Dying">error_outline</mat-icon>
-            </span>
-        </container-element>
-
-
-        <ng-container *ngIf="!isDead()">
-            <span *ngIf="character?.combatStatus!.totalBonus != 0">
-                +{{character?.combatStatus!.totalBonus}}
-                <mat-icon class="buff-icon" matTooltip="Bonus">arrow_circle_up</mat-icon>
-            </span>
-            <span *ngIf="character?.combatStatus!.buffs?.['has-initiative']">
-                +{{character?.combatStatus?.buffs?.['has-initiative']}}
-                <mat-icon class="buff-icon" matTooltip="Has initiative">flash_on</mat-icon>
-            </span>
-            <span *ngIf="character?.combatStatus!.totalPenalty < 0">
-                {{character?.combatStatus!.totalPenalty}}
-                <mat-icon class="buff-icon" matTooltip="Penalty">arrow_circle_down</mat-icon>
-            </span>
-            <span *ngIf="character?.combatStatus!.totalBleeding > 0">
-                {{character?.combatStatus!.totalBleeding}}
-                <mat-icon class="buff-icon" matTooltip="Bleeding">water_drop</mat-icon>
-            </span>
-            <span *ngIf="character?.combatStatus?.debuffs?.stunned">
-                {{character?.combatStatus?.debuffs?.stunned}}
-                <mat-icon class="buff-icon" matTooltip="Stunned">new_releases</mat-icon>
-            </span>
-            <span *ngIf="character?.combatStatus?.debuffs?.['cant-parry']">
-                {{character?.combatStatus?.debuffs?.['cant-parry']}}
-                <mat-icon class="buff-icon" matTooltip="Cant parry">highlight_off</mat-icon>
-            </span>
-            <span *ngIf="character?.combatStatus?.debuffs?.['must-parry']">
-                {{character?.combatStatus?.debuffs?.['must-parry']}}
-                <mat-icon class="buff-icon" matTooltip="Must parry">close</mat-icon>
-            </span>
-            <span *ngIf="isWeaponBroken()">
-                <mat-icon class="buff-icon" matTooltip="Weapon broken">hdr_off</mat-icon>
-            </span>
-        </ng-container>
     </div>
 </div>

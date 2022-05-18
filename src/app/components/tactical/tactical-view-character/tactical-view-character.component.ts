@@ -1,11 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { CharacterItem } from 'src/app/model/item';
 import { TacticalCharacter } from 'src/app/model/character-context';
 import { DialogTacticalCharacterEditionComponent } from '../../dialogs/dialog-tactical-character-edition/dialog-tactical-character-edition.component';
 import { DialogTacticalCharacterComponent } from '../../dialogs/dialog-tactical-character/dialog-tactical-character.component';
-import * as e from 'express';
+import { DialogEditHpComponent } from '../../dialogs/dialog-edit-hp/dialog-edit-hp.component';
 
 @Component({
   selector: 'app-tactical-view-character',
@@ -18,10 +17,16 @@ export class TacticalViewCharacterComponent implements OnInit {
 
   constructor(
     private manualEditionDialog: MatDialog,
+    private dialogEditHp: MatDialog,
     private characterDialog: MatDialog
   ) { }
 
   ngOnInit(): void {
+  }
+
+  openDialogSetHitPoints() {
+    var dialogEditHpRef = this.characterDialog.open(DialogEditHpComponent);
+    dialogEditHpRef.componentInstance.loadCharacter(this.character!);
   }
 
   openTacticalCharacterDialog() {
@@ -40,18 +45,15 @@ export class TacticalViewCharacterComponent implements OnInit {
     });
   }
 
-  isDead(): boolean {
-    return this.character!.hp.current < 1 ||
-      this.character!.combatStatus.debuffs['mortal-damage'] > 0 || 
-      this.character!.combatStatus.debuffs["instant-death"] > 0;
+  getHpStyle() {
+    const hpPercent = this.character!.hp.percent;
+    if(hpPercent <= 0) {
+      return `background-color: rgb(47, 8, 8);`;
+    }
+    const a = 1- hpPercent / 100;
+    return `background-color: rgba(138, 14, 14, ${a});`;
   }
 
-  isWeaponBroken() {
-    return this.character!.items.filter(e => this.isBrokenItem(e)).length > 0;
-  }
 
-  private isBrokenItem(item: CharacterItem): boolean {
-    return item.features &&  item.features.filter(e => e.type === 'broken').length > 0;
-  }
 
 }

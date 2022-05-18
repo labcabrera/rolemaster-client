@@ -93,10 +93,10 @@
 </div>
 
 <mat-dialog-actions *ngIf="actionExecutionForm">
-    <button mat-button mat-dialog-close>Close</button>
-    <button mat-button (click)="executeMissileAttack()" [disabled]="actionExecutionForm.invalid || actionExecutionForm.disabled">Execute attack</button>
-    <button mat-button (click)="executeBreakage()" *ngIf="breakageForm" [disabled]="breakageForm.invalid || breakageForm.disabled">Check breakage</button>
-    <button mat-button (click)="resolveCriticalAction()" *ngIf="action && criticalExecutionForm"
+    <button mat-stroked-button mat-dialog-close>Close</button>
+    <button mat-stroked-button (click)="executeMissileAttack()" [disabled]="actionExecutionForm.invalid || actionExecutionForm.disabled">Execute attack</button>
+    <button mat-stroked-button (click)="executeBreakage()" *ngIf="breakageForm" [disabled]="breakageForm.invalid || breakageForm.disabled">Check breakage</button>
+    <button mat-stroked-button (click)="resolveCriticalAction()" *ngIf="action && criticalExecutionForm"
         [disabled]="criticalExecutionForm!.invalid || this.action.state !== 'pending-critical-resolution'">Resolve critical</button>
 </mat-dialog-actions>
 

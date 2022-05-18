@@ -114,6 +114,8 @@ import { FlawsListComponent } from './pages/flaws/flaws-list/flaws-list.componen
 import { MovementExecutionComponent } from './components/tactical/action-execution/movement-execution/movement-execution.component';
 import { AttackResultDetailComponent } from './components/tactical/attack-result-detail/attack-result-detail.component';
 import { CharacterCreationAttributesComponent } from './components/character/character-creation-attributes/character-creation-attributes.component';
+import { CombatStatusIconsComponent } from './components/tactical/combat-status-icons/combat-status-icons.component';
+import { DialogEditHpComponent } from './components/dialogs/dialog-edit-hp/dialog-edit-hp.component';
 
 @NgModule({
   declarations: [
@@ -215,7 +217,9 @@ import { CharacterCreationAttributesComponent } from './components/character/cha
     FlawsListComponent,
     MovementExecutionComponent,
     AttackResultDetailComponent,
-    CharacterCreationAttributesComponent
+    CharacterCreationAttributesComponent,
+    CombatStatusIconsComponent,
+    DialogEditHpComponent
   ],
   imports: [
     FormsModule,
