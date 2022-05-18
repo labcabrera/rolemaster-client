@@ -47,13 +47,8 @@ export class TacticalViewCharacterComponent implements OnInit {
 
   getHpStyle() {
     const hpPercent = this.character!.hp.percent;
-    if(hpPercent <= 0) {
-      return `background-color: rgb(47, 8, 8);`;
-    }
-    const a = 1- hpPercent / 100;
+    const a = 1 - hpPercent / 100;
     return `background-color: rgba(138, 14, 14, ${a});`;
   }
-
-
 
 }

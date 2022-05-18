@@ -1,15 +1,11 @@
-.box {
-    display: flex;
-}
-
-.push {
-    margin-left: auto;
-}
-
 .inactive {
     color: #777;
 }
 
 .active {
     color: white;
+}
+
+.unresolved {
+    color: #9ed055
 }

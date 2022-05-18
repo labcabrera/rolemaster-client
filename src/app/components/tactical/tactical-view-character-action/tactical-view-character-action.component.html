@@ -1,4 +1,4 @@
-<div *ngIf="tacticalRound" class="box">
+<div *ngIf="tacticalRound" fxLayout="row">
 
     <div *ngIf="!action">
         <button mat-button *ngIf="tacticalRound.state == 'action-declaration'" (click)="openActionSelectionDialog()">
@@ -8,26 +8,23 @@
 
     <ng-container *ngIf="action">
         
-        <div class="{{action.initiative ? 'active' : 'inactive'}}">
+        <div fxFlex="30" class="{{action.initiative ? 'active' : 'inactive'}}" [fxHide.lt-sm]="true">
             <button mat-button matTooltip="Initiative">
                 <mat-icon>flash_on</mat-icon>
                 <span *ngIf="action.initiative">{{action.initiative}}</span>
             </button>
         </div>
         
-        <div>
-            <button mat-button color="primary" (click)="openActionExecutionDialog(action)">
+        <div fxFlex="50">
+            <button mat-button (click)="openActionExecutionDialog(action)" class="{{action.state != 'resolved' ? 'unresolved' : 'active'}}">
                 <mat-icon *ngIf="action.type == 'movement'">directions_run</mat-icon>
                 <mat-icon *ngIf="action.type == 'melee-attack'">local_dining</mat-icon>
                 <mat-icon *ngIf="action.type == 'missile-attack'">u_turn_right</mat-icon>
-                {{action.actionPercent}}%
+                <span [fxHide.lt-sm]="true">{{action.actionPercent}}%</span>
             </button>
         </div>
         
-        <div class="push">
-        </div>
-        
-        <div>
+        <div fxFlex="10">
             <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Action menu">
                 <mat-icon>more_vert</mat-icon>
             </button>

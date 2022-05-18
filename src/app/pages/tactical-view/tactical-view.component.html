@@ -13,12 +13,12 @@
 <div class="outerContainer">
 
     <div fxLayout="row" *ngFor="let character of characters" class="div-tactical">
-        <div fxFlex="30" fxLayoutAlign="left center" class="div-tactical">
 
+        <div fxFlex="36" fxLayoutAlign="left center" class="div-tactical">
             <app-tactical-view-character [character]="character" style="width: 100%;"></app-tactical-view-character>
-
         </div>
-        <div fxFlex="20" fxLayoutAlign="left center" class="action-declaration">
+
+        <div fxFlex="18" fxLayoutAlign="left center" class="action-declaration">
             <app-tactical-view-character-action
                 [tacticalSession]="this.tacticalSession"
                 [tacticalRound]="this.tacticalRound"
@@ -27,10 +27,12 @@
                 [characters]="this.characters"
                 [action]="getAction(character.id, 'snap')"
                 [actions]="actions"
-                (actionsUpdated)="this.loadActions(this.tacticalRound.id)">
+                (actionsUpdated)="this.loadActions(this.tacticalRound.id)"
+                class="full-width">
             </app-tactical-view-character-action>
         </div>
-        <div fxFlex="20" fxLayoutAlign="left center" class="action-declaration">
+
+        <div fxFlex="18" fxLayoutAlign="left center" class="action-declaration">
             <app-tactical-view-character-action
                 [tacticalSession]="this.tacticalSession"
                 [tacticalRound]="this.tacticalRound"
@@ -39,10 +41,12 @@
                 [characters]="this.characters"
                 [action]="getAction(character.id, 'normal')"
                 [actions]="actions"
-                (actionsUpdated)="this.loadActions(this.tacticalRound.id)">
+                (actionsUpdated)="this.loadActions(this.tacticalRound.id)"
+                class="full-width">
             </app-tactical-view-character-action>
         </div>
-        <div fxFlex="20" fxLayoutAlign="left center" class="action-declaration">
+
+        <div fxFlex="18" fxLayoutAlign="left center" class="action-declaration">
             <app-tactical-view-character-action
                 [tacticalSession]="this.tacticalSession"
                 [tacticalRound]="this.tacticalRound"
@@ -51,7 +55,8 @@
                 [characters]="this.characters"
                 [actions]="actions"
                 [action]="getAction(character.id, 'deliberate')"
-                (actionsUpdated)="this.loadActions(this.tacticalRound.id)">
+                (actionsUpdated)="this.loadActions(this.tacticalRound.id)"
+                class="full-width">
             </app-tactical-view-character-action>
         </div>
         

@@ -15,7 +15,7 @@ import { ErrorService } from 'src/app/services/error.service';
 export class TacticalSessionsComponent implements OnInit, AfterViewInit {
 
   tacticalSessions?: TacticalSession[];
-  displayedColumns: string[] = ["name", "state", "owner"];
+  displayedColumns: string[] = ["name", "version", "state", "owner"];
   dataSource: MatTableDataSource<TacticalSession> = new MatTableDataSource<TacticalSession>(this.tacticalSessions);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;

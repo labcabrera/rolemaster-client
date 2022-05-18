@@ -31,7 +31,7 @@ export class DialogActionExecutionComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.dialogRef.updateSize('90%', '90%');
+    this.dialogRef.updateSize('95%', '95%');
   }
 
   load(action: TacticalAction, characters: TacticalCharacter[]) {
