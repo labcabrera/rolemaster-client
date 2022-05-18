@@ -6,8 +6,11 @@ export interface Item {
     count: number;
     craftDuration: number;
     //TODO
+    multipleItem: boolean;
     commonCost: any;
     commonWeight: any;
+    fumble: number;
+    breakage: number;
 }
 
 export interface CharacterItem {

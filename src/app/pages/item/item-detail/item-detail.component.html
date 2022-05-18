@@ -1,10 +1,48 @@
 <mat-toolbar>
-    <span><mat-icon>shopping_cart</mat-icon> Items</span>
+    <span>
+        <mat-icon>shopping_cart</mat-icon> Items
+    </span>
     <div class="div-spacer"></div>
-    <button mat-button routerLink="/items"><mat-icon>arrow_upward</mat-icon></button>
+    <button mat-button routerLink="/items">
+        <mat-icon>arrow_upward</mat-icon>
+    </button>
 </mat-toolbar>
 
 <div class="outerContainer">
+
+    <div fxLayout="column" [formGroup]="itemForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Type</mat-label>
+            <input matInput formControlName="type">
+        </mat-form-field>
+        <ng-container formGroupName="commonWeight">
+            <mat-form-field appearance="outline">
+                <mat-label>Common weight min</mat-label>
+                <input matInput formControlName="min">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Common weight max</mat-label>
+                <input matInput formControlName="max">
+            </mat-form-field>
+        </ng-container>
+        <mat-form-field appearance="outline">
+            <mat-label>Multiple</mat-label>
+            <input matInput formControlName="multipleItem">
+        </mat-form-field>
+        <mat-form-field appearance="outline" *ngIf="itemForm.controls['type'].value === 'weapon'">
+            <mat-label>Fumble</mat-label>
+            <input matInput formControlName="fumble">
+        </mat-form-field>
+        <mat-form-field appearance="outline" *ngIf="itemForm.controls['type'].value === 'weapon'">
+            <mat-label>Breakage</mat-label>
+            <input matInput formControlName="breakage">
+        </mat-form-field>
+    </div>
+
 </div>
 
 <pre>{{item | json}}</pre>
