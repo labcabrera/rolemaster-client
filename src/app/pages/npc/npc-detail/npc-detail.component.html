@@ -1,11 +1,67 @@
 <mat-toolbar>
-    <span><mat-icon>pets</mat-icon> NPC</span>
+    <span>
+        <mat-icon>pets</mat-icon> NPC
+    </span>
     <div class="div-spacer"></div>
-    <button mat-button routerLink="/npc"><mat-icon>arrow_upward</mat-icon></button>
+    <button mat-button routerLink="/npc">
+        <mat-icon>arrow_upward</mat-icon>
+    </button>
 </mat-toolbar>
 
 <div class="outerContainer">
-    TODO
-</div>
 
-<pre>{{npc | json}}</pre>
+    <mat-tab-group mat-align-tabs="start" [formGroup]="npcForm">
+        <mat-tab label="Info">
+            <div fxLayout="column" class="margin-top">
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Short description</mat-label>
+                    <input matInput formControlName="shortDescription">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Level</mat-label>
+                    <input matInput formControlName="level">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>AT</mat-label>
+                    <input matInput formControlName="armorType">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>BD</mat-label>
+                    <input matInput formControlName="defensiveBonus">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Hit points</mat-label>
+                    <input matInput formControlName="hp">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Power points</mat-label>
+                    <input matInput formControlName="powerPoints">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Exhaustion points</mat-label>
+                    <input matInput formControlName="exhaustionPoints">
+                </mat-form-field>
+            </div>
+        </mat-tab>
+        <mat-tab label="Skills">
+            <h2>Under development.</h2>
+        </mat-tab>
+        <mat-tab label="Items">
+            <h2>Under development.</h2>
+        </mat-tab>
+        <mat-tab label="Special attacks">
+            <h2>Under development.</h2>
+        </mat-tab>
+        <mat-tab label="Notes">
+            <h2>Under development.</h2>
+        </mat-tab>
+        <mat-tab label="Debug">
+            <pre>{{npc | json}}</pre>
+        </mat-tab>
+    </mat-tab-group>
+
+</div>
