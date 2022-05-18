@@ -31,7 +31,7 @@ import { CharacterSkillListComponent } from './components/character/character-sk
 import { CharacterAttributesComponent } from './components/character/character-attributes/character-attributes.component';
 import { CharacterViewComponent } from './pages/character/character-view/character-view.component';
 
-import { TacticalViewComponent } from './pages/tactical-view/tactical-view.component';
+import { TacticalViewRmssComponent } from './pages/tactical-view-rmss/tactical-view-rmss.component';
 import { SharedModule } from './components/shared/shared.module';
 
 import { NpcListComponent } from './pages/npc/npc-list/npc-list.component';
@@ -116,6 +116,7 @@ import { CharacterCreationAttributesComponent } from './components/character/cha
 import { CombatStatusIconsComponent } from './components/tactical/combat-status-icons/combat-status-icons.component';
 import { DialogEditHpComponent } from './components/dialogs/dialog-edit-hp/dialog-edit-hp.component';
 import { DialogInitiativeDeclarationComponent } from './components/dialogs/dialog-initiative-declaration/dialog-initiative-declaration.component';
+import { TacticalViewRmuComponent } from './pages/tactical-view-rmu/tactical-view-rmu.component';
 
 @NgModule({
   declarations: [
@@ -138,7 +139,7 @@ import { DialogInitiativeDeclarationComponent } from './components/dialogs/dialo
     ProfessionDetailComponent,
     CharacterViewComponent,
     SkillSelectComponent,
-    TacticalViewComponent,
+    TacticalViewRmssComponent,
     TacticalSessionComponent,
     NpcListComponent,
     NpcDetailComponent,
@@ -219,7 +220,8 @@ import { DialogInitiativeDeclarationComponent } from './components/dialogs/dialo
     CharacterCreationAttributesComponent,
     CombatStatusIconsComponent,
     DialogEditHpComponent,
-    DialogInitiativeDeclarationComponent
+    DialogInitiativeDeclarationComponent,
+    TacticalViewRmuComponent
   ],
   imports: [
     FormsModule,

@@ -1,0 +1,18 @@
+<mat-toolbar *ngIf="tacticalSession && tacticalRound">
+    <span>
+        <a routerLink="/tactical-sessions/detail/{{tacticalSession.id}}">{{tacticalSession.name}}</a>
+        <span> - Round {{this.tacticalRound.round}}</span>
+
+    </span>
+    <div class="div-spacer"></div>
+    <button mat-button (click)="startRound()">Start round</button>
+</mat-toolbar>
+
+<div class="outerContainer">
+
+    <h2>Under development: Tactical view RMU</h2>
+    <span>Only RMSS is currently supported.</span>
+
+</div>
+
+<br>

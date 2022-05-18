@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { TacticalCharacter } from 'src/app/model/character-context';
-import { TacticalRound } from 'src/app/model/round';
-import { TacticalSession } from 'src/app/model/session';
 import { TacticalSessionService } from 'src/app/services/tactical-session.service';
 import { ActionService } from 'src/app/services/action.service';
-import { TacticalAction } from 'src/app/model/actions';
 import { ErrorService } from 'src/app/services/error.service';
+import { TacticalSession } from 'src/app/model/session';
+import { TacticalRound } from 'src/app/model/round';
+import { TacticalAction } from 'src/app/model/actions';
+import { TacticalCharacter } from 'src/app/model/character-context';
 
 @Component({
-  selector: 'app-tactical-view',
-  templateUrl: './tactical-view.component.html',
-  styleUrls: ['./tactical-view.component.scss']
+  selector: 'app-tactical-view-rmu',
+  templateUrl: './tactical-view-rmu.component.html',
+  styleUrls: ['./tactical-view-rmu.component.scss']
 })
-export class TacticalViewComponent implements OnInit {
+export class TacticalViewRmuComponent implements OnInit {
 
-  tacticalSession: TacticalSession = {} as TacticalSession;
-  tacticalRound: TacticalRound = {} as TacticalRound;
+  tacticalSession?: TacticalSession;
+  tacticalRound?: TacticalRound;
   actions: TacticalAction[] = [];
   characters: TacticalCharacter[] = [];
 
@@ -26,7 +26,6 @@ export class TacticalViewComponent implements OnInit {
     private tacticalSessionService: TacticalSessionService,
     private actionService: ActionService,
     private errorService: ErrorService,
-    private setInitiativeDialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute) { }
 
@@ -54,13 +53,24 @@ export class TacticalViewComponent implements OnInit {
     });
   }
 
+  startRound(): void {
+    this.tacticalSessionService.startRound(this.tacticalSession!.id).subscribe({
+      next: response => {
+        this.tacticalRound = response;
+        this.loadCharacters(this.tacticalSession!.id);
+        this.actions = [];
+      },
+      error: error => this.errorService.displayError(error)
+    });
+  }
+
   loadCharacters(tacticalSessionId: string) {
     this.tacticalSessionService.findTacticalCharacterContexts(tacticalSessionId).subscribe(response => {
       this.characters = response;
     })
   }
 
-  loadRound(tacticalSessionId: string) {
+  private loadRound(tacticalSessionId: string): void {
     this.tacticalSessionService.getCurrentRound(tacticalSessionId).subscribe({
       next: response => {
         if (response != null) {
@@ -71,40 +81,18 @@ export class TacticalViewComponent implements OnInit {
         }
       },
       error: error => {
-        if(error.status == 404) {
+        if (error.status == 404) {
           this.startRound();
         } else {
           this.errorService.displayError(error)
         }
       },
-      
     })
   }
 
-  loadActions(roundId: string) {
-    this.actionService.findActionsByRound(roundId).subscribe(response => {
-      this.actions = response;
-      this.loadCharacters(this.tacticalSession.id);
-    });
+  private loadActions(tacticalRoundId: string): void {
+
   }
 
-  startRound() {
-    this.tacticalSessionService.startRound(this.tacticalSession.id).subscribe({
-      next: response => {
-        this.tacticalRound = response;
-        this.loadCharacters(this.tacticalSession.id);
-        this.actions = [];
-      },
-      error: error => this.errorService.displayError(error)
-    });
-  }
-
-  getAction(source: string, priority: string): TacticalAction | undefined {
-    if (this.actions == null) {
-      return undefined;
-    }
-    var check = this.actions.filter(a => a.source == source && a.priority == priority);
-    return check.length > 0 ? check[0] : undefined;
-  }
 
 }

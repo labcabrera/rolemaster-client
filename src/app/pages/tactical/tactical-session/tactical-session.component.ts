@@ -122,7 +122,10 @@ export class TacticalSessionComponent implements OnInit {
   }
 
   navigateToTacticalView() {
-    this.router.navigateByUrl("/tactical?tacticalSessionId=" + this.tacticalSession!.id);
+    const version = this.tacticalSession?.version;
+    const tacticalSessionId = this.tacticalSession!.id;
+    const url = `/tactical-${version}?tacticalSessionId=${tacticalSessionId}`
+    this.router.navigateByUrl(url);
   }
 
 }

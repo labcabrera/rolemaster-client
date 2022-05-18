@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TacticalViewComponent } from './tactical-view.component';
+import { TacticalViewRmuComponent } from './tactical-view-rmu.component';
 
-describe('TacticalViewComponent', () => {
-  let component: TacticalViewComponent;
-  let fixture: ComponentFixture<TacticalViewComponent>;
+describe('TacticalViewRmuComponent', () => {
+  let component: TacticalViewRmuComponent;
+  let fixture: ComponentFixture<TacticalViewRmuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TacticalViewComponent ]
+      declarations: [ TacticalViewRmuComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TacticalViewComponent);
+    fixture = TestBed.createComponent(TacticalViewRmuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

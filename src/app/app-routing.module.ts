@@ -9,7 +9,7 @@ import { StrategicSessionComponent } from './pages/strategic/strategic-session/s
 import { StrategicSessionsComponent } from './pages/strategic/strategic-sessions/strategic-sessions.component';
 import { SkillCategoryListComponent } from './pages/skill-category/skill-category-list/skill-category-list.component';
 import { SkillListComponent } from './pages/skill/skill-list/skill-list.component';
-import { TacticalViewComponent } from './pages/tactical-view/tactical-view.component';
+import { TacticalViewRmssComponent } from './pages/tactical-view-rmss/tactical-view-rmss.component';
 import { TacticalSessionsComponent } from './pages/tactical/tactical-sessions/tactical-sessions.component';
 import { TacticalSessionComponent } from './pages/tactical/tactical-session/tactical-session.component';
 import { NpcListComponent } from './pages/npc/npc-list/npc-list.component';
@@ -40,6 +40,7 @@ import { FlawsListComponent } from './pages/flaws/flaws-list/flaws-list.componen
 import { FlawsDetailComponent } from './pages/flaws/flaws-detail/flaws-detail.component';
 import { TalentListComponent } from './pages/talents/talent-list/talent-list.component';
 import { TalentDetailComponent } from './pages/talents/talent-detail/talent-detail.component';
+import { TacticalViewRmuComponent } from './pages/tactical-view-rmu/tactical-view-rmu.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -77,7 +78,8 @@ const routes: Routes = [
   { path: 'spell-lists/detail/:id', component: SpellListDetailComponent },
   { path: 'spells', component: SpellsComponent },
   { path: 'spells/detail/:id', component: SpellDetailComponent },
-  { path: 'tactical', component: TacticalViewComponent },
+  { path: 'tactical-rmss', component: TacticalViewRmssComponent },
+  { path: 'tactical-rmu', component: TacticalViewRmuComponent },
   { path: 'items', component: ItemsComponent },
   { path: 'items/detail/:id', component: ItemDetailComponent },
   { path: 'wiki/combat', component: CombatComponent },
