@@ -11,12 +11,8 @@ import { TrainingPackage } from 'src/app/model/training-packages';
 export class TrainingPackageSelectableCategoryComponent implements OnInit {
 
   @Input() trainingPackage?: TrainingPackage;
-
   displayedColumns = ["description", "key", "group", "ranks"];
-
   dataSource = new MatTableDataSource<any>();
-
-  constructor() { }
 
   ngOnInit(): void {
     if(!this.trainingPackage) {

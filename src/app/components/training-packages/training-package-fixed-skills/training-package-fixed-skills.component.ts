@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { TrainingPackage } from 'src/app/model/training-packages';
@@ -20,9 +20,6 @@ export class TrainingPackageFixedSkillsComponent implements OnInit {
   skillDataSource = new MatTableDataSource<NamedKey>();
 
   displayedColumns = ["name","ranks"];
-
-  constructor() { }
-
   
   ngOnInit(): void {
     this.loadDataSources();

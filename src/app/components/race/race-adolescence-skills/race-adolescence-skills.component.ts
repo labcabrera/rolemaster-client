@@ -15,13 +15,11 @@ export class RaceAdolescenceSkillsComponent implements OnInit {
   dataSource = new MatTableDataSource<NamedKey>();
   skills: NamedKey[] = [];
   displayedColumns = ["skill", "ranks"];
-  
-  constructor() { }
 
   ngOnInit(): void {
     if (this.race && this.race.adolescenceSkillRanks) {
       const tmp = this.race.adolescenceSkillRanks;
-      Object.keys(tmp).map(key => {
+      Object.keys(tmp).forEach(key => {
         const value = "" + tmp[key];
         this.skills.push({ key: key, name: value });
       });

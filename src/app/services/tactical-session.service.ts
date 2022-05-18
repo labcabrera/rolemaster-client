@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, tap, switchMap } from 'rxjs/operators';
-import { Observable, of, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 import { TacticalCharacter } from '../model/character-context';
 import { TacticalSession, TacticalSessionCreation, TacticalSessionUpdate  } from '../model/session';
 import { TacticalRound } from '../model/round';
 import { environment } from 'src/environments/environment';
-import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,20 +20,18 @@ export class TacticalSessionService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(
-    private messageService: MessageService,
-    private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   find(): Observable<TacticalSession[]> {
     return this.http.get<TacticalSession[]>(this.baseUrlTacticalSessions).pipe();
   }
 
-  findById(id: String): Observable<TacticalSession> {
+  findById(id: string): Observable<TacticalSession> {
     const url = `${this.baseUrlTacticalSessions}/${id}`;
     return this.http.get<TacticalSession>(url).pipe();
   }
 
-  findByStrategicSessionId(id: String): Observable<TacticalSession[]> {
+  findByStrategicSessionId(id: string): Observable<TacticalSession[]> {
     const url = `${this.baseUrlTacticalSessions}/?strategicSessionId=${id}`;
     return this.http.get<TacticalSession[]>(url).pipe();
   }
@@ -63,7 +60,7 @@ export class TacticalSessionService {
     return this.http.post<TacticalCharacter>(url, this.httpOptions).pipe();
   }
 
-  delete(id: String) {
+  delete(id: string) {
     const url = `${this.baseUrlTacticalSessions}/${id}`;
     return this.http.delete(url, {observe: 'response'}).pipe(
       switchMap(res => res.status === 204 ? of([]) : of(res))

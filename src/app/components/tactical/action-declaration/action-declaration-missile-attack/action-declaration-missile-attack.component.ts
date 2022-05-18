@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, AfterContentInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { TacticalAction } from 'src/app/model/actions';
 import { TacticalCharacter } from 'src/app/model/character-context';
 import { ActionService } from 'src/app/services/action.service';
 import { ErrorService } from 'src/app/services/error.service';
@@ -13,7 +12,7 @@ import { ErrorService } from 'src/app/services/error.service';
 })
 export class ActionDeclarationMissileAttackComponent implements OnInit, AfterContentInit {
 
-  @Input() character: TacticalCharacter = {} as TacticalCharacter;
+  @Input() character?: TacticalCharacter;
   @Input() roundId: string = "";
   @Input() priority: string = "";
   @Input() maxActionPercent: number = 0;
@@ -45,7 +44,7 @@ export class ActionDeclarationMissileAttackComponent implements OnInit, AfterCon
       priority: this.priority,
       roundId: this.roundId,
       actionPercent: this.maxActionPercent,
-      source: this.character.id
+      source: this.character!.id
     });
   }
 

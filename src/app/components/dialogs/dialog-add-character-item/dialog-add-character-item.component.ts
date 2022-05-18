@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 import { CharacterInfo } from 'src/app/model/character-info';
-import { AddCharacterItem, Item } from 'src/app/model/item';
+import { Item } from 'src/app/model/item';
 import { NamedKey } from 'src/app/model/commons';
 import { ItemService } from 'src/app/services/item.service';
 import { EnumService } from 'src/app/services/enum.service';
@@ -19,11 +18,9 @@ import { ErrorService } from 'src/app/services/error.service';
 })
 export class DialogAddCharacterItemComponent implements OnInit {
 
-
   character?: CharacterInfo;
   items: Item[] = [];
   itemPositions: NamedKey[] = [];
-
   addItemForm: FormGroup;
   itemFilteredOptions: Observable<Item[]>;
 
@@ -63,13 +60,14 @@ export class DialogAddCharacterItemComponent implements OnInit {
     });
   }
 
+  displayFnItem(item: any): string {
+    return item && item.name ? item.name : '';
+  }
+
   private _filter(name: string): Item[] {
     const filterValue = name.toLowerCase();
     return this.items.filter(option => option.name.toLowerCase().includes(filterValue));
   }
 
-  displayFnItem(item: any): string {
-    return item && item.name ? item.name : '';
-  }
 
 }

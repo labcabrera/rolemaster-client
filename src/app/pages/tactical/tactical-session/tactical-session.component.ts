@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { StrategicSession, TacticalSession, TacticalSessionUpdate } from 'src/app/model/session';
@@ -8,7 +8,6 @@ import { TacticalSessionService } from 'src/app/services/tactical-session.servic
 import { NamedKey } from 'src/app/model/commons';
 import { EnumService } from 'src/app/services/enum.service';
 import { ErrorService } from 'src/app/services/error.service';
-import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-tactical-session',

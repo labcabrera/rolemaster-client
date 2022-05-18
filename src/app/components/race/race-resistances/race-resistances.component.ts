@@ -21,7 +21,7 @@ export class RaceResistancesComponent implements OnInit {
   ngOnInit(): void {
     if (this.race && this.race.resistanceBonus) {
       const tmp = this.race.resistanceBonus;
-      Object.keys(tmp).map(key => {
+      Object.keys(tmp).forEach(key => {
         const value = "" + tmp[key];
         this.skills.push({ key: key, name: value });
       });

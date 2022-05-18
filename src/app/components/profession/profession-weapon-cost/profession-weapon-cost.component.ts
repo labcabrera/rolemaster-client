@@ -13,13 +13,10 @@ import { NamedKey } from 'src/app/model/commons';
 export class ProfessionWeaponCostComponent implements OnInit, AfterViewInit {
 
   @Input() profession?: Profession;
+  @ViewChild(MatPaginator) paginator?: MatPaginator;
   dataSource = new MatTableDataSource<number[]>();
   costs: NamedKey[] = [];
   displayedColumns = ["position", "cost"];
-
-  @ViewChild(MatPaginator) paginator?: MatPaginator;
-  
-  constructor() { }
 
   ngOnInit(): void {
     if (this.profession && this.profession.skillCategoryWeaponDevelopmentCost) {

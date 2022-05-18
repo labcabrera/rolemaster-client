@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TacticalAction, TacticalCriticalResult } from 'src/app/model/actions';
+
+import { TacticalCriticalResult } from 'src/app/model/actions';
 
 @Component({
   selector: 'app-critical-result-view',

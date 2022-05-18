@@ -1,10 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
-
-import { environment } from 'src/environments/environment';
-import { UserService } from 'src/app/services/user.service';
 import { OAuthService } from 'angular-oauth2-oidc';
+
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -12,7 +10,7 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent {
 
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
 
@@ -40,9 +38,6 @@ export class NavBarComponent implements OnInit {
     private loginService: LoginService,
     private oauthService: OAuthService,
     private router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   navigate(link: string) {
     this.sidenav.close();

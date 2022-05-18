@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { TacticalAction } from 'src/app/model/actions';
 import { TacticalCharacter } from 'src/app/model/character-context';
-import { TacticalRound } from 'src/app/model/round';
 import { TacticalSession } from 'src/app/model/session';
 import { ErrorService } from 'src/app/services/error.service';
 import { TacticalSessionService } from 'src/app/services/tactical-session.service';
@@ -17,7 +17,6 @@ export class DialogInitiativeDeclarationComponent {
   action?: TacticalAction;
   character?: TacticalCharacter;
   tacticalSession?: TacticalSession;
-
   initiativeForm: FormGroup;
 
   constructor(

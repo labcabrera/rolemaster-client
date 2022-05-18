@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { Skill } from 'src/app/model/skill';
 import { SkillCategory } from 'src/app/model/skill-category';
 import { ErrorService } from 'src/app/services/error.service';
 import { SkillCategoryService } from 'src/app/services/skill-category.service';
 import { SkillService } from 'src/app/services/skill.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-skill-detail',

@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterContentInit } from '@angular/core';
-import { TacticalAction } from 'src/app/model/actions';
-import { EnumService } from 'src/app/services/enum.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { EnumService } from 'src/app/services/enum.service';
 import { NamedKey } from 'src/app/model/commons';
 import { TacticalCharacter } from 'src/app/model/character-context';
 import { ActionDeclarationFormService } from 'src/app/services/action-declaration-form.service';
@@ -62,9 +61,9 @@ export class ActionDeclarationMeleeAttackComponent implements OnInit, AfterConte
     });
     this.actionDeclarationFormService.configureMeleeAttackTargets(
       this.fb,
-      this.actionForm!,
-      this.actionForm!.value['meleeAttackType'],
-      this.actionForm!.value['meleeAttackMode']);
+      this.actionForm,
+      this.actionForm.value['meleeAttackType'],
+      this.actionForm.value['meleeAttackMode']);
   }
 
   isAttackModeDisabled(value: string) {

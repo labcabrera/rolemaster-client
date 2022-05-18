@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, tap, switchMap } from 'rxjs/operators';
-import { Observable, of, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { Universe } from '../model/commons'
 import { environment } from 'src/environments/environment';
@@ -19,7 +18,7 @@ export class UniverseService {
     return this.http.get<Universe[]>(this.baseUrl).pipe();
   }
 
-  findById(id: String): Observable<Universe> {
+  findById(id: string): Observable<Universe> {
     const url = `${this.baseUrl}/${id}`;
     return this.http.get<Universe>(url).pipe();
   }

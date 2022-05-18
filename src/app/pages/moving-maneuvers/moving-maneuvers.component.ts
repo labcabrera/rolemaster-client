@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as e from 'express';
 import { NamedKey } from 'src/app/model/commons';
 import { EnumService } from 'src/app/services/enum.service';
 import { ErrorService } from 'src/app/services/error.service';
@@ -15,7 +14,6 @@ export class MovingManeuversComponent implements OnInit {
 
   maneuverForm: FormGroup;
   maneuverResult: any;
-
   difficulties: NamedKey[] = [];
 
   constructor(

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
-import { Observable, of, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { TacticalRound } from '../model/round';
 import { TacticalAction, TacticalActionDeclaration, TacticalActionExecution, AttackCriticalExecution, FumbleExecution } from '../model/actions';

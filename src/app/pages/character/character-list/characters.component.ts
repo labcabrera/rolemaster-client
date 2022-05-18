@@ -15,10 +15,8 @@ import { ErrorService } from 'src/app/services/error.service';
 export class CharacterListComponent implements OnInit, AfterViewInit {
 
   characters: CharacterInfo[] = [];
-
   displayedColumns: string[] = ["name", "level", "race", "profession", "owner"];
   dataSource: MatTableDataSource<CharacterInfo> = new MatTableDataSource<CharacterInfo>(this.characters);
-  
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
 
@@ -36,20 +34,18 @@ export class CharacterListComponent implements OnInit, AfterViewInit {
   }
 
   getCharacters(): void {
-    this.characterService.getCharacters().subscribe(
-      (results) => {
+    this.characterService.getCharacters().subscribe({
+      next: results => {
         this.characters = results;
         this.dataSource.data = this.characters;
       },
-      (error) => {
-        this.errorService.displayError(error);
-      });
+      error: error => this.errorService.displayError(error)
+    });
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 
 }

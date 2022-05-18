@@ -1,14 +1,13 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { SkillCategory } from '../../../model/skill-category';
 import { SkillCategoryService } from '../../../services/skill-category.service';
-import { environment } from 'src/environments/environment';
 import { ErrorService } from 'src/app/services/error.service';
 import { EnumService } from 'src/app/services/enum.service';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-skill-category-list',

@@ -67,9 +67,8 @@ export class ActionDeclarationFormService {
       }
     }
     if (action.meleeAttackType === 'full') {
-      var t0 = (form.get('targets') as FormGroup).get("main-hand");
-      //TODO disable
-      //t0?.reset({value: this.action.targets['main-hand'], disabled: true});
+      (form.get('targets') as FormGroup).get("main-hand")?.disable();
+      (form.get('targets') as FormGroup).get("off-hand")?.disable();
     }
     if (action.meleeAttackMode !== 'two-weapons' && action.meleeAttackMode !== 'off-hand-weapon') {
       (form.get('rolls') as FormGroup).removeControl('off-hand');

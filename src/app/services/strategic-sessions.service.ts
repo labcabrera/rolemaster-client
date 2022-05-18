@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, tap, switchMap } from 'rxjs/operators';
-import { Observable, of, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 import { StrategicSession, SessionCreationRequest } from '../model/session';
 import { environment } from 'src/environments/environment';
-import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +23,7 @@ export class StrategicSessionsService {
     return this.http.get<StrategicSession[]>(this.baseUrl).pipe();
   }
 
-  findById(id: String): Observable<StrategicSession> {
+  findById(id: string): Observable<StrategicSession> {
     const url = `${this.baseUrl}/${id}`;
     return this.http.get<StrategicSession>(url).pipe();
   }
@@ -38,7 +37,7 @@ export class StrategicSessionsService {
     return this.http.patch<any>(url, request, this.httpOptions).pipe();
   }
 
-  delete(id: String) {
+  delete(id: string) {
     const url = `${this.baseUrl}/${id}`;
     return this.http.delete<StrategicSession>(url, { observe: 'response' }).pipe(
       switchMap(res => res.status === 204 ? of([]) : of(res))

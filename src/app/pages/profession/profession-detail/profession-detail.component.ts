@@ -1,11 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { Observable } from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { FormBuilder } from '@angular/forms';
 
 import { Profession } from 'src/app/model/profession';
 import { ProfessionService } from 'src/app/services/profession.service';
@@ -17,10 +12,7 @@ import { ProfessionService } from 'src/app/services/profession.service';
 })
 export class ProfessionDetailComponent implements OnInit {
 
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
-
   profession?: Profession;
-
   realms: string[] = ["essence", "channeling", "mentalism", "arcane"];
 
   constructor(

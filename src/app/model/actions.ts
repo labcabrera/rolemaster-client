@@ -1,6 +1,6 @@
 import { OpenRoll } from "./commons";
 import { Debuffs } from "./character-context";
-import { AttackResultComponent } from "../components/tactical/attack-result/attack-result.component";
+
 export interface TacticalAction {
     id: string;
     roundId: string;

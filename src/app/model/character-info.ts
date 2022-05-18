@@ -143,8 +143,8 @@ export interface CharacterArmor {
 }
 
 export interface SkillUpgradeRequest {
-    categoryRanks: Map<String,number>;
-    skillRanks: Map<String,number>;
+    categoryRanks: Map<string,number>;
+    skillRanks: Map<string,number>;
 }
 
 export interface CharacterCustomization {

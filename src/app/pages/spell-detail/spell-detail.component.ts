@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Spell, SpellList } from 'src/app/model/spell';
 import { SpellListService } from 'src/app/services/spell-list.service';
 import { SpellService } from 'src/app/services/spell.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-spell-detail',

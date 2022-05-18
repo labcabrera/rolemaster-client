@@ -28,16 +28,12 @@ export interface AddCharacterOption {
 export class TacticalSessionCharacterManagementComponent implements OnInit, AfterViewInit {
 
   @Input() tacticalSession?: TacticalSession;
-
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
-
   addCharactersFormControl = new FormControl();
   addCharacterOptions: AddCharacterOption[] = [];
   addCharactersFiltered: Observable<AddCharacterOption[]>;
   tacticalCharacters: TacticalCharacter[] = [];
-
   characterDataSource = new MatTableDataSource<TacticalCharacter>();
-
   displayedColumns = ["level", "name", "description", "options"]
 
   constructor(
@@ -58,7 +54,7 @@ export class TacticalSessionCharacterManagementComponent implements OnInit, Afte
     this.loadAddCharacterOptions();
   }
   ngAfterViewInit(): void {
-    this.characterDataSource!.paginator = this.paginator!;
+    this.characterDataSource.paginator = this.paginator!;
   }
 
   loadTacticalCharacterContexts() {
@@ -120,7 +116,7 @@ export class TacticalSessionCharacterManagementComponent implements OnInit, Afte
 
   private _filterStates(value: string): AddCharacterOption[] {
     const filterValue = value.toLowerCase();
-    return this.addCharacterOptions.filter(value => value.name.toLowerCase().includes(filterValue));
+    return this.addCharacterOptions.filter(e => e.name.toLowerCase().includes(filterValue));
   }
 
   displayNpcOption(npc: Npc) {

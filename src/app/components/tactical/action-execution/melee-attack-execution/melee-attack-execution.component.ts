@@ -58,7 +58,7 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
     if (this.action.meleeAttackType == 'full') {
       this.actionExecutionForm.value['targets'] = {};
     }
-    this.actionService.execute(this.action.id, this.actionExecutionForm!.value).subscribe({
+    this.actionService.execute(this.action.id, this.actionExecutionForm.value).subscribe({
       next: action => {
         this.action = action;
         if (this.action.state === 'pending-critical-resolution') {
@@ -107,8 +107,7 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
   }
 
   displayOffHandTarget(): boolean {
-    var x = (this.actionExecutionForm.get('targets') as FormGroup).get('off-hand') != null;
-    return x;
+    return (this.actionExecutionForm.get('targets') as FormGroup).get('off-hand') != null;
   }
 
   getCriticalRollKeys(): string[] {
@@ -152,12 +151,11 @@ export class MeleeAttackExecutionComponent implements OnInit, AfterContentInit {
   }
 
   private createBreakageExecutionForm(): FormGroup {
-    const result = this.fb.group({
+    return this.fb.group({
       rolls: this.fb.group({
         'main-hand': ['1', Validators.required]
       })
     });
-    return result;
   }
 
   private getCriticalResultCount(): number {

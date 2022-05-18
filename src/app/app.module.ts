@@ -20,7 +20,6 @@ import { ProfessionDetailComponent } from './pages/profession/profession-detail/
 import { SkillCategoryListComponent } from './pages/skill-category/skill-category-list/skill-category-list.component';
 import { CharacterListComponent } from './pages/character/character-list/characters.component';
 import { CharacterCreationComponent } from './pages/character/character-creation/character-creation.component';
-import { CharacterDevelopmentComponent } from './components/character/character-development/character-development.component';
 import { CharacterSkillCategoryListComponent } from './components/character/character-skill-category-list/character-skill-category-list.component';
 import { CharacterSkillListComponent } from './components/character/character-skill-list/character-skill-list.component';
 import { CharacterAttributesComponent } from './components/character/character-attributes/character-attributes.component';
@@ -117,7 +116,6 @@ import { TacticalViewRmuComponent } from './pages/tactical-view-rmu/tactical-vie
     StrategicSessionsComponent,
     StrategicSessionComponent,
     CharacterCreationComponent,
-    CharacterDevelopmentComponent,
     CharacterSkillCategoryListComponent,
     CharacterSkillListComponent,
     CharacterAttributesComponent,

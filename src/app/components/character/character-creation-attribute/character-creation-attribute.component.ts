@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-character-creation-attribute',
   templateUrl: './character-creation-attribute.component.html',
   styleUrls: ['./character-creation-attribute.component.scss']
 })
-export class CharacterCreationAttributeComponent implements OnInit {
+export class CharacterCreationAttributeComponent {
 
   @Input() attribute: string = "";
   @Input() attributeName: string = "";
@@ -13,11 +13,6 @@ export class CharacterCreationAttributeComponent implements OnInit {
 
   value: number = 66;
   bonus: number = 0;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   updateAttribute() {
     this.onChange.emit({

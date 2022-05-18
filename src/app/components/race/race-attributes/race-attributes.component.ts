@@ -21,7 +21,7 @@ export class RaceAttributesComponent implements OnInit {
   ngOnInit(): void {
     if (this.race && this.race.attributeModifiers) {
       const tmp = this.race.attributeModifiers;
-      Object.keys(tmp).map(key => {
+      Object.keys(tmp).forEach(key => {
         const value = "" + tmp[key];
         this.skills.push({ key: key, name: value });
       });

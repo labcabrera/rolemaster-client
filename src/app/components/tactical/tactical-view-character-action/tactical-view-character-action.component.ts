@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Output, EventEmitter } from '@angular/core';
 
 import { TacticalAction } from 'src/app/model/actions';
 import { TacticalRound } from 'src/app/model/round';

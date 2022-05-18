@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, tap, switchMap } from 'rxjs/operators';
-import { Observable, of, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { Item } from '../model/item';
 import { environment } from 'src/environments/environment';
@@ -20,8 +19,8 @@ export class ItemService {
   constructor(private http: HttpClient) {}
 
   find(): Observable<Item[]> {
-    var url = `${this.baseUrl}?page=0&size=1000&sort=name,ASC`;
-    return this.http.get<Item[]>(this.baseUrl).pipe();
+    var url = `${this.baseUrl}?page=0&size=1000&sort=name,asc`;
+    return this.http.get<Item[]>(url).pipe();
   }
 
   findById(id: string): Observable<Item> {

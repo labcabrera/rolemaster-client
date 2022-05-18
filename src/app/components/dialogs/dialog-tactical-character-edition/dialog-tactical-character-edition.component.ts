@@ -23,8 +23,8 @@ export class DialogTacticalCharacterEditionComponent implements OnInit {
     var result = "0";
     if(this.character.combatStatus.bleeding) {
       result = "";
-      for(var i =0 ; i < this.character.combatStatus.bleeding.length; i++) {
-        result += "-" + this.character.combatStatus.bleeding[i].hp + " ";
+      for(let value of this.character.combatStatus.bleeding) {
+        result += "-" + value.hp + " ";
       }
     }
     return result;

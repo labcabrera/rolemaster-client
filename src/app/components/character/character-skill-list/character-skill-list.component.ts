@@ -13,7 +13,7 @@ import { ErrorService } from 'src/app/services/error.service';
   templateUrl: './character-skill-list.component.html',
   styleUrls: ['./character-skill-list.component.scss']
 })
-export class CharacterSkillListComponent implements OnInit, AfterViewInit {
+export class CharacterSkillListComponent implements AfterViewInit {
 
   @Input() character?: CharacterInfo;
   @Input() skillDataSource: MatTableDataSource<CharacterSkill> | undefined;
@@ -33,9 +33,6 @@ export class CharacterSkillListComponent implements OnInit, AfterViewInit {
     private characterService: CharacterService,
     private errorService: ErrorService,
     private addSkillDialog: MatDialog) { }
-
-  ngOnInit(): void {
-  }
 
   ngAfterViewInit() {
     this.skillDataSource!.paginator = this.paginator!;

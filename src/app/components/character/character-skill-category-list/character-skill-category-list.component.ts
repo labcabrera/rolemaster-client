@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -11,7 +11,7 @@ import { ErrorService } from 'src/app/services/error.service';
   templateUrl: './character-skill-category-list.component.html',
   styleUrls: ['./character-skill-category-list.component.scss']
 })
-export class CharacterSkillCategoryListComponent implements OnInit, AfterViewInit {
+export class CharacterSkillCategoryListComponent implements AfterViewInit {
 
   @Input() character?: CharacterInfo = {} as CharacterInfo;
   @Input() skillCategoryDataSource: MatTableDataSource<CharacterSkillCategory> | undefined;
@@ -30,9 +30,6 @@ export class CharacterSkillCategoryListComponent implements OnInit, AfterViewIni
   constructor(
     private characterService: CharacterService,
     private errorService: ErrorService) {
-  }
-
-  ngOnInit(): void {
   }
 
   ngAfterViewInit() {

@@ -13,18 +13,16 @@ import { Profession } from 'src/app/model/profession';
 export class ProfessionSkillCostComponent implements OnInit, AfterViewInit {
 
   @Input() profession?: Profession;
+  @ViewChild(MatPaginator) paginator?: MatPaginator;
   dataSource = new MatTableDataSource<NamedKey>();
   costs: NamedKey[] = [];
   displayedColumns = ["category", "cost"];
 
-  @ViewChild(MatPaginator) paginator?: MatPaginator;
   
-  constructor() { }
-
   ngOnInit(): void {
     if (this.profession && this.profession.skillCategoryDevelopmentCost) {
       const tmp = this.profession.skillCategoryDevelopmentCost;
-      Object.keys(tmp).map(key => {
+      Object.keys(tmp).forEach(key => {
         const value = "" + tmp[key];
         this.costs.push({ key: key, name: value });
       });

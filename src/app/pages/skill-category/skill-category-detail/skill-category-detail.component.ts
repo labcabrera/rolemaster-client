@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
@@ -8,7 +8,6 @@ import { SkillCategory } from 'src/app/model/skill-category';
 import { Skill } from 'src/app/model/skill';
 import { SkillCategoryService } from 'src/app/services/skill-category.service';
 import { SkillService } from 'src/app/services/skill.service';
-import { environment } from 'src/environments/environment';
 import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
@@ -20,7 +19,6 @@ export class SkillCategoryDetailComponent implements OnInit {
 
   skillCategory: SkillCategory = {} as SkillCategory;
   skills: Skill[] = [];
-
   displayedColumns: string[] = ["name", "type", "progressionType", "description"];
   dataSource: MatTableDataSource<Skill> = new MatTableDataSource<Skill>(this.skills);
   @ViewChild(MatPaginator) paginator?: MatPaginator;

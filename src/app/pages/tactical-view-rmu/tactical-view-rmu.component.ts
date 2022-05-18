@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
 
 import { TacticalSessionService } from 'src/app/services/tactical-session.service';
 import { ActionService } from 'src/app/services/action.service';

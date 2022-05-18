@@ -16,12 +16,10 @@ export class RaceAdolescenceSkillCategoriesComponent implements OnInit {
   categories: NamedKey[] = [];
   displayedColumns = ["category", "ranks"];
 
-  constructor() { }
-
   ngOnInit(): void {
     if (this.race && this.race.adolescenceSkillCategoryRanks) {
       const tmp = this.race.adolescenceSkillCategoryRanks;
-      Object.keys(tmp).map(key => {
+      Object.keys(tmp).forEach(key => {
         const value = "" + tmp[key];
         this.categories.push({ key: key, name: value });
       });

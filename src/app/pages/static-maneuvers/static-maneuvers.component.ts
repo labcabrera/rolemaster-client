@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ManeuverService } from 'src/app/services/maneuver.service';
-import { EnumService } from 'src/app/services/enum.service';
 import { ErrorService } from 'src/app/services/error.service';
-import { NamedKey } from 'src/app/model/commons';
 
 @Component({
   selector: 'app-static-maneuvers',
@@ -18,7 +16,6 @@ export class StaticManeuversComponent implements OnInit {
 
   constructor(
     private maneuverService: ManeuverService,
-    private enumService: EnumService,
     private errorService: ErrorService,
     private fb: FormBuilder) {
       this.maneuverForm = this.fb.group({

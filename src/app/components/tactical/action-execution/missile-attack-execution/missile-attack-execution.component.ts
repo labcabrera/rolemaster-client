@@ -1,4 +1,3 @@
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { TacticalAction } from 'src/app/model/actions';
@@ -29,7 +28,6 @@ export class MissileAttackExecutionComponent implements OnInit {
     private enumService: EnumService,
     private errorService: ErrorService,
     private fb: FormBuilder) {
-
     this.actionExecutionForm = this.fb.group({
       type: ['missile-attack'],
       roll: this.fb.group({
@@ -114,12 +112,11 @@ export class MissileAttackExecutionComponent implements OnInit {
   }
 
   private createBreakageExecutionForm(): FormGroup {
-    const result = this.fb.group({
+    return this.fb.group({
       rolls: this.fb.group({
         'main-hand': ['0', Validators.required]
       })
     });
-    return result;
   }
 
   getCriticalRollKeys(): string[] {
