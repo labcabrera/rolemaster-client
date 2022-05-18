@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Initiative declaration</h1>
+
+<div fxLayout="column" [formGroup]="initiativeForm">
+    <mat-form-field _class="" appearance="outline">
+        <mat-label>Base initiative</mat-label>
+        <input matInput placeholder="Base initiative" disabled="">
+    </mat-form-field>
+    <!--
+    <mat-form-field _class="" appearance="outline">
+        <mat-label>Initiative modifier</mat-label>
+        <input matInput placeholder="Initiative modifier" formControlName="cus">
+    </mat-form-field>
+    -->
+    <mat-form-field _class="" appearance="outline">
+        <mat-label>Initiative roll</mat-label>
+        <input matInput placeholder="Initiative roll" formControlName="initiativeRoll">
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-stroked-button mat-dialog-close>Close</button>
+    <button mat-stroked-button mat-dialog-close (click)="declareInitiative()">Declare initiative</button>
+</div>
