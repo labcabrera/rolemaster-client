@@ -13,38 +13,23 @@
     <div fxLayout="row" fxLayout.lt-md="column">
 
         <div fxFlex="20" fxLayout="column">
-            <div>
-                <mat-form-field appearance="outline" class="custom-form-field">
-                    <mat-label>Name</mat-label>
-                    <input matInput placeholder="Placeholder" value="{{flaw.name}}" readonly="true">
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline" class="custom-form-field">
-                    <mat-label>Category</mat-label>
-                    <input matInput placeholder="Placeholder" value="{{flaw.category}}" readonly="true">
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline" class="custom-form-field">
-                    <mat-label>Cost type</mat-label>
-                    <input matInput placeholder="Placeholder" value="{{flaw.costType}}" readonly="true">
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="outline" class="custom-form-field">
-                    <mat-label>Cost</mat-label>
-                    <input matInput placeholder="Placeholder" value="{{flaw.cost}}" readonly="true">
-                </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Placeholder" value="{{flaw.name}}" disabled>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label>Category</mat-label>
+                <input matInput placeholder="Placeholder" value="{{flaw.category}}" disabled>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label>Cost type</mat-label>
+                <input matInput placeholder="Placeholder" value="{{flaw.costType}}" disabled>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label>Cost</mat-label>
+                <input matInput placeholder="Placeholder" value="{{flaw.cost}}" disabled>
+            </mat-form-field>
+        </div>
+        <div fxFlex="40" class="description">{{flaw.description}}</div>
     </div>
-
-    <div fxFlex="40">
-        <span style="font-size: 12pt;">{{flaw.description}}</span>
-    </div>
-
 </div>
-
-<!--
-<pre>{{flaw | json}}</pre>
--->

@@ -43,7 +43,7 @@ export class CharacterFlawsComponent implements OnInit {
   }
 
   private loadTalents() {
-    this.characterCustomizationService.findByType('flaw').subscribe({
+    this.characterCustomizationService.findByType('rmss', 'flaw').subscribe({
       next: results => this.flaws = results,
       error: error => this.errorService.displayError(error)
     });

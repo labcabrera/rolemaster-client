@@ -44,7 +44,7 @@ export class CharacterTalentsComponent implements OnInit {
   }
 
   private loadTalents() {
-    this.characterCustomizationService.findByType('talent').subscribe({
+    this.characterCustomizationService.findByType(this.character!.version, 'talent').subscribe({
       next: results => this.talents = results,
       error: error => this.errorService.displayError(error)
     });

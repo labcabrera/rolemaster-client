@@ -22,11 +22,11 @@
         </ng-container>
         <ng-container matColumnDef="version">
             <th scope="col" mat-header-cell *matHeaderCellDef>Version</th>
-            <td mat-cell *matCellDef="let element">{{element.version}}</td>
+            <td mat-cell *matCellDef="let element">{{element.version | uppercase}}</td>
         </ng-container>
         <ng-container matColumnDef="universe">
             <th scope="col" mat-header-cell *matHeaderCellDef>Universe</th>
-            <td mat-cell *matCellDef="let element">{{element.universeId}}</td>
+            <td mat-cell *matCellDef="let element">{{element.universeId | titlecase}}</td>
         </ng-container>
         <ng-container matColumnDef="owner">
             <th scope="col" mat-header-cell *matHeaderCellDef>Owner</th>

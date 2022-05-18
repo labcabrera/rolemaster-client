@@ -5,6 +5,15 @@
 
 <div class="outerContainer">
 
+    <mat-form-field appearance="outline">
+        <mat-label>Version</mat-label>
+        <mat-select [formControl]="versionControl" (valueChange)="onVersionChange($event)">
+            <mat-option value="">All</mat-option>
+            <mat-option value="rmss">RMSS</mat-option>
+            <mat-option value="rmu">RMU</mat-option>
+        </mat-select>
+    </mat-form-field>
+
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
@@ -15,13 +24,17 @@
             <th scope="col" mat-header-cell *matHeaderCellDef>Name</th>
             <td mat-cell *matCellDef="let element">{{element.name}}</td>
         </ng-container>
+        <ng-container matColumnDef="version">
+            <th scope="col" mat-header-cell *matHeaderCellDef>Version</th>
+            <td mat-cell *matCellDef="let element">{{element.version | uppercase}}</td>
+        </ng-container>
         <ng-container matColumnDef="category">
             <th scope="col" mat-header-cell *matHeaderCellDef>Category</th>
-            <td mat-cell *matCellDef="let element">{{element.category}}</td>
+            <td mat-cell *matCellDef="let element">{{element.category | titlecase}}</td>
         </ng-container>
         <ng-container matColumnDef="costType">
             <th scope="col" mat-header-cell *matHeaderCellDef>Cost type</th>
-            <td mat-cell *matCellDef="let element">{{element.costType}}</td>
+            <td mat-cell *matCellDef="let element">{{element.costType  | titlecase}}</td>
         </ng-container>
         <ng-container matColumnDef="cost">
             <th scope="col" mat-header-cell *matHeaderCellDef>Cost</th>
