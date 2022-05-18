@@ -11,29 +11,22 @@ import { AppComponent } from './app.component';
 
 import { TacticalSessionsComponent } from './pages/tactical/tactical-sessions/tactical-sessions.component';
 import { TacticalSessionComponent } from './pages/tactical/tactical-session/tactical-session.component';
-
 import { StrategicSessionsComponent } from './pages/strategic/strategic-sessions/strategic-sessions.component';
 import { StrategicSessionComponent } from './pages/strategic/strategic-session/strategic-session.component';
-
 import { SkillListComponent } from './pages/skill/skill-list/skill-list.component';
 import { ProfessionListComponent } from './pages/profession/profession-list/profession-list.component';
 import { RaceDetailComponent } from './pages/race/race-detail/race-detail.component';
 import { ProfessionDetailComponent } from './pages/profession/profession-detail/profession-detail.component';
 import { SkillCategoryListComponent } from './pages/skill-category/skill-category-list/skill-category-list.component';
-import { SkillSelectComponent } from './components/character/skill-select/skill-select.component';
-
 import { CharacterListComponent } from './pages/character/character-list/characters.component';
-import { CharacterDetailComponent } from './components/character/character-detail/character-detail.component';
 import { CharacterCreationComponent } from './pages/character/character-creation/character-creation.component';
 import { CharacterDevelopmentComponent } from './components/character/character-development/character-development.component';
 import { CharacterSkillCategoryListComponent } from './components/character/character-skill-category-list/character-skill-category-list.component';
 import { CharacterSkillListComponent } from './components/character/character-skill-list/character-skill-list.component';
 import { CharacterAttributesComponent } from './components/character/character-attributes/character-attributes.component';
 import { CharacterViewComponent } from './pages/character/character-view/character-view.component';
-
 import { TacticalViewRmssComponent } from './pages/tactical-view-rmss/tactical-view-rmss.component';
 import { SharedModule } from './components/shared/shared.module';
-
 import { NpcListComponent } from './pages/npc/npc-list/npc-list.component';
 import { NpcDetailComponent } from './pages/npc/npc-detail/npc-detail.component';
 import { StrategicSessionCreationComponent } from './pages/strategic/strategic-session-creation/strategic-session-creation.component';
@@ -55,7 +48,6 @@ import { UserSettingsComponent } from './pages/user-settings/user-settings.compo
 import { TrainingPackageComponent } from './pages/training-package/training-package-detail/training-package.component';
 import { TrainingPackagesComponent } from './pages/training-package/training-packages/training-packages.component';
 import { TacticalViewCharacterActionComponent } from './components/tactical/tactical-view-character-action/tactical-view-character-action.component';
-import { CharacterGeneralDataComponent } from './components/character/character-general-data/character-general-data.component';
 import { TacticalViewCharacterComponent } from './components/tactical/tactical-view-character/tactical-view-character.component';
 import { DialogTacticalCharacterEditionComponent } from './components/dialogs/dialog-tactical-character-edition/dialog-tactical-character-edition.component';
 import { DialogActionExecutionComponent } from './components/dialogs/dialog-action-execution/dialog-action-execution.component';
@@ -99,7 +91,6 @@ import { CharacterFlawsComponent } from './components/character/character-flaws/
 import { TrainingPackageFixedSkillsComponent } from './components/training-packages/training-package-fixed-skills/training-package-fixed-skills.component';
 import { TrainingPackageSelectableSkillsComponent } from './components/training-packages/training-package-selectable-skills/training-package-selectable-skills.component';
 import { SignupComponent } from './pages/signup/signup.component';
-
 import { TacticalSessionTableComponent } from './components/tactical-session/tactical-session-table/tactical-session-table.component';
 import { TrainingPackageSelectableCategoryComponent } from './components/training-packages/training-package-selectable-category/training-package-selectable-category.component';
 import { TrainingPackageSelectableSkillComponent } from './components/training-packages/training-package-selectable-skill/training-package-selectable-skill.component';
@@ -123,7 +114,6 @@ import { TacticalViewRmuComponent } from './pages/tactical-view-rmu/tactical-vie
     AppComponent,
     TacticalSessionsComponent,
     CharacterListComponent,
-    CharacterDetailComponent,
     StrategicSessionsComponent,
     StrategicSessionComponent,
     CharacterCreationComponent,
@@ -138,7 +128,6 @@ import { TacticalViewRmuComponent } from './pages/tactical-view-rmu/tactical-vie
     RaceDetailComponent,
     ProfessionDetailComponent,
     CharacterViewComponent,
-    SkillSelectComponent,
     TacticalViewRmssComponent,
     TacticalSessionComponent,
     NpcListComponent,
@@ -162,7 +151,6 @@ import { TacticalViewRmuComponent } from './pages/tactical-view-rmu/tactical-vie
     TrainingPackagesComponent,
     TrainingPackageComponent,
     TacticalViewCharacterActionComponent,
-    CharacterGeneralDataComponent,
     TacticalViewCharacterComponent,
     DialogTacticalCharacterEditionComponent,
     DialogActionExecutionComponent,

@@ -9,35 +9,30 @@
         <input matInput (keyup)="applyFilter($event)" placeholder="filter" #input>
     </mat-form-field>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" aria-describedby="Races">
         <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <th scope="col" mat-header-cell *matHeaderCellDef> Id </th>
             <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
         <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <th scope="col" mat-header-cell *matHeaderCellDef> Name </th>
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
         <ng-container matColumnDef="universes">
-            <th mat-header-cell *matHeaderCellDef>Universes</th>
+            <th scope="col" mat-header-cell *matHeaderCellDef>Universes</th>
             <td mat-cell *matCellDef="let element"> {{element.universes}} </td>
         </ng-container>
         <ng-container matColumnDef="level">
-            <th mat-header-cell *matHeaderCellDef>Level</th>
+            <th scope="col" mat-header-cell *matHeaderCellDef>Level</th>
             <td mat-cell *matCellDef="let element"> {{element.level}} </td>
         </ng-container>
         <ng-container matColumnDef="unique">
-            <th mat-header-cell *matHeaderCellDef>Level</th>
+            <th scope="col" mat-header-cell *matHeaderCellDef>Level</th>
             <td mat-cell *matCellDef="let element"> {{element.unique}} </td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/npc/detail/', row.id]"
-            class="tr-link"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/npc/detail/', row.id]" class="tr-link"></tr>
     </table>
     <mat-paginator [pageSizeOptions]="[10, 25, 50]" aria-label="Select page of users"></mat-paginator>
 
 </div>
-<!--
-<pre>{{npcs | json}}</pre>
--->

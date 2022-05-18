@@ -5,7 +5,7 @@
 
 <div *ngIf="skillCategoryDataSource">
 
-  <table mat-table [dataSource]="skillCategoryDataSource">
+  <table mat-table [dataSource]="skillCategoryDataSource" aria-describedby="Skill category list">
     <ng-container matColumnDef="category-id">
       <th scope="col" mat-header-cell *matHeaderCellDef>Name</th>
       <td mat-cell *matCellDef="let element"><a routerLink="/skill-categories/detail/{{element.categoryId}}">{{element.categoryId}}</a></td>

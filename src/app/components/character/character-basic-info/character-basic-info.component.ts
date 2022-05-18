@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CharacterInfo } from 'src/app/model/character-info';
 
 @Component({
@@ -6,13 +6,8 @@ import { CharacterInfo } from 'src/app/model/character-info';
   templateUrl: './character-basic-info.component.html',
   styleUrls: ['./character-basic-info.component.scss']
 })
-export class CharacterBasicInfoComponent implements OnInit {
+export class CharacterBasicInfoComponent {
 
   @Input() character?: CharacterInfo;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

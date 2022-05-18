@@ -1,14 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatStepper } from '@angular/material/stepper';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { Race } from 'src/app/model/race';
 import { Profession } from 'src/app/model/profession';
-import { CharacterCreationAttributes, CharacterCreationRequest, CharacterInfo } from '../../../model/character-info';
+import { CharacterCreationRequest, CharacterInfo } from '../../../model/character-info';
 import { CharacterService } from '../../../services/character-service';
-import { CharacterGenerationUtilsService } from '../../../services/character-generation-utils.service';
-import { RandomUtilsService } from '../../../services/random-utils.service';
 import { ProfessionService } from 'src/app/services/profession.service';
 import { RaceService } from 'src/app/services/race.service';
 import { Router } from '@angular/router';

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -11,7 +10,7 @@ import { EnumService } from 'src/app/services/enum.service';
 import { ErrorService } from 'src/app/services/error.service';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
-import { M } from '@angular/cdk/keycodes';
+
 @Component({
   selector: 'app-strategic-session-creation',
   templateUrl: './strategic-session-creation.component.html',

@@ -1,5 +1,5 @@
 <div>
-    <table mat-table #skillTable [dataSource]="dataSource">
+    <table mat-table #skillTable [dataSource]="dataSource" aria-describedby="Skill table">
         <ng-container matColumnDef="attribute">
             <th scope="col" mat-header-cell *matHeaderCellDef>Attribute</th>
             <td mat-cell *matCellDef="let element">{{element.attribute}}</td>

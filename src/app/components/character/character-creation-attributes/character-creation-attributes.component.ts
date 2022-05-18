@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { Race } from 'src/app/model/race';
@@ -14,7 +14,7 @@ interface CharacterAttributeMap {
   templateUrl: './character-creation-attributes.component.html',
   styleUrls: ['./character-creation-attributes.component.scss']
 })
-export class CharacterCreationAttributesComponent implements OnInit {
+export class CharacterCreationAttributesComponent {
 
   @Input() version?: string;
   @Input() raceId?: string;
@@ -46,9 +46,6 @@ export class CharacterCreationAttributesComponent implements OnInit {
     private errorService: ErrorService
   ) { }
 
-  ngOnInit(): void {
-  }
-
   loadVersion(version: string): void {
     var defaultValue = 0;
     var defaultCost = 0;
@@ -65,8 +62,8 @@ export class CharacterCreationAttributesComponent implements OnInit {
     }
     this.attributes.forEach(e => {
       e.currentValue = defaultValue;
-      e.cost = defaultCost,
-        e.bonusAttribute = 0;
+      e.cost = defaultCost;
+      e.bonusAttribute = 0;
     });
     this.dataSource.data = this.attributes;
   }

@@ -14,7 +14,7 @@
         </button>
     </form>
 
-    <table mat-table [dataSource]="characterDataSource" matSort _class="mat-elevation-z8" class="full-width">
+    <table mat-table [dataSource]="characterDataSource" matSort aria-describedby="Characters">
         <ng-container matColumnDef="level">
             <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>Lvl</th>
             <td mat-cell *matCellDef="let element"> {{element.level}} </td>

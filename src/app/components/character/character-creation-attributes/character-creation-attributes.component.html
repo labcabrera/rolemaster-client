@@ -1,5 +1,5 @@
 <div *ngIf="version">
-    <table mat-table #skillTable [dataSource]="dataSource">
+    <table mat-table #characterCreationAttributes [dataSource]="dataSource" aria-describedby="Character creation attributes">
         <ng-container matColumnDef="attribute">
             <th scope="col" mat-header-cell *matHeaderCellDef>Attribute</th>
             <td mat-cell *matCellDef="let element">{{element.attribute}}</td>
@@ -62,7 +62,3 @@
 </div>
 
 <div *ngIf="version" class="{{this.totalCost > this.availableCost ? 'text-warning' : 'text'}}">Used {{this.totalCost}} of {{this.availableCost}} attribute development points.</div>
-
-<!--
-<pre>{{attributes | json}}</pre>
--->

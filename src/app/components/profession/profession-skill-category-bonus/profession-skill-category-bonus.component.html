@@ -1,10 +1,10 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width">
+<table mat-table [dataSource]="dataSource" aria-describedby="Profession skill category bonus">
   <ng-container matColumnDef="category">
-    <th mat-header-cell *matHeaderCellDef>Skill category</th>
+    <th scope="col" mat-header-cell *matHeaderCellDef>Skill category</th>
     <td mat-cell *matCellDef="let element"><a routerLink="/skill-categories/detail/{{element.key}}">{{element.key}}</a></td>
   </ng-container>
   <ng-container matColumnDef="bonus">
-    <th mat-header-cell *matHeaderCellDef>Cost</th>
+    <th scope="col" mat-header-cell *matHeaderCellDef>Cost</th>
     <td mat-cell *matCellDef="let element">{{element.name}}</td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
