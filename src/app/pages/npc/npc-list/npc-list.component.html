@@ -4,6 +4,14 @@
 
 <div class="outerContainer">
 
+    <mat-form-field appearance="outline">
+        <mat-label>Universe</mat-label>
+        <mat-select [formControl]="universeControl" (valueChange)="onUniverseChange($event)">
+            <mat-option value="">All</mat-option>
+            <mat-option *ngFor="let universe of universes" value="{{universe.id}}">{{universe.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="filter" #input>
@@ -18,16 +26,16 @@
             <th scope="col" mat-header-cell *matHeaderCellDef> Name </th>
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
-        <ng-container matColumnDef="universes">
-            <th scope="col" mat-header-cell *matHeaderCellDef>Universes</th>
-            <td mat-cell *matCellDef="let element"> {{element.universes}} </td>
+        <ng-container matColumnDef="universe">
+            <th scope="col" mat-header-cell *matHeaderCellDef>Universe</th>
+            <td mat-cell *matCellDef="let element"> {{element.universeId | titlecase}} </td>
         </ng-container>
         <ng-container matColumnDef="level">
             <th scope="col" mat-header-cell *matHeaderCellDef>Level</th>
             <td mat-cell *matCellDef="let element"> {{element.level}} </td>
         </ng-container>
         <ng-container matColumnDef="unique">
-            <th scope="col" mat-header-cell *matHeaderCellDef>Level</th>
+            <th scope="col" mat-header-cell *matHeaderCellDef>Unique</th>
             <td mat-cell *matCellDef="let element"> {{element.unique}} </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

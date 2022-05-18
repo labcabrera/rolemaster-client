@@ -14,8 +14,9 @@ export class NpcService {
 
   constructor(private http: HttpClient) { }
 
-  find(): Observable<Npc[]> {
-    return this.http.get<Npc[]>(this.baseUrl).pipe();
+  find(universeId: string): Observable<Npc[]> {
+    const url = `${this.baseUrl}?universeId=${universeId}&size=1000&sort=name,asc`;
+    return this.http.get<Npc[]>(url).pipe();
   }
 
   findById(id: string): Observable<Npc> {

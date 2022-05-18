@@ -90,7 +90,7 @@ export class TacticalSessionCharacterManagementComponent implements OnInit, Afte
   }
 
   loadAddCharacterOptions() {
-    this.npcService.find().subscribe(result => {
+    this.npcService.find('').subscribe(result => {
       for (let npc of result) {
         const option: AddCharacterOption = {
           id: npc.id,
