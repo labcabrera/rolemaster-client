@@ -46,7 +46,7 @@ export class CharacterTrainingPackagesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.trainingPackageService.find().subscribe({
+    this.trainingPackageService.find('').subscribe({
       next: results => {
         this.trainingPackages = results;
         this.loadAvailableTrainingPackages();

@@ -111,7 +111,7 @@ export class CharacterCreationComponent implements OnInit {
       },
       error: error => this.errorService.displayError(error)
     });
-    this.professionService.getProfessions().subscribe({
+    this.professionService.getProfessions('').subscribe({
       next: results => this.professions = results,
       error: error => this.errorService.displayErrorWithPrefix("Error reading professions", error)
     });

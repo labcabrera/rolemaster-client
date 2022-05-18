@@ -18,8 +18,9 @@ export class TrainingPackageService {
 
   constructor(private http: HttpClient) {}
 
-  find(): Observable<TrainingPackage[]> {
-    return this.http.get<TrainingPackage[]>(this.baseUrl).pipe();
+  find(version: string): Observable<TrainingPackage[]> {
+    const url = `${this.baseUrl}?version=${version}&size=1000&sort=name,asc`
+    return this.http.get<TrainingPackage[]>(url).pipe();
   }
 
   findById(id: string): Observable<TrainingPackage> {

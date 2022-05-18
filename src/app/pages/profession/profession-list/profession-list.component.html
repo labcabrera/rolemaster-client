@@ -4,6 +4,15 @@
 
 <div class="outerContainer">
 
+    <mat-form-field appearance="outline">
+        <mat-label>Version</mat-label>
+        <mat-select [formControl]="versionControl" (valueChange)="onVersionChange($event)">
+            <mat-option value="">All</mat-option>
+            <mat-option value="rmss">RMSS</mat-option>
+            <mat-option value="rmu">RMU</mat-option>
+        </mat-select>
+    </mat-form-field>
+
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="profession" #input>

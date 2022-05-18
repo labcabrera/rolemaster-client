@@ -18,8 +18,9 @@ export class ProfessionService {
 
   constructor(private http: HttpClient) {}
 
-  getProfessions(): Observable<Profession[]> {
-    return this.http.get<Profession[]>(this.baseUrl).pipe();
+  getProfessions(version: string): Observable<Profession[]> {
+    const url = `${this.baseUrl}?version=${version}&sort=name,asc`
+    return this.http.get<Profession[]>(url).pipe();
   }
 
   findById(professionId: string): Observable<Profession> {
