@@ -11,23 +11,22 @@
     <mat-tab-group>
         <mat-tab label="Info" class="full-width">
             <div>
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="margin-top">
                     <mat-label>Name</mat-label>
                     <input [(ngModel)]="profession.name" matInput disabled="true">
                 </mat-form-field>
                 <h3>Available realms</h3>
-                <mat-list role="list">
-                    <mat-list-item role="listitem" *ngFor="let realm of profession.availableRealms">{{realm}}</mat-list-item>
-                  </mat-list>
-            </div>
-        </mat-tab>
-        <mat-tab label="Costs">
-            <div fxLayout="row" fxLayoutGap="15">
-                <div fxFlex="50">
-                    <app-profession-skill-cost [profession]="profession"></app-profession-skill-cost>
-                </div>
-                <div fxFlex="50">
-                    <app-profession-weapon-cost [profession]="profession"></app-profession-weapon-cost>
+                <mat-chip-list aria-label="Available realms">
+                    <mat-chip *ngFor="let realm of profession.availableRealms">{{realm}}</mat-chip>
+                </mat-chip-list>
+                <h3 class="margin-top">Costs</h3>
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="15">
+                    <div fxLayout.gt-sm="50">
+                        <app-profession-skill-cost [profession]="profession"></app-profession-skill-cost>
+                    </div>
+                    <div fxLayout.gt-sm="50">
+                        <app-profession-weapon-cost [profession]="profession"></app-profession-weapon-cost>
+                    </div>
                 </div>
             </div>
         </mat-tab>
