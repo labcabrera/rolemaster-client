@@ -7,10 +7,13 @@ table {
     width: 100%;
 }
 
-tr {
-    width: 25%;
-}
-
 .tr-data {
     cursor: pointer;
+}
+
+.mat-column-name,
+.mat-column-version,
+.mat-column-state,
+.mat-column-owner {
+    width: 25%;
 }

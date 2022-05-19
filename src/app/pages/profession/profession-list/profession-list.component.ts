@@ -19,7 +19,7 @@ export class ProfessionListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
   professions: Profession[] = [];
-  displayedColumns: string[] = ["name", "availableRealms"];
+  displayedColumns: string[] = ["name", "version", "available-realms"];
   dataSource: MatTableDataSource<Profession> = new MatTableDataSource<Profession>(this.professions);
   versionControl = new FormControl('');
 

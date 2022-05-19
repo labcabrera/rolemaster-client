@@ -20,16 +20,20 @@
 
     <table mat-table #professionsTable [dataSource]="dataSource" aria-describedby="Professions">
         <ng-container matColumnDef="id">
-            <th scope="col" mat-header-cell *matHeaderCellDef> Id </th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            <th scope="col" mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let element">{{element.id}}</td>
         </ng-container>
         <ng-container matColumnDef="name">
-            <th scope="col" mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            <th scope="col" mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element">{{element.name}}</td>
         </ng-container>
-        <ng-container matColumnDef="availableRealms">
-            <th scope="col" mat-header-cell *matHeaderCellDef> Realms </th>
-            <td mat-cell *matCellDef="let element"> {{element.availableRealms}} </td>
+        <ng-container matColumnDef="version">
+            <th scope="col" mat-header-cell *matHeaderCellDef>Version</th>
+            <td mat-cell *matCellDef="let element">{{element.version | uppercase}}</td>
+        </ng-container>
+        <ng-container matColumnDef="available-realms">
+            <th scope="col" mat-header-cell *matHeaderCellDef>Realms</th>
+            <td mat-cell *matCellDef="let element">{{element.availableRealms}}</td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/professions/detail/', row.id]" class="tr-link"></tr>
