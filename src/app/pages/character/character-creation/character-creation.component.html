@@ -12,8 +12,7 @@
 
         <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20">
 
-            <div fxFlex="30" fxLayout="column">
-                <h2>Basic info</h2>
+            <mat-card fxFlex="30" fxLayout="column">
                 <mat-form-field appearance="outline">
                     <mat-label>Name</mat-label>
                     <input name="name" matInput type="text" formControlName="name">
@@ -65,14 +64,14 @@
                     <mat-label>Weight</mat-label>
                     <input name="weight" matInput type="text" formControlName="weight">
                 </mat-form-field>
-            </div>
+            </mat-card>
 
-            <div fxFlex="30" fxLayout="column">
+            <div fxFlex="50" fxLayout="column">
                 <app-character-creation-attributes [version]="characterCreationFormGroup.controls['version'].value"
                     (onChangeAttribute)="onAttributeChanged($event)"></app-character-creation-attributes>
             </div>
 
-            <div fxFlex="30">
+            <div fxFlex="20">
                 <h2>Weapon priority</h2>
                 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
                     <mat-list role="list">

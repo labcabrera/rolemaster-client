@@ -2,6 +2,43 @@ table {
     width: 100%;
 }
 
+.mat-column-attribute {
+    width: 10%;
+    text-align: left;
+}
+
+.mat-column-current-value {
+    width: 10%;
+    text-align: center;
+}
+
+.mat-column-bonus-attribute {
+    width: 10%;
+    color: #999;
+    text-align: center;
+}
+
+.mat-column-bonus-race {
+    width: 10%;
+    color: #999;
+    text-align: center;
+}
+
+.mat-column-cost {
+    width: 10%;
+    color: #999;
+    text-align: center;
+}
+
+.mat-column-current-value-slider {
+    width: 25%;
+}
+
+.mat-column-options {
+    width: 25%;
+}
+
+/*
 .mat-column-current-attribute {
     width: 50px;
     text-align: left;
@@ -18,6 +55,7 @@ table {
     width: 50px;
     color: #999;
 }
+*/
 
 .text {
     color: #999;

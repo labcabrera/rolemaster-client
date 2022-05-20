@@ -18,11 +18,11 @@ a:active {
 }
 
 .mat-column-group {
-  width: 130px;
+  width: 10%;
 }
 
 .mat-column-progression-type {
-  width: 60px;
+  width: 5%;
 }
 
 .mat-column-adolescence-ranks,
@@ -32,26 +32,25 @@ a:active {
 .mat-column-bonus-attribute,
 .mat-column-bonus-profession,
 .mat-column-bonus-ranks {
-  width: 50px;
+  width: 5%;
   color: #999;
   text-align: left;
 }
 
 .mat-column-development-cost {
-  width: 80px;
+  width: 5%;
   color: #999;
   text-align: left;
 }
 
 .mat-column-total-ranks,
 .mat-column-total-bonus {
-  width: 80px;
-  //font-weight: bold;
+  width: 5%;
   text-align: left;
 }
 
 .mat-column-options {
-  width: 120px;
+  width: 15%;
 }
 
 .mat-header-cell {

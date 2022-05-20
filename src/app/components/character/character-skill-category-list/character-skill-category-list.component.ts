@@ -15,9 +15,7 @@ export class CharacterSkillCategoryListComponent implements AfterViewInit {
 
   @Input() character?: CharacterInfo = {} as CharacterInfo;
   @Input() skillCategoryDataSource: MatTableDataSource<CharacterSkillCategory> | undefined;
-
   @Output() onCharacterUpdated = new EventEmitter<CharacterInfo>();
-
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   displayedColumns: string[] = ['category-id', 'group', 'progression-type',

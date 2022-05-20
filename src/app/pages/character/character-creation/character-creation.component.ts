@@ -25,22 +25,17 @@ import { User } from 'src/app/model/user';
 export class CharacterCreationComponent implements OnInit {
 
   user?: User;
-
   characterInfo: CharacterInfo;
-
   versions: NamedKey[] = [];
   universes: Universe[] = [];
   races: Race[] = [];
   realms: NamedKey[] = [];
   professions: Profession[] = [];
-
   characterCreationFormGroup: FormGroup;
   characterBasicData: FormGroup;
   characterDevelopment: FormGroup;
   trainingPackages: FormGroup;
-
   basicDataDisabled = false;
-
   @ViewChild(CharacterCreationAttributesComponent) attributesComponent?: CharacterCreationAttributesComponent;
 
   constructor(
@@ -55,7 +50,6 @@ export class CharacterCreationComponent implements OnInit {
     private fb: FormBuilder) {
 
     this.characterInfo = {} as CharacterInfo;
-
     this.characterCreationFormGroup = fb.group({
       'name': ['', Validators.required],
       'version': ['', Validators.required],
@@ -111,51 +105,6 @@ export class CharacterCreationComponent implements OnInit {
       },
       error: error => this.errorService.displayError(error)
     });
-    this.professionService.getProfessions('').subscribe({
-      next: results => this.professions = results,
-      error: error => this.errorService.displayErrorWithPrefix("Error reading professions", error)
-    });
-  }
-
-  private readUser(): void {
-    this.userService.findUser().subscribe({
-      next: result => {
-        this.user = result;
-        const version = this.user.defaultVersion ? this.user.defaultVersion : 'rmss';
-        this.characterCreationFormGroup.patchValue({
-          version: version,
-          universeId: this.user.defaultUniverseId
-        });
-        this.onVersionChange(version);
-      },
-      error: error => this.errorService.displayError(error)
-    });
-  }
-
-  private loadRolemasterVersions(): void {
-    this.enumService.findRolemasterVersions().subscribe({
-      next: result => this.versions = result,
-      error: error => this.errorService.displayError(error)
-    });
-  }
-
-  private loadRaces(universeId: string): void {
-    const version = this.characterCreationFormGroup.controls['version'].value;
-    this.raceService.find(version, universeId).subscribe({
-      next: results => this.races = results,
-      error: error => this.errorService.displayErrorWithPrefix("Error reading races", error)
-    });
-  }
-
-  private loadRealms(professionId: string): void {
-    const profession: Profession = this.professions.filter(e => e.id == professionId)[0];
-    this.realms = [];
-    profession.availableRealms.forEach(e => {
-      this.realms.push({ key: e, name: this.capitalize(e) });
-    });
-    if (this.realms.length == 1) {
-      this.characterCreationFormGroup.patchValue({ realm: this.realms[0].key });
-    }
   }
 
   get characterCreationFormGroupValue() {
@@ -195,6 +144,7 @@ export class CharacterCreationComponent implements OnInit {
         }
       });
     }
+    this.loadProfessions(version);
     this.attributesComponent?.loadVersion(version);
   }
 
@@ -211,6 +161,55 @@ export class CharacterCreationComponent implements OnInit {
       }
     };
     this.characterCreationFormGroup.patchValue(patch);
+  }
+
+  private readUser(): void {
+    this.userService.findUser().subscribe({
+      next: result => {
+        this.user = result;
+        const version = this.user.defaultVersion ? this.user.defaultVersion : 'rmss';
+        this.characterCreationFormGroup.patchValue({
+          version: version,
+          universeId: this.user.defaultUniverseId
+        });
+        this.loadProfessions(this.user!.defaultVersion!);
+        this.onVersionChange(version);
+      },
+      error: error => this.errorService.displayError(error)
+    });
+  }
+
+  private loadRolemasterVersions(): void {
+    this.enumService.findRolemasterVersions().subscribe({
+      next: result => this.versions = result,
+      error: error => this.errorService.displayError(error)
+    });
+  }
+
+  private loadProfessions(version: string): void {
+    this.professionService.getProfessions(version).subscribe({
+      next: results => this.professions = results,
+      error: error => this.errorService.displayErrorWithPrefix("Error reading professions", error)
+    });
+  }
+
+  private loadRaces(universeId: string): void {
+    const version = this.characterCreationFormGroup.controls['version'].value;
+    this.raceService.find(version, universeId).subscribe({
+      next: results => this.races = results,
+      error: error => this.errorService.displayErrorWithPrefix("Error reading races", error)
+    });
+  }
+
+  private loadRealms(professionId: string): void {
+    const profession: Profession = this.professions.filter(e => e.id == professionId)[0];
+    this.realms = [];
+    profession.availableRealms.forEach(e => {
+      this.realms.push({ key: e, name: this.capitalize(e) });
+    });
+    if (this.realms.length == 1) {
+      this.characterCreationFormGroup.patchValue({ realm: this.realms[0].key });
+    }
   }
 
 }

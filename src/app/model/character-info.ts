@@ -16,7 +16,7 @@ export interface CharacterInfo {
     armor: CharacterArmor;
     defensiveBonus: number;
     weight: CharacterWeight;
-    baseMovementRate: number;
+    baseMovementRate: BaseMovementRate;
     skillCategories:  CharacterSkillCategory[];
     skills: CharacterSkill[];
     developmentPoints: CharacterDevelopmentPoints;
@@ -113,6 +113,11 @@ export interface CharacterCreationRequest {
     attributesRoll: number;
     baseAttributes: CharacterCreationAttributes;
     weaponCategoryPriority: string[];
+}
+
+export interface BaseMovementRate {
+    bms: number;
+    bmsInMeter: number;
 }
 
 export interface CharacterCreationAttributes {

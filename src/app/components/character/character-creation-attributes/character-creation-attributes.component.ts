@@ -37,7 +37,8 @@ export class CharacterCreationAttributesComponent {
     { 'attribute': 'qu', 'currentValue': 0, 'potentialValue': 0, 'bonusRace': 0, 'bonusAttribute': 0, 'totalBonus': 0, 'cost': 0 },
     { 'attribute': 'st', 'currentValue': 0, 'potentialValue': 0, 'bonusRace': 0, 'bonusAttribute': 0, 'totalBonus': 0, 'cost': 0 },
   ];
-  displayedColumns = ['attribute', 'current-value', 'potential-value', 'bonus-attribute', 'bonus-race', 'cost', 'currentValueSlider', 'currentValueButtons'];
+  displayedColumns = ['attribute', 'current-value', 'bonus-attribute', 'bonus-race',
+    'cost', 'current-value-slider', 'options'];
 
 
   constructor(

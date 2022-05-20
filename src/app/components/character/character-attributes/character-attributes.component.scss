@@ -1,3 +1,13 @@
 table {
     width: 100%;
 }
+
+.mat-column-attribute {
+    width: 20%;
+}
+
+.mat-column-version,
+.mat-column-universe,
+.mat-column-owner {
+    width: 25%;
+}

@@ -2,11 +2,11 @@
     <div fxLayout="column" fxLayoutGap="5pt" *ngIf="character">
         <div fxLayout="row">
             <div fxFlex="50" class="character-info">Race</div>
-            <div fxFlex="50" class="character-info"><a routerLink="/races/detail/{{character.raceId}}">{{character.raceId}}</a></div>
+            <div fxFlex="50" class="character-info"><a routerLink="/races/detail/{{character.raceId}}">{{character.raceId | titlecase}}</a></div>
         </div>
         <div fxLayout="row">
             <div fxFlex="50" class="character-info">Profession</div>
-            <div fxFlex="50" class="character-info"><a routerLink="/professions/detail/{{character.professionId}}">{{character.professionId}}</a></div>
+            <div fxFlex="50" class="character-info"><a routerLink="/professions/detail/{{character.professionId}}">{{character.professionId | titlecase}}</a></div>
         </div>
         <div fxLayout="row">
             <div fxFlex="50" class="character-info">Realm</div>
@@ -31,20 +31,16 @@
             <div fxFlex="50" class="character-info">{{character.maxHp}}</div>
         </div>
         <div fxLayout="row">
-            <div fxFlex="50" class="character-info">Power points</div>
+            <div fxFlex="50" class="character-info">Pow points</div>
             <div fxFlex="50" class="character-info">*</div>
         </div>
         <div fxLayout="row">
-            <div fxFlex="50" class="character-info">Exhaustion points</div>
+            <div fxFlex="50" class="character-info">Exh points</div>
             <div fxFlex="50" class="character-info">{{character.maxExhaustionPoints}}</div>
         </div>
         <div fxLayout="row">
-            <div fxFlex="50" class="character-info">
-                <a routerLink="/wiki/glossary">Movement</a>
-            </div>
-            <div fxFlex="50" class="character-info">
-                {{character.baseMovementRate}} m/round
-           </div>
+            <div fxFlex="50" class="character-info">BMS</div>
+            <div fxFlex="50" class="character-info">{{character.baseMovementRate.bms}}</div>
         </div>
         <mat-divider></mat-divider>
         <div fxLayout="row" class="character-info">
@@ -61,7 +57,7 @@
         </div>
         <mat-divider></mat-divider>
         <div fxLayout="row" class="character-info">
-            <div fxFlex="50" class="character-info">Armor</div>
+            <div fxFlex="50" class="character-info">AT</div>
             <div fxFlex="50" class="character-info">{{character.armor.armor}}</div>
         </div>
         <div fxLayout="row">
@@ -69,16 +65,16 @@
             <div fxFlex="50" class="character-info">{{character.defensiveBonus}}</div>
         </div>
         <div fxLayout="row">
-            <div fxFlex="50" class="character-info">Armor penalty</div>
+            <div fxFlex="50" class="character-info">AT penalty</div>
             <div fxFlex="50" class="character-info">{{character.armor.armorPenalty}}</div>
         </div>
         <div fxLayout="row">
-            <div fxFlex="50" class="character-info">Armor Qu penalty</div>
+            <div fxFlex="50" class="character-info">Qu penalty</div>
             <div fxFlex="50" class="character-info">{{character.armor.armorQuPenalty}}</div>
         </div>
         <mat-divider></mat-divider>
         <div fxLayout="row" class="character-info">
-            <div fxFlex="50" class="character-info">Development points</div>
+            <div fxFlex="50" class="character-info">Dev points</div>
             <div fxFlex="50" class="character-info">{{character.developmentPoints?.totalPoints}}</div>
         </div>
     </div>
