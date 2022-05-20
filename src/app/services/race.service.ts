@@ -17,12 +17,8 @@ export class RaceService {
 
   constructor(private http: HttpClient) { }
 
-  find(): Observable<Race[]> {
-    return this.http.get<Race[]>(this.baseUrl).pipe();
-  }
-
-  findByUniverseId(universeId: string): Observable<Race[]> {
-    const url = `${this.baseUrl}?universeId=${universeId}`;
+  find(version: string, universeId: string): Observable<Race[]> {
+    const url = `${this.baseUrl}?version=${version}&universeId=${universeId}&size=1000&sort=name,asc`;
     return this.http.get<Race[]>(url).pipe();
   }
 

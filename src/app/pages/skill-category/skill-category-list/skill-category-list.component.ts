@@ -8,6 +8,7 @@ import { SkillCategory } from '../../../model/skill-category';
 import { SkillCategoryService } from '../../../services/skill-category.service';
 import { ErrorService } from 'src/app/services/error.service';
 import { EnumService } from 'src/app/services/enum.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-skill-category-list',
@@ -20,25 +21,32 @@ export class SkillCategoryListComponent implements OnInit, AfterViewInit {
 
   versionControl = new FormControl('');
 
-  displayedColumns: string[] = [ "name", "version", "group", "attributes", "progression-type"];
+  displayedColumns: string[] = ["name", "version", "group", "attributes", "progression-type"];
   dataSource: MatTableDataSource<SkillCategory> = new MatTableDataSource<SkillCategory>(this.skillCategories);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
 
   constructor(
-    private enumService: EnumService,
+    private userService: UserService,
     private skillCategoryService: SkillCategoryService,
     private errorService: ErrorService) { }
 
   ngOnInit(): void {
-    this.loadSkillCategories('');
+    this.userService.findUser().subscribe({
+      next: result => {
+        const version = result.defaultVersion ? result.defaultVersion : '';
+        this.versionControl.setValue(version)
+        this.loadSkillCategories(version);
+      },
+      error: error => this.errorService.displayError(error)
+    });
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator!;
     this.dataSource.sort = this.sort!;
   }
-  
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -47,11 +55,14 @@ export class SkillCategoryListComponent implements OnInit, AfterViewInit {
   onVersionChange(version: string) {
     this.loadSkillCategories(version);
   }
-  
+
   private loadSkillCategories(version: string): void {
-    this.skillCategoryService.getSkillCategories(version).subscribe(result => {
-      this.skillCategories = result;
-      this.dataSource.data = this.skillCategories;
+    this.skillCategoryService.getSkillCategories(version).subscribe({
+      next: result => {
+        this.skillCategories = result;
+        this.dataSource.data = this.skillCategories;
+      },
+      error: error => this.errorService.displayError(error)
     });
   }
 

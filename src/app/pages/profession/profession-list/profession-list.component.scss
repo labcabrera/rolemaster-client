@@ -8,10 +8,17 @@ table {
 }
 
 .mat-column-name {
-    width: 40%;
+    width: 30%;
 }
 
-.mat-column-version,
+.mat-column-version {
+    width: 20%;
+}
+
 .mat-column-available-realms {
-    width: 30%;
+    width: 50%;
+}
+
+.mat-chip {
+    font-size: 10pt;
 }

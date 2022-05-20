@@ -19,7 +19,7 @@ export class TalentListComponent implements OnInit {
   flaws: CharacterCustomization[] = [];
   versionControl = new FormControl('');
   dataSource = new MatTableDataSource<CharacterCustomization>();
-  displayedColumns = ["name", "version", "category", "costType", "cost"];
+  displayedColumns = ["name", "version", "category", "cost-type", "cost"];
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
 

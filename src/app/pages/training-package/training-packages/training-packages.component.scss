@@ -7,8 +7,16 @@ table {
     width: 100%;
 }
 
-td {
-    width: 20%;
+.mat-column-name {
+    width: 40%;
+}
+
+.mat-column-version {
+    width: 30%;
+}
+
+.mat-column-type {
+    width: 30px;
 }
 
 .tr-data {

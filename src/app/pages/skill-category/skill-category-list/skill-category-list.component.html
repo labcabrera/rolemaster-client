@@ -21,29 +21,29 @@
     </mat-form-field>
 
     <table mat-table [dataSource]="dataSource" aria-describedby="Skills categories">
-        <ng-container matColumnDef="id">
-            <th scope="col" mat-header-cell *matHeaderCellDef>Id</th>
-            <td mat-cell *matCellDef="let element">{{element.id}}</td>
-        </ng-container>
         <ng-container matColumnDef="name">
             <th scope="col" mat-header-cell *matHeaderCellDef>Name</th>
             <td mat-cell *matCellDef="let element">{{element.name}}</td>
         </ng-container>
         <ng-container matColumnDef="version">
             <th scope="col" mat-header-cell *matHeaderCellDef>Version</th>
-            <td mat-cell *matCellDef="let element">{{element.version}}</td>
+            <td mat-cell *matCellDef="let element">{{element.version | uppercase}}</td>
         </ng-container>
         <ng-container matColumnDef="group">
             <th scope="col" mat-header-cell *matHeaderCellDef>Group</th>
-            <td mat-cell *matCellDef="let element">{{element.group}}</td>
+            <td mat-cell *matCellDef="let element">{{element.group | titlecase}}</td>
         </ng-container>
         <ng-container matColumnDef="attributes">
             <th scope="col" mat-header-cell *matHeaderCellDef>Attributes</th>
-            <td mat-cell *matCellDef="let element">{{element.attributeBonus}}</td>
+            <td mat-cell *matCellDef="let element">
+                <span *ngFor="let attribute of element.attributeBonus; let last = last;">
+                    {{attribute}}{{last ? '' : ','}}
+                </span>
+            </td>
         </ng-container>
         <ng-container matColumnDef="progression-type">
             <th scope="col" mat-header-cell *matHeaderCellDef>Progression Type</th>
-            <td mat-cell *matCellDef="let element">{{element.progressionType}}</td>
+            <td mat-cell *matCellDef="let element">{{element.progressionType | titlecase}}</td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/skill-categories/detail/', row.id]" class="tr-link"></tr>

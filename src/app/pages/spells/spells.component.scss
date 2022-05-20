@@ -7,8 +7,36 @@ table {
     width: 100%;
 }
 
-td {
-    width: 15%;
+.mat-column-name {
+    width: 20%;
+}
+
+.mat-column-spell-list {
+    width: 20%;
+}
+
+.mat-column-level {
+    width: 10%;
+}
+
+.mat-column-type {
+    width: 10%;
+}
+
+.mat-column-subtype {
+    width: 10%;
+}
+
+.mat-column-preparation {
+    width: 10%;
+}
+
+.mat-column-target {
+    width: 10%;
+}
+
+.mat-column-range {
+    width: 10%;
 }
 
 .tr-data {

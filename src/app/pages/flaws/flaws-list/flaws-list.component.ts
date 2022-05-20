@@ -20,7 +20,7 @@ export class FlawsListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort?: MatSort;
   flaws: CharacterCustomization[] = [];
   dataSource = new MatTableDataSource<CharacterCustomization>();
-  displayedColumns = ["name", "version", "category", "costType", "cost"];
+  displayedColumns = ["name", "version", "category", "cost-type", "cost"];
   versionControl = new FormControl('');
 
   constructor(

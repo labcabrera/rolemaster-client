@@ -14,7 +14,7 @@ import { SpellService } from 'src/app/services/spell.service';
 export class SpellsComponent implements OnInit {
 
   spells?: Spell[];
-  displayedColumns: string[] = [ "name", "spellListId", "level", "type", "subtype", "preparation", "targetType", "rangeType" ];
+  displayedColumns: string[] = [ "name", "spell-list", "level", "type", "subtype", "preparation", "targetType", "rangeType" ];
   dataSource: MatTableDataSource<Spell> = new MatTableDataSource<Spell>(this.spells);
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;

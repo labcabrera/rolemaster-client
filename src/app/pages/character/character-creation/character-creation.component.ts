@@ -140,7 +140,8 @@ export class CharacterCreationComponent implements OnInit {
   }
 
   private loadRaces(universeId: string): void {
-    this.raceService.findByUniverseId(universeId).subscribe({
+    const version = this.characterCreationFormGroup.controls['version'].value;
+    this.raceService.find(version, universeId).subscribe({
       next: results => this.races = results,
       error: error => this.errorService.displayErrorWithPrefix("Error reading races", error)
     });
