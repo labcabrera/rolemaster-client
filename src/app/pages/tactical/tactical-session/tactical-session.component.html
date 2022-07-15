@@ -22,7 +22,7 @@
 
     <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
 
-        <mat-card fxLayout="column" fxFlex="40" fxLayout.lt-sm="100" form [formGroup]="form" class="full-width">
+        <div fxLayout="column" fxFlex="40" fxLayout.lt-sm="100" form [formGroup]="form" class="full-width">
             <div>
                 <mat-form-field appearance="outline" class="common-form-field">
                     <mat-label>Strategic session</mat-label>
@@ -86,7 +86,7 @@
                     <input matInput value="{{this.tacticalSession.state}}" disabled>
                 </mat-form-field>
             </div>
-        </mat-card>
+        </div>
 
         <div fxFlex="40" *ngIf="tacticalSession">
             <app-tactical-session-character-management [tacticalSession]="tacticalSession"></app-tactical-session-character-management>

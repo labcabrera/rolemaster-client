@@ -9,11 +9,20 @@ $my-app-theme:   mat-dark-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 @include angular-material-theme($my-app-theme);
 
+//$font-family: 'Raleway'
+$custom-typography: mat-typography-config(
+  $font-family: 'Garamond'
+);
+
+@include angular-material-typography($custom-typography);
+
+
 html, body { height: 100%; }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  //font-family: Roboto, "Helvetica Neue", sans-serif;
+  //font-family: 'Georgia', serif !important;
   background-color: #252831;
 }
 
@@ -22,6 +31,40 @@ body {
   margin-left: 10pt;
   margin-right: 10pt;
   padding-bottom: 10pt;
+}
+
+.mat-table,
+.mat-paginator {
+  background-color: #303030;
+}
+
+.mat-header-cell {
+  font-size: 14px;
+}
+
+.mat-cell {
+  color: #eed0af;
+}
+
+.mat-row:hover {
+  background-color: #404040;
+}
+
+.mat-select-disabled .mat-select-value {
+  color: #eed0af;
+}
+.mat-input-disabled {
+  color: #eed0af;
+}
+.mat-input-element:disabled {
+  color: #eed0af;
+}
+
+.mat-drawer-content {
+  color: #eed0af;
+  //background-color: #2f2c29;
+  //background: rgb(57,50,13);
+  //background: linear-gradient(356deg, rgba(57,50,13,1) 29%, rgba(27,26,24,1) 55%, rgba(47,45,34,1) 100%); 
 }
 
 .tr-link {

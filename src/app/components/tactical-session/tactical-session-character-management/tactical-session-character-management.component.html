@@ -1,19 +1,4 @@
 <div>
-    <form class="example-form">
-        <mat-form-field class="common-form-field" appearance="outline">
-            <mat-label>Add Characters</mat-label>
-            <input matInput aria-label="Npc" [matAutocomplete]="autoCompleteNpc" [formControl]="addCharactersFormControl">
-            <mat-autocomplete #autoCompleteNpc="matAutocomplete" [displayWith]="displayNpcOption">
-                <mat-option *ngFor="let npc of addCharactersFiltered | async" [value]="npc">
-                    {{npc.name}}
-                </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        <button mat-button (click)="addCharacter()">
-            <mat-icon>add</mat-icon>
-        </button>
-    </form>
-
     <table mat-table [dataSource]="characterDataSource" matSort aria-describedby="Characters">
         <ng-container matColumnDef="level">
             <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>Lvl</th>
@@ -24,7 +9,7 @@
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
         <ng-container matColumnDef="description">
-            <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
             <td mat-cell *matCellDef="let element"> {{element.shortDescription}} </td>
         </ng-container>
         <ng-container matColumnDef="options" stickyEnd>
@@ -42,4 +27,20 @@
         </tr>
     </table>
     <mat-paginator [pageSizeOptions]="[10, 15, 20, 50, 100]" aria-label="Select page of skills"></mat-paginator>
+
+    <form>
+        <mat-form-field class="common-form-field" appearance="outline">
+            <mat-label>Add Character</mat-label>
+            <input matInput aria-label="Npc" [matAutocomplete]="autoCompleteNpc" [formControl]="addCharactersFormControl">
+            <mat-autocomplete #autoCompleteNpc="matAutocomplete" [displayWith]="displayNpcOption">
+                <mat-option *ngFor="let npc of addCharactersFiltered | async" [value]="npc">
+                    {{npc.name}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <button mat-button (click)="addCharacter()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </form>
+
 </div>

@@ -8,7 +8,7 @@
 
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="skill name" #input>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Strategic session" #input>
     </mat-form-field>
 
     <table mat-table #skillTable [dataSource]="dataSource" aria-describedby="Strategic sessions">

@@ -69,7 +69,6 @@ import { ActionDeclarationSpellCastComponent } from './components/tactical/actio
 import { ActionDeclarationChangeItemsComponent } from './components/tactical/action-declaration/action-declaration-change-items/action-declaration-change-items.component';
 import { CharacterTrainingPackagesComponent } from './components/character/character-training-packages/character-training-packages.component';
 import { TacticalSessionCharacterManagementComponent } from './components/tactical-session/tactical-session-character-management/tactical-session-character-management.component';
-import { CharacterCreationAttributeComponent } from './components/character/character-creation-attribute/character-creation-attribute.component';
 import { CombatComponent } from './pages/wiki/combat/combat.component';
 import { MissileAttackExecutionComponent } from './components/tactical/action-execution/missile-attack-execution/missile-attack-execution.component';
 import { RaceListComponent } from './pages/race/race-list/race-list.component';
@@ -106,6 +105,7 @@ import { CombatStatusIconsComponent } from './components/tactical/combat-status-
 import { DialogEditHpComponent } from './components/dialogs/dialog-edit-hp/dialog-edit-hp.component';
 import { DialogInitiativeDeclarationComponent } from './components/dialogs/dialog-initiative-declaration/dialog-initiative-declaration.component';
 import { TacticalViewRmuComponent } from './pages/tactical-view-rmu/tactical-view-rmu.component';
+import { CharacterCreationWeaponPriorityComponent } from './components/character/character-creation-weapon-priority/character-creation-weapon-priority.component';
 
 @NgModule({
   declarations: [
@@ -170,7 +170,6 @@ import { TacticalViewRmuComponent } from './pages/tactical-view-rmu/tactical-vie
     ActionDeclarationChangeItemsComponent,
     CharacterTrainingPackagesComponent,
     TacticalSessionCharacterManagementComponent,
-    CharacterCreationAttributeComponent,
     CombatComponent,
     MissileAttackExecutionComponent,
     RaceAttributesComponent,
@@ -205,7 +204,8 @@ import { TacticalViewRmuComponent } from './pages/tactical-view-rmu/tactical-vie
     CombatStatusIconsComponent,
     DialogEditHpComponent,
     DialogInitiativeDeclarationComponent,
-    TacticalViewRmuComponent
+    TacticalViewRmuComponent,
+    CharacterCreationWeaponPriorityComponent
   ],
   imports: [
     FormsModule,

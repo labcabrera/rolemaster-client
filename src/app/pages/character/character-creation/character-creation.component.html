@@ -12,7 +12,7 @@
 
         <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20">
 
-            <mat-card fxFlex="30" fxLayout="column">
+            <div fxFlex="30" fxLayout="column">
                 <mat-form-field appearance="outline">
                     <mat-label>Name</mat-label>
                     <input name="name" matInput type="text" formControlName="name">
@@ -64,7 +64,7 @@
                     <mat-label>Weight</mat-label>
                     <input name="weight" matInput type="text" formControlName="weight">
                 </mat-form-field>
-            </mat-card>
+            </div>
 
             <div fxFlex="50" fxLayout="column">
                 <app-character-creation-attributes [version]="characterCreationFormGroup.controls['version'].value"
@@ -86,5 +86,3 @@
 
     </form>
 </div>
-
-<pre>{{characterCreationFormGroup.value | json}}</pre>
